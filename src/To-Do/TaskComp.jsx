@@ -1,4 +1,5 @@
 import "./todo.css";
+import PropTypes from 'prop-types'
 export const TaskListComp = ({index,data,onDeleteTask}) => {
   return (
     <li key={index} className="my-2">
@@ -11,3 +12,8 @@ export const TaskListComp = ({index,data,onDeleteTask}) => {
     </li>
   );
 };
+TaskListComp.propTypes = {
+  index: PropTypes.number.isRequired,
+  data: PropTypes.string.isRequired,
+  onDeleteTask: PropTypes.func.isRequired
+}

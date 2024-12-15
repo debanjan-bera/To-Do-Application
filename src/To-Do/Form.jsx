@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from 'prop-types'
 import "./todo.css";
 
 export const FormComp = ({onAddTodo}) => {
@@ -25,3 +26,7 @@ export const FormComp = ({onAddTodo}) => {
     </form>
   );
 };
+
+FormComp.propTypes={
+  onAddTodo : PropTypes.func.isRequired,
+}

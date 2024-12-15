@@ -18,8 +18,8 @@ export const TodoApp = () => {
   };
   return (
     <>
-      <section className=" h-lvh w-lvw bg-pink-400 flex flex-col items-center gap-4">
-        <header className="p-5">
+      <section className=" h-lvh w-lvw bg-pink-400 flex flex-col items-center">
+        <header className="p-3">
           <h2 className=" text-6xl">To-Do Application</h2>
         </header>
         <main style={{ width: "500px" }}>
@@ -38,7 +38,7 @@ export const TodoApp = () => {
           </ul>
         </main>
         <div>
-          {taskArr.length !== 0 && <ClearAllTask onTodoData={setTaskArr} />}
+          <ClearAllTask onTodoData={setTaskArr} lengthOfArr={taskArr.length}/>
         </div>
       </section>
     </>
