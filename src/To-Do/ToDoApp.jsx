@@ -1,30 +1,18 @@
 import { useState } from "react";
 import "./todo.css";
 import { DateAndTime } from "./Date";
+import { FormComp } from "./Form";
+import { TaskListComp } from "./TaskComp";
 export const TodoApp = () => {
-  const [inputValue, setInputValue] = useState("");
   const [taskArr, setTaskArr] = useState([]);
-  const handleFromInput = (value) => {
-    setInputValue(value);
-  };
-  const handleFromSubmit = (event) => {
-    event.preventDefault();
-    if (!inputValue) return;
+  const handleFromSubmit = (inputValue) => {
     if (taskArr.includes(inputValue)) return;
     setTaskArr((prevTask) => [...prevTask, inputValue]);
-    setInputValue("");
   };
-  const handleBtnSubmit = () => {
-    if (!inputValue) return;
-    if (taskArr.includes(inputValue)) setInputValue("");
-    else {
-      console.log(inputValue);
-      console.log(taskArr);
-    }
-  };
+
   const handleDeleteTask= (value) =>{
     console.log(value);
-    const updateTaskValue = taskArr.filter((curTask)=> curTask !== value)
+    const updateTaskValue = taskArr.filter((curTask)=> curTask !== value )
     setTaskArr(updateTaskValue)
   }
   const handleClearAll = ()=>{
@@ -36,37 +24,16 @@ export const TodoApp = () => {
         <header className="p-5">
           <h2 className=" text-6xl">To-Do Application</h2>
         </header>
-        <main className="">
+        <main>
             <section className="p-4">
                 <DateAndTime/>
             </section>
-          <form action="" className="todo-form" onSubmit={handleFromSubmit}>
-           
-            <div className="w-full">
-              <input type="text" className="todo-input" autoComplete="off" value={inputValue}
-                onChange={(event) => handleFromInput(event.target.value)}
-              />
-            </div>
-            <div>
-              <button className="buttonClass" onClick={handleBtnSubmit}> Add Task
-              </button>
-            </div>
-            
-            
-          </form>
+          <FormComp onAddTodo={handleFromSubmit} />
           <ul className="mytaskList">
-            {taskArr.map((curTask, index) => {
+            { taskArr.map((curTask, index) => {
               return (
-                <li key={index}>
-                  <span>{curTask}</span>
-                  <button className="h-8 p-2 bg-red-600 text-center"
-                  onClick={()=> handleDeleteTask(curTask)}
-                  >Delete</button>
-                </li>
-              );
- 
-            })}
-
+                <TaskListComp key={index} data={curTask} onDeleteTask={handleDeleteTask}/>
+              )})}
           </ul>
         </main>
         <div>
