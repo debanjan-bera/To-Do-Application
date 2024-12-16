@@ -1,38 +1,21 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-header{
-    color: #ffff;
-}
 .todo-form{
     display: grid;
     grid-template-columns: 2fr 0.4fr;
     gap: 0;
-
 }
 .todo-input{
     padding-left: 9px;
     height: 3rem;
     width: 100%;
-    border-radius: 0.9rem 0 0 0.9rem;
+    border-radius: 0.4rem 0 0 0.4rem;
     border: none;
-    font-size: 1.3rem;
 }
-.todo-input:active{
-    border: 2px solid red;
-}
-
 .buttonClass{
     height: 3rem;
     width: 6.5rem;
-    background-color: rgb(10, 206, 255);
-    border-radius: 0 0.9rem 0.9rem 0;
+    background-color: rgb(185, 185, 185);
+    border-radius: 0 0.4rem 0.4rem 0;
     font-size: 1.3rem;
     font-weight: 500;
     text-align: center;
-}
-.mytaskList{
-    background-color: rgb(65, 170, 255);
 }

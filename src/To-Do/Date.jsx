@@ -14,5 +14,5 @@ export const DateAndTime = () => {
     return ()=> clearInterval(setInterVal)
   },[]);
 
-  return <h1>{nowDateTime}</h1>;
+  return <h1 className="text-xl text-white font-semibold">{nowDateTime}</h1>;
 };

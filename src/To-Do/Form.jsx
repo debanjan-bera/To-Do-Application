@@ -17,7 +17,7 @@ export const FormComp = ({onAddTodo}) => {
   return (
     <form action="" className="todo-form" onSubmit={handleFromSubmit}>
       <div className="w-full">
-        <input type="text" className="todo-input" autoComplete="off" value={inputValue} onChange={(event) => handleFromInput(event.target.value)}
+        <input type="text" className="todo-input bg-black/50 backdrop-blur-xl text-white text-2xl font-medium" autoComplete="off" value={inputValue} onChange={(event) => handleFromInput(event.target.value)}
         />
       </div>
       <div>
