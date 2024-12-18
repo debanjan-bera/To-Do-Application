@@ -1,15 +1,20 @@
 import { useState } from "react";
 import "./todo.css";
 import { DateAndTime } from "./Date";
-import { FormComp } from "./Form";
+import { InputBoxComponent } from "./InputBox";
 import { TaskListComp } from "./TaskComp";
 import { ClearAllTask } from "./ClearTodo";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState([]);
+
   const handleFromSubmit = (inputValue) => {
-    if (taskArr.includes(inputValue)) return;
-    setTaskArr((prevTask) => [...prevTask, inputValue]);
+    const {id,content,checked} = inputValue
+    const ifTodoContentMatched = taskArr.find((currentTask) => 
+      currentTask.content === content)
+    if (ifTodoContentMatched) return;
+    setTaskArr((prevTask) => [...prevTask,{id,content,checked}]);
   };
+
   const handleDeleteTask = (value) => {
     const updateTaskValue = taskArr.filter((curTask) => curTask !== value);
     setTaskArr(updateTaskValue);
@@ -21,22 +26,17 @@ export const TodoApp = () => {
           <h2>To-Do Application</h2>
         </header>
         <main style={{width: "500px"}}>
-          <section className="p-4">
-            <h2>Date & Time</h2>
-            <DateAndTime/>
-          </section>
-          <FormComp onAddTodo={handleFromSubmit} />
+          <DateAndTime/>
+          <InputBoxComponent onAddTodo={handleFromSubmit} />
           <section>
             <h2 className="py-2 text-white/70 text-3xl font-medium">Task:</h2>
             <ul className="mytaskList">
-              {taskArr.map((curTask, index) => {
+              {taskArr.map((curTask) => {
                 return (
-                  <TaskListComp key={index} data={curTask} onDeleteTask={handleDeleteTask}/>
+                  <TaskListComp key={curTask.id} date={curTask.id} data={curTask.content} onDeleteTask={handleDeleteTask}/>
                 );})}
             </ul>
-            <div className="flex justify-center">
-              <ClearAllTask onTodoData={setTaskArr} lengthOfArr={taskArr.length}/>
-            </div>
+            <ClearAllTask onTodoData={setTaskArr} lengthOfArr={taskArr.length}/>
           </section>
         </main>
       </main>

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
 export const DateAndTime = () => {
-  // console.log('hello')
-
   const [nowDateTime, setDateTime] = useState("");
   useEffect(() => {
     const setInterVal = setInterval(() => {
@@ -11,8 +9,14 @@ export const DateAndTime = () => {
       const formattedTime = todayDate.toLocaleTimeString();
       setDateTime(`${formattedDate} - ${formattedTime}`);
     }, 1000);
-    return ()=> clearInterval(setInterVal)
-  },[]);
+    return () => clearInterval(setInterVal);
+  }, []);
 
-  return <h1 className="text-xl text-white font-semibold">{nowDateTime}</h1>;
+  return (
+    <>
+      <section className="p-4">
+        <h1 className="text-xl text-white font-semibold">{nowDateTime}</h1>
+      </section>
+    </>
+  )
 };

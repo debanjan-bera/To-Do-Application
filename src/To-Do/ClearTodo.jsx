@@ -6,7 +6,10 @@ export const ClearAllTask = ({onTodoData,lengthOfArr})=>{
         const classList= `p-2 m-1 text-2xl text-white font-medium bg-red-500 ${lengthOfArr!== 0 ? 'visible' : 'hidden'}`;
         return classList
       }
-    return(<button className={hiddenCompo()} onClick={handleClearAll}>Clear</button>)
+    return(
+      <div className="flex justify-center">
+        <button className={hiddenCompo()} onClick={handleClearAll}>Clear</button>
+      </div>)
 }
 
 ClearAllTask.propTypes = {
