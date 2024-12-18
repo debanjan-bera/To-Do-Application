@@ -1,11 +1,14 @@
 import "./todo.css";
 import PropTypes from 'prop-types'
 export const TaskListComp = ({data,onDeleteTask}) => {
+  const todayDate = new Date();
+  const formattedDate = todayDate.toLocaleDateString();
   return (
-    <li className="p-2 my-2 bg-black/40  text-white text-xl font-medium flex flex-row justify-between items-center">
-      <span>{data}</span>
+    <li className="px-3 py-3 my-2 bg-black/40  text-white text-xl font-medium flex flex-row justify-between items-center relative">
+      <span className="text-2xl  ">{data}</span>
+      <div className="date absolute text-[0.7rem] bottom-[-0.29rem] left-0 px-3 text-white/50">{formattedDate}</div>
       <button
-        className="h-full p-2 bg-red-600 text-center"
+        className="h-full p-1 bg-red-600 text-center"
         onClick={() => onDeleteTask(data)}>
         Delete
       </button>
