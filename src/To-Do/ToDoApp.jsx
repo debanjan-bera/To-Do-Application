@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./todo.css";
 import { DateAndTime } from "./Date";
 import { InputBoxComponent } from "./InputBox";
-import { TaskListComp } from "./TaskComp";
+import { TaskListComp } from "./ListBoxComp";
 import { ClearAllTask } from "./ClearTodo";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState([]);
