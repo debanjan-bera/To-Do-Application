@@ -6,18 +6,16 @@ import { TaskListComp } from "./ListBoxComp";
 import { ClearAllTask } from "./ClearTodo";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState([]);
-
   const handleFromSubmit = (inputValue) => {
     const {id,content,checked} = inputValue
-    const ifTodoContentMatched = taskArr.find((currentTask) => 
-      currentTask.content === content)
+    const ifTodoContentMatched = taskArr.find((currentTask) => currentTask.content === content)
     if (ifTodoContentMatched) return;
     setTaskArr((prevTask) => [...prevTask,{id,content,checked}]);
   };
-
   const handleDeleteTask = (value) => {
-    const updateTaskValue = taskArr.filter((curTask) => curTask !== value);
+    const updateTaskValue = taskArr.filter((curTask) => curTask.content !== value);
     setTaskArr(updateTaskValue);
+    console.log(updateTaskValue);
   };
   return (
     <>
