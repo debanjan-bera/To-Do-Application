@@ -3,20 +3,16 @@ import "./todo.css";
 import { InputBoxComponent } from "./InputBox";
 import { TaskListComp } from "./ListBoxComp";
 import { ClearAllTask } from "./ClearTodo";
+import { getLocalStorage,setLocalStorage } from "./LocalStorage";
 export const TodoApp = () => {
-  const todoKey = 'TodoItems'
-  const [taskArr, setTaskArr] = useState(()=>{
-    const rawData = localStorage.getItem(todoKey)
-    if(!rawData) return [];
-    return JSON.parse(rawData)
-  });
+  const [taskArr, setTaskArr] = useState(()=> getLocalStorage());
   const handleFromSubmit = (inputValue) => {
     const {id,content,checked} = inputValue
     const ifTodoContentMatched = taskArr.find((currentTask) => currentTask.content === content)
     if (ifTodoContentMatched) return;
     setTaskArr((prevTask) => [...prevTask,{id,content,checked}]);
   };
-  localStorage.setItem(todoKey, JSON.stringify(taskArr))
+  setLocalStorage(taskArr)
   const handleDeleteTask = (value) => {
     const updateTaskValue = taskArr.filter((currentTask) => currentTask.content !== value);
     setTaskArr(updateTaskValue);
@@ -28,7 +24,6 @@ export const TodoApp = () => {
     })
     setTaskArr(updateTaskValue);
   }
-  
   return (
     <> 
       <main className="bg-black/50 h-lvh w-lvw  flex flex-col items-center">
