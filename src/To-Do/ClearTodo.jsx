@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
 import './todo.css'
-export const ClearAllTask = ({onTodoData,lengthOfArr})=>{
-    const handleClearAll = ()=> onTodoData([])
+export const ClearAllTask = ({setTaskData,lengthOfTaskArr})=>{
+    const handleClearAll = ()=> setTaskData([])
     const hiddenCompo = ()=>{
-        const classList= `p-2 m-1 text-2xl text-white font-medium bg-red-500 ${lengthOfArr!== 0 ? 'visible' : 'hidden'}`;
+        const classList= `p-2 m-1 text-2xl text-white font-medium bg-red-500 ${lengthOfTaskArr!== 0 ? 'visible' : 'hidden'}`;
         return classList
       }
     return(
@@ -13,7 +13,7 @@ export const ClearAllTask = ({onTodoData,lengthOfArr})=>{
 }
 
 ClearAllTask.propTypes = {
-  onTodoData: PropTypes.func.isRequired, 
-  lengthOfArr: PropTypes.number.isRequired,
+  setTaskData: PropTypes.func.isRequired, 
+  lengthOfTaskArr: PropTypes.number.isRequired,
 
 };

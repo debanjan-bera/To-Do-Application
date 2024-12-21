@@ -3,17 +3,23 @@ import PropTypes from 'prop-types'
 import "./todo.css";
 import { DateAndTime } from "./Date";
 
-export const InputBoxComponent = ({onAddTodo}) => {
+export const InputBoxComponent = ({taskdata,setTaskData}) => {
   const [inputValue, setInputValue] = useState({id:'',content:'',checked:false});
-
+  const {id,content,checked} = inputValue
+  const todayDate = new Date();
+  const formattedDate = todayDate.toLocaleDateString();
+  const formattedTime = todayDate.toLocaleTimeString();
+  let taskId =  formattedDate +'&'+ formattedTime;
   const handleFromInput = (value) => {
-    setInputValue({id:value,content:value,checked:false});
+    setInputValue({id:taskId,content:value,checked:false});
   };
-  const {content} = inputValue
   const handleFromSubmit = (event) => {
     event.preventDefault();
     if (!content) return;
-    onAddTodo(inputValue)
+    const ifTodoContentMatched = taskdata.find((currentTask) => currentTask.content === content)
+    if (ifTodoContentMatched) return;
+    setTaskData((prevTask) => [...prevTask,{id,content,checked}]);
+    console.log(taskdata);
     setInputValue({id:'',content:'',checked:false});
   };
 
@@ -33,5 +39,7 @@ export const InputBoxComponent = ({onAddTodo}) => {
 };
 
 InputBoxComponent.propTypes={
-  onAddTodo : PropTypes.func.isRequired,
+  taskdata: PropTypes.array.isRequired,
+  setTaskData: PropTypes.func.isRequired,
+
 }

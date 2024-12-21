@@ -6,20 +6,16 @@ import { ClearAllTask } from "./ClearTodo";
 import { getLocalStorage,setLocalStorage } from "./LocalStorage";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(()=> getLocalStorage());
-  const handleFromSubmit = (inputValue) => {
-    const {id,content,checked} = inputValue
-    const ifTodoContentMatched = taskArr.find((currentTask) => currentTask.content === content)
-    if (ifTodoContentMatched) return;
-    setTaskArr((prevTask) => [...prevTask,{id,content,checked}]);
-  };
   setLocalStorage(taskArr)
-  const handleDeleteTask = (value) => {
-    const updateTaskValue = taskArr.filter((currentTask) => currentTask.content !== value);
+
+  const handleDeleteTask = (id) => {
+    const updateTaskValue = taskArr.filter((currentTask) => currentTask.id !== id);
     setTaskArr(updateTaskValue);
+    console.log(taskArr);
   };
-  const handleCheckedTask = (taskData) =>{
+  const handleCheckedTask = (id) =>{
     const updateTaskValue = taskArr.map((currentTask)=>{
-      if(currentTask.content === taskData) return {...currentTask, checked:!currentTask.checked}
+      if(currentTask.id === id) return {...currentTask, checked:!currentTask.checked}
       else return currentTask;
     })
     setTaskArr(updateTaskValue);
@@ -31,16 +27,16 @@ export const TodoApp = () => {
           <h2>To-Do Application</h2>
         </header>
         <main style={{width: "500px"}}>
-          <InputBoxComponent onAddTodo={handleFromSubmit} />
+          <InputBoxComponent  taskdata={taskArr} setTaskData={setTaskArr}/>
           <section>
-            <h2 className="py-2 text-white/70 text-3xl font-medium">Task:</h2>
+            <h2 className="py-2 text-white/70 text-3xl font-medium">Task:{taskArr.length}</h2>
             <ul className="mytaskList">
               {taskArr.map((curTask) => {
                 return (
-                  <TaskListComp key={curTask.id} data={curTask.content} isChecked={curTask.checked} onCheckedTask={handleCheckedTask} onDeleteTask={handleDeleteTask}/>
+                  <TaskListComp key={curTask.id} id={curTask.id} data={curTask.content} isChecked={curTask.checked} onCheckedTask={handleCheckedTask} onDeleteTask={handleDeleteTask}/>
                 );})}
             </ul>
-            <ClearAllTask onTodoData={setTaskArr} lengthOfArr={taskArr.length}/>
+            <ClearAllTask  setTaskData={setTaskArr} lengthOfTaskArr={taskArr.length}/>
           </section>
         </main>
       </main>

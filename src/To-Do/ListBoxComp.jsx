@@ -1,6 +1,6 @@
 import "./todo.css";
 import PropTypes from 'prop-types'
-export const TaskListComp = ({data,isChecked,onDeleteTask,onCheckedTask}) => {
+export const TaskListComp = ({id,data,isChecked,onDeleteTask,onCheckedTask}) => {
   const todayDate = new Date();
   const formattedDate = todayDate.toLocaleDateString();
   return (
@@ -8,10 +8,10 @@ export const TaskListComp = ({data,isChecked,onDeleteTask,onCheckedTask}) => {
       <span className={`text-2xl mb-2 ${isChecked? 'line-through':'no-underline'}`}>{data}</span>
       <div className="date absolute text-[0.7rem] bottom-[-0.29rem] left-0 px-3 text-white/50">{formattedDate}</div>
       <div>
-        <button onClick={()=> onCheckedTask(data)}>Checked</button>
+        <button onClick={()=> onCheckedTask(id)}>Checked</button>
       <button
         className="h-full p-1 bg-red-600 text-center"
-        onClick={() => onDeleteTask(data)}>
+        onClick={() => onDeleteTask(id)}>
         Delete
       </button>
       </div>
@@ -20,6 +20,7 @@ export const TaskListComp = ({data,isChecked,onDeleteTask,onCheckedTask}) => {
   );
 };
 TaskListComp.propTypes = {
+  id: PropTypes.string.isRequired,
   data: PropTypes.string.isRequired,
   isChecked:PropTypes.bool.isRequired,
   onCheckedTask: PropTypes.func.isRequired,
