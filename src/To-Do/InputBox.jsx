@@ -6,10 +6,13 @@ import { DateAndTime } from "./Date";
 export const InputBoxComponent = ({taskdata,setTaskData}) => {
   const [inputValue, setInputValue] = useState({id:'',content:'',checked:false});
   const {id,content,checked} = inputValue
-  const todayDate = new Date();
-  const formattedDate = todayDate.toLocaleDateString();
-  const formattedTime = todayDate.toLocaleTimeString();
-  let taskId =  formattedDate +'&'+ formattedTime;
+  const setUniqueId = ()=>{
+    const todayDate = new Date();
+    const formattedDate = todayDate.toLocaleDateString();
+    const formattedTime = todayDate.toLocaleTimeString();
+    return formattedDate +'&'+ formattedTime;
+  }
+  const taskId =  setUniqueId()
   const handleFromInput = (value) => {
     setInputValue({id:taskId,content:value,checked:false});
   };
@@ -22,6 +25,7 @@ export const InputBoxComponent = ({taskdata,setTaskData}) => {
     console.log(taskdata);
     setInputValue({id:'',content:'',checked:false});
   };
+  
 
   return (
     <>
