@@ -7,40 +7,7 @@ import { getLocalStorage,setLocalStorage } from "./LocalStorage";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(()=> getLocalStorage());
   const [filteredData, setFilteredData] = useState([]);
-  // const filterDataFunc = ()=>{
-  //   taskArr.map((ele)=> {
-  //     if(!ele.checked){
-  //       const ifTodoContentMatched = taskArr.filter((e) => e.checked)
-  //       setFilteredData(ifTodoContentMatched)
-  //     }
-  //     else {
-  //       const ifTodoContentMatched = filteredData.find((currentTask) => currentTask.content === ele.content)
-  //       if (ifTodoContentMatched) return;
-  //       filteredData.push(ele)
-  //       console.log(filteredData);
-  //     }
-  //   })
-  // }
-  // const filterDataFunc = () => {
-  //   const checkedTasks = taskArr.filter((task) => task.checked); // Get checked tasks
-  
-  //   // Combine existing filtered data with new checked tasks, avoiding duplicates
-  //   const updatedFilteredData = [
-  //     ...filteredData.filter((existingTask) =>
-  //       !checkedTasks.some((checkedTask) => checkedTask.content === existingTask.content)
-  //     ),
-  //     ...checkedTasks,
-  //   ];
-  
-  //   setFilteredData(updatedFilteredData);
-  // };
-  // const filterDataFunc = () => {
-  //   const updatedFilteredData = taskArr.filter((task) => task.checked);
-  //   setFilteredData(updatedFilteredData);
-  // };
-  // filterDataFunc();
   useEffect(() => {
-    // filterDataFunc();
     setLocalStorage(taskArr);
   }, [taskArr]);
 
