@@ -7,8 +7,7 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
   const handleDeleteTask = () => {
     const updateTaskValue = taskData.filter((currentTask) => currentTask.id !== id);
     setTaskData(updateTaskValue);
-    const checkedTask = taskData.find((task) => task.id === id);
-    setFilter((prevFilter)=> prevFilter.filter((task) => task.id !== checkedTask.id))
+    setFilter((prevFilter)=> prevFilter.filter((task) => task.id !== id))
   };
 
   const handleCheckedTask = () => {
