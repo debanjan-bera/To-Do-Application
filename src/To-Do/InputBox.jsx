@@ -20,7 +20,8 @@ export const InputBoxComponent = ({taskdata,setTaskData}) => {
     event.preventDefault();
     if (!content) return;
     const ifTodoContentMatched = taskdata.find((currentTask) => currentTask.content === content)
-    if (ifTodoContentMatched) return;
+    const ifTododMatchedId = taskdata.find((currentTask) => currentTask.id === id)
+    if (ifTodoContentMatched || ifTododMatchedId) return;
     setTaskData((prevTask) => [...prevTask,{id,content,checked}]);
     setInputValue({id:'',content:'',checked:false});
   };

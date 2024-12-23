@@ -7,8 +7,8 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
   const handleDeleteTask = () => {
     const updateTaskValue = taskData.filter((currentTask) => currentTask.id !== id);
     setTaskData(updateTaskValue);
-    const updatedFilteredData = updateTaskValue.filter((task) => task.id !== id);
-    setFilter(updatedFilteredData);
+    const checkedTask = taskData.find((task) => task.id === id);
+    setFilter((prevFilter)=> prevFilter.filter((task) => task.id !== checkedTask.id))
   };
 
   const handleCheckedTask = () => {
@@ -18,15 +18,9 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
     setTaskData(updatedTaskData);
   
     const checkedTask = updatedTaskData.find((task) => task.id === id);
-    console.log(checkedTask);
-  
-    if (checkedTask && checkedTask.checked) {
-      // If the task is checked, add it to the filter array after the existing data
-      setFilter((prevFilter) => [...prevFilter, checkedTask]);
-    } else {
+    if (checkedTask && checkedTask.checked) setFilter((prevFilter) => [...prevFilter, checkedTask]);
+    else setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id));
       // If the task is unchecked, remove it from the filter array
-      setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id));
-    }
   };
   
   
