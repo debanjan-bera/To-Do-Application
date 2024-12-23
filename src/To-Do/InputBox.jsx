@@ -22,7 +22,6 @@ export const InputBoxComponent = ({taskdata,setTaskData}) => {
     const ifTodoContentMatched = taskdata.find((currentTask) => currentTask.content === content)
     if (ifTodoContentMatched) return;
     setTaskData((prevTask) => [...prevTask,{id,content,checked}]);
-    console.log(taskdata);
     setInputValue({id:'',content:'',checked:false});
   };
   

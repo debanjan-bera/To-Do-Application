@@ -1,7 +1,7 @@
 
 import "./todo.css";
 import PropTypes from "prop-types";
-export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter }) => {
+export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
 
   const { id, content, checked } = curTask;
   const handleDeleteTask = () => {
@@ -10,20 +10,16 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter }) => {
     console.log(taskData);
   };
 
-
   const handleCheckedTask = () => {
-    // Update the task's checked state
     const updatedTaskData = taskData.map((currentTask) =>
       currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask
     );
-    const updateTaskValue = updatedTaskData.filter((currentTask) => !currentTask.checked);
-    setTaskData(updateTaskValue);
-    // setTaskData(updatedTaskData);
-  
-    // Compute the filtered tasks based on the updated state
-    const updatedFilterTask = updatedTaskData.filter((task) => task.checked);
-    setFilter(updatedFilterTask);
+
+    setTaskData(updatedTaskData);
+    const updatedFilteredData = updatedTaskData.filter((task) => task.checked);
+    setFilter(updatedFilteredData);
   };
+  
   
 
   const todayDate = new Date();
@@ -47,6 +43,5 @@ TaskListComp.propTypes = {
   curTask: PropTypes.object.isRequired,
   taskData: PropTypes.array.isRequired,
   setTaskData: PropTypes.func.isRequired,
-  filter: PropTypes.array.isRequired,
   setFilter: PropTypes.func.isRequired,
 };
