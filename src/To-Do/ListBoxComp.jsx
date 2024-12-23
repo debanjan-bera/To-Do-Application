@@ -21,9 +21,6 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
     else setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id));
       // If the task is unchecked, remove it from the filter array
   };
-  
-  
-
   const todayDate = new Date();
   const formattedDate = todayDate.toLocaleDateString();
   return (
@@ -32,7 +29,6 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
       <div className="date absolute text-[0.7rem] bottom-[-0.29rem] left-0 px-3 text-white/50">
         {formattedDate}
       </div>
-      <div></div>
       <div>
         <button onClick={() => handleCheckedTask()}>Checked</button>
         <button className="h-full p-1 bg-red-600 text-center"

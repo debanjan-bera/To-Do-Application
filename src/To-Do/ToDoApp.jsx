@@ -21,18 +21,18 @@ export const TodoApp = () => {
         <main style={{width: "500px"}}>
           <InputBoxComponent  taskdata={taskArr} setTaskData={setTaskArr}/>
           <section>
-            <h2 className="py-2 text-white/70 text-3xl font-medium">Task:{filteredData.length}</h2>
-            <ul className="mytaskList">
+            <h2 className="my-2 text-white/80 text-3xl font-medium bg-black/10">{`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}</h2>
+            <ul>
               {taskArr.map((curTask) => {
                 return (
-                  <TaskListComp key={curTask.id} curTask={curTask} taskData={taskArr} setTaskData={setTaskArr} filter={filteredData} setFilter={setFilteredData}/>);
+                  <TaskListComp key={curTask.id} curTask={curTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>);
                 })}
             </ul>
-            <ClearAllTask  setTaskData={setTaskArr} lengthOfTaskArr={taskArr.length}/>
+            <ClearAllTask  setTaskData={setTaskArr} setCompletedTask={setFilteredData} lengthOfTaskArr={taskArr.length}/>
             <ul className="mytaskList text-2xl text-white">
               {filteredData.map((curTask,index) => {
                 return (
-                  <li key={index}>{curTask.content}</li>
+                  <li className="px-3 py-3 my-2 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative" key={index}>{curTask.content}</li>
                 );
                 })}
             </ul>
