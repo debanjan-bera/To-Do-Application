@@ -11,23 +11,19 @@ export const TodoApp = () => {
   const removeChecked = (id)=>{
     const findFilterData = filteredData.find((curTask)=> curTask.id === id)
     if(filteredData){
-      // findFilterData.id = setUniqueId();
-      // console.log(findFilterData);
+
       console.log("Item to Remove:", findFilterData.content,findFilterData.id);
       const updatedData = filteredData.filter((curTask) => curTask.id !== id);
       setFilteredData(updatedData);
-      //it's now temporary
-      const tempArr = findFilterData;
-      tempArr.checked = !findFilterData.checked
-      console.log(findFilterData);
 
+      findFilterData.checked = !findFilterData.checked
+      console.log(findFilterData);
       setTaskArr((prev)=> [...prev,findFilterData])
     }
     else return
   }
   const handleDeleteFilterTask = (id) => {
     setFilteredData((prevFilter)=> prevFilter.filter((task) => task.id !== id))
-    //it's now temporary
     setTaskArr((updateTask)=> updateTask.filter((currentTask) => currentTask.id !== id))
   };
 
