@@ -13,24 +13,24 @@ export const TodoApp = () => {
     if(filteredData){
       // findFilterData.id = setUniqueId();
       // console.log(findFilterData);
-      console.log("Item to Remove:", findFilterData.content);
+      console.log("Item to Remove:", findFilterData.content,findFilterData.id);
       const updatedData = filteredData.filter((curTask) => curTask.id !== id);
       setFilteredData(updatedData);
-      console.log(findFilterData.id);
       //it's now temporary
-      const updatedTaskData = taskArr.map((currentTask) =>
-        currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask);
-      setTaskArr(updatedTaskData);
+      const tempArr = findFilterData;
+      tempArr.checked = !findFilterData.checked
+      console.log(findFilterData);
 
+      setTaskArr((prev)=> [...prev,findFilterData])
     }
     else return
   }
   const handleDeleteFilterTask = (id) => {
     setFilteredData((prevFilter)=> prevFilter.filter((task) => task.id !== id))
-    const updatedTaskData = taskArr.map((currentTask) =>
-      currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask);
-    setTaskArr(updatedTaskData);
+    //it's now temporary
+    setTaskArr((updateTask)=> updateTask.filter((currentTask) => currentTask.id !== id))
   };
+
   useEffect(() => {
     setLocalStorage(taskArr);
   }, [taskArr]);
@@ -48,9 +48,12 @@ export const TodoApp = () => {
             ${filteredData.length}`}</h2>
             <ul>
               {taskArr.map((curTask) => {
-                return (
-                  <TaskListComp key={curTask.id} curTask={curTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>
-                );
+                if(!curTask.checked){
+                  return (
+                    <TaskListComp key={curTask.id} curTask={curTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>
+                  );
+                }
+                
               })}
             </ul>
             <ClearAllTask

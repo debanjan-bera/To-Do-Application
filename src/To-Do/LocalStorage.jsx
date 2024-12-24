@@ -14,8 +14,8 @@ export const genaratedUniqueId = () =>{
     return formattedDate +'&'+ formattedTime;
 }
 
+const todayDate = new Date();
 export const updatedTodayDate= ()=>{
-    const todayDate = new Date();
     const formattedDate = todayDate.toLocaleDateString();
-    return formattedDate
+    return formattedDate;
 }
