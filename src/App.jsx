@@ -5,9 +5,7 @@ function App() {
 
   return (
     <>
-      <section className="h-lvh w-lvw  flex flex-col items-center backGroundImg">
-        <TodoApp />
-      </section>
+      <section className="h-lvh w-lvw flex flex-col items-center backGroundImg"> <TodoApp /> </section>
     </>
   );
 }
