@@ -7,23 +7,29 @@ import { getLocalStorage, setLocalStorage } from "./LocalStorage";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [filteredData, setFilteredData] = useState([]);
+
   const removeChecked = (id)=>{
     const findFilterData = filteredData.find((curTask)=> curTask.id === id)
     if(filteredData){
+      // findFilterData.id = setUniqueId();
+      // console.log(findFilterData);
       console.log("Item to Remove:", findFilterData.content);
       const updatedData = filteredData.filter((curTask) => curTask.id !== id);
       setFilteredData(updatedData);
+      console.log(findFilterData.id);
       //it's now temporary
       const updatedTaskData = taskArr.map((currentTask) =>
-        currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask
-      );
+        currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask);
       setTaskArr(updatedTaskData);
+
     }
     else return
-    console.log(findFilterData);
   }
   const handleDeleteFilterTask = (id) => {
     setFilteredData((prevFilter)=> prevFilter.filter((task) => task.id !== id))
+    const updatedTaskData = taskArr.map((currentTask) =>
+      currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask);
+    setTaskArr(updatedTaskData);
   };
   useEffect(() => {
     setLocalStorage(taskArr);
@@ -42,9 +48,6 @@ export const TodoApp = () => {
             ${filteredData.length}`}</h2>
             <ul>
               {taskArr.map((curTask) => {
-                // if (!curTask.checked) {
-                  
-                // }
                 return (
                   <TaskListComp key={curTask.id} curTask={curTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>
                 );

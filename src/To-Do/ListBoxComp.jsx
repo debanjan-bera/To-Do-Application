@@ -1,12 +1,13 @@
 
 import "./todo.css";
 import PropTypes from "prop-types";
+import { updatedTodayDate } from "./LocalStorage";
 export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
 
   const { id, content, checked } = curTask;
   const handleDeleteTask = () => {
-    const updateTaskValue = taskData.filter((currentTask) => currentTask.id !== id);
-    setTaskData(updateTaskValue);
+    setTaskData((updateTask)=> updateTask.filter((currentTask) => currentTask.id !== id));
+    //it's now temporary
     setFilter((prevFilter)=> prevFilter.filter((task) => task.id !== id))
   };
 
@@ -19,13 +20,12 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
     if (checkedTask && checkedTask.checked) setFilter((prevFilter) => [...prevFilter, checkedTask]);
     else setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id));
   };
-  const todayDate = new Date();
-  const formattedDate = todayDate.toLocaleDateString();
+  
   return (
     <li className="px-3 py-3 my-2 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative">
       <span className={`text-2xl mb-2 ${checked ? "line-through" : "no-underline"}`}> {content}</span>
       <div className="date absolute text-[0.7rem] bottom-[-0.29rem] left-0 px-3 text-white/50">
-        {formattedDate}
+        {updatedTodayDate()}
       </div>
       <div>
         <button onClick={() => handleCheckedTask()}>Checked</button>

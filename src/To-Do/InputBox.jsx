@@ -2,17 +2,12 @@ import { useState } from "react";
 import PropTypes from 'prop-types'
 import "./todo.css";
 import { DateAndTime } from "./Date";
-
+import { genaratedUniqueId } from "./LocalStorage.jsx"
 export const InputBoxComponent = ({taskdata,setTaskData}) => {
   const [inputValue, setInputValue] = useState({id:'',content:'',checked:false});
   const {id,content,checked} = inputValue
-  const setUniqueId = ()=>{
-    const todayDate = new Date();
-    const formattedDate = todayDate.toLocaleDateString();
-    const formattedTime = todayDate.toLocaleTimeString();
-    return formattedDate +'&'+ formattedTime;
-  }
-  const taskId =  setUniqueId()
+
+  const taskId = genaratedUniqueId()
   const handleFromInput = (value) => {
     setInputValue({id:taskId,content:value,checked:false});
   };
@@ -45,5 +40,4 @@ export const InputBoxComponent = ({taskdata,setTaskData}) => {
 InputBoxComponent.propTypes={
   taskdata: PropTypes.array.isRequired,
   setTaskData: PropTypes.func.isRequired,
-
 }
