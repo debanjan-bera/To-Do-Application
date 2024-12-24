@@ -13,6 +13,7 @@ export const TodoApp = () => {
       console.log("Item to Remove:", findFilterData.content);
       const updatedData = filteredData.filter((curTask) => curTask.id !== id);
       setFilteredData(updatedData);
+      //it's now temporary
       const updatedTaskData = taskArr.map((currentTask) =>
         currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask
       );

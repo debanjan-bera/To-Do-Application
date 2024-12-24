@@ -12,14 +12,12 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
 
   const handleCheckedTask = () => {
     const updatedTaskData = taskData.map((currentTask) =>
-      currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask
-    );
+      currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask);
     setTaskData(updatedTaskData);
   
     const checkedTask = updatedTaskData.find((task) => task.id === id);
     if (checkedTask && checkedTask.checked) setFilter((prevFilter) => [...prevFilter, checkedTask]);
     else setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id));
-      // If the task is unchecked, remove it from the filter array
   };
   const todayDate = new Date();
   const formattedDate = todayDate.toLocaleDateString();
