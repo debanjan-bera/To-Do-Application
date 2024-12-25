@@ -4,28 +4,10 @@ import { InputBoxComponent } from "./InputBox";
 import { TaskListComp } from "./ListBoxComp";
 import { ClearAllTask } from "./ClearTodo";
 import { getLocalStorage, setLocalStorage } from "./LocalStorage";
+import { TaskActionItem } from "./CompletedTask";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [filteredData, setFilteredData] = useState([]);
-
-  const removeChecked = (id)=>{
-    const findFilterData = filteredData.find((curTask)=> curTask.id === id)
-    if(filteredData){
-
-      console.log("Item to Remove:", findFilterData.content,findFilterData.id);
-      const updatedData = filteredData.filter((curTask) => curTask.id !== id);
-      setFilteredData(updatedData);
-
-      findFilterData.checked = !findFilterData.checked
-      console.log(findFilterData);
-      setTaskArr((prev)=> [...prev,findFilterData])
-    }
-    else return
-  }
-  const handleDeleteFilterTask = (id) => {
-    setFilteredData((prevFilter)=> prevFilter.filter((task) => task.id !== id))
-    setTaskArr((updateTask)=> updateTask.filter((currentTask) => currentTask.id !== id))
-  };
 
   useEffect(() => {
     setLocalStorage(taskArr);
@@ -46,32 +28,18 @@ export const TodoApp = () => {
               {taskArr.map((curTask) => {
                 if(!curTask.checked){
                   return (
-                    <TaskListComp key={curTask.id} curTask={curTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>
+                    <TaskListComp key={curTask.id} curTask={curTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}
+                    />
                   );
                 }
                 
               })}
             </ul>
-            <ClearAllTask
-              setTaskData={setTaskArr}
-              setCompletedTask={setFilteredData}
-              lengthOfTaskArr={taskArr.length}
-            />
+            <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} lengthOfTaskArr={taskArr.length}/>
             <ul className="mytaskList text-2xl text-white">
               {filteredData.map((curTask) => {
-                return (
-                  <li className="px-3 py-3 my-2 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative"
-                    key={curTask.id}> {curTask.content} 
-                    <div>
-                      <button className="mr-3" onClick={() => removeChecked(curTask.id)}>Mark</button>
-                      <button className="h-full p-1 bg-red-600 text-center"
-                      onClick={() => handleDeleteFilterTask(curTask.id)}>
-                        Delete
-                      </button>
-                    </div>
-                  </li>
-                );
-              })}
+                return ( <TaskActionItem key={curTask.id} taskData={curTask} updatePrimaryTasks={setTaskArr} filteredTasks={filteredData} updateFilteredTasks={setFilteredData}/>)})
+              }
             </ul>
           </section>
         </main>

@@ -1,4 +1,3 @@
-
 import "./todo.css";
 import PropTypes from "prop-types";
 import { updatedTodayDate } from "./LocalStorage";
