@@ -15,7 +15,7 @@ export const TodoApp = () => {
 
   return (
     <>
-      <main className="bg-black/30 h-lvh w-lvw  flex flex-col items-center">
+      <main className="bg-black/30 h-full w-full  flex flex-col items-center">
         <header className="p-3 text-6xl text-white">
           <h2>To-Do Application</h2>
         </header>
