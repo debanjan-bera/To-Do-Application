@@ -11,7 +11,6 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
   };
 
   const handleCheckedTask = () => {
-    // console.log(e.target.value);
     const updatedTaskData = taskData.map((currentTask) =>
       currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask);
     
@@ -27,14 +26,22 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
   return (
     <li className="px-3 py-3 my-2 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative">
       <div>
-        <input type="checkbox" value={id} onChange={() => handleCheckedTask()}/>
+
+      <input  type="checkbox" id="cbx-12" onChange={() => handleCheckedTask()} />
         <span className="text-2xl mb-3"> {content}</span>
       </div>
 
-      <div className="date absolute text-[0.67rem] bottom-[-0.29rem] left-0 px-3 text-white/50"> {updatedTodayDate()}
+      <div className="date absolute text-[0.67rem] bottom-[-0.29rem] left-0 px-3 text-white/50">
+        {" "}
+        {updatedTodayDate()}
       </div>
 
-      <button className="h-full p-1 bg-red-600 text-center" onClick={() => handleDeleteTask()}> Delete
+      <button
+        className="h-full p-1 bg-red-600 text-center"
+        onClick={() => handleDeleteTask()}
+      >
+        {" "}
+        Delete
       </button>
     </li>
   );
