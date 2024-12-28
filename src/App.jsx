@@ -5,13 +5,10 @@ function App() {
   return (
     <>
       <section className="h-lvh w-lvw flex flex-row items-center backGroundImg">
-        <aside className="h-lvh w-[15rem]">
+        <aside className="h-lvh w-[16rem]">
           <SideBar/>
         </aside>
         <TodoApp /> 
-        <aside className="h-lvh w-[25rem]">
-          <div> Hello</div>
-        </aside>
       </section>
     </>
   );

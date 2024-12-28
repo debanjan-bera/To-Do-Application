@@ -3,15 +3,15 @@ import "./todo.css";
 import { InputBoxComponent } from "./InputBox";
 import { TaskListComp } from "./ListBoxComp";
 import { ClearAllTask } from "./ClearTodo";
-import { getLocalStorage, setLocalStorage } from "./LocalStorage";
+import { getFilteredLocalStorage, getLocalStorage, setLocalStorage } from "./LocalStorage";
 import { TaskActionItem } from "./CompletedTask";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
-  const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
 
   useEffect(() => {
-    setLocalStorage(taskArr);
-  }, [taskArr]);
+    setLocalStorage(taskArr,filteredData);
+  }, [taskArr,filteredData]);
 
   return (
     <>

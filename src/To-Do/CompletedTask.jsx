@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export const TaskActionItem = ({ taskData, updatePrimaryTasks, filteredTasks, updateFilteredTasks }) => {
   const { id, content } = taskData;
-
+  console.log(id);
   const toggleTaskStatus = () => {
     const taskToUpdate = filteredTasks.find((task) => task.id === id);
     if (taskToUpdate) {
@@ -10,8 +10,7 @@ export const TaskActionItem = ({ taskData, updatePrimaryTasks, filteredTasks, up
       const updatedTasks = filteredTasks.filter((task) => task.id !== id);
       updateFilteredTasks(updatedTasks);
 
-       const toggledTask = { ...taskToUpdate, checked: !taskToUpdate.checked };
-      console.log(taskToUpdate);
+      const toggledTask = { ...taskToUpdate, checked: !taskToUpdate.checked };
       updatePrimaryTasks((prevTasks) => [...prevTasks, toggledTask]);
     }
   };
