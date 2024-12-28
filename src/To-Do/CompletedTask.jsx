@@ -32,7 +32,7 @@ export const TaskActionItem = ({ taskData, updatePrimaryTasks, filteredTasks, up
 
   return (
     <li className="px-3 py-3 my-2 bg-black/60 text-white text-xl font-medium flex flex-row justify-between items-center relative">
-      <div>
+      <div className="">
         <CheckBoxUiComponent onChecked={toggleTaskStatus} />
         {content}
       </div>
