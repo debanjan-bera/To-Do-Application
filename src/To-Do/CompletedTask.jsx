@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
-import { CheckBoxUiComponent } from "./Functional Component/CheckBoxComponent";
+import { CheckBoxUiComponent } from "./Functional Component/CheckBox/CheckBoxComponent";
 
 export const TaskActionItem = ({ taskData, updatePrimaryTasks, filteredTasks, updateFilteredTasks }) => {
   const { id, content } = taskData;
-
   const toggleTaskStatus = (event) => {
     if (event.target.checked) {
       setTimeout(()=>{
@@ -16,7 +15,7 @@ export const TaskActionItem = ({ taskData, updatePrimaryTasks, filteredTasks, up
           const toggledTask = { ...taskToUpdate, checked: !taskToUpdate.checked };
           updatePrimaryTasks((prevTasks) => [...prevTasks, toggledTask]);
         }
-      },2000)
+      },900)
       // Additional functionality when checked
   } else {
       return;
@@ -31,10 +30,10 @@ export const TaskActionItem = ({ taskData, updatePrimaryTasks, filteredTasks, up
   };
 
   return (
-    <li className="px-3 py-3 my-2 bg-black/60 text-white text-xl font-medium flex flex-row justify-between items-center relative">
-      <div className="">
+    <li className="px-3 py-3 my-2 bg-black/60  flex flex-row justify-between items-center relative">
+      <div className="text-white text-2xl font-medium flex flex-row gap-2 justify-between items-center">
         <CheckBoxUiComponent onChecked={toggleTaskStatus} />
-        {content}
+        <p>{content}</p>
       </div>
       <button className="h-full p-1 bg-red-600 text-center" onClick={deleteTask}>Delete</button>
     </li>
