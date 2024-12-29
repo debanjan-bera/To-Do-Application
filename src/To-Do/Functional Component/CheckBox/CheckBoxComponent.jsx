@@ -5,7 +5,6 @@ export const CheckBoxUiComponent = ({onChecked}) => {
   return (
 <div className="checkbox-wrapper-12">
           <div className="cbx">
-            {/* <input  type="checkbox" onChange={onChecked} /> */}
             <input  type="checkbox" id="cbx-12" onChange={onChecked}/>
 
             <label htmlFor="cbx-12"></label>
