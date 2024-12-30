@@ -8,18 +8,18 @@ import { TaskActionItem } from "./CompletedTask";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
+  const lengthOfTask = taskArr.length + filteredData.length
+  console.log(lengthOfTask);
   const checkTaskData = ()=>{
-    if(taskArr.length === 0){
+    if(!lengthOfTask){
       return(<div>Hello</div>)
     }
     else{
       return(
         taskArr.map((currentTask)=>{
           return( <TaskListComp key={currentTask.id} curTask={currentTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>)
-        })
-      )
-    }
-  }
+        }))
+    }}
   useEffect(() => {
 
     setLocalStorage(taskArr,filteredData);
@@ -36,12 +36,9 @@ export const TodoApp = () => {
           <section>
             <h2 className="my-2 text-white/80 text-3xl font-medium bg-black/10">{`Task ${taskArr.length} || Completed Task: 
             ${filteredData.length}`}</h2>
-            <ul>
-              {checkTaskData()}
-            </ul>
+            <ul>{checkTaskData()}</ul>
 
-            <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} lengthOfTaskArr={taskArr.length}
-            />
+            <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} emptyTask={lengthOfTask}/>
             <ul className="mytaskList text-2xl text-white">
               {filteredData.map((curTask) => {
                 return (
