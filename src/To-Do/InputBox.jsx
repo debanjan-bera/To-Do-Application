@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types'
 import "./todo.css";
-import { DateAndTime } from "./Date";
+import { DateAndTime } from "./Functional Component/Date.jsx";
 import { genaratedUniqueId } from "./LocalStorage.jsx"
 export const InputBoxComponent = ({taskdata,setTaskData}) => {
   const [inputValue, setInputValue] = useState({id:'',content:'',checked:false});

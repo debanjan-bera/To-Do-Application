@@ -2,14 +2,26 @@ import { useEffect, useState } from "react";
 import "./todo.css";
 import { InputBoxComponent } from "./InputBox";
 import { TaskListComp } from "./ListBoxComp";
-import { ClearAllTask } from "./ClearTodo";
+import { ClearAllTask } from "./Functional Component/ClearTodo";
 import { getFilteredLocalStorage, getLocalStorage, setLocalStorage } from "./LocalStorage";
 import { TaskActionItem } from "./CompletedTask";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
-
+  const checkTaskData = ()=>{
+    if(taskArr.length === 0){
+      return(<div>Hello</div>)
+    }
+    else{
+      return(
+        taskArr.map((currentTask)=>{
+          return( <TaskListComp key={currentTask.id} curTask={currentTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>)
+        })
+      )
+    }
+  }
   useEffect(() => {
+
     setLocalStorage(taskArr,filteredData);
   }, [taskArr,filteredData]);
 
@@ -25,21 +37,17 @@ export const TodoApp = () => {
             <h2 className="my-2 text-white/80 text-3xl font-medium bg-black/10">{`Task ${taskArr.length} || Completed Task: 
             ${filteredData.length}`}</h2>
             <ul>
-              {taskArr.map((curTask) => {
-                if(!curTask.checked){
-                  return (
-                    <TaskListComp key={curTask.id} curTask={curTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}
-                    />
-                  );
-                }
-                
-              })}
+              {checkTaskData()}
             </ul>
-            <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} lengthOfTaskArr={taskArr.length}/>
+
+            <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} lengthOfTaskArr={taskArr.length}
+            />
             <ul className="mytaskList text-2xl text-white">
               {filteredData.map((curTask) => {
-                return ( <TaskActionItem key={curTask.id} taskData={curTask} updatePrimaryTasks={setTaskArr} filteredTasks={filteredData} updateFilteredTasks={setFilteredData}/>)})
-              }
+                return (
+                  <TaskActionItem key={curTask.id} taskData={curTask} updatePrimaryTasks={setTaskArr} filteredTasks={filteredData} updateFilteredTasks={setFilteredData}/>
+                );
+              })}
             </ul>
           </section>
         </main>

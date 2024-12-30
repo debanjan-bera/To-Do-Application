@@ -21,8 +21,7 @@ export const genaratedUniqueId = () =>{
     return formattedDate +'&'+ formattedTime;
 }
 
-const todayDate = new Date();
-export const updatedTodayDate= ()=>{
-    const formattedDate = todayDate.toLocaleDateString();
-    return formattedDate;
+export const updatedTodayDate= (id)=>{
+    const [datePart] = id.split('&');
+    return datePart;
 }

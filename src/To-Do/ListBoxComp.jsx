@@ -34,7 +34,7 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
         <p className={`text-2xl ${check ? "line-through text-gray-500" : "no-underline"}`}>{content}</p>
       </div>
 
-      <div className="date absolute text-[0.67rem] bottom-[-0.29rem] left-0 px-3 text-white/50">{updatedTodayDate()}
+      <div className="date absolute text-[0.67rem] bottom-[-0.29rem] left-0 px-3 text-white/50">{updatedTodayDate(id)}
       </div>
 
       <button className="h-full p-1 bg-red-600 text-center" onClick={() => handleDeleteTask()}> Delete</button>

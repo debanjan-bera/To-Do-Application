@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import './todo.css'
+import '../todo.css'
 export const ClearAllTask = ({setTaskData,setCompletedTask,lengthOfTaskArr})=>{
     const handleClearAll = ()=> {
       setTaskData([])
