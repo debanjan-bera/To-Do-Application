@@ -9,7 +9,6 @@ export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
   const lengthOfTask = taskArr.length + filteredData.length
-  console.log(lengthOfTask);
   const checkTaskData = ()=>{
     if(!lengthOfTask){
       return(<div>Hello</div>)
@@ -21,7 +20,6 @@ export const TodoApp = () => {
         }))
     }}
   useEffect(() => {
-
     setLocalStorage(taskArr,filteredData);
   }, [taskArr,filteredData]);
 
