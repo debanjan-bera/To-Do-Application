@@ -8,7 +8,7 @@ function App() {
         <aside className="h-lvh w-[16rem]">
           <SideBar/>
         </aside>
-        <TodoApp /> 
+        <TodoApp />
       </section>
     </>
   );

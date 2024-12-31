@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { CheckBoxUiComponent } from "./Functional Component/CheckBox/CheckBoxComponent";
 import { updatedTodayDate } from "./Functional Component/LocalStorage";
 
-export const TaskActionItem = ({ taskData, updatePrimaryTasks, filteredTasks, updateFilteredTasks }) => {
+export const TaskActionItem = ({ taskData,updatePrimaryTasks, filteredTasks, updateFilteredTasks }) => {
   const { id, content } = taskData;
   const toggleTaskStatus = (event) => {
     if (event.target.checked) {
@@ -12,10 +12,10 @@ export const TaskActionItem = ({ taskData, updatePrimaryTasks, filteredTasks, up
           console.log("Updating Task:", taskToUpdate.content);
           const updatedTasks = filteredTasks.filter((task) => task.id !== id);
           updateFilteredTasks(updatedTasks);
-    
           const toggledTask = { ...taskToUpdate, checked: !taskToUpdate.checked };
           updatePrimaryTasks((prevTasks) => [...prevTasks, toggledTask]);
         }
+        
       },900)
   } else {
       return;

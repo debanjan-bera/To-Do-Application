@@ -4,6 +4,7 @@ import { updatedTodayDate } from "./Functional Component/LocalStorage";
 import { CheckBoxUiComponent } from "./Functional Component/CheckBox/CheckBoxComponent";
 import { useState } from "react";
 export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
+  //Just checking 
   const [check,setCheck] = useState(false)
 
   const { id, content} = curTask;
@@ -17,12 +18,13 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
   const handleCheckedTask = () => {
     const updatedTaskData = taskData.map((currentTask) =>
       currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask);
-    
+
     const checkedTask = updatedTaskData.find((task) => task.id === id);
     if(checkedTask.checked) setCheck(!check)
     setTimeout(()=>{
       if (checkedTask && checkedTask.checked) setFilter((prevFilter) => [...prevFilter, checkedTask]);
-      else setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id));
+
+      console.log(checkedTask,checkedTask.checked);
       setTaskData(()=>updatedTaskData.filter((currentTask) => currentTask.id !== id));
     },950)
   };
