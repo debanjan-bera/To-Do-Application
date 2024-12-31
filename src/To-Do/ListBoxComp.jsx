@@ -24,7 +24,7 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
       if (checkedTask && checkedTask.checked) setFilter((prevFilter) => [...prevFilter, checkedTask]);
       else setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id));
       setTaskData(()=>updatedTaskData.filter((currentTask) => currentTask.id !== id));
-    },1300)
+    },950)
   };
   
   return (
