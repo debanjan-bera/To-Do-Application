@@ -21,7 +21,7 @@ export const genaratedUniqueId = () =>{
     return formattedDate +'&'+ formattedTime;
 }
 
-export const updatedTodayDate= (id)=>{
+export const updatedTodayDate = (id)=>{
     const [datePart] = id.split('&');
     return datePart;
 }

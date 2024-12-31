@@ -3,14 +3,18 @@ import "./todo.css";
 import { InputBoxComponent } from "./InputBox";
 import { TaskListComp } from "./ListBoxComp";
 import { ClearAllTask } from "./Functional Component/ClearTodo";
-import { getFilteredLocalStorage, getLocalStorage, setLocalStorage } from "./LocalStorage";
+import { getFilteredLocalStorage, getLocalStorage, setLocalStorage } from "./Functional Component/LocalStorage";
 import { TaskActionItem } from "./CompletedTask";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
-  const lengthOfTask = taskArr.length + filteredData.length
+  useEffect(() => {
+    setLocalStorage(taskArr,filteredData);
+  }, [taskArr,filteredData]);
+
+  const totalTask = taskArr.length + filteredData.length
   const checkTaskData = ()=>{
-    if(!lengthOfTask){
+    if(!totalTask){
       return(<div>Hello</div>)
     }
     else{
@@ -19,9 +23,6 @@ export const TodoApp = () => {
           return( <TaskListComp key={currentTask.id} curTask={currentTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>)
         }))
     }}
-  useEffect(() => {
-    setLocalStorage(taskArr,filteredData);
-  }, [taskArr,filteredData]);
 
   return (
     <>
@@ -36,7 +37,7 @@ export const TodoApp = () => {
             ${filteredData.length}`}</h2>
             <ul>{checkTaskData()}</ul>
 
-            <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} emptyTask={lengthOfTask}/>
+            <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} emptyTask={totalTask}/>
             <ul className="mytaskList text-2xl text-white">
               {filteredData.map((curTask) => {
                 return (

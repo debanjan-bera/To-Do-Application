@@ -1,6 +1,6 @@
 import "./todo.css";
 import PropTypes from "prop-types";
-import { updatedTodayDate } from "./LocalStorage";
+import { updatedTodayDate } from "./Functional Component/LocalStorage";
 import { CheckBoxUiComponent } from "./Functional Component/CheckBox/CheckBoxComponent";
 import { useState } from "react";
 export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {

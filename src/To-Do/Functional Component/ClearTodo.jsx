@@ -4,10 +4,9 @@ export const ClearAllTask = ({setTaskData,setCompletedTask,emptyTask})=>{
     const handleClearAll = ()=> {
       setTaskData([])
       setCompletedTask([])
-    } 
-    
+    }
     const hiddenCompo = ()=>{
-        const classList= `p-2 m-1 text-2xl text-white font-medium bg-red-500 ${!emptyTask ? 'visible' : 'hidden'}`;
+        const classList= `p-2 m-1 text-2xl text-white font-medium bg-red-500 ${emptyTask ? 'visible' : 'hidden'}`;
         return classList
       }
     return(
