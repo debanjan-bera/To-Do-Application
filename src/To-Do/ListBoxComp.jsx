@@ -23,8 +23,6 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
     if(checkedTask.checked) setCheck(!check)
     setTimeout(()=>{
       if (checkedTask && checkedTask.checked) setFilter((prevFilter) => [...prevFilter, checkedTask]);
-
-      console.log(checkedTask,checkedTask.checked);
       setTaskData(()=>updatedTaskData.filter((currentTask) => currentTask.id !== id));
     },950)
   };

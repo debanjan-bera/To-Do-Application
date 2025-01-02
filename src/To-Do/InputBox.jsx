@@ -4,21 +4,20 @@ import "./todo.css";
 import { DateAndTime } from "./Functional Component/Date.jsx";
 import { genaratedUniqueId } from "./Functional Component/LocalStorage.jsx"
 export const InputBoxComponent = ({taskdata,setTaskData}) => {
-  const [inputValue, setInputValue] = useState({id:'',content:'',checked:false});
-  const {id,content,checked} = inputValue
+  const [inputValue, setInputValue] = useState({id:'',title:'',content:'',isGroup:'',favourite:false,checked:false});
+  const {id,title,content,isGroup,favourite,checked} = inputValue
 
   const taskId = genaratedUniqueId()
   const handleFromInput = (value) => {
-    setInputValue({id:taskId,content:value,checked:false});
+    setInputValue({id:taskId,title:'',content:value,isGroup:'',favourite:false,checked:false});
   };
   const handleFromSubmit = (event) => {
     event.preventDefault();
     if (!content) return;
-    const ifTodoContentMatched = taskdata.find((currentTask) => currentTask.content === content)
     const ifTododMatchedId = taskdata.find((currentTask) => currentTask.id === id)
-    if (ifTodoContentMatched || ifTododMatchedId) return;
-    setTaskData((prevTask) => [...prevTask,{id,content,checked}]);
-    setInputValue({id:'',content:'',checked:false});
+    if (ifTododMatchedId) return;
+    setTaskData((prevTask) => [...prevTask,{id,title,content,isGroup,favourite,checked}]);
+    setInputValue({id:'',title:'',content:'',isGroup:'',favourite:false,checked:false});
   };
   
 
@@ -27,11 +26,10 @@ export const InputBoxComponent = ({taskdata,setTaskData}) => {
     <DateAndTime/>
     <form action="" className="todo-form" onSubmit={handleFromSubmit}>
       <div className="w-full">
-        <input type="text" className="todo-input bg-black/50 backdrop-blur-xl text-white text-xl font-medium" autoComplete="off" value={content} onChange={(event) => handleFromInput(event.target.value)}
-        />
+        <input type="text" className="todo-input bg-black/50 backdrop-blur-xl text-white text-xl font-medium" autoComplete="off" value={content} onChange={(event) => handleFromInput(event.target.value)}/>
       </div>
       <div>
-        <button className="buttonClass">Add Task </button>
+        <button className="buttonClass">Add Task</button>
       </div>
     </form>
     </>);
