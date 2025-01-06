@@ -27,12 +27,13 @@ export const TodoApp = () => {
   return (
     <>
       <main className="bg-black/30 h-full w-full  flex flex-col items-center">
-        <header className="p-3 text-6xl text-white">
-          <h2>To-Do Application</h2>
+        <header className="w-full p-3 text-white">
+          <h2 className="text-4xl font-semibold">Hello, Debanajan Bera</h2>
+          <h3 className="text-3xl font-semibold">My Task</h3>
         </header>
-        <main style={{ width: "500px" }}>
+        <main  className="w-full overflow-auto">
           <InputBoxComponent taskdata={taskArr} setTaskData={setTaskArr} />
-          <section>
+          <section >
             <h2 className="my-2 text-white/80 text-3xl font-medium bg-black/10">{`Task ${taskArr.length} || Completed Task: 
             ${filteredData.length}`}</h2>
             <ul>{checkTaskData()}</ul>
