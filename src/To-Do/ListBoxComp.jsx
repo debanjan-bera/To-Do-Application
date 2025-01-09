@@ -28,7 +28,7 @@ export const TaskListComp = ({ curTask, taskData, setTaskData,setFilter}) => {
   };
   
   return (
-    <li className="px-3 py-3 my-3 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative">
+    <li className="px-3 py-3 my-3 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative select-none">
       <div className="pb-1 flex flex-row gap-2 justify-between items-center">
       <CheckBoxUiComponent onChecked={handleCheckedTask} />
         <p className={`text-2xl ${check ? "line-through text-gray-500" : "no-underline"}`}>{content}</p>
