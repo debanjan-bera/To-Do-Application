@@ -20,11 +20,11 @@
     text-align: center;
 }
 /* From Uiverse.io by Shoh2008 */ 
-.hello{
+/* .hello{
     background-image: url('../assets/th.jpeg');
     background-size: cover;
     background-position: center;
-}
+} */
 .hello::-webkit-scrollbar {
     width: 0.6rem;
     height: 0.3rem;
