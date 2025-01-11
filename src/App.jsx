@@ -1,4 +1,5 @@
 import "./App.css";
+import { AddTaskForm } from "./To-Do/Functional Component/PopUp/AddTask";
 import { SideBar } from "./To-Do/SideBarComponent/TodoSidebar";
 // import { SideBar } from "./SideBarComponent/TodoSidebar";
 import { TodoApp } from "./To-Do/ToDoApp";
@@ -14,6 +15,7 @@ function App() {
           <SideBar/>
         </aside>
       </section>
+      <AddTaskForm/>
     </>
   );
 }
