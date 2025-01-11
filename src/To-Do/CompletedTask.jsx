@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { CheckBoxUiComponent } from "./Functional Component/CheckBox/CheckBoxComponent";
-import { updatedTodayDate } from "./Functional Component/LocalStorage";
+import { updatedTodayDate } from "../Backend/LocalStorage";
 
 export const TaskActionItem = ({ taskData,updatePrimaryTasks, filteredTasks, updateFilteredTasks }) => {
   const { id, content } = taskData;
