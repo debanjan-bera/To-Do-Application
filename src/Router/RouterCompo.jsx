@@ -1,34 +1,32 @@
-// import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-// import LoginForm from './Components/Login'
-// import './index.css'
-// import { Home } from './Components/Home'
-// import { AppLayout } from './Routers/AppLayout'
-// import { ErrorPage } from './Routers/Error'
-// function App() {
-//   const router = createBrowserRouter([
-//     {
-//       path:'/',
-//       element:<AppLayout/>,
-//       errorElement: <ErrorPage/>,
-//       children:[
-//         {
-//           path:'/',
-//           element: <Home />
-//         },
-//         {
-//           path:'/login',
-//           element: <LoginForm />
-//         }
-//       ]
-//     }
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { TodoApp } from '../To-Do/ToDoApp'
+import { AddTaskForm } from '../To-Do/Functional Component/PopUp/AddTask'
+import AppLay from '../TodoAppLayout'
+ function RouterCompo() {
+  const router = createBrowserRouter([
+    {
+      path:'/',
+      element:<AppLay/>,
+    //   errorElement: <ErrorPage/>,
+      children:[
+        {
+          path:'/',
+          element: <TodoApp/>
+        },
+        {
+          path:'/login',
+          element: <AddTaskForm />
+        }
+      ]
+    }
     
-//   ])
-// return(
-//     <>
-//     <RouterProvider router={router}/>
-//     </>
-//   )
-// }
+  ])
+return(
+    <>
+    <RouterProvider router={router}/>
+    </>
+  )
+}
 
-// export default App
 
+export default RouterCompo
