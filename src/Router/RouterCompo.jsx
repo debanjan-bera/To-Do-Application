@@ -1,6 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { TodoApp } from '../To-Do/ToDoApp'
-import { AddTaskForm } from '../To-Do/Functional Component/PopUp/AddTask'
 import AppLayout from '../TodoAppLayout'
 import { Home } from '../Home'
  function RouterCompo() {
@@ -18,10 +17,10 @@ import { Home } from '../Home'
           path:'/ho',
           element: <Home/>
         },
-        {
-          path:'/login',
-          element: <AddTaskForm />
-        }
+        // {
+        //   path:'/login',
+        //   element: <AddTaskForm />
+        // }
       ]
     }
     

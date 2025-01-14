@@ -4,20 +4,20 @@ import "./todo.css";
 import { DateAndTime } from "./Functional Component/Date.jsx";
 import { genaratedUniqueId } from "../Backend/LocalStorage"
 export const InputBoxComponent = ({taskdata,setTaskData}) => {
-  const [inputValue, setInputValue] = useState({id:'',content:'',isGroup:'',favourite:false,checked:false});
-  const {id,content,isGroup,favourite,checked} = inputValue
+  const [inputValue, setInputValue] = useState({id:'',content:'',groupName:'',description:'',favourite:false,checked:false});
+  const {id,content,groupName,description,favourite,checked} = inputValue
 
   const taskId = genaratedUniqueId()
   const handleFromInput = (value) => {
-    setInputValue({id:taskId,content:value,isGroup:'',favourite:false,checked:false});
+    setInputValue({id:taskId,content:value,groupName:'',description:'',favourite:false,checked:false});
   };
   const handleFromSubmit = (event) => {
     event.preventDefault();
     if (!content) return;
     const ifTododMatchedId = taskdata.find((currentTask) => currentTask.id === id)
     if (ifTododMatchedId) return;
-    setTaskData((prevTask) => [...prevTask,{id,content,isGroup,favourite,checked}]);
-    setInputValue({id:'',content:'',isGroup:'',favourite:false,checked:false});
+    setTaskData((prevTask) => [...prevTask,{id,content,groupName,description,favourite,checked}]);
+    setInputValue({id:'',content:'',groupName:'',description:'',favourite:false,checked:false});
   };
   
 

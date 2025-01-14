@@ -8,6 +8,7 @@ import { TaskActionItem } from "./CompletedTask";
 import { AddTaskForm } from "./Functional Component/PopUp/AddTask";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
+  const [windowOpen,setWindowClose] = useState(false)
   const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
   useEffect(() => {
     setLocalStorage(taskArr,filteredData);
@@ -24,7 +25,9 @@ export const TodoApp = () => {
           return( <TaskListComp key={currentTask.id} curTask={currentTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>)
         }))
     }}
-
+    const checkAddTaskWindow = ()=>{
+      setWindowClose(!windowOpen)
+    }
   return (
     <>
       <main className="bg-black/30 h-full w-full   flex-col items-center relative hidden">
@@ -56,19 +59,43 @@ export const TodoApp = () => {
           </section>
         </main>
       </main>
-      <AddTaskForm />
+      {windowOpen && (
+        <AddTaskForm
+          taskdata={taskArr}
+          primaryArr={setTaskArr}
+          setWindowClose={setWindowClose}
+        />
+      )}
 
-      
       <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3  ">
         <h2 className="text-3xl font-medium ">
           {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
         </h2>
       </div>
-      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative overflow-scroll">
-        <section className="w-full h-full">
-          <ul>{checkTaskData()}</ul>
+      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative overflow-hidden">
+        <section className="h-full w-full overflow-scroll">
+          <section >
+            <ul>{checkTaskData()}</ul>
+            <ul className="mytaskList text-2xl text-white">
+              {filteredData.map((curTask) => {
+                return (
+                  <TaskActionItem
+                    key={curTask.id}
+                    taskData={curTask}
+                    updatePrimaryTasks={setTaskArr}
+                    filteredTasks={filteredData}
+                    updateFilteredTasks={setFilteredData}
+                  />
+                );
+              })}
+            </ul>
+          </section>
         </section>
-        <div className="h-14 w-full bg-purple-300 sticky bottom-0"></div>
+
+        <div
+          className="h-14 w-full bg-purple-300 sticky bottom-0"
+          onClick={checkAddTaskWindow}
+        ></div>
       </main>
     </>
   );
