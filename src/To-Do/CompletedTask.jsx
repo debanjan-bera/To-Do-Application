@@ -14,8 +14,7 @@ export const TaskActionItem = ({ taskData,updatePrimaryTasks, filteredTasks, upd
           updateFilteredTasks(updatedTasks);
           const toggledTask = { ...taskToUpdate, checked: !taskToUpdate.checked };
           updatePrimaryTasks((prevTasks) => [...prevTasks, toggledTask]);
-        }
-        
+        }  
       },900)
   } else {
       return;
@@ -24,6 +23,7 @@ export const TaskActionItem = ({ taskData,updatePrimaryTasks, filteredTasks, upd
   const deleteTask = () => {
     updateFilteredTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
   };
+  
   return (
     <li className="px-3 py-3 my-3 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative select-none">
       <div className="mb-2 text-white text-2xl font-medium flex flex-row gap-2 justify-between items-center">
