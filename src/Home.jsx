@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import "./todo.css";
-import { InputBoxComponent } from "./InputBox";
-import { TaskListComp } from "./ListBoxComp";
-import { ClearAllTask } from "./Functional Component/ClearTodo";
-import { getFilteredLocalStorage, getLocalStorage, setLocalStorage } from "../Backend/LocalStorage";
-import { TaskActionItem } from "./CompletedTask";
-import { AddTaskForm } from "./Functional Component/PopUp/AddTask";
-export const TodoApp = () => {
+import "./To-Do/todo.css";
+// import { InputBoxComponent } from "./InputBox";
+import { TaskListComp } from "./To-Do/ListBoxComp";
+import { ClearAllTask } from "./To-Do/Functional Component/ClearTodo";
+import { getFilteredLocalStorage, getLocalStorage, setLocalStorage } from "./Backend/LocalStorage";
+import { TaskActionItem } from "./To-Do/CompletedTask";
+// import { AddTaskForm } from "../Functional Component/PopUp/AddTask";
+import { InputBoxComponent } from "./To-Do/InputBox";
+export const Home = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
   useEffect(() => {
@@ -56,9 +57,12 @@ export const TodoApp = () => {
           </section>
         </main>
       </main>
-      <AddTaskForm />
+      {/* <AddTaskForm /> */}
 
-      
+      <nav className="head row-start-1 row-end-2 col-start-2 col-end-4 bg-yellow-100">
+        <h2 className="text-4xl font-semibold">Hello, Debanajan Bera</h2>
+        <h3 className="text-3xl font-semibold">My Task</h3>
+      </nav>
       <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3  ">
         <h2 className="text-3xl font-medium ">
           {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
@@ -68,7 +72,7 @@ export const TodoApp = () => {
         <section className="w-full h-full">
           <ul>{checkTaskData()}</ul>
         </section>
-        <div className="h-14 w-full bg-purple-300 sticky bottom-0"></div>
+        <div className="h-14 w-full bg-purple-300 sticky bottom-0">h</div>
       </main>
     </>
   );

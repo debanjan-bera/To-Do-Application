@@ -1,7 +1,9 @@
+import { NavLink } from 'react-router-dom';
 import './SideBar.css'
 
 export const SideBar = ()=>{
     return (
+      <>
       <label className="hamburger cursor-pointer">
         <input type="checkbox" className='hidden' />
         <svg viewBox="0 0 32 32" className='h-[3em]'>
@@ -12,5 +14,11 @@ export const SideBar = ()=>{
           <path className="line" d="M7 16 27 16"></path>
         </svg>
       </label>
+      <NavLink to='/'><h1>Home</h1> </NavLink>
+      <NavLink to='/login'><h1>Login</h1> </NavLink>
+      <NavLink to='/ho'><h1>Login</h1> </NavLink>
+
+      </>
+      
     );
 }
