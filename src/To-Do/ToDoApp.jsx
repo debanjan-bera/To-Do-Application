@@ -32,7 +32,7 @@ export const TodoApp = () => {
   useEffect(() => {
     const handleGlobalKeyDown = (event) => {
       if ( event.key === 'n') {
-        console.log('Global Shortcut: Ctrl + A');
+        console.log('Toggling Task Window');
         handleAddTaskWindow();
       }
     };

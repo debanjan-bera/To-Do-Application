@@ -13,7 +13,7 @@ import { SideBar } from "./SideBarComponent/TodoSidebar";
           <SideBar />
         </aside>
         <Outlet />
-        <aside className="calender bg-yellow-300 row-start-2 row-end-4 col-start-3 ">
+        <aside className="calender bg-yellow-300 row-start-2 row-end-4 col-start-3">
           <SideBar />
         </aside>
       </main>
