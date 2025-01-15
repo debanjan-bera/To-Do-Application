@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./todo.css";
 import { AddTaskForm } from "./InputBox";
 import { TaskListComp } from "./ListBoxComp";
@@ -16,18 +16,31 @@ export const TodoApp = () => {
 
   const totalTask = taskArr.length + filteredData.length
   const checkTaskData = ()=>{
-    if(!totalTask){
-      return(<div>Hello</div>)
-    }
+    if(!totalTask)return(<div>Hello</div>)
+    
     else{
       return(
         taskArr.map((currentTask)=>{
           return( <TaskListComp key={currentTask.id} curTask={currentTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>)
         }))
     }}
-    const checkAddTaskWindow = ()=>{
-      setWindowClose(!windowOpen)
-    }
+
+    const handleAddTaskWindow = useCallback(() => {
+      setWindowClose((prev) => !prev)
+    }, []);
+    
+  useEffect(() => {
+    const handleGlobalKeyDown = (event) => {
+      if ( event.key === 'n') {
+        console.log('Global Shortcut: Ctrl + A');
+        handleAddTaskWindow();
+      }
+    };
+
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, [handleAddTaskWindow]);
+
   return (
     <>
 
@@ -53,7 +66,7 @@ export const TodoApp = () => {
           </section>
         </section>
 
-        <div className="h-14 w-full text-white bg-black sticky bottom-0" onClick={checkAddTaskWindow}> Create New task </div>
+        <div className="h-14 w-full text-white bg-black sticky bottom-0 cursor-pointer" onClick={handleAddTaskWindow}> Create New task </div>
       </main>
     </>
   );
