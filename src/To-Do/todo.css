@@ -28,3 +28,17 @@
     background: #d4d4d4; 
     border-radius: 10px;
   }
+  @media screen and (max-width:560px){
+    .register-cont{
+        align-items: end;
+    }
+    .register-cont form{
+        width: 100%;
+    }
+    .register-cont form input{
+        width: 100%;
+    }
+    .register-cont form label h1{
+        text-align: center;
+    }
+}

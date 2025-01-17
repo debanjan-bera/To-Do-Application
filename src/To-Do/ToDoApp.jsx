@@ -52,8 +52,8 @@ export const TodoApp = () => {
           <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} emptyTask={totalTask}/>
         </h2>
       </div>
-      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 px-3 relative overflow-hidden">
-        <section className="h-full w-full overflow-scroll">
+      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400  relative overflow-hidden">
+        <section className="hello h-full w-full overflow-scroll">
           <section >
             <ul>{checkTaskData()}</ul>
             <h1>Completed Task</h1>

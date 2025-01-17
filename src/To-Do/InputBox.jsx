@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types'
 import { genaratedUniqueId } from "../Backend/LocalStorage";
+import "./todo.css";
 
 export const AddTaskForm = ({taskdata, primaryArr,setWindowClose})=>{
       const [inputValue, setInputValue] = useState({id:'',content:'',groupName:'',description:'',favourite:false,checked:false}); 
@@ -29,8 +30,11 @@ export const AddTaskForm = ({taskdata, primaryArr,setWindowClose})=>{
           setWindowClose(false)
       }
     return(
-    <section className={`w-lvw h-lvh absolute top-0 left-0 bg-red-200/50 z-10  flex items-center justify-center `}>
-        <form action="" className=" bg-blue-100 p-4 rounded-md " onSubmit={(e)=>handleFromSubmit(e)}>
+    <section className={` register-cont w-lvw h-lvh absolute top-0 left-0 bg-red-200/50 z-10  flex items-center justify-center `}>
+        <form action="" className=" bg-white p-4 rounded-md " onSubmit={(e)=>handleFromSubmit(e)}>
+            <label htmlFor="" className="flex items-center justify-center">
+                <div className="w-[6rem] h-1 bg-gray-300 rounded-lg mb-2"></div>
+            </label>
             <label htmlFor=""><h1 className="text-3xl font-bold">Create new task.....</h1></label>
             <label htmlFor="">
                 <p className="text-xl font-bold py-2">Task:</p>

@@ -18,6 +18,9 @@
     .calender{
         display: none;
     }
+    .head{
+        grid-column-end: 3;
+    }
 }
 @media screen and (max-width:480px){
     .cont{
