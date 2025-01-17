@@ -22,6 +22,13 @@
 label input:focus-within {
     border: 1.5px solid #2d79f3;
 }
+label textarea {
+    resize: none;
+    height: 100px;
+  }
+textarea:focus-within {
+    border: 1.5px solid #2d79f3;
+}
 .button-submit:hover {
     background-color: #1b1c1c;
   }

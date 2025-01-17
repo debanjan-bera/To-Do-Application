@@ -46,7 +46,7 @@ export const AddTaskForm = ({taskdata, primaryArr,setWindowClose})=>{
             </label>
             <label htmlFor="">
                 <p className="text-xl font-bold py-2">Description:</p>
-                <input type="text" placeholder="Add your importent description for Task..." className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" name='description' value={description} onChange={(event) => handleFromInput(event)}/>
+                <textarea type="text" placeholder="Add your importent description for Task..." rows="5" required="" className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" name='description' value={description} onChange={(event) => handleFromInput(event)}/>
             </label>
             <div className="mt-4 flex justify-end cursor-pointer">
                 <button  type="button"className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold" onClick={()=> handleFormCancel()}>Cancel</button >
