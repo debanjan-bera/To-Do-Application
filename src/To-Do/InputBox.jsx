@@ -38,19 +38,19 @@ export const AddTaskForm = ({taskdata, primaryArr,setWindowClose})=>{
             <label htmlFor=""><h1 className="text-3xl font-bold">Create new task.....</h1></label>
             <label htmlFor="">
                 <p className="text-xl font-bold py-2">Task:</p>
-                <input type="text" placeholder="Add your importent Task..." className="w-[22rem] p-[0.5rem] outline-none text-xl rounded" autoComplete="off" name="content" value={content} onChange={(event) => handleFromInput(event)}/>
+                <input type="text" placeholder="Add your importent Task..." className="w-[22rem] p-[0.5rem] outline-none text-xl rounded border-[1.5px] border-gray-400" autoComplete="off" name="content" value={content} onChange={(event) => handleFromInput(event)}/>
             </label>
             <label htmlFor="">
                 <p className="text-xl font-bold py-2">Group:</p>
-                <input type="text" placeholder="Add your importent description for Task..." className="w-[22rem] p-[0.5rem] text-lg rounded" autoComplete="off" name="groupName" value={groupName} onChange={(event) => handleFromInput(event)}/>
+                <input type="text" placeholder="Add your importent description for Task..." className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" name="groupName" value={groupName} onChange={(event) => handleFromInput(event)}/>
             </label>
             <label htmlFor="">
                 <p className="text-xl font-bold py-2">Description:</p>
-                <input type="text" placeholder="Add your importent description for Task..." className="w-[22rem] p-[0.5rem] text-lg rounded" autoComplete="off" name='description' value={description} onChange={(event) => handleFromInput(event)}/>
+                <input type="text" placeholder="Add your importent description for Task..." className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" name='description' value={description} onChange={(event) => handleFromInput(event)}/>
             </label>
             <div className="mt-4 flex justify-end cursor-pointer">
                 <button  type="button"className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold" onClick={()=> handleFormCancel()}>Cancel</button >
-                <button type="submit" className="w-24 h-10 bg-black my-2 text-white text-lg font-semibold cursor-pointer hover:bg-white border-black border-2 hover:text-black" >Save</button>
+                <button type="submit" className="button-submit w-24 h-10 bg-black my-2 text-white text-lg font-semibold border-2 border-black cursor-pointer" >Save</button>
             </div>
         </form>
     </section>)
