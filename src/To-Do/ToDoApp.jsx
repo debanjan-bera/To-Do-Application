@@ -9,6 +9,7 @@ import { TaskActionItem } from "./CompletedTask";
 export const TodoApp = () => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [windowOpen,setWindowClose] = useState(false)
+  const [isOk,setOk] = useState(false)
   const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
   useEffect(() => {
     setLocalStorage(taskArr,filteredData);
@@ -17,12 +18,10 @@ export const TodoApp = () => {
   const totalTask = taskArr.length + filteredData.length
   const checkTaskData = ()=>{
     if(!totalTask)return(<div>Hello</div>)
-    
     else{
       return(
         taskArr.map((currentTask)=>{
-          return( <TaskListComp key={currentTask.id} curTask={currentTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>)
-        }))
+          return( <TaskListComp key={currentTask.id} curTask={currentTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>)}))
     }}
 
     const handleAddTaskWindow = useCallback(() => {
@@ -31,20 +30,21 @@ export const TodoApp = () => {
     
   useEffect(() => {
     const handleGlobalKeyDown = (event) => {
-      if ( event.key === 'n') {
+      if ( event.key === 'n' && !isOk) {
         console.log('Toggling Task Window');
+        console.log(isOk);
         handleAddTaskWindow();
       }
     };
 
     window.addEventListener('keydown', handleGlobalKeyDown);
     return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [handleAddTaskWindow]);
+  }, [handleAddTaskWindow,isOk]);
 
   return (
     <>
 
-      {windowOpen && (<AddTaskForm taskdata={taskArr} primaryArr={setTaskArr} setWindowClose={setWindowClose}/>)}
+      {windowOpen && (<AddTaskForm taskdata={taskArr} primaryArr={setTaskArr} setWindowClose={setWindowClose} setOk={setOk} />)}
 
       <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3 ">
         <h2 className="text-3xl font-medium ">

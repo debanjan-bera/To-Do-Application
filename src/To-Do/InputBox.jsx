@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from 'prop-types'
 import { genaratedUniqueId } from "../Backend/LocalStorage";
 import "./todo.css";
 
-export const AddTaskForm = ({taskdata, primaryArr,setWindowClose})=>{
+export const AddTaskForm = ({taskdata, primaryArr,setWindowClose,setOk})=>{
       const [inputValue, setInputValue] = useState({id:'',content:'',groupName:'',description:'',favourite:false,checked:false}); 
       const {id,content,groupName,description,favourite,checked} = inputValue
       const taskId = genaratedUniqueId()
@@ -22,13 +22,20 @@ export const AddTaskForm = ({taskdata, primaryArr,setWindowClose})=>{
         if (ifTododMatchedId && ifTododMatchedContent) return;
         primaryArr((prevTask) => [...prevTask,{id,content,groupName,description,favourite,checked}]);
         setInputValue({id:'',content:'',groupName:'',description:'',favourite:false,checked:false});
+        setOk(false)
         setWindowClose(false)
       };
 
       const handleFormCancel = ()=>{
           setInputValue({id:'',content:'',groupName:'',description:'',favourite:false,checked:false});
-          setWindowClose(false)
+          setWindowClose(()=>false)
+          setOk(false)
       }
+      useEffect(() => {
+        if (content || groupName || description) setOk(true);
+        else setOk(false);
+      }, [content, groupName, description,setOk]);
+      
     return(
     <section className={` register-cont w-lvw h-lvh absolute top-0 left-0 bg-red-200/50 z-10  flex items-center justify-center `}>
         <form action="" className=" bg-white p-4 rounded-md " onSubmit={(e)=>handleFromSubmit(e)}>
@@ -59,4 +66,5 @@ AddTaskForm.propTypes={
   taskdata: PropTypes.array.isRequired,
   primaryArr: PropTypes.func.isRequired,
   setWindowClose: PropTypes.func.isRequired,
+  setOk:PropTypes.func.isRequired,
 }
