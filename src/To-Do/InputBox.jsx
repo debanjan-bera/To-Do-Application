@@ -25,7 +25,6 @@ export const AddTaskForm = ({taskdata, primaryArr,setWindowClose,setOk})=>{
         setOk(false)
         setWindowClose(false)
       };
-
       const handleFormCancel = ()=>{
           setInputValue({id:'',content:'',groupName:'',description:'',favourite:false,checked:false});
           setWindowClose(()=>false)
