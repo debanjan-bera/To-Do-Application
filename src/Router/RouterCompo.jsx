@@ -17,10 +17,6 @@ import { Home } from '../Home'
           path:'/ho',
           element: <Home/>
         },
-        // {
-        //   path:'/login',
-        //   element: <AddTaskForm />
-        // }
       ]
     }
     

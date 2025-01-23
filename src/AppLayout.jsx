@@ -3,8 +3,8 @@ import "./App.css";
 import { SideBar } from "./SideBarComponent/TodoSidebar";
 import { CalenderComponent } from "./SideBarComponent/Calender";
 import { useState } from "react";
- function AppLayout() {
-    const [isSideBar,setSideBar] = useState(false)
+ const AppLayout=()=>{
+  const [isSideBar,setSideBar] = useState(false)
   const sideBarClass = isSideBar ? 'grid-cols-[0.26fr_3fr_0.9fr]' : 'grid-cols-[0.6fr_3fr_0.9fr]';
 
   return (
