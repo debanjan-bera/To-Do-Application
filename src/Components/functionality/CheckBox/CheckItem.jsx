@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import './checkBox.css'
-export const CheckBoxUiComponent = ({onChecked}) => {
+export const CheckItem = ({onChecked}) => {
 
   return (
 <div className="checkbox-wrapper-12">
@@ -29,6 +29,6 @@ export const CheckBoxUiComponent = ({onChecked}) => {
   );
 };
 
-CheckBoxUiComponent.propTypes ={
+CheckItem.propTypes ={
     onChecked: PropTypes.func.isRequired,
 }
