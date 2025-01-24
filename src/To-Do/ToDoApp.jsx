@@ -58,15 +58,12 @@ export const TodoApp = () => {
             <h1>Completed Task</h1>
             <ul className="mytaskList text-2xl text-white">
               {filteredData.map((Task) => {
-                return (
-                  // <TaskActionItem key={curTask.id} taskData={curTask} updatePrimaryTasks={setTaskArr} filteredTasks={filteredData} updateFilteredTasks={setFilteredData}/>
-                  <TaskListComp key={Task.id} curTask={Task} pendingTask={false}/>
-                );})}
+                return ( <TaskListComp key={Task.id} curTask={Task} pendingTask={false}/>);})}
             </ul>
           </section>
         </section>
 
-        <div className="h-14 w-full text-white bg-black sticky bottom-0 cursor-pointer" onClick={handleAddTaskWindow}> Create New task </div>
+        <div className="mx-1 h-14 w-[99%] text-white bg-black sticky bottom-0 rounded-3xl cursor-pointer flex items-center justify-center" onClick={handleAddTaskWindow}> Create New task </div>
       </main>
     </>
   );
