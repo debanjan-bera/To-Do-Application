@@ -1,38 +1,38 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import "./todo.css";
 import { AddTaskForm } from "./InputBox";
-import { TaskListComp } from "./ListBoxComp";
-import { ClearAllTask } from "./Functional Component/ClearTodo";
-import { getFilteredLocalStorage, getLocalStorage, setLocalStorage } from "../Backend/LocalStorage";
-import { TaskActionItem } from "./CompletedTask";
+// import { TaskListComp } from "./ListBoxComp";
+import { ClearAllTask } from "../Components/functionality/ClearTodo";
+import {  setLocalStorage } from "../Backend/LocalStorage";
+import { ToDoContext } from "../Contexts/CreateContext";
+import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
+
+
 // import { AddTaskForm } from "./Functional Component/PopUp/AddTask";
 export const TodoApp = () => {
-  const [taskArr, setTaskArr] = useState(() => getLocalStorage());
-  const [windowOpen,setWindowClose] = useState(false)
-  const [isOk,setOk] = useState(false)
-  const [filteredData, setFilteredData] = useState(()=> getFilteredLocalStorage());
+  const {taskArr,setTaskArr,windowOpen,setWindowClose,isOk,setOk,filteredData,setFilteredData} = useContext(ToDoContext)
+
   useEffect(() => {
     setLocalStorage(taskArr,filteredData);
   }, [taskArr,filteredData]);
 
   const totalTask = taskArr.length + filteredData.length
+
   const checkTaskData = ()=>{
     if(!totalTask)return(<div>Hello</div>)
     else{
-      return(
-        taskArr.map((currentTask)=>{
-          return( <TaskListComp key={currentTask.id} curTask={currentTask} taskData={taskArr} setTaskData={setTaskArr} setFilter={setFilteredData}/>)}))
+      return(taskArr.map((currentTask)=>{
+          return( <TaskListComp key={currentTask.id} curTask={currentTask} pendingTask={true}/>)}))
     }}
 
     const handleAddTaskWindow = useCallback(() => {
       setWindowClose((prev) => !prev)
-    }, []);
+    }, [setWindowClose]);
     
   useEffect(() => {
     const handleGlobalKeyDown = (event) => {
       if ( event.key === 'n' && !isOk) {
         console.log('Toggling Task Window');
-        console.log(isOk);
         handleAddTaskWindow();
       }
     };
@@ -43,7 +43,6 @@ export const TodoApp = () => {
 
   return (
     <>
-
       {windowOpen && (<AddTaskForm taskdata={taskArr} primaryArr={setTaskArr} setWindowClose={setWindowClose} setOk={setOk} />)}
 
       <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3 ">
@@ -58,9 +57,10 @@ export const TodoApp = () => {
             <ul>{checkTaskData()}</ul>
             <h1>Completed Task</h1>
             <ul className="mytaskList text-2xl text-white">
-              {filteredData.map((curTask) => {
+              {filteredData.map((Task) => {
                 return (
-                  <TaskActionItem key={curTask.id} taskData={curTask} updatePrimaryTasks={setTaskArr} filteredTasks={filteredData} updateFilteredTasks={setFilteredData}/>
+                  // <TaskActionItem key={curTask.id} taskData={curTask} updatePrimaryTasks={setTaskArr} filteredTasks={filteredData} updateFilteredTasks={setFilteredData}/>
+                  <TaskListComp key={Task.id} curTask={Task} pendingTask={false}/>
                 );})}
             </ul>
           </section>

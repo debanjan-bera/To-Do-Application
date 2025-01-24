@@ -15,7 +15,6 @@ export const DateAndTime = () => {
   return (
     <>
       <section className="p-4 pl-0">
-        {/* <h1 className="text-xl text-white font-semibold">Date and Time</h1> */}
         <h1 className="text-xl text-white font-semibold">{nowDateTime}</h1>
       </section>
     </>
