@@ -51,7 +51,7 @@ export const TodoApp = () => {
           <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} emptyTask={totalTask}/>
         </h2>
       </div>
-      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400  relative overflow-hidden">
+      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative overflow-hidden">
         <section className="hello h-full w-full overflow-scroll">
           <section >
             <ul>{checkTaskData()}</ul>
@@ -62,9 +62,8 @@ export const TodoApp = () => {
             </ul>
           </section>
         </section>
-
-        <div className="mx-1 h-14 w-[99%] text-white bg-black sticky bottom-0 rounded-3xl cursor-pointer flex items-center justify-center" onClick={handleAddTaskWindow}> Create New task </div>
       </main>
+      <div className="mx-1 h-14 w-full text-white bg-black rounded-3xl cursor-pointer flex items-center justify-center row-start-4 row-end-5" onClick={handleAddTaskWindow}> Create New task </div>
     </>
   );
 };
