@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
-import { SideBar } from "./SideBarComponent/TodoSidebar";
-import { CalenderComponent } from "./SideBarComponent/Calender";
+import { SideBar } from "./Components/layout/SideBar/TodoSidebar";
+import { CalenderComponent } from "./Components/layout/Calender Component/Calender";
 import { useState } from "react";
  const AppLayout=()=>{
   const [isSideBar,setSideBar] = useState(false)
