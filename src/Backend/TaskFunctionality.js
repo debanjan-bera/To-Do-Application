@@ -20,17 +20,14 @@ export const handleCheckedTask = (taskData,id,setCheck,check,setTaskData,setFilt
       }, 950);
 };
 
-export const toggleTaskStatus = (event,filteredTasks,id,updateFilteredTasks,updatePrimaryTasks,check) => {
+export const toggleTaskStatus = (event,filteredTasks,id,updateFilteredTasks,updatePrimaryTasks,check,setCheck) => {
     if (!event.target.checked) return;
-  
+    const taskToUpdate = filteredTasks.find((task) => task.id === id);
+    if (taskToUpdate?.checked) setCheck(!check);
     setTimeout(() => {
-      const taskToUpdate = filteredTasks.find((task) => task.id === id);
       if (!taskToUpdate) return;
-  
       console.log("Updating Task:", taskToUpdate.content);
-      console.log(check);
       updateFilteredTasks(filteredTasks.filter((task) => task.id !== id));
-  
       updatePrimaryTasks((prev) => [...prev, { ...taskToUpdate, checked: !taskToUpdate.checked }]);
     }, 900);
   };

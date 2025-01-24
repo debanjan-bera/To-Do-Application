@@ -16,7 +16,7 @@ const {taskArr,setTaskArr,filteredData,setFilteredData} = useContext(ToDoContext
 
   const onHandleCheckedTask = (event) => {
     if(pendingTask) handleCheckedTask(taskArr,id,setCheck,check,setTaskArr,setFilteredData)
-    else toggleTaskStatus(event,filteredData,id,setFilteredData,setTaskArr,check)
+    else toggleTaskStatus(event,filteredData,id,setFilteredData,setTaskArr,check,setCheck)
     // const updatedTaskData = taskData.map((currentTask) =>
     //   currentTask.id === id ? { ...currentTask, checked: !currentTask.checked } : currentTask);
 
@@ -27,7 +27,6 @@ const {taskArr,setTaskArr,filteredData,setFilteredData} = useContext(ToDoContext
     //   setTaskData(()=>updatedTaskData.filter((currentTask) => currentTask.id !== id));
     // },950)
   };
-  console.log(check);
   return (
     <li className="px-3 py-3 my-3 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative select-none">
       <div className="pb-1 flex flex-row gap-2 justify-between items-center">
