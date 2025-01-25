@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PropTypes from 'prop-types'
 import { genaratedUniqueId } from "../Backend/LocalStorage";
 import "./todo.css";
+import { ToDoContext } from "../Contexts/CreateContext";
 
-export const AddTaskForm = ({taskdata, primaryArr,setWindowClose,setOk})=>{
+export const AddTaskForm = ()=>{
+    const {taskArr,setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
+  
       const [inputValue, setInputValue] = useState({id:'',content:'',groupName:'',description:'',favourite:false,checked:false}); 
       const {id,content,groupName,description,favourite,checked} = inputValue
       const taskId = genaratedUniqueId()
@@ -17,10 +20,10 @@ export const AddTaskForm = ({taskdata, primaryArr,setWindowClose,setOk})=>{
       const handleFromSubmit = (e) => {
         e.preventDefault();
         if (!content) return;
-        const ifTododMatchedId = taskdata.find((currentTask) => currentTask.id === id)
-        const ifTododMatchedContent = taskdata.find((currentTask) => currentTask.content === content)
+        const ifTododMatchedId = taskArr.find((currentTask) => currentTask.id === id)
+        const ifTododMatchedContent = taskArr.find((currentTask) => currentTask.content === content)
         if (ifTododMatchedId && ifTododMatchedContent) return;
-        primaryArr((prevTask) => [...prevTask,{id,content,groupName,description,favourite,checked}]);
+        setTaskArr((prevTask) => [...prevTask,{id,content,groupName,description,favourite,checked}]);
         setInputValue({id:'',content:'',groupName:'',description:'',favourite:false,checked:false});
         setOk(false)
         setWindowClose(false)

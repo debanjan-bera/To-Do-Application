@@ -9,7 +9,6 @@ import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 
 export const TodoApp = () => {
   const {taskArr,setTaskArr,windowOpen,setWindowClose,isOk,setOk,filteredData} = useContext(ToDoContext)
-
   useEffect(() => {
     setLocalStorage(taskArr,filteredData);
   }, [taskArr,filteredData]);
