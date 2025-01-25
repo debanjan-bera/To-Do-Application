@@ -1,15 +1,23 @@
 import PropTypes from "prop-types";
 import '../../To-Do/todo.css'
+import { useContext } from "react";
+import { ToDoContext } from "../../Contexts/CreateContext";
 
-export const ClearAllTask = ({setTaskData,setCompletedTask,emptyTask})=>{
+export const ClearAllTask = ({pendingTask})=>{
+    const {taskArr,setTaskArr,filteredData,setFilteredData} = useContext(ToDoContext)
+
     const handleClearAll = ()=> {
-      setTaskData([])
-      setCompletedTask([])
+      if(pendingTask && taskArr && filteredData){
+        setTaskArr([])
+        setFilteredData([])
+      }
+      if(!pendingTask && filteredData) setFilteredData([])
     }
     const hiddenCompo = ()=>{
-        const classList= `p-2 m-1 text-2xl text-white font-medium bg-red-500 ${emptyTask ? 'visible' : 'hidden'}`;
-        return classList
-      }
+      const emptyTask = pendingTask ? taskArr.length : filteredData.length
+      const classList= `p-2 m-1 text-2xl text-white font-medium bg-red-500 ${emptyTask ? 'visible' : 'hidden'}`;
+      return classList
+}
     return(
       <div className="flex justify-center">
         <button className={hiddenCompo()} onClick={handleClearAll}>Clear</button>
@@ -17,7 +25,5 @@ export const ClearAllTask = ({setTaskData,setCompletedTask,emptyTask})=>{
 }
 
 ClearAllTask.propTypes = {
-  setTaskData: PropTypes.func.isRequired,
-  setCompletedTask:PropTypes.func.isRequired,
-  emptyTask: PropTypes.number.isRequired,
+    pendingTask:PropTypes.bool.isRequired,
 };

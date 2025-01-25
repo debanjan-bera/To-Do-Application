@@ -7,10 +7,8 @@ import {  setLocalStorage } from "../Backend/LocalStorage";
 import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 
-
-// import { AddTaskForm } from "./Functional Component/PopUp/AddTask";
 export const TodoApp = () => {
-  const {taskArr,setTaskArr,windowOpen,setWindowClose,isOk,setOk,filteredData,setFilteredData} = useContext(ToDoContext)
+  const {taskArr,setTaskArr,windowOpen,setWindowClose,isOk,setOk,filteredData} = useContext(ToDoContext)
 
   useEffect(() => {
     setLocalStorage(taskArr,filteredData);
@@ -48,7 +46,7 @@ export const TodoApp = () => {
       <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3 ">
         <h2 className="text-3xl font-medium ">
           {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
-          <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} emptyTask={totalTask}/>
+          <ClearAllTask pendingTask={true}/>
         </h2>
       </div>
       <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative overflow-hidden">
