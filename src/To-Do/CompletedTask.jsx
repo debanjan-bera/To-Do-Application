@@ -1,43 +1,35 @@
 // import PropTypes from "prop-types";
-// import { CheckItem } from "../Components/functionality/CheckBox/CheckItem";
-// import { updatedTodayDate } from "../Backend/LocalStorage";
+import { useContext } from "react";
+import { ToDoContext } from "../Contexts/CreateContext";
+import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 
-// export const TaskActionItem = ({ taskData,updatePrimaryTasks, filteredTasks, updateFilteredTasks }) => {
-//   const { id, content } = taskData;
-//   const toggleTaskStatus = (event) => {
-//     if (event.target.checked) {
-//       setTimeout(()=>{
-//         const taskToUpdate = filteredTasks.find((task) => task.id === id);
-//         if (taskToUpdate) {
-//           console.log("Updating Task:", taskToUpdate.content);
-//           const updatedTasks = filteredTasks.filter((task) => task.id !== id);
-//           updateFilteredTasks(updatedTasks);
-//           const toggledTask = { ...taskToUpdate, checked: !taskToUpdate.checked };
-//           updatePrimaryTasks((prevTasks) => [...prevTasks, toggledTask]);
-//         }  
-//       },900)
-//   } else {
-//       return;
-//   }};
-
-//   const deleteTask = () => {
-//     updateFilteredTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
-//   };
-  
-//   return (
-//     <li className="px-3 py-3 my-3 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative select-none">
-//       <div className="mb-2 text-white text-2xl font-medium flex flex-row gap-2 justify-between items-center">
-//         <CheckItem onChecked={toggleTaskStatus} />
-//         <p>{content}</p>
-//       </div>
-//       <div className="date absolute text-[0.75rem] bottom-[-0.29rem] left-0 px-3 text-white/70">{updatedTodayDate(id)}</div>
-//       <button className="h-full p-1 bg-red-600 text-center" onClick={deleteTask}>Delete</button>
-//     </li>
-//   );
-// };
+export const TaskActionItem = () => {
+      const { filteredData } = useContext(ToDoContext);
+      return (
+        <>
+              <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3 ">
+                <h2 className="text-3xl font-medium ">
+                  {`Completed Task: ${filteredData.length}`}
+                  {/* <ClearAllTask setTaskData={setTaskArr} setCompletedTask={setFilteredData} emptyTask={totalTask}/> */}
+                </h2>
+              </div>
+              <main className="row-start-3 row-end-5 col-start-2 bg-yellow-400 relative overflow-hidden">
+                <section className="hello h-full w-full overflow-scroll">
+                <h1>Completed Task</h1>
+                    <ul className="mytaskList text-2xl text-white">
+                      {filteredData.map((Task) => {
+                        return ( <TaskListComp key={Task.id} curTask={Task} pendingTask={false}/>);
+                        })}
+                    </ul>
+                </section>
+              </main>
+        </>
+      )
+        
+};
 // TaskActionItem.propTypes = {
-//     taskData: PropTypes.object.isRequired,
-//     updatePrimaryTasks: PropTypes.func.isRequired,
-//     filteredTasks: PropTypes.array.isRequired,
-//     updateFilteredTasks : PropTypes.func.isRequired,
+//   taskData: PropTypes.object.isRequired,
+//   updatePrimaryTasks: PropTypes.func.isRequired,
+//   filteredTasks: PropTypes.array.isRequired,
+//   updateFilteredTasks: PropTypes.func.isRequired,
 // };

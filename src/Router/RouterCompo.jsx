@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { TodoApp } from '../To-Do/ToDoApp'
 import AppLayout from '../AppLayout'
-import { Home } from '../Home'
+import { TaskActionItem } from '../To-Do/CompletedTask'
  function RouterCompo() {
   const router = createBrowserRouter([
     {
@@ -14,8 +14,8 @@ import { Home } from '../Home'
           element: <TodoApp/>
         },
         {
-          path:'/ho',
-          element: <Home/>
+          path:'/completedTask',
+          element: <TaskActionItem/>
         },
       ]
     }

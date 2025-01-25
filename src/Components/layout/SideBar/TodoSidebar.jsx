@@ -22,7 +22,7 @@ export const SideBar = ({setSideBar})=>{
           <NavLink to="/">
             <h1>Home</h1>
           </NavLink>
-          <NavLink to="/login">
+          <NavLink to="/completedTask">
             <h1>Login</h1>
           </NavLink>
           <NavLink to="/ho">
