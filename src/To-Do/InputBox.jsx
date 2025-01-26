@@ -6,8 +6,11 @@ import { ToDoContext } from "../Contexts/CreateContext"
 export const AddTaskForm = () =>{
   const {register,handleSubmit,watch} = useForm()
   const {taskArr, setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
-  const { content, group, description } = watch(["content", "group", "description"], { content: "", group: "", description: "" });
-  const onSubmit = (data) => handleFromSubmit(data,taskArr, setTaskArr,setWindowClose,setOk)
+const { content, group, description } = watch({ content: "", group: "", description: "" });
+
+  const onSubmit = (data) =>{
+    handleFromSubmit(data,taskArr, setTaskArr,setWindowClose,setOk);
+  }
   useEffect(() => {
     if (content || group || description) setOk(true);
     else setOk(false);

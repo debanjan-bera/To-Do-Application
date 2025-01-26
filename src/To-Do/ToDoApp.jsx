@@ -42,13 +42,13 @@ export const TodoApp = () => {
     <>
       {windowOpen && (<AddTaskForm taskdata={taskArr} primaryArr={setTaskArr} setWindowClose={setWindowClose} setOk={setOk} />)}
 
-      <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3 ">
+      <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3 colsLine">
         <h2 className="text-3xl font-medium ">
           {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
           <ClearAllTask pendingTask={true}/>
         </h2>
       </div>
-      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative overflow-hidden">
+      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative colsLine overflow-hidden">
         <section className="hello h-full w-full overflow-scroll">
           <section >
             <ul>{checkTaskData()}</ul>
@@ -60,7 +60,7 @@ export const TodoApp = () => {
           </section>
         </section>
       </main>
-      <div className="mx-1 h-14 w-full text-white bg-black rounded-3xl cursor-pointer flex items-center justify-center row-start-4 row-end-5" onClick={handleAddTaskWindow}> Create New task </div>
+      <div className="mx-1 h-14 w-full text-white bg-black rounded-3xl cursor-pointer flex items-center justify-center row-start-4 row-end-5 colsLine" onClick={handleAddTaskWindow}> Create New task </div>
     </>
   );
 };

@@ -5,11 +5,9 @@ import "./todo.css";
 import { ToDoContext } from "../Contexts/CreateContext";
 export const AddaskForm = ()=>{
     const {taskArr,setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
-  
       const [inputValue, setInputValue] = useState({id:'',content:'',groupName:'',description:'',favourite:false,checked:false}); 
       const {id,content,groupName,description,favourite,checked} = inputValue
       const taskId = genaratedUniqueId()
-
       const handleFromInput = (event) => {
         const { name, value } = event.target;
         name === 'content' ? setInputValue((prevData) => ({ ...prevData, [name]: value,id:taskId })): 
@@ -60,12 +58,6 @@ export const AddaskForm = ()=>{
                 <button type="submit" className="button-submit w-24 h-10 bg-black my-2 text-white text-lg font-semibold border-2 border-black cursor-pointer" >Save</button>
             </div>
         </form>
-        {/* <input {...register("example")} /> */}
-
-{/* include validation with required or other standard HTML validation rules */}
-{/* <input {...register("description", { required: true })} /> */}
-{/* errors will return when field validation fails  */}
-{/* {errors.exampleRequired && <span>This field is required</span>} */}
     </section>)
 }
 AddaskForm.propTypes={

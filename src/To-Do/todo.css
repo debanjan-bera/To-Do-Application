@@ -55,3 +55,9 @@ textarea:focus-within {
         text-align: center;
     }
 }
+@media screen and (max-width:480px){
+    .colsLine{
+        grid-column-start: 2;
+        grid-column-end: 3;
+    }
+}
