@@ -1,12 +1,7 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
-// import { getFilteredLocalStorage, getLocalStorage } from "../Backend/LocalStorage";
 import { ToDoContext } from "./CreateContext";
 import { getFilteredLocalStorage, getLocalStorage } from "../Backend/LocalStorage";
-// import { createContext } from "react";
-
-// export const ToDoContext = createContext(null);
-// export const ToDoContext = createContext()
-
 export const DataProvider = ({ children }) => {
     const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   
@@ -21,4 +16,7 @@ export const DataProvider = ({ children }) => {
     </ToDoContext.Provider>
   );
   
+};
+DataProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

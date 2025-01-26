@@ -1,23 +1,21 @@
 import { useForm } from "react-hook-form"
-import { handleFormCancel } from "../Backend/FormFunctionality"
-import { useContext } from "react"
+import { handleFormCancel, handleFromSubmit } from "../Backend/FormFunctionality"
+import { useContext, useEffect } from "react"
 import { ToDoContext } from "../Contexts/CreateContext"
 
 export const AddTaskForm = () =>{
-  const {register,handleSubmit
-    // formState: { errors },
-  } = useForm()
-  const {setWindowClose,setOk} = useContext(ToDoContext)
-  const onSubmit = (data) =>{
-    const{content,group,description} = data
-    console.log(content,group,description);
-    console.log(data)
+  const {register,handleSubmit,watch} = useForm()
+  const {taskArr, setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
+  const { content, group, description } = watch(["content", "group", "description"], { content: "", group: "", description: "" });
+  const onSubmit = (data,) =>{
+    handleFromSubmit(data,taskArr, setTaskArr,setWindowClose,setOk)
   }
-
-  // console.log(watch("example")) // watch input value by passing the name of it
+  useEffect(() => {
+    if (content || group || description) setOk(true);
+    else setOk(false);
+  }, [content, group, description, setOk])
 
   return (
-    /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
     <section className={` register-cont w-lvw h-lvh absolute top-0 left-0 bg-red-200/50 z-10  flex items-center justify-center `}>
       <form  className=" bg-white p-4 rounded-md " onSubmit={handleSubmit(onSubmit)}>
 
@@ -38,7 +36,7 @@ export const AddTaskForm = () =>{
                 <textarea type="text" placeholder="Add your importent description for Task..." rows="5" required="" className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("description")}/>
             </label>
             <div className="mt-4 flex justify-end cursor-pointer">
-                <button  type="button"className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold" onClick={handleFormCancel(setWindowClose, setOk)}>Cancel</button >
+                <button  type="button"className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold" onClick={()=>handleFormCancel(setWindowClose, setOk)}>Cancel</button >
                 <button type="submit" className="button-submit w-24 h-10 bg-black my-2 text-white text-lg font-semibold border-2 border-black cursor-pointer">Save</button>
             </div>
       </form>

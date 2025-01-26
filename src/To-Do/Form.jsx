@@ -3,8 +3,7 @@ import PropTypes from 'prop-types'
 import { genaratedUniqueId } from "../Backend/LocalStorage";
 import "./todo.css";
 import { ToDoContext } from "../Contexts/CreateContext";
-
-export const AddTaskForm = ()=>{
+export const AddaskForm = ()=>{
     const {taskArr,setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
   
       const [inputValue, setInputValue] = useState({id:'',content:'',groupName:'',description:'',favourite:false,checked:false}); 
@@ -16,7 +15,6 @@ export const AddTaskForm = ()=>{
         name === 'content' ? setInputValue((prevData) => ({ ...prevData, [name]: value,id:taskId })): 
         setInputValue((prevData) => ({ ...prevData, [name]: value }));
       };
-
       const handleFromSubmit = (e) => {
         e.preventDefault();
         if (!content) return;
@@ -70,7 +68,7 @@ export const AddTaskForm = ()=>{
 {/* {errors.exampleRequired && <span>This field is required</span>} */}
     </section>)
 }
-AddTaskForm.propTypes={
+AddaskForm.propTypes={
   taskdata: PropTypes.array.isRequired,
   primaryArr: PropTypes.func.isRequired,
   setWindowClose: PropTypes.func.isRequired,
