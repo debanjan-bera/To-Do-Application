@@ -9,7 +9,7 @@ export const handleFromSubmit = (data,taskArr,setTaskArr,setWindowClose,setOk) =
   const ifTododMatchedId = taskArr.find((currentTask) => currentTask.id === id);
   const ifTododMatchedContent = taskArr.find((currentTask) => currentTask.content === content);
   if (ifTododMatchedId && ifTododMatchedContent) return;
-  setTaskArr((prevTask) => [...prevTask,{ id, content, group, description, favourite, checked },]);
+  setTaskArr((prevTask) => [...prevTask,{ id, content, group, description, favourite, checked }]);
   setOk(false);
   setWindowClose(false);
 };
