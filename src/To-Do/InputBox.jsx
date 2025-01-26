@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form"
 import { handleFormCancel, handleFromSubmit } from "../Backend/FormFunctionality"
 import { useContext, useEffect } from "react"
 import { ToDoContext } from "../Contexts/CreateContext"
+import "./todo.css";
 
 export const AddTaskForm = () =>{
   const {register,handleSubmit,watch} = useForm()
@@ -31,8 +32,7 @@ export const AddTaskForm = () =>{
         </label>
         <label htmlFor="">
           <p className="text-xl font-bold py-2">Group:</p>
-          <input type="text" placeholder="Add your importent description for Task..." className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("group",{ required: true})}/>
-          <select {...register("hobbies",{ required: true})} multiple className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300">
+          <select {...register("group",{ required: true})} placeholder="Select One Option" className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400">
           <option value="reading">Reading</option>
           <option value="gaming">Gaming</option>
           <option value="traveling">Traveling</option>
