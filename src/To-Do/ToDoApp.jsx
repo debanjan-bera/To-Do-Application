@@ -15,23 +15,19 @@ export const TodoApp = () => {
 
   const totalTask = taskArr.length + filteredData.length
 
-  const checkTaskData = ()=>{
-    if(!totalTask)return(<div>Hello</div>)
-    else{
-      return(taskArr.map((currentTask)=>{
-          return( <TaskListComp key={currentTask.id} curTask={currentTask} pendingTask={true}/>)}))
-    }}
-
+  const checkTaskData = () => {
+    if (!totalTask) return <div>Hello</div>;
+    return taskArr.map((currentTask) => (
+      <TaskListComp key={currentTask.id} curTask={currentTask} pendingTask={true} />
+    ));
+  };
     const handleAddTaskWindow = useCallback(() => {
       setWindowClose((prev) => !prev)
     }, [setWindowClose]);
     
   useEffect(() => {
     const handleGlobalKeyDown = (event) => {
-      if ( event.key === 'n' && !isOk) {
-        console.log('Toggling Task Window');
-        handleAddTaskWindow();
-      }
+      if ( event.key === 'n' && !isOk) handleAddTaskWindow();
     };
 
     window.addEventListener('keydown', handleGlobalKeyDown);

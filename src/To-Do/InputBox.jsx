@@ -6,7 +6,7 @@ import { ToDoContext } from "../Contexts/CreateContext"
 export const AddTaskForm = () =>{
   const {register,handleSubmit,watch} = useForm()
   const {taskArr, setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
-const { content, group, description } = watch({ content: "", group: "", description: "" });
+  const { content, group, description } = watch({ content: "", group: "", description: "" });
 
   const onSubmit = (data) =>{
     handleFromSubmit(data,taskArr, setTaskArr,setWindowClose,setOk);
@@ -27,15 +27,22 @@ const { content, group, description } = watch({ content: "", group: "", descript
         </label>
         <label htmlFor="">
           <p className="text-xl font-bold py-2">Task:</p>
-          <input type="text" placeholder="Add your importent Task..." className="w-[22rem] p-[0.5rem] outline-none text-xl rounded border-[1.5px] border-gray-400" autoComplete="off" {...register("content")}/>
+          <input type="text" placeholder="Add your importent Task..." className="w-[22rem] p-[0.5rem] outline-none text-xl rounded border-[1.5px] border-gray-400" autoComplete="off" {...register("content",{ required: true, maxLength: 20 })}/>
         </label>
         <label htmlFor="">
           <p className="text-xl font-bold py-2">Group:</p>
-          <input type="text" placeholder="Add your importent description for Task..." className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("group")}/>
+          <input type="text" placeholder="Add your importent description for Task..." className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("group",{ required: true})}/>
+          <select {...register("hobbies",{ required: true})} multiple className="w-full p-2 border rounded-md focus:ring focus:ring-blue-300">
+          <option value="reading">Reading</option>
+          <option value="gaming">Gaming</option>
+          <option value="traveling">Traveling</option>
+          <option value="music">Music</option>
+        </select>
+
         </label>
         <label htmlFor="">
           <p className="text-xl font-bold py-2">Description:</p>
-          <textarea type="text" placeholder="Add your importent description for Task..." rows="5" required="" className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("description")}/>
+          <textarea type="text" placeholder="Add your importent description for Task..." rows="5" required="" className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("description",{ required: true})}/>
         </label>
         <div className="mt-4 flex justify-end cursor-pointer">
           <button type="button" className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold" onClick={() => handleFormCancel(setWindowClose, setOk)}> Cancel</button>
