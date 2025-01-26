@@ -10,23 +10,13 @@ import { TaskActionItem } from '../To-Do/CompletedTask'
     //   errorElement: <ErrorPage/>,
       children:[
         {
-          path:'/',
-          element: <TodoApp/>
+          path:'/', element: <TodoApp/>
         },
         {
-          path:'/completedTask',
-          element: <TaskActionItem/>
+          path:'/completedTask', element: <TaskActionItem/>
         },
       ]
-    }
-    
-  ])
-return(
-    <>
-    <RouterProvider router={router}/>
-    </>
-  )
+    }])
+return <RouterProvider router={router}/>
 }
-
-
 export default RouterCompo
