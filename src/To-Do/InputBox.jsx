@@ -5,7 +5,11 @@ import { ToDoContext } from "../Contexts/CreateContext"
 import "./todo.css";
 
 export const AddTaskForm = () =>{
-  const {register,handleSubmit,watch} = useForm()
+  const {register,formState: { errors },handleSubmit,watch} = useForm({
+    defaultValues: {
+      group: "",
+    },
+  })
   const {taskArr, setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
   const { content, group, description } = watch({ content: "", group: "", description: "" });
 
@@ -27,22 +31,26 @@ export const AddTaskForm = () =>{
           <h1 className="text-3xl font-bold">Create new task.....</h1>
         </label>
         <label htmlFor="">
-          <p className="text-xl font-bold py-2">Task:</p>
+          <p className="text-xl font-bold py-1">Task:</p>
           <input type="text" placeholder="Add your importent Task..." className="w-[22rem] p-[0.5rem] outline-none text-xl rounded border-[1.5px] border-gray-400" autoComplete="off" {...register("content",{ required: true, maxLength: 20 })}/>
+          <p className="h-6 text-base text-red-600">{errors.content && <span>This field is required</span>}</p>
         </label>
         <label htmlFor="">
-          <p className="text-xl font-bold py-2">Group:</p>
+          <p className="text-xl font-bold py-1">Group:</p>
           <select {...register("group",{ required: true})} placeholder="Select One Option" className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400">
           <option value="reading">Reading</option>
           <option value="gaming">Gaming</option>
           <option value="traveling">Traveling</option>
           <option value="music">Music</option>
         </select>
+        <p className="h-6 text-base text-red-600">{errors.group && <span>This field is required</span>}</p>
 
         </label>
         <label htmlFor="">
-          <p className="text-xl font-bold py-2">Description:</p>
+          <p className="text-xl font-bold py-1">Description:</p>
           <textarea type="text" placeholder="Add your importent description for Task..." rows="5" required="" className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("description",{ required: true})}/>
+          <p className="h-6 text-base text-red-600">{errors.description && <span>This field is required</span>}</p>
+
         </label>
         <div className="mt-4 flex justify-end cursor-pointer">
           <button type="button" className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold" onClick={() => handleFormCancel(setWindowClose, setOk)}> Cancel</button>
