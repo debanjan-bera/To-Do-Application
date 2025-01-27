@@ -1,6 +1,6 @@
 import { genaratedUniqueId } from "./LocalStorage";
 
-export const handleFromSubmit = (data,taskArr,setTaskArr,setWindowClose,setOk) => {
+export const handleFromSubmit = (data,taskArr,setTaskArr,setWindowClose) => {
   const {content, group, description} = data;
   const id = genaratedUniqueId()
   const favourite = false
@@ -10,10 +10,8 @@ export const handleFromSubmit = (data,taskArr,setTaskArr,setWindowClose,setOk) =
   const ifTododMatchedContent = taskArr.find((currentTask) => currentTask.content === content);
   if (ifTododMatchedId && ifTododMatchedContent) return;
   setTaskArr((prevTask) => [...prevTask,{ id, content, group, description, favourite, checked }]);
-  setOk(false);
   setWindowClose(false);
 };
-export const handleFormCancel = (setWindowClose, setOk) => {
+export const handleFormCancel = (setWindowClose) => {
   setWindowClose(() => false);
-  setOk(false);
 };

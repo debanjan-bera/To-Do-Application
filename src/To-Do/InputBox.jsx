@@ -1,26 +1,20 @@
 import { useForm } from "react-hook-form"
 import { handleFormCancel, handleFromSubmit } from "../Backend/FormFunctionality"
-import { useContext, useEffect } from "react"
+import { useContext} from "react"
 import { ToDoContext } from "../Contexts/CreateContext"
 import "./todo.css";
 
 export const AddTaskForm = () =>{
-  const {register,formState: { errors },handleSubmit,watch} = useForm({
+  const {register,formState: { errors },handleSubmit} = useForm({
     defaultValues: {
       group: "",
     },
   })
-  const {taskArr, setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
-  const { content, group, description } = watch({ content: "", group: "", description: "" });
+  const {taskArr, setTaskArr,setWindowClose} = useContext(ToDoContext)
 
   const onSubmit = (data) =>{
-    handleFromSubmit(data,taskArr, setTaskArr,setWindowClose,setOk);
+    handleFromSubmit(data,taskArr, setTaskArr,setWindowClose);
   }
-  useEffect(() => {
-    if (content || group || description) setOk(true);
-    else setOk(false);
-  }, [content, group, description, setOk])
-
   return (
     <section className={` register-cont w-lvw h-lvh absolute top-0 left-0 bg-red-200/50 z-10  flex items-center justify-center `}>
       <form className=" bg-white p-4 rounded-md " onSubmit={handleSubmit(onSubmit)}>
@@ -53,7 +47,7 @@ export const AddTaskForm = () =>{
 
         </label>
         <div className="mt-4 flex justify-end cursor-pointer">
-          <button type="button" className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold" onClick={() => handleFormCancel(setWindowClose, setOk)}> Cancel</button>
+          <button type="button" className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold" onClick={() => handleFormCancel(setWindowClose)}> Cancel</button>
           <button type="submit" className="button-submit w-24 h-10 bg-black my-2 text-white text-lg font-semibold border-2 border-black cursor-pointer">Save</button>
         </div>
       </form>

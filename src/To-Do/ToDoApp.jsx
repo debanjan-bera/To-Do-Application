@@ -8,7 +8,7 @@ import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 
 export const TodoApp = () => {
-  const {taskArr,setTaskArr,windowOpen,setWindowClose,isOk,setOk,filteredData} = useContext(ToDoContext)
+  const {taskArr,windowOpen,setWindowClose,filteredData} = useContext(ToDoContext)
   useEffect(() => {
     setLocalStorage(taskArr,filteredData);
   }, [taskArr,filteredData]);
@@ -21,22 +21,31 @@ export const TodoApp = () => {
       <TaskListComp key={currentTask.id} curTask={currentTask} pendingTask={true} />
     ));
   };
-    const handleAddTaskWindow = useCallback(() => {
-      setWindowClose((prev) => !prev)
-    }, [setWindowClose]);
-    
+  const handleAddTaskWindow = useCallback(() => {
+    setWindowClose((prev) => !prev)
+  }, [setWindowClose]);
+
   useEffect(() => {
-    const handleGlobalKeyDown = (event) => {
-      if ( event.key === 'n' && !isOk) handleAddTaskWindow();
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey && event.key === 'n') {
+        event.preventDefault(); // Prevent default browser behavior (e.g., Ctrl+S saving the page)
+        handleAddTaskWindow();
+      }
+      if (event.key === 'Escape') {
+        alert('Escape key pressed!');
+      }
     };
 
-    window.addEventListener('keydown', handleGlobalKeyDown);
-    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
-  }, [handleAddTaskWindow,isOk]);
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [handleAddTaskWindow]);
+
 
   return (
     <>
-      {windowOpen && (<AddTaskForm taskdata={taskArr} primaryArr={setTaskArr} setWindowClose={setWindowClose} setOk={setOk} />)}
+      {windowOpen && (<AddTaskForm/>)}
 
       <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3 colsLine">
         <h2 className="text-3xl font-medium ">
