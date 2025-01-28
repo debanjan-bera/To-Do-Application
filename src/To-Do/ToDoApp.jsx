@@ -66,7 +66,12 @@ export const TodoApp = () => {
           </section>
         </section>
       </main>
-      <div className="mx-1 h-14 w-full text-white bg-black rounded-3xl cursor-pointer flex items-center justify-center row-start-4 row-end-5 colsLine" onClick={handleAddTaskWindow}> Create New task </div>
+      <footer className="w-full h-[4rem] text-white row-start-4 row-end-5 colsLine">
+        <div className="h-[90%] font-bold bg-black rounded-lg flex items-center cursor-pointer" onClick={handleAddTaskWindow}>
+          <span className="h-full px-2 text-2xl text-center flex items-center">+</span>
+          <span className="h-full text-xl flex items-center text-center">Add a task</span>
+        </div> 
+      </footer>
     </>
   );
 };
