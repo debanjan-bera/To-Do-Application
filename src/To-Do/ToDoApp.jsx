@@ -6,6 +6,7 @@ import { ClearAllTask } from "../Components/functionality/ClearTodo";
 import {  setLocalStorage } from "../Backend/LocalStorage";
 import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
+import { handleFormCancel } from "../Backend/FormFunctionality";
 
 export const TodoApp = () => {
   const {taskArr,windowOpen,setWindowClose,filteredData} = useContext(ToDoContext)
@@ -27,12 +28,12 @@ export const TodoApp = () => {
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.ctrlKey && event.key === 'n') {
+      if (event.altKey && event.key === "n") {
         event.preventDefault(); // Prevent default browser behavior (e.g., Ctrl+S saving the page)
         handleAddTaskWindow();
       }
       if (event.key === 'Escape') {
-        alert('Escape key pressed!');
+        handleFormCancel(setWindowClose)
       }
     };
 
@@ -40,7 +41,7 @@ export const TodoApp = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [handleAddTaskWindow]);
+  }, [handleAddTaskWindow,setWindowClose]);
 
 
   return (
