@@ -43,7 +43,7 @@ select:focus-within {
 .hello::-webkit-scrollbar-thumb {
     background: #d4d4d4; 
     border-radius: 10px;
-  }
+  }  
   @media screen and (max-width:560px){
     .register-cont{
         align-items: end;
