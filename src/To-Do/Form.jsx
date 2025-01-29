@@ -4,7 +4,7 @@ import { genaratedUniqueId } from "../Backend/LocalStorage";
 import "./todo.css";
 import { ToDoContext } from "../Contexts/CreateContext";
 export const AddaskForm = ()=>{
-    const {taskArr,setTaskArr,setWindowClose,setOk} = useContext(ToDoContext)
+    const {taskArr,setTaskArr,setWindowClose,setOk,} = useContext(ToDoContext)
       const [inputValue, setInputValue] = useState({id:'',content:'',groupName:'',description:'',favourite:false,checked:false}); 
       const {id,content,groupName,description,favourite,checked} = inputValue
       const taskId = genaratedUniqueId()

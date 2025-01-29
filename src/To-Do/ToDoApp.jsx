@@ -48,7 +48,7 @@ export const TodoApp = () => {
           <ClearAllTask pendingTask={true} />
         </h2>
       </div>
-      <main className="row-start-3 row-end-5 col-start-2 bg-yellow-400 relative colsLine overflow-hidden">
+      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative colsLine overflow-hidden">
         <section className="hello h-full w-full overflow-scroll">
           <section>
             <ul>{checkTaskData()}</ul>
@@ -62,7 +62,7 @@ export const TodoApp = () => {
         </section>
         <MobileAddTaskButton addTask={handleAddTaskWindow}/>
       </main>
-      <footer className="w-full h-[4rem] text-white row-start-4 row-end-5 colsLine hidden">
+      <footer className="w-full h-[4rem] text-white cols-2 row-start-4 row-end-5 colsLine">
         <div className="h-[90%] font-bold bg-black rounded-lg flex items-center cursor-pointer" onClick={handleAddTaskWindow}>
           <span className="h-full px-2 text-[1.6rem] font-extrabold text-center flex items-center"> + </span>
           <span className="h-full text-xl flex items-center text-center"> Add a task </span>
