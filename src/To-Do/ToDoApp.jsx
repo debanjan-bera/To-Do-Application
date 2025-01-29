@@ -1,23 +1,21 @@
 import { useCallback, useContext, useEffect } from "react";
 import "./todo.css";
 import { AddTaskForm } from "./InputBox";
-// import { TaskListComp } from "./ListBoxComp";
 import { ClearAllTask } from "../Components/functionality/ClearTodo";
 import { setLocalStorage } from "../Backend/LocalStorage";
 import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 import { handleFormCancel } from "../Backend/FormFunctionality";
-// import { MobileAddTaskButton } from "../Components/functionality/CheckBox/AddButton";
+import { MobileAddTaskButton } from "../Components/functionality/CheckBox/AddButton";
 
 export const TodoApp = () => {
-  const { taskArr, windowOpen, setWindowClose, filteredData } =
-    useContext(ToDoContext);
+  const { taskArr, windowOpen, setWindowClose, filteredData } = useContext(ToDoContext);
   useEffect(() => {
     setLocalStorage(taskArr, filteredData);
   }, [taskArr, filteredData]);
-
+  
   const totalTask = taskArr.length + filteredData.length;
-
+  
   const checkTaskData = () => {
     if (!totalTask) return <div>Hello</div>;
     return taskArr.map((currentTask) => (
@@ -38,9 +36,7 @@ export const TodoApp = () => {
     };
 
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [handleAddTaskWindow, setWindowClose]);
 
   return (
@@ -50,10 +46,9 @@ export const TodoApp = () => {
         <h2 className="text-3xl font-medium ">
           {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
           <ClearAllTask pendingTask={true} />
-          {/* <MobileAddTaskButton/> */}
         </h2>
       </div>
-      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative colsLine overflow-hidden">
+      <main className="row-start-3 row-end-5 col-start-2 bg-yellow-400 relative colsLine overflow-hidden">
         <section className="hello h-full w-full overflow-scroll">
           <section>
             <ul>{checkTaskData()}</ul>
@@ -65,8 +60,9 @@ export const TodoApp = () => {
             </ul>
           </section>
         </section>
+        <MobileAddTaskButton addTask={handleAddTaskWindow}/>
       </main>
-      <footer className="w-full h-[4rem] text-white row-start-4 row-end-5 colsLine">
+      <footer className="w-full h-[4rem] text-white row-start-4 row-end-5 colsLine hidden">
         <div className="h-[90%] font-bold bg-black rounded-lg flex items-center cursor-pointer" onClick={handleAddTaskWindow}>
           <span className="h-full px-2 text-[1.6rem] font-extrabold text-center flex items-center"> + </span>
           <span className="h-full text-xl flex items-center text-center"> Add a task </span>
