@@ -7,19 +7,25 @@ import { ToDoContext } from "../../Contexts/CreateContext";
 import { handleCheckedTask, handleDeleteTask, toggleTaskStatus } from "../../Backend/TaskFunctionality";
 export const TaskListComp = ({ curTask,pendingTask}) => {
   const [check,setCheck] = useState(false)
-const {taskArr,setTaskArr,filteredData,setFilteredData} = useContext(ToDoContext)
+  const [deleteTask,setDeleteTask] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
+  const {taskArr,setTaskArr,filteredData,setFilteredData} = useContext(ToDoContext)
   const { id, content} = curTask;
-
   const onHandleDeleteTask = () => {
-    handleDeleteTask(setTaskArr,setFilteredData,id,pendingTask)
+    setDeleteTask(true);
+    setTimeout(() => {
+      setIsHidden(true); // Hide after animation
+      console.log(isHidden);
+      handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask);
+    }, 900);
   };
-
+  const deleteTaskAnimation = deleteTask? `deleteTaskAnimation` : ''
   const onHandleCheckedTask = (event) => {
     if(pendingTask) handleCheckedTask(taskArr,id,setCheck,check,setTaskArr,setFilteredData)
     else toggleTaskStatus(event,filteredData,id,setFilteredData,setTaskArr,check,setCheck)
   };
   return (
-    <li className="px-3 py-3 my-3 bg-black/60  text-white text-xl font-medium flex flex-row justify-between items-center relative select-none">
+    <li className={`px-3 py-3 my-3 bg-black/60 text-white text-xl font-medium flex flex-row justify-between items-center relative select-none ${deleteTaskAnimation} ${isHidden? "scale-50 hidden" : "visible"}`}>
       <div className="pb-1 flex flex-row gap-2 justify-between items-center">
       <CheckItem onChecked={(e)=>onHandleCheckedTask(e)} />
         <p className={`text-2xl ${check ? "line-through text-gray-500" : "no-underline"}`}>{content}</p>

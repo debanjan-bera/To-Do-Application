@@ -42,7 +42,23 @@ select:focus-within {
 .hello::-webkit-scrollbar-thumb {
     background: #d4d4d4; 
     border-radius: 10px;
-  }  
+  }
+  ul{
+    transition: all 0.4s linear;
+  }
+.deleteTaskAnimation{
+    transition: all 0.4s linear;
+    animation: deleteTask 3s ease-out;
+}
+@keyframes deleteTask{
+    0%{
+        left: 0rem;
+    }
+    100%{
+        left: -10rem;
+        opacity: 0;
+    }
+}
   @media screen and (max-width:560px){
     .register-cont{
         align-items: end;

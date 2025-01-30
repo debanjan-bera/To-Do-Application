@@ -1,10 +1,8 @@
 export const handleDeleteTask = (setTaskData,setFilter,id,pendingTask) => {
-  setTaskData((updateTask) =>
-    updateTask.filter((currentTask) => currentTask.id !== id)
-  );
+  if (!pendingTask) setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id))
+  else setTaskData((updateTask) => updateTask.filter((currentTask) => currentTask.id !== id));
   console.log(`${id} is deleted`);
   //it's now temporary
-  if(!pendingTask) setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id))
 };
 export const handleCheckedTask = (taskData,id,setCheck,check,setTaskData,setFilter) => {
     const updatedTaskData = taskData.map((task) =>
