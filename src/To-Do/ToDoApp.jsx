@@ -49,7 +49,7 @@ export const TodoApp = () => {
         </h2>
       </div>
       <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative colsLine overflow-hidden">
-        <section className="hello h-full w-full overflow-scroll">
+        <section className="hello h-[98%] w-full overflow-scroll">
           <section>
             <ul>{checkTaskData()}</ul>
             <h1>Completed Task</h1>

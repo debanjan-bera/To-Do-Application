@@ -171,3 +171,8 @@
  .hidden-trigger:checked ~ .circle .svg {
     transform: rotate(-315deg);
   } 
+  @media screen and (min-width:480px){
+    .wrapper{
+      display:none;
+    }
+}

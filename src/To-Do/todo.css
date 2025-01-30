@@ -37,8 +37,7 @@ select:focus-within {
   }
   
 .hello::-webkit-scrollbar {
-    width: 0.6rem;
-    height: 0.3rem;
+    width: 0.1rem;
   }
 .hello::-webkit-scrollbar-thumb {
     background: #d4d4d4; 
@@ -61,6 +60,9 @@ select:focus-within {
 @media screen and (max-width:480px){
     .colsLine{
         grid-column-start: 2;
-        grid-column-end: 3;
+        grid-row-end: 5;
+    }
+    footer{
+        display: none;
     }
 }
