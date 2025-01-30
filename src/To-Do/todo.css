@@ -51,11 +51,16 @@ select:focus-within {
     animation: deleteTask 3s ease-out;
 }
 @keyframes deleteTask{
-    0%{
-        left: 0rem;
+    0% {
+        transform: translateX(0);
+        opacity: 1;
     }
-    100%{
-        left: -10rem;
+    50% {
+        transform: translateX(-8rem);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-10rem);
         opacity: 0;
     }
 }
