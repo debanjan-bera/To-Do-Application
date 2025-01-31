@@ -31,18 +31,18 @@ export const AddTaskForm = () =>{
         </label>
         <label htmlFor="">
           <p className="text-xl font-bold py-1">Group:</p>
-          <select {...register("group",{ required: true})} placeholder="Select One Option" className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400">
+          <select {...register("group")} placeholder="Select One Option" className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400">
           <option value="reading">Reading</option>
           <option value="gaming">Gaming</option>
           <option value="traveling">Traveling</option>
           <option value="music">Music</option>
         </select>
-        <p className="h-6 text-base text-red-600">{errors.group && <span>This field is required</span>}</p>
+        {/* <p className="h-6 text-base text-red-600">{errors.group && <span>This field is required</span>}</p> */}
 
         </label>
         <label htmlFor="">
           <p className="text-xl font-bold py-1">Description:</p>
-          <textarea type="text" placeholder="Add your importent description for Task..." rows="5" required="" className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("description",{ required: true})}/>
+          <textarea type="text" placeholder="Add your importent description for Task..." rows="5" required="" className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400" autoComplete="off" {...register("description")}/>
           <p className="h-6 text-base text-red-600">{errors.description && <span>This field is required</span>}</p>
 
         </label>

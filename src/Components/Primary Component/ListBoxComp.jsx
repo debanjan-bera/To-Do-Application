@@ -17,7 +17,7 @@ export const TaskListComp = ({ curTask,pendingTask}) => {
       setIsHidden(true); // Hide after animation
       console.log(isHidden);
       handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask);
-    }, 900);
+    }, 600);
   };
   const deleteTaskAnimation = deleteTask? `deleteTaskAnimation` : ''
   const onHandleCheckedTask = (event) => {
