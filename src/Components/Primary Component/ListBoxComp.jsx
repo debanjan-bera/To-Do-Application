@@ -25,7 +25,7 @@ export const TaskListComp = ({ curTask,pendingTask}) => {
     else toggleTaskStatus(event,filteredData,id,setFilteredData,setTaskArr,check,setCheck)
   };
   return (
-    <li className={`px-3 py-3 my-3 bg-black/60 text-white text-xl font-medium flex flex-row justify-between items-center relative select-none ${deleteTaskAnimation} ${isHidden? "scale-50 hidden" : "visible"}`}>
+    <li className={`p-3 my-3 mx-10 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex flex-row justify-between items-center relative select-none ${deleteTaskAnimation} ${isHidden? "scale-50 hidden" : "visible"}`}>
       <div className="pb-1 flex flex-row gap-2 justify-between items-center">
       <CheckItem onChecked={(e)=>onHandleCheckedTask(e)} />
         <p className={`text-2xl ${check ? "line-through text-gray-500" : "no-underline"}`}>{content}</p>

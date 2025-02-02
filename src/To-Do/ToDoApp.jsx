@@ -42,15 +42,16 @@ export const TodoApp = () => {
   return (
     <>
       {windowOpen && <AddTaskForm />}
-      <div className="bg-yellow-600 col-start-2 row-start-2 row-end-3 colsLine">
-        <h2 className="text-3xl font-medium ">
+      <div className="text-white col-start-2 row-start-2 row-end-3 colsLine">
+        <h2 className="text-2xl font-semibold ">
           {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
           <ClearAllTask pendingTask={true} />
         </h2>
       </div>
-      <main className="row-start-3 row-end-4 col-start-2 bg-yellow-400 relative colsLine overflow-hidden">
-        <section className="hello h-[98%] w-full overflow-scroll">
-          <section>
+      <main className="row-start-3 row-end-4 col-start-2 relative colsLine overflow-hidden"
+      
+      >
+        <section className="hello h-full w-full overflow-y-scroll">
             <ul>{checkTaskData()}</ul>
             <h1>Completed Task</h1>
             <ul className="mytaskList text-2xl text-white">
@@ -58,7 +59,6 @@ export const TodoApp = () => {
                 return <TaskListComp key={Task.id} curTask={Task} pendingTask={false}/>
               })}
             </ul>
-          </section>
         </section>
         <MobileAddTaskButton addTask={handleAddTaskWindow}/>
       </main>
