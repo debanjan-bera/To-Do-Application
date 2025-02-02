@@ -5,13 +5,15 @@ import { useContext, useState } from "react";
 import { CheckItem } from "../functionality/CheckBox/CheckItem";
 import { ToDoContext } from "../../Contexts/CreateContext";
 import { handleCheckedTask, handleDeleteTask, toggleTaskStatus } from "../../Backend/TaskFunctionality";
+import { FiTrash2 } from "react-icons/fi";
+
 export const TaskListComp = ({ curTask,pendingTask}) => {
   const [check,setCheck] = useState(false)
   const [deleteTask,setDeleteTask] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
   const {taskArr,setTaskArr,filteredData,setFilteredData} = useContext(ToDoContext)
   const { id, content} = curTask;
-  const onHandleDeleteTask = () => {
+  const handleRemoveTask = () => {
     setDeleteTask(true);
     setTimeout(() => {
       setIsHidden(true); // Hide after animation
@@ -32,7 +34,11 @@ export const TaskListComp = ({ curTask,pendingTask}) => {
       </div>
       <div className="date absolute text-[0.67rem] bottom-[-0.29rem] left-0 px-3 text-white/50">{updatedTodayDate(id)}
       </div>
-      <button className="h-full p-1 bg-red-600 text-center" onClick={() => onHandleDeleteTask()}> Delete</button>
+      {/* <button className="h-full p-1 bg-red-600 text-center"  Delete</button> */}
+      <button className="rounded bg-red-300/20 px-1.5 py-1 text-xs text-red-300 transition-colors hover:bg-red-600 hover:text-red-200"
+      onClick={() => handleRemoveTask()}>
+          <FiTrash2 />
+      </button>
     </li>
   );
 };

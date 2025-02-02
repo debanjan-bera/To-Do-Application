@@ -48,9 +48,7 @@ export const TodoApp = () => {
           <ClearAllTask pendingTask={true} />
         </h2>
       </div>
-      <main className="row-start-3 row-end-4 col-start-2 relative colsLine overflow-hidden"
-      
-      >
+      <main className="row-start-3 row-end-4 col-start-2 relative colsLine overflow-hidden">
         <section className="hello h-full w-full overflow-y-scroll">
             <ul>{checkTaskData()}</ul>
             <h1>Completed Task</h1>
