@@ -7,7 +7,7 @@ import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 import { MobileAddTaskButton } from "../Components/functionality/CheckBox/AddButton";
 import { handleFormCancel } from "../Backend/FormFunctionality";
-
+import { AnimatePresence } from "framer-motion";
 export const TodoApp = () => {
   const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow} = useContext(ToDoContext);
   const totalTask = taskArr.length + filteredData.length;
@@ -46,7 +46,12 @@ export const TodoApp = () => {
       </div>
       <main className="row-start-3 row-end-5 col-start-2 relative colsLine  overflow-hidden">
         <section className="hello h-full w-full  overflow-y-scroll">
-            <ul>{checkTaskData()}</ul>
+        
+        <ul>
+          <AnimatePresence>{checkTaskData()}</AnimatePresence>
+        </ul>
+        
+            
             <h1>Completed Task</h1>
             <ul className="mytaskList text-2xl text-white">
               {filteredData.map((Task) => {

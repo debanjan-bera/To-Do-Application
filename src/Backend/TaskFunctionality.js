@@ -12,21 +12,21 @@ export const handleCheckedTask = (taskData,id,setCheck,check,setTaskData,setFilt
       const checkedTask = updatedTaskData.find((task) => task.id === id);
       if (checkedTask?.checked) setCheck(!check);
     
-      setTimeout(() => {
+
         if (checkedTask?.checked) setFilter((prev) => [...prev, checkedTask]);
         setTaskData(updatedTaskData.filter((task) => task.id !== id));
-      }, 950);
+
 };
 
 export const toggleTaskStatus = (event,filteredTasks,id,updateFilteredTasks,updatePrimaryTasks,check,setCheck) => {
     if (!event.target.checked) return;
     const taskToUpdate = filteredTasks.find((task) => task.id === id);
     if (taskToUpdate?.checked) setCheck(!check);
-    setTimeout(() => {
+
       if (!taskToUpdate) return;
       console.log("Updating Task:", taskToUpdate.content);
       updateFilteredTasks(filteredTasks.filter((task) => task.id !== id));
       updatePrimaryTasks((prev) => [...prev, { ...taskToUpdate, checked: !taskToUpdate.checked }]);
-    }, 900);
+
   };
   
