@@ -1,9 +1,9 @@
-// import RouterCompo from "./Router/RouterCompo";
+import RouterCompo from "./Router/RouterCompo";
 function App() {
   return (
     <> 
-      {/* <RouterCompo/> */}
-      <div>Hello World</div>
+      <RouterCompo/>
+      {/* <div>Hello World</div> */}
     </>
   );
   

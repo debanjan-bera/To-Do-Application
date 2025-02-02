@@ -27,8 +27,7 @@ export const TaskListComp = ({ curTask,pendingTask}) => {
     else toggleTaskStatus(event,filteredData,id,setFilteredData,setTaskArr,check,setCheck)
   };
   return (
-    <li
-      className={`p-3 my-3 mx-3 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex flex-row justify-between items-center relative select-none md:mx-14 ${deleteTaskAnimation} 
+    <li className={`p-3 my-3 mx-3 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex flex-row justify-between items-center relative select-none md:mx-14 ${deleteTaskAnimation} 
       ${isHidden && "scale-50 hidden"}`}>
       <div className="pb-1 flex flex-row gap-2 justify-between items-center">
         <CheckItem onChecked={(e) => onHandleCheckedTask(e)} />
@@ -36,14 +35,16 @@ export const TaskListComp = ({ curTask,pendingTask}) => {
       </div>
       <div className="ml-auto flex gap-1.5">
         <section className="hidden  md:inline">
-        <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-400">
-          <FiClock />
-          <span>{updatedTodayDate(id)}</span>
-        </div>
+          <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-400">
+            <FiClock />
+            <span>{updatedTodayDate(id)}</span>
+          </div>
         </section>
 
         <button className="rounded bg-red-300/20 px-1.5 py-1 text-xs text-red-300 transition-colors hover:bg-red-600 hover:text-red-200"
-        onClick={() => handleRemoveTask()}> <FiTrash2 /> </button>
+        onClick={() => handleRemoveTask()}>
+          <FiTrash2 />
+        </button>
       </div>
     </li>
   );

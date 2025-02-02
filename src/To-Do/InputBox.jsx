@@ -19,7 +19,7 @@ export const AddTaskForm = () =>{
     <section className={` register-cont w-lvw h-lvh absolute top-0 left-0 bg-red-200/50 z-10  flex items-center justify-center `}>
       <form className=" bg-white p-4 rounded-md " onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="" className="flex items-center justify-center">
-          <div className="w-[6rem] h-1 bg-gray-300 rounded-lg mb-2"></div>
+          <div draggable className="w-[4rem] h-1 bg-gray-300 rounded-lg mb-2"></div>
         </label>
         <label htmlFor="">
           <h1 className="text-3xl font-bold">Create new task.....</h1>
@@ -37,7 +37,7 @@ export const AddTaskForm = () =>{
           <option value="traveling">Traveling</option>
           <option value="music">Music</option>
         </select>
-        {/* <p className="h-6 text-base text-red-600">{errors.group && <span>This field is required</span>}</p> */}
+        <p className="h-6 text-base text-red-600"></p>
 
         </label>
         <label htmlFor="">
