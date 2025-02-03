@@ -93,7 +93,7 @@ export const TaskListComp = ({ curTask,pendingTask}) => {
         </button>
       </div>
     </motion.li>
-  );
+  ); 
 };
 
 TaskListComp.propTypes = {
