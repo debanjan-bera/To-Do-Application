@@ -61,7 +61,7 @@ export const TaskListComp = ({ curTask,pendingTask}) => {
       setTaskArr((prevTasks) =>prevTasks.filter((task) => task.id !== id));
     })
   
-    setCheck((prev) => !prev); // Sync check state
+    setCheck((prev) => !prev); 
   };
   
   return (
