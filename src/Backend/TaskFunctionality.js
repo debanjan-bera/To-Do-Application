@@ -11,10 +11,10 @@ export const handleCheckedTask = (taskData,id,setCheck,check,setTaskData,setFilt
     
       const checkedTask = updatedTaskData.find((task) => task.id === id);
       if (checkedTask?.checked) setCheck(!check);
-    
+      
+      if (checkedTask?.checked) setFilter((prev) => [...prev, checkedTask]);
+      setTaskData(updatedTaskData.filter((task) => task.id !== id));
 
-        if (checkedTask?.checked) setFilter((prev) => [...prev, checkedTask]);
-        setTaskData(updatedTaskData.filter((task) => task.id !== id));
 
 };
 
