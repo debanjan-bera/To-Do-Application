@@ -3,14 +3,14 @@ import PropTypes from "prop-types";
 import { updatedTodayDate } from "../../Backend/LocalStorage";
 import { useContext, useEffect, useState } from "react";
 import { ToDoContext } from "../../Contexts/CreateContext";
-import { handleCheckedTask, handleDeleteTask, toggleTaskStatus } from "../../Backend/TaskFunctionality";
+import {  handleDeleteTask, } from "../../Backend/TaskFunctionality";
 import { FiClock, FiTrash2 } from "react-icons/fi";
 import { useAnimate, usePresence } from "framer-motion";
 import { motion } from "framer-motion";
 // import { CheckItem } from "../functionality/CheckBox/CheckItem";
 export const TaskListComp = ({ curTask,pendingTask}) => {
   const [check,setCheck] = useState(false)
-  const {taskArr,filteredData,setTaskArr,setFilteredData} = useContext(ToDoContext)
+  const {taskArr,setTaskArr,setFilteredData} = useContext(ToDoContext)
   const [isPresent, safeToRemove] = usePresence();
   const [scope, animate] = useAnimate();
   const { id, content} = curTask;
