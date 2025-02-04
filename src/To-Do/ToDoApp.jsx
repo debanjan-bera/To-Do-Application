@@ -64,20 +64,20 @@ export const TodoApp = () => {
       }}
       >
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
-        <section className="text-white">
-          <h2 className=" font-semibold ">
+        <section className=" text-white">
+          <h2 className=" text-2xl font-semibold ">
             {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
             <ClearAllTask pendingTask={true} />
           </h2>
-          <button className="w-20 h-10 text-white hidden md:inline" onClick={handleAddTaskWindow}>
+          <button className="w-32 h-10 text-lg text-white hidden md:inline" onClick={handleAddTaskWindow}>
             Add a task
           </button>
         </section>
         <section className="h-full w-full relative overflow-hidden">
           <main className=" h-full w-full hello overflow-x-hidden overflow-y-scroll ">
             <ul> <AnimatePresence>{checkTaskData()}</AnimatePresence></ul>
-            <ul className="mytaskList  text-white">
             <h1 className="text-white mx-12">Completed Task</h1>
+            <ul className="mytaskList  text-white">
               <AnimatePresence>
                 {filteredData.map((Task) => {
                   return (
