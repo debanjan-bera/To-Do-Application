@@ -32,16 +32,16 @@ export const TodoApp = () => {
   }, [handleAddTaskWindow, setWindowClose]);
   return (
     <>
-    <AnimatePresence>
+      {/* <AnimatePresence>
       {windowOpen && <AddTaskForm />}
     </AnimatePresence>
-      <div className="text-white col-start-2 row-start-2 row-end-3 colsLine">
+      <section className="text-white col-start-2 row-start-2 row-end-3 colsLine">
         <h2 className="text-2xl font-semibold ">
           {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
           <ClearAllTask pendingTask={true} />
         </h2>
         <button className="w-20 h-10 text-white hidden md:inline" onClick={handleAddTaskWindow}> Add a task</button>
-      </div>
+      </section>
       <main className="row-start-3 row-end-5 col-start-2 relative colsLine rounded-xl overflow-hidden ">
         <section className="hello h-full w-full  overflow-y-scroll">
           <ul><AnimatePresence>{checkTaskData()}</AnimatePresence></ul>
@@ -55,6 +55,38 @@ export const TodoApp = () => {
               })}
             </AnimatePresence>
           </ul>
+        </section>
+        <MobileAddTaskButton addTask={handleAddTaskWindow} />
+      </main> */}
+      <main className="col-start-2 col-end-3 row-start-2 row-end-5 grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-md bg-zinc-950 "
+      style={{
+        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke-width='2' stroke='%2318181b'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
+      }}
+      >
+        <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
+        <section className="text-white">
+          <h2 className=" font-semibold ">
+            {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
+            <ClearAllTask pendingTask={true} />
+          </h2>
+          <button className="w-20 h-10 text-white hidden md:inline" onClick={handleAddTaskWindow}>
+            Add a task
+          </button>
+        </section>
+        <section className="h-full w-full relative overflow-hidden">
+          <main className=" h-full w-full hello overflow-x-hidden overflow-y-scroll ">
+            <ul> <AnimatePresence>{checkTaskData()}</AnimatePresence></ul>
+            <ul className="mytaskList  text-white">
+            <h1 className="text-white mx-12">Completed Task</h1>
+              <AnimatePresence>
+                {filteredData.map((Task) => {
+                  return (
+                    <TaskListComp key={Task.id} curTask={Task} pendingTask={false}/>
+                  );
+                })}
+              </AnimatePresence>
+            </ul>
+          </main>
         </section>
         <MobileAddTaskButton addTask={handleAddTaskWindow} />
       </main>
