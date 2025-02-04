@@ -9,7 +9,7 @@ export const MobileAddTaskButton =({addTask})=>{
     addTask()
   }
     return(
-      <div className="wrapper h-[60px] w-[60px] absolute bottom-2 right-2" >
+      <div className="wrapper h-[60px] w-[60px] absolute bottom-6 right-6" >
           <input type="checkbox" id="toogle" checked={mobileAddButton} className={`trigger ${mobileAddButton? 'hidden-trigger':''} hidden`} onChange={handleAddTaskWindow}/>
           <label htmlFor="toogle" className="circle  h-[60px] w-[60px] relative p-0 m-auto block rounded-full text-center">
             <svg className="absolute top-[50%] left-2/4 ml-[-16px] mt-[-16px] w-[32px] h-[32px] svg" width={48} height={48} xmlSpace="preserve"       version="1.1" viewBox="0 0 48 48">

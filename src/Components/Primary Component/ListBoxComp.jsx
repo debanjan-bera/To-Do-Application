@@ -14,7 +14,6 @@ export const TaskListComp = ({ curTask, pendingTask }) => {
   const [isPresent, safeToRemove] = usePresence();
   const [scope, animate] = useAnimate();
   const { id, content } = curTask;
-  // const animateColor = !check ? "#6ee7b7" : "#fca5a5";
   const handleCheckedTask = (event,id)=>{
     setCheck(!check)
     if(pendingTask) toggleTaskStatus(id,taskArr,setTaskArr,setFilteredData)

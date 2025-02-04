@@ -1,10 +1,14 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 import { ClearAllTask } from "../Components/functionality/ClearTodo";
 import { AnimatePresence } from "framer-motion";
+import { setLocalStorage } from "../Backend/LocalStorage";
 export const TaskActionItem = () => {
-  const { filteredData } = useContext(ToDoContext);
+  const { taskArr,filteredData } = useContext(ToDoContext);
+    useEffect(() => {
+      setLocalStorage(taskArr, filteredData);
+    }, [taskArr, filteredData]);
   return (
     <>
       <section className="bg-yellow-600 col-start-2 row-start-2 row-end-3 ">

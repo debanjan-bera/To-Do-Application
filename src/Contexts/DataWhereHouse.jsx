@@ -6,7 +6,7 @@ import { getFilteredLocalStorage, getLocalStorage } from "../Backend/LocalStorag
 export const DataProvider = ({ children }) => {
     const [taskArr, setTaskArr] = useState(() => getLocalStorage());
     const [windowOpen, setWindowClose] = useState(false);
-    const [filteredData, setFilteredData] = useState(() =>getFilteredLocalStorage());
+    const [filteredData, setFilteredData] = useState(() => getFilteredLocalStorage());
     const [mobileAddButton,setmobileAddButton] = useState(false)
       const handleAddTaskWindow = useCallback(() => {
         setWindowClose((prev) => !prev);
