@@ -16,8 +16,8 @@ export const SideBar = ({setSideBar})=>{
           </svg>
         </label>
         <NavLink to="/"><h1>Home</h1></NavLink>
+        <NavLink to="/completedTask"><h1>Completed Task</h1></NavLink>
         <NavLink to="/completedTask"><h1>Login</h1></NavLink>
-        <NavLink to="/ho"><h1>Login</h1></NavLink>
       </aside>
     </>
   );

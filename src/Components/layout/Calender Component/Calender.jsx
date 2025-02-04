@@ -16,16 +16,9 @@ export const CalenderComponent = () => {
             </svg>
           </label>
         </section>
-
-        <NavLink to="/">
-          <h1>Home</h1>{" "}
-        </NavLink>
-        <NavLink to="/login">
-          <h1>Login</h1>{" "}
-        </NavLink>
-        <NavLink to="/ho">
-          <h1>Login</h1>{" "}
-        </NavLink>
+        <NavLink to="/"><h1>Home</h1></NavLink>
+        <NavLink to="/completedTask"><h1>Completed Task</h1></NavLink>
+        <NavLink to="/completedTask"><h1>Login</h1></NavLink>
       </aside>
     </>
   );
