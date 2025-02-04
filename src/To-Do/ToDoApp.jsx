@@ -42,11 +42,11 @@ export const TodoApp = () => {
         </h2>
         <button className="w-20 h-10 text-white hidden md:inline" onClick={handleAddTaskWindow}> Add a task</button>
       </div>
-      <main className="row-start-3 row-end-5 col-start-2 relative colsLine  overflow-hidden">
+      <main className="row-start-3 row-end-5 col-start-2 relative colsLine rounded-xl overflow-hidden ">
         <section className="hello h-full w-full  overflow-y-scroll">
           <ul><AnimatePresence>{checkTaskData()}</AnimatePresence></ul>
 
-          <h1>Completed Task</h1>
+          <h1 className="text-white">Completed Task</h1>
           <ul className="mytaskList text-2xl text-white">
             <AnimatePresence>
               {filteredData.map((Task) => {
