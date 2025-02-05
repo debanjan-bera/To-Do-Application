@@ -46,24 +46,8 @@ select:focus-within {
   ul{
     transition: all 0.4s linear;
   }
-.deleteTaskAnimation{
-    transition: all 0.4s linear;
-    animation: deleteTask 3s ease-out;
-}
-@keyframes deleteTask{
-    0% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    50% {
-        transform: translateX(-8rem);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(-10rem);
-        opacity: 0;
-    }
-}
+
+
   @media screen and (max-width:560px){
     .register-cont{
         align-items: end;

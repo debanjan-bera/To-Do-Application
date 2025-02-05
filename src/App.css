@@ -3,11 +3,11 @@
     margin: 0;
     box-sizing: border-box;
 }
-.backGroundImg{
+/* .backGroundImg{
     background-image: url('./assets/th.jpeg');
     background-size: cover;
     background-position: center;
-}
+} */
 
 
 @media screen and (max-width:850px) {
