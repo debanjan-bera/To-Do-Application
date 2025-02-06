@@ -31,7 +31,7 @@ export const AddTaskForm = () =>{
             placeholder="Add your importent Task..."
             className="w-[22rem] p-[0.5rem] outline-none text-xl rounded border-[1.5px] border-gray-400"
             autoComplete="off"
-            {...register("content", { required: true, maxLength: 20 })}/>
+            {...register("content", { required: true })}/>
           <p className="h-6 text-base text-red-600">
             {errors.content && <span>This field is required</span>}
           </p>
@@ -41,12 +41,13 @@ export const AddTaskForm = () =>{
           <select
             {...register("group")}
             placeholder="Select One Option"
-            className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400"
-          >
+            className="w-[22rem] p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400">
             <option value="reading">Reading</option>
             <option value="gaming">Gaming</option>
             <option value="traveling">Traveling</option>
             <option value="music">Music</option>
+            <option value="music">College</option>
+            <option value="music">Others</option>
           </select>
           <p className="h-6 text-base text-red-600"></p>
         </label>
