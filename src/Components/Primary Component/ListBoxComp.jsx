@@ -32,9 +32,7 @@ export const TaskListComp = ({ curTask, pendingTask }) => {
     }
   }, [isPresent, check ,animate, safeToRemove, scope]);
   return (
-    <motion.li
-      ref={scope}
-      layout
+    <motion.li ref={scope} layout
       className={`p-3 m-3 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex flex-row justify-between items-center relative select-none md:mx-14 `}>
       <div className="pb-1 flex flex-row gap-2 justify-between items-center">
         <input type="checkbox" checked={check} onChange={(e) => handleCheckedTask(e, id)} className="size-4 accent-indigo-400"/>
@@ -43,8 +41,7 @@ export const TaskListComp = ({ curTask, pendingTask }) => {
       <div className="ml-auto flex gap-1.5">
         <section className="hidden md:inline">
           <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-400">
-            <FiClock />
-            <span>{updatedTodayDate(id)}</span>
+            <FiClock /> <span>{updatedTodayDate(id)}</span>
           </div>
         </section>
 
