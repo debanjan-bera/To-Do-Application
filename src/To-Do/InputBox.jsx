@@ -26,9 +26,7 @@ export const AddTaskForm = () =>{
         </label>
         <label htmlFor="">
           <p className="text-xl font-bold py-1">Task:</p>
-          <input
-            type="text"
-            placeholder="Add your importent Task..."
+          <input type="text" placeholder="Add your importent Task..." autoFocus
             className="w-[22rem] p-[0.5rem] outline-none text-xl rounded border-[1.5px] border-gray-400"
             autoComplete="off"
             {...register("content", { required: true })}/>
