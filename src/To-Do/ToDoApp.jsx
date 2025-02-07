@@ -10,11 +10,6 @@ import { handleFormCancel } from "../Backend/FormFunctionality";
 import { AnimatePresence } from "framer-motion";
 export const TodoApp = () => {
   const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow} = useContext(ToDoContext);
-  const totalTask = taskArr.length + filteredData.length;
-  const checkTaskData = () => {
-    if (!totalTask) return <div className="">Hello</div>;
-    return taskArr.map((currentTask) => 
-      <TaskListComp key={currentTask.id} curTask={currentTask} pendingTask={true}/>)};
   useEffect(() => {
     setLocalStorage(taskArr, filteredData);
   }, [taskArr, filteredData]);
@@ -35,8 +30,7 @@ export const TodoApp = () => {
       <main className="col-start-2 col-end-3 row-start-2 row-end-5 grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-md bg-zinc-950 "
       style={{
         backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke-width='2' stroke='%2318181b'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
-      }}
-      >
+      }}>
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
         <section className=" text-white">
           <h2 className=" text-2xl font-semibold ">
@@ -49,7 +43,17 @@ export const TodoApp = () => {
         </section>
         <section className="h-full w-full relative overflow-hidden">
           <div className=" h-full w-full hello overflow-x-hidden overflow-y-scroll ">
-            <ul> <AnimatePresence>{checkTaskData()}</AnimatePresence></ul>
+          <ul>
+            <AnimatePresence>
+              {taskArr.length ? (
+                taskArr.map((currentTask) => (
+                  <TaskListComp key={currentTask.id} curTask={currentTask} pendingTask={true} />
+                ))
+              ) : (
+                <div className="text-white text-center py-4">No Pending Tasks</div>
+              )}
+            </AnimatePresence>
+          </ul>
             <ul className=" text-white">
               <AnimatePresence>
               <li className="py-3 mx-3 text-white text-2xl font-medium select-none md:mx-14">Completed Task</li>
