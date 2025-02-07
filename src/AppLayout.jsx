@@ -25,3 +25,4 @@ export const AppLayout = () => {
     </DataProvider>
   );
 };
+export default AppLayout;

@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form"
 import { handleFormCancel, handleFromSubmit } from "../Backend/FormFunctionality"
-import { useContext} from "react"
+import { useContext } from "react"
 import { ToDoContext } from "../Contexts/CreateContext"
 import { motion } from "framer-motion"
+import { useDragControls } from "motion/react"
 import "./todo.css";
 
 export const AddTaskForm = () =>{
@@ -12,14 +13,27 @@ export const AddTaskForm = () =>{
     },
   })
   const {taskArr, setTaskArr,setWindowClose,setmobileAddButton} = useContext(ToDoContext)
+  const controls = useDragControls()
+  // const constraintsRef = useRef(null)
+
   const onSubmit = (data) =>{
     handleFromSubmit(data,taskArr, setTaskArr,setWindowClose,setmobileAddButton);
   }
   return (
-    <section className="register-cont w-lvw h-lvh absolute top-0 left-0 bg-red-200/50 z-10  flex items-center justify-center ">
-      <motion.form className=" bg-white p-4 rounded-md " initial={{ opacity: 0, y: 25 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 25 }} onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="" className="flex items-center justify-center">
-          <div className="w-[4rem] h-1 bg-gray-300 rounded-lg mb-2"></div>
+    <section className="register-cont w-lvw h-lvh absolute top-0 left-0 bg-black/70 z-10  flex items-center justify-center ">
+      <motion.form className=" bg-neutral-100 p-4 rounded-md " 
+      initial={{ opacity: 0, y: 25 }} 
+      animate={{ opacity: 1, y: 0 }} 
+      exit={{ opacity: 0, y: 25 }}
+      drag = "y"
+      dragControls={controls}
+      dragConstraints={{
+        top:0,
+        bottom:0
+      }}
+      onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="" className=" mb-2 flex items-center justify-center">
+          <div className="w-14 h-2 bg-neutral-400 rounded-full cursor-grab active:cursor-grabbing"></div>
         </label>
         <label htmlFor="">
           <h1 className="text-3xl font-bold">Create new task.....</h1>
@@ -51,15 +65,10 @@ export const AddTaskForm = () =>{
         </label>
         <label htmlFor="">
           <p className="text-xl font-bold py-1">Description:</p>
-          <textarea
-            type="text"
-            placeholder="Add your importent description for Task..."
-            rows="5"
-            required=""
+          <textarea type="text" placeholder="Add your importent description for Task..." rows="5" required=""
             className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400"
             autoComplete="off"
-            {...register("description")}
-          />
+            {...register("description")}/>
           <p className="h-6 text-base text-red-600">
             {errors.description && <span>This field is required</span>}
           </p>
