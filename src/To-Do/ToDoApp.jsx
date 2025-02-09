@@ -27,13 +27,14 @@ export const TodoApp = () => {
   }, [handleAddTaskWindow, setWindowClose]);
   return (
     <>
-      <main className="col-start-2 col-end-3 row-start-2 row-end-5 grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-md bg-zinc-950 "
+      <main className="col-start-2 col-end-3 row-start-2 row-end-5 grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-2xl bg-zinc-950 border border-zinc-600"
       style={{
-        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke-width='2' stroke='%2318181b'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
-      }}>
+        backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='57' height='57' fill='none' stroke-width='2' stroke='%2318181b'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
+      }}
+      >
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
         <section className=" text-white">
-          <h2 className=" text-2xl font-semibold ">
+          <h2 className=" text-2xl font-semibold ml-3">
             {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
             <ClearAllTask pendingTask={true} />
           </h2>
@@ -71,3 +72,6 @@ export const TodoApp = () => {
     </>
   );
 };
+// style={{
+//   backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke-width='2' stroke='%2318181b'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
+// }

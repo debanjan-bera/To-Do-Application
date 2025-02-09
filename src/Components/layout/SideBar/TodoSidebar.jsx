@@ -7,7 +7,7 @@ export const SideBar = ({setSideBar})=>{
   }
   return (
     <>
-      <aside className={`sideBar bg-zinc-800  text-white col-start-1 row-start-1 row-end-5`}>
+      <aside className={`sideBar bg-zinc-800 text-white col-start-1 row-start-1 row-end-5`}>
         <label className={`hamburger cursor-pointer `}>
           <input type="checkbox" className="hidden" onClick={() => openSideBar()}/>
           <svg viewBox="0 0 32 32" className="h-[3em]">
