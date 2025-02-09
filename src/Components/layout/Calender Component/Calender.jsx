@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 export const CalenderComponent = () => {
   return (
     <>
-      <aside className="calender bg-zinc-800 row-start-2 row-end-5 col-start-3 text-white text-base">
+      <aside className="calender bg-[#1E1F24] row-start-2 row-end-5 col-start-3 text-white text-base">
         <section className="bg-black/10  fill-transparent w-[3.3rem]">
           <label className="hamburger cursor-pointer ">
             <input type="checkbox" className="hidden" />

@@ -13,7 +13,7 @@ export const AppLayout = () => {
     <Outlet /> // No header, sidebar, or calendar for login page
   ) : (
     <DataProvider>
-      <section className={`cont h-lvh w-lvw grid ${sideBarClass} grid-rows-[0.3fr_0.3fr_3fr] relative bg-zinc-800 `}>
+      <section className={`cont h-lvh w-lvw grid ${sideBarClass} grid-rows-[0.3fr_0.3fr_3fr] relative bg-[#1E1F24] `}>
         <header className="head row-start-1 row-end-2 col-start-2 col-end-4 p-4 pb-2">
           <h1 className="text-2xl font-medium text-white">Good morning! ☀️ Debanjan Bera</h1>
           <p className="text-zinc-400">{"Let's see what we've got to do today."}</p>
