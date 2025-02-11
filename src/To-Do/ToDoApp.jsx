@@ -31,8 +31,7 @@ export const TodoApp = () => {
       // bg-[#15161A]
       style={{
         backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%2318181b' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
-      }}
-      >
+      }}>
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
         <section className=" text-white">
           <h2 className=" text-2xl font-semibold ml-3">
@@ -58,7 +57,7 @@ export const TodoApp = () => {
           </ul>
             <ul className=" text-white">
               <AnimatePresence>
-              <li className="py-3 mx-3 text-white text-2xl font-medium select-none md:mx-14">Completed Task</li>
+              <li className="py-3 mx-3 text-white text-2xl font-medium select-none md:mx-14">{filteredData.length ?'Completed Task':''}</li>
                 {filteredData.map((Task) => {
                   return (
                     <TaskListComp key={Task.id} curTask={Task} pendingTask={false}/>
