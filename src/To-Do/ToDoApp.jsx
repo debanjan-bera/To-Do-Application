@@ -33,14 +33,17 @@ export const TodoApp = () => {
         backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%2318181b' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
       }}>
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
-        <section className=" text-white">
-          <h2 className=" text-2xl font-semibold ml-3">
+        <section className="m-3 text-2xl font-semibold text-white flex flex-row justify-between items-center">
+          <h2>
             {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
-            <ClearAllTask pendingTask={true} />
           </h2>
-          <button className="w-32 h-10 text-lg text-white hidden md:inline" onClick={handleAddTaskWindow}>
-            Add a task
+          <div>
+            <ClearAllTask pendingTask={true} />
+          <button className="px-4 py-2 text-lg bg-sky-600 rounded-md text-white font-bold hidden md:inline" onClick={handleAddTaskWindow}>
+            New Task
           </button>
+
+          </div>
         </section>
         <section className="h-full w-full relative overflow-hidden">
           <div className=" h-full w-full hello overflow-x-hidden overflow-y-scroll ">
