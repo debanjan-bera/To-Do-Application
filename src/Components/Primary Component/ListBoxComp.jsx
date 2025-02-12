@@ -4,7 +4,8 @@ import { updatedTodayDate } from "../../Backend/LocalStorage";
 import { useContext, useEffect, useState } from "react";
 import { ToDoContext } from "../../Contexts/CreateContext";
 import { handleDeleteTask, toggleChekedStatus, toggleTaskStatus } from "../../Backend/TaskFunctionality";
-import { FiClock, FiTrash2 } from "react-icons/fi";
+import { FiClock, FiTrash2, } from "react-icons/fi";
+import { BsThreeDotsVertical } from "react-icons/bs";
 import { useAnimate, usePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
@@ -44,7 +45,7 @@ export const TaskListComp = ({ curTask, pendingTask }) => {
             <FiClock /> <span>{updatedTodayDate(id)}</span>
           </div>
         </section>
-
+        <button className="p-1 text-base scale-125 hover:bg-white/10 rounded-full"><BsThreeDotsVertical /></button>
         <button className="rounded bg-red-300/20 px-1.5 py-1 text-xs text-red-300 transition-colors hover:bg-red-600 hover:text-red-200" onClick={() => handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask)}>
           <FiTrash2 />
         </button>

@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 import { handleFormCancel, handleFromSubmit } from "../Backend/FormFunctionality"
 import { useContext } from "react"
 import { ToDoContext } from "../Contexts/CreateContext"
-import { motion } from "framer-motion"
+import { motion, useMotionValue } from "framer-motion"
 import { useDragControls } from "motion/react"
 import "./todo.css";
 
@@ -14,6 +14,7 @@ export const AddTaskForm = () =>{
   })
   const {taskArr, setTaskArr,setWindowClose,setmobileAddButton} = useContext(ToDoContext)
   const controls = useDragControls()
+  const y = useMotionValue(0);
   // const constraintsRef = useRef(null)
 
   const onSubmit = (data) =>{

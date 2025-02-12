@@ -10,13 +10,6 @@
     border-radius: 0.4rem 0 0 0.4rem;
     border: none;
 }
-.netbackground {
-    /* background: repeating-linear-gradient(to bottom, transparent 0 100px,#fff2 100px 101px),
-                repeating-linear-gradient(to right, transparent 0 100px, rgba(255, 252, 252, 0.133) 100px 101px); */
-    height: 100%;
-    max-height: 100%;
-    width: 100%;
-}
 .buttonClass{
     height: 3rem;
     width: 6.5rem;
@@ -53,7 +46,6 @@ select:focus-within {
   ul{
     transition: all 0.4s linear;
   }
-
 
   @media screen and (max-width:560px){
     .register-cont{

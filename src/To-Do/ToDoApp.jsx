@@ -8,6 +8,7 @@ import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 import { MobileAddTaskButton } from "../Components/functionality/CheckBox/AddButton";
 import { handleFormCancel } from "../Backend/FormFunctionality";
 import { AnimatePresence } from "framer-motion";
+import { PiBookBookmarkBold } from "react-icons/pi";
 export const TodoApp = () => {
   const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow} = useContext(ToDoContext);
   useEffect(() => {
@@ -39,8 +40,11 @@ export const TodoApp = () => {
           </h2>
           <div>
             <ClearAllTask pendingTask={true} />
-          <button className="px-4 py-2 text-lg bg-sky-600 rounded-md text-white font-bold hidden md:inline hover:bg-sky-500" onClick={handleAddTaskWindow}>
-            New Task
+          <button className="px-4 py-2 bg-blue-600 rounded-md text-white hidden  md:inline hover:bg-blue-700" onClick={handleAddTaskWindow}>
+            <div className="text-xl flex flex-row items-center gap-1"> 
+              <PiBookBookmarkBold />
+              <h3 className="text-lg font-bold">New Task</h3>
+              </div>
           </button>
 
           </div>

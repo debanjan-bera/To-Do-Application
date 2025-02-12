@@ -1,9 +1,9 @@
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 export const CalenderComponent = () => {
   return (
     <>
-      <aside className="calender bg-[#1E1F24] row-start-2 row-end-5 col-start-3 text-white text-base">
+      <aside className="calender bg-[#1E1F24] row-start-2 row-end-5 col-start-3 text-white text-base flex flex-col  items-center">
         <section className="bg-black/10  fill-transparent w-[3.3rem]">
           <label className="hamburger cursor-pointer ">
             <input type="checkbox" className="hidden" />
@@ -16,9 +16,50 @@ export const CalenderComponent = () => {
             </svg>
           </label>
         </section>
-        <NavLink to="/"><h1>Home</h1></NavLink>
-        <NavLink to="/completedTask"><h1>Completed Task</h1></NavLink>
-        <NavLink to="/calendar"><h1>Login</h1></NavLink>
+        {/* <section className="w-[92%] bg-white grid  text-black p-2">
+          <div className="grid grid-cols-7 gap-1 text-center">
+          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <div key={day} className="font-semibold text-gray-700">
+                {day}
+              </div>
+            ))}
+        <div className="text-base bg-blue-500 font-semibold text-white p-2 rounded-full">1</div>
+        <div className="p-2">12</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+          </div>
+
+        </section> */}
+
+
       </aside>
     </>
   );
