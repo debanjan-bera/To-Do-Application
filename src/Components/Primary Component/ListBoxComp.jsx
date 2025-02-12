@@ -6,9 +6,7 @@ import { ToDoContext } from "../../Contexts/CreateContext";
 import { handleDeleteTask, toggleChekedStatus, toggleTaskStatus } from "../../Backend/TaskFunctionality";
 import { FiClock, FiTrash2, } from "react-icons/fi";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useAnimate, usePresence } from "framer-motion";
-import { motion } from "framer-motion";
-
+import { useAnimate, usePresence,motion } from "framer-motion";
 export const TaskListComp = ({ curTask, pendingTask }) => {
   const [check, setCheck] = useState(false);
   const { taskArr, setTaskArr, filteredData, setFilteredData } = useContext(ToDoContext);
