@@ -4,6 +4,21 @@ import { useState } from "react";
 
 export const CalenderComponent = () => {
   const [calender,setCal] = useState(Array(35).fill(''))
+  const [selectedDate, setSelectedDate] = useState(null);
+  const currentDate = new Date();
+  const [currentMonth,setCurrentMonth] = useState(currentDate.getMonth())
+  const [currentYear,setCurrentYear] = useState(currentDate.getFullYear())
+  const daysInMonth = new Date(currentYear,currentMonth + 1,0).getDate()
+  const fastDayOfMonth = new Date(currentYear,currentMonth , 1).getDay()
+  console.log(currentDate.getDate(),currentDate,currentMonth,currentYear,daysInMonth,fastDayOfMonth);
+  const handleEventCalender = (index) => {
+    setSelectedDate(index);  // Store the selected date index
+  };
+  
+  const activeDateColor = (index) => selectedDate === index ? 'text-white bg-black' : 'text-black hover:bg-sky-100'
+  console.log(currentDate.getDate());
+  const todayActiveDate = (date)=> 
+    currentDate.getDate() === date && 'text-white bg-blue-400 hover:border-black' 
   return (
     <>
       <aside className="calender bg-[#1E1F24] row-start-2 row-end-5 col-start-3 text-white text-base flex flex-col  items-center">
@@ -20,24 +35,29 @@ export const CalenderComponent = () => {
           </label>
         </section>
         <section className="w-[94%] bg-white grid  text-black p-2 rounded-md">
-          <div className="grid grid-cols-7 gap text-center">
-          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
-              <div key={day} className="font-semibold text-gray-700">
+          <div className="py-4 text-[2rem] flex gap-1">
+            <div>Febuary</div>
+            <div>2025</div>
+          </div>
+          <div className="grid grid-cols-7 gap-1 gap-y-2 text-center">
+            {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
+              <div key={day} className="font-semibold text-gray-700 px-[0.3rem]">
                 {day}
               </div>
             ))}
-          {/* <div className="text-base bg-blue-500 font-semibold text-white p-2 rounded-full">1</div> */}
-          {calender.map((ele,index)=>{
-            // setnum(num++)
-            return (<div className="text-black text-lg font-semibold p-[0.3rem] rounded-full border border-white scale-100 aspect-square
-               hover:border-black hover:bg-blue-100 transition-all" 
-              key={index}>{index+1}</div>)
-          })}
+
+            {[...Array(fastDayOfMonth).keys()].map((index)=> (
+              <span key={`empty-${index}`}></span>
+            ))}
+            {[...Array(daysInMonth).keys()].map((day)=> (
+              <span key={day +1}
+              onClick={() => handleEventCalender(day)}
+               className={`text-lg font-semibold p-[0.3rem] rounded-full border border-white scale-100 transition-all
+                ${todayActiveDate(day+1)}
+                ${activeDateColor(day)} `}> {day+1} </span>
+            ))}
           </div>
-
         </section>
-
-
       </aside>
     </>
   );
