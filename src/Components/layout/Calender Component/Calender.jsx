@@ -1,6 +1,9 @@
 // import { NavLink } from "react-router-dom";
 
+import { useState } from "react";
+
 export const CalenderComponent = () => {
+  const [calender,setCal] = useState(Array(35).fill(''))
   return (
     <>
       <aside className="calender bg-[#1E1F24] row-start-2 row-end-5 col-start-3 text-white text-base flex flex-col  items-center">
@@ -16,48 +19,23 @@ export const CalenderComponent = () => {
             </svg>
           </label>
         </section>
-        {/* <section className="w-[92%] bg-white grid  text-black p-2">
-          <div className="grid grid-cols-7 gap-1 text-center">
+        <section className="w-[94%] bg-white grid  text-black p-2 rounded-md">
+          <div className="grid grid-cols-7 gap text-center">
           {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day) => (
               <div key={day} className="font-semibold text-gray-700">
                 {day}
               </div>
             ))}
-        <div className="text-base bg-blue-500 font-semibold text-white p-2 rounded-full">1</div>
-        <div className="p-2">12</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
+          {/* <div className="text-base bg-blue-500 font-semibold text-white p-2 rounded-full">1</div> */}
+          {calender.map((ele,index)=>{
+            // setnum(num++)
+            return (<div className="text-black text-lg font-semibold p-[0.3rem] rounded-full border border-white scale-100 aspect-square
+               hover:border-black hover:bg-blue-100 transition-all" 
+              key={index}>{index+1}</div>)
+          })}
           </div>
 
-        </section> */}
+        </section>
 
 
       </aside>
