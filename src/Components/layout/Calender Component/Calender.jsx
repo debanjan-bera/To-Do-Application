@@ -1,9 +1,8 @@
 // import { NavLink } from "react-router-dom";
 
 import { useState } from "react";
-
+import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 export const CalenderComponent = () => {
-  const [calender,setCal] = useState(Array(35).fill(''))
   const [selectedDate, setSelectedDate] = useState(null);
   const currentDate = new Date();
   const [currentMonth,setCurrentMonth] = useState(currentDate.getMonth())
@@ -57,27 +56,41 @@ const colorOnSunday=(day)=>{
           </label>
         </section>
         <section className="w-[94%] bg-white grid  text-black p-2 rounded-md">
-          <div className="py-4 text-[2rem] flex gap-1">
-            <div>{listOfMonth[currentMonth]}</div>
-            <div>{currentYear}</div>
-          </div>
-          <div className="grid grid-cols-7 gap-1 gap-y-2 text-center">
+          <section className="w-full py-4 flex flex-row justify-between items-center">
+            <div className="text-[1.8rem] flex gap-1">
+              <div>{listOfMonth[currentMonth]}</div>
+              {/* <div>September</div> */}
+              <div>{currentYear}</div>
+            </div>
+            <div className="flex gap-1 text-[1.8rem]">
+              <button><IoMdArrowDropleftCircle /></button>
+              <button><IoMdArrowDroprightCircle /></button> 
+            </div>
+          </section>
+          <div className="grid grid-cols-7 gap-1 text-center">
             {listOfDays.map((day) => (
-              <div key={day} className="font-semibold text-gray-700 px-[0.3rem]">
+              <div
+                key={day}
+                className="font-semibold text-gray-700 px-[0.3rem]">
                 {day}
               </div>
             ))}
 
-            {[...Array(fastDayOfMonth).keys()].map((index)=> (
+            {[...Array(fastDayOfMonth).keys()].map((index) => (
               <span key={`empty-${index}`}></span>
             ))}
-            {[...Array(daysInMonth).keys()].map((day)=> (
-              <span key={day + 1}
-              onClick={() => handleEventCalender(day)}
-               className={`text-lg font-semibold p-[0.3rem] rounded-full border border-white scale-100 transition-all
-                ${colorOnSunday(day+1)}
-                ${todayActiveDate(day+1)}
-                ${activeDateColor(day)} `}> {day+1} </span>
+            {[...Array(daysInMonth).keys()].map((day) => (
+              <span
+                key={day + 1}
+                onClick={() => handleEventCalender(day)}
+                className={`text-lg font-semibold p-[0.3rem] rounded-full border border-white scale-100 transition-all
+                ${colorOnSunday(day + 1)}
+                ${todayActiveDate(day + 1)}
+                ${activeDateColor(day)} `}
+              >
+                {" "}
+                {day + 1}{" "}
+              </span>
             ))}
           </div>
         </section>
