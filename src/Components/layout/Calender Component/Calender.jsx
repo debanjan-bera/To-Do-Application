@@ -16,10 +16,7 @@ export const CalenderComponent = () => {
   const handleEventCalender = (index) => {
     setSelectedDate(index);  // Store the selected date index
   };
-  const activeDateColor = (index) => selectedDate === index ? 'text-white bg-black' : 'text-black hover:bg-sky-100'
-  const todayActiveDate = (date)=>{
-    return currentDate.getDate() === date && 'text-white bg-blue-400 hover:border-black' 
-  }
+
   
   const checkOnSunday = (year, month) => {
     let sundays = [];
@@ -35,10 +32,21 @@ export const CalenderComponent = () => {
   };
 
 // Example usage:
-const colorOnSunday=(day)=>{
+// styling elements
+
+const activeDateColor = (date) => {
   const sundays = checkOnSunday(currentYear, currentMonth);
-  return sundays.includes(day) && 'text-red-500'; 
-}
+  const actualDate = date + 1;
+  if (currentDate.getDate() === actualDate) return "text-white bg-blue-400 hover:bg-blue-500"; // Default today styling (unclicked)
+  // else if(sundays.includes(actualDate)) return 
+  else if(selectedDate === date){
+    if (sundays.includes(actualDate)) return "bg-red-100 text-red-500"
+    return "text-white bg-sky-500"; // Selected date (including current date when clicked)
+  }
+  if (sundays.includes(actualDate)) return "text-red-500 hover:bg-red-100"
+  return "text-black hover:bg-sky-100"; // Normal styling for other dates
+};
+
 
   return (
     <>
@@ -84,12 +92,8 @@ const colorOnSunday=(day)=>{
                 key={day + 1}
                 onClick={() => handleEventCalender(day)}
                 className={`text-lg font-semibold p-[0.3rem] rounded-full border border-white scale-100 transition-all
-                ${colorOnSunday(day + 1)}
-                ${todayActiveDate(day + 1)}
-                ${activeDateColor(day)} `}
-              >
-                {" "}
-                {day + 1}{" "}
+                ${activeDateColor(day)} `}>
+                {day + 1}
               </span>
             ))}
           </div>
