@@ -8,7 +8,7 @@ export const AppLayout = () => {
   const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
   const isLoginPage = location.pathname === "/login"; // Apply layout only if it's NOT the Login page
-  const sideBarClass = isSideBar ? "grid-cols-[0.23fr_3fr_0.9fr]" : "grid-cols-[0.45fr_3fr_0.9fr]"; // Sidebar class for responsive design
+  const sideBarClass = isSideBar ? "grid-cols-[0.23fr_2.7fr_0.9fr]" : "grid-cols-[0.45fr_2.7fr_0.9fr]"; // Sidebar class for responsive design
   return isLoginPage ? (
     <Outlet /> // No header, sidebar, or calendar for login page
   ) : (
