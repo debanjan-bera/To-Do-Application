@@ -18,22 +18,18 @@ export const CalenderComponent = () => {
   const lastDayOfPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
   const lastDayOfMonth = new Date(currentYear, currentMonth, monthEnd).getDay();
 
-  const handleEventCalender = (index) =>{
-    setSelectedDate(index);
-    console.log(index);
-  }
-
+  const handleEventCalender = (index) => setSelectedDate(index);
   const prevMonth = () => setCurrentDate(new Date(currentYear, currentMonth - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(currentYear, currentMonth + 1, 1));
-  const navigatePrevMonth = (day)=>{
-    console.log(day);
+
+  const navigatePrevMonth = (value)=>{
+    setSelectedDate(value-1)
     prevMonth()
+    console.log(new Date().toDateString());
   }
   const navigateNextMonth = (day)=>{
     nextMonth()
     setSelectedDate(day-1)
-    console.log(day,listOfMonth[currentMonth+1],currentYear);
-
   }
 
   const activeDateColor = (date) => {
@@ -74,7 +70,7 @@ export const CalenderComponent = () => {
             <div key={day} className="text-base text-gray-700 px-[0.3rem]">{day}</div>
           ))}
           {[...Array(firstDateOfMonth).keys()].map((index) => (
-            <span key={`empty-${index}`} className="text-black/50 p-[0.3rem] rounded-full border border-white scale-100 cursor-pointer select-none transition-all hover:bg-gray-200" onClick={()=>navigatePrevMonth(index)}>
+            <span key={`empty-${index}`} className="text-black/50 p-[0.3rem] rounded-full border border-white scale-100 cursor-pointer select-none transition-all hover:bg-gray-200" onClick={()=>navigatePrevMonth(lastDayOfPrevMonth - firstDateOfMonth + index+1)}>
               {lastDayOfPrevMonth - firstDateOfMonth + index + 1}
             </span>
           ))}
