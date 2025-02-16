@@ -1,22 +1,16 @@
-import { useEffect, useState } from "react";
-
+import { WiSunrise,WiNightClear } from "react-icons/wi"; // Weather Icons
 export const DateAndTime = () => {
-  const [nowDateTime, setDateTime] = useState("");
-  useEffect(() => {
-    const setInterVal = setInterval(() => {
-      const todayDate = new Date();
-      const formattedDate = todayDate.toLocaleDateString();
-      const formattedTime = todayDate.toLocaleTimeString();
-      setDateTime(`${formattedDate} - ${formattedTime}`);
-    }, 1000);
-    return () => clearInterval(setInterVal);
-  }, []);
+  const hour = new Date().getHours()
+  const { greeting, icon } =
+    hour >= 5 && hour < 12
+      ? { greeting: "Good Morning", icon: <WiSunrise className="text-yellow-400 text-4xl" /> }
+      : hour >= 12 && hour < 18
+      ? { greeting: "Good Afternoon", icon: '☀️' }
+      : { greeting: "Good Evening", icon: <WiNightClear className="text-blue-400 text-5xl" /> };
 
   return (
-    <>
-      <section className="p-4 pl-0">
-        <h1 className="text-xl text-white font-semibold">{nowDateTime}</h1>
-      </section>
-    </>
-  )
+    <div className="flex items-center justify-center ">
+      <h1>{greeting}</h1>{icon}
+    </div>
+  );
 };
