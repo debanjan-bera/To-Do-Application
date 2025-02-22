@@ -1,12 +1,19 @@
-
-
 .dashboard{
-    grid-template-columns: 0.37fr 2.5fr 0.9fr;
+    grid-template-columns: 0.37fr 2.5fr 0.8fr;
 }
 .isSideBarDashBoard{
-    grid-template-columns: 0.2fr 2.5fr 1fr;
+    grid-template-columns: 0.2fr 2.5fr 0.82fr;
 }
-@media screen and (max-width:1100px) {
+
+@media screen and (max-width:1200px) {
+    .dashboard{
+        grid-template-columns: 0.37fr 1.8fr 0.9fr;
+    }
+    .isSideBarDashBoard{
+        grid-template-columns: 0.2fr 1.8fr 0.9fr;
+    }
+}
+@media screen and (max-width:1000px) {
     .dashboard{
         grid-template-columns: 0.37fr 1.8fr 1fr;
     }

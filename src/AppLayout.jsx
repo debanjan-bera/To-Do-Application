@@ -11,15 +11,8 @@ export const AppLayout = () => {
   const location = useLocation(); // Get current route
   const isLoginPage = location.pathname === "/login"; // Check if it's the login page
 
-  // Sidebar class for responsive design
-  // const sideBarClass = isSideBar
-  //   ? `grid grid-cols-[0.2fr_2.5fr_1fr] sm:grid-cols-[0.2fr_1.8fr_0.9fr] 2xl:grid-cols-[0.4fr_2.5fr_0.4fr]`
-  //   : `grid grid-cols-[0.45fr_2.5fr_1fr] sm:grid-cols-[0.3fr_1.8fr_0.98fr] 2xl:grid-cols-[0.6fr_2.5fr_0.6fr]`;
-  // const sideBarClass = isSideBar 
-  // ? ` grid-cols-[0.2fr_2.5fr_1fr] sm:grid-cols-[0.2fr_1.8fr_0.8fr]`
-  // : `grid-cols-[0.45fr_2.5fr_1fr] sm:grid-cols-[0.3fr_1.8fr_0.8fr]`;
   const sideBarClass = isSideBar ? "isSideBarDashBoard" : "dashboard";
-  if (isLoginPage)  return <Outlet />;
+  if (isLoginPage) return <Outlet />;
 
   return (
     <DataProvider>

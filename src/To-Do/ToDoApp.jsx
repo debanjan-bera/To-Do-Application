@@ -29,7 +29,6 @@ export const TodoApp = () => {
   return (
     <>
       <main className="col-start-2 col-end-3 row-start-2 row-end-5 grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-xl bg-neutral-950 "
-      // bg-[#15161A]
       style={{
         backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%2318181b' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
       }}>
@@ -44,9 +43,8 @@ export const TodoApp = () => {
             <div className="text-xl flex flex-row items-center gap-1"> 
               <PiBookBookmarkBold />
               <h3 className="text-lg font-bold">New Task</h3>
-              </div>
+            </div>
           </button>
-
           </div>
         </section>
         <section className="h-full w-full relative overflow-hidden">
