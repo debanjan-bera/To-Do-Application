@@ -5,25 +5,37 @@ import { CalenderComponent } from "./Components/layout/Calender Component/Calend
 import { useState } from "react";
 import { DataProvider } from "./Contexts/DataWhereHouse";
 import { DateAndTime } from "./Components/functionality/Date";
+
 export const AppLayout = () => {
   const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
-  const isLoginPage = location.pathname === "/login"; // Apply layout only if it's NOT the Login page
-  const sideBarClass = isSideBar ? "grid-cols-[0.23fr_2.7fr_0.9fr]" : "grid-cols-[0.45fr_2.7fr_0.9fr]"; // Sidebar class for responsive design
-  return isLoginPage ? (
-    <Outlet /> // No header, sidebar, or calendar for login page
-  ) : (
+  const isLoginPage = location.pathname === "/login"; // Check if it's the login page
+
+  // Sidebar class for responsive design
+  // const sideBarClass = isSideBar
+  //   ? `grid grid-cols-[0.2fr_2.5fr_1fr] sm:grid-cols-[0.2fr_1.8fr_0.9fr] 2xl:grid-cols-[0.4fr_2.5fr_0.4fr]`
+  //   : `grid grid-cols-[0.45fr_2.5fr_1fr] sm:grid-cols-[0.3fr_1.8fr_0.98fr] 2xl:grid-cols-[0.6fr_2.5fr_0.6fr]`;
+  // const sideBarClass = isSideBar 
+  // ? ` grid-cols-[0.2fr_2.5fr_1fr] sm:grid-cols-[0.2fr_1.8fr_0.8fr]`
+  // : `grid-cols-[0.45fr_2.5fr_1fr] sm:grid-cols-[0.3fr_1.8fr_0.8fr]`;
+  const sideBarClass = isSideBar ? "isSideBarDashBoard" : "dashboard";
+  if (isLoginPage)  return <Outlet />;
+
+  return (
     <DataProvider>
-      <section className={`cont h-lvh w-lvw grid ${sideBarClass} grid-rows-[0.3fr_0.3fr_3fr] relative bg-[#1E1F24] `}>
+      <section className={`h-lvh w-lvw relative bg-[#1E1F24] grid ${sideBarClass} grid-rows-[0.3fr_0.3fr_3fr]`}>
         <header className="head row-start-1 row-end-2 col-start-2 col-end-4 p-4 pb-2">
-          <h1 className="text-2xl font-medium text-white flex flex-row items-center justify-start gap-3"><DateAndTime/> Debanjan Bera</h1>
+          <h1 className="text-2xl font-medium text-white flex flex-row items-center justify-start gap-3">
+            <DateAndTime /> Debanjan Bera
+          </h1>
           <p className="text-zinc-400">{"Let's see what we've got to do today."}</p>
         </header>
-        <SideBar setSideBar={setSideBar} />{/* Sidebar, Main Content, and Calendar */}
-        <Outlet /> {/* Main Page Content (To-Do, Completed Tasks, etc.) */}
+        <SideBar setSideBar={setSideBar} />
+        <Outlet />
         <CalenderComponent />
       </section>
     </DataProvider>
   );
 };
+
 export default AppLayout;

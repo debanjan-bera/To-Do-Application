@@ -21,7 +21,6 @@
     stroke-dasharray: 20 300;
     stroke-dashoffset: -32.42;
   }
-
   @media screen and (max-width:480px){
     .sideBar{
         display: none;

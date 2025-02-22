@@ -1,19 +1,33 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+
+
+.dashboard{
+    grid-template-columns: 0.37fr 2.5fr 0.9fr;
 }
-/* .backGroundImg{
-    background-image: url('./assets/th.jpeg');
-    background-size: cover;
-    background-position: center;
-} */
-
-
+.isSideBarDashBoard{
+    grid-template-columns: 0.2fr 2.5fr 1fr;
+}
+@media screen and (max-width:1100px) {
+    .dashboard{
+        grid-template-columns: 0.37fr 1.8fr 1fr;
+    }
+    .isSideBarDashBoard{
+        grid-template-columns: 0.2fr 1.8fr 1fr;
+    }
+}
 @media screen and (max-width:850px) {
-    .cont{
-        /* background-color: red; */
-        grid-template-columns:0.8fr 3fr ;
+    .dashboard{
+        grid-template-columns: 0.37fr 1.8fr 1fr;
+    }
+    .isSideBarDashBoard{
+        grid-template-columns: 0.2fr 1.8fr 1fr;
+    }
+}
+@media screen and (max-width:820px) {
+    .dashboard{
+        grid-template-columns: 0.37fr 1.8fr;
+    }
+    .isSideBarDashBoard{
+        grid-template-columns: 0.2fr 1.8fr;
     }
     .calender{
         display: none;
@@ -22,9 +36,9 @@
         grid-column-end: 3;
     }
 }
-@media screen and (max-width:480px){
-    .cont{
-        grid-template-columns:0fr 1fr 0fr;
+@media screen and (max-width:560px){
+    .dashboard{
+        grid-template-columns: 0fr 2fr 0fr;
     }
     .sideBar{
         display: none;

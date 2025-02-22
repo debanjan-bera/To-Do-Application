@@ -1,4 +1,3 @@
-/* From Uiverse.io by Shoh2008 */ 
 .checkbox-wrapper-12 {
     position: relative;
   }
@@ -171,7 +170,7 @@
  .hidden-trigger:checked ~ .circle .svg {
     transform: rotate(-315deg);
   } 
-  @media screen and (min-width:480px){
+  @media screen and (min-width:560px){
     .wrapper{
       display:none;
     }
