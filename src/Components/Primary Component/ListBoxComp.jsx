@@ -32,7 +32,7 @@ export const TaskListComp = ({ curTask, pendingTask }) => {
   }, [isPresent, check ,animate, safeToRemove, scope]);
   return (
     <motion.li ref={scope} layout
-      className={`p-3 m-3 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex flex-row justify-between items-center relative select-none md:mx-14 `}>
+      className={`p-3 m-3 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex flex-row justify-between items-center relative select-none md:mx-10 `}>
       <div className="pb-1 flex flex-row gap-2 justify-between items-center">
         <input type="checkbox" checked={check} onChange={(e) => handleCheckedTask(e, id)} className="size-4 accent-indigo-400"/>
         <motion.p className={`text-xl ${check && "line-through"}`}>{content}</motion.p>

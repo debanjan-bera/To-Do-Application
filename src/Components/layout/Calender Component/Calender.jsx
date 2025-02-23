@@ -17,16 +17,24 @@ export const CalenderComponent = () => {
   const lastDayOfPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
   const lastDayOfMonth = new Date(currentYear, currentMonth, monthEnd).getDay();
 
-  const prevMonth = () => setCurrentDate(new Date(currentYear, currentMonth - 1, 1));
-  const nextMonth = () => setCurrentDate(new Date(currentYear, currentMonth + 1, 1));
+  const prevMonth = () => {
+    setCurrentDate(new Date(currentYear, currentMonth - 1, 1));
+    setSelectedDate(null)
+
+  }
+  const nextMonth = () =>  {
+    setCurrentDate(new Date(currentYear, currentMonth + 1, 1));
+    setSelectedDate(null)
+  }
 
   const navigatePrevMonth = (value) => {
-    setSelectedDate(value - 1);
     prevMonth();
+    setSelectedDate(value - 1);
   };
   const navigateNextMonth = (day) => {
     nextMonth();
     setSelectedDate(day - 1);
+
   };
 
   const activeDateColor = (date) => {
