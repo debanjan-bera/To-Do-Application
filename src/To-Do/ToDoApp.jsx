@@ -1,14 +1,15 @@
 import { useContext, useEffect } from "react";
 import "./todo.css";
 import { AddTaskForm } from "./InputBox";
-import { ClearAllTask } from "../Components/functionality/ClearTodo";
+// import { ClearAllTask } from "../Components/functionality/ClearTodo";
 import { setLocalStorage } from "../Backend/LocalStorage";
 import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
-import { MobileAddTaskButton } from "../Components/functionality/CheckBox/AddButton";
 import { handleFormCancel } from "../Backend/FormFunctionality";
 import { AnimatePresence } from "framer-motion";
 import { PiBookBookmarkBold } from "react-icons/pi";
+import { MobileAddTaskButton } from "../Components/Functions/Button/AddButton";
+import { ClearAllTask } from "../Components/Functions/Button/ClearTodo";
 export const TodoApp = () => {
   const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow} = useContext(ToDoContext);
   useEffect(() => {

@@ -14,7 +14,6 @@ export const AddTaskForm = () =>{
   })
   const {taskArr, setTaskArr,setWindowClose,setmobileAddButton} = useContext(ToDoContext)
   const controls = useDragControls()
-  // const y = useMotionValue(0);
   const onSubmit = (data) =>{
     handleFromSubmit(data,taskArr, setTaskArr,setWindowClose,setmobileAddButton);
   }

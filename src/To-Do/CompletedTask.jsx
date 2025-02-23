@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
-import { ClearAllTask } from "../Components/functionality/ClearTodo";
 import { AnimatePresence } from "framer-motion";
 import { setLocalStorage } from "../Backend/LocalStorage";
+import { ClearAllTask } from "../Components/Functions/Button/ClearTodo";
 export const TaskActionItem = () => {
   const { taskArr,filteredData } = useContext(ToDoContext);
     useEffect(() => {

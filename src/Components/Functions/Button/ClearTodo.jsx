@@ -1,7 +1,8 @@
 import PropTypes from "prop-types";
-import '../../To-Do/todo.css'
+import '../../../To-Do/todo.css'
 import { useContext } from "react";
-import { ToDoContext } from "../../Contexts/CreateContext";
+import { ToDoContext } from "../../../Contexts/CreateContext";
+// import { ToDoContext } from "../../Contexts/CreateContext";
 
 export const ClearAllTask = ({pendingTask})=>{
     const {taskArr,setTaskArr,filteredData,setFilteredData} = useContext(ToDoContext)

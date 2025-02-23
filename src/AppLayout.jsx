@@ -4,7 +4,7 @@ import { SideBar } from "./Components/layout/SideBar/TodoSidebar";
 import { CalenderComponent } from "./Components/layout/Calender Component/Calender";
 import { useState } from "react";
 import { DataProvider } from "./Contexts/DataWhereHouse";
-import { DateAndTime } from "./Components/functionality/Date";
+import { DateAndTime } from "./Components/Functions/Date";
 
 export const AppLayout = () => {
   const [isSideBar, setSideBar] = useState(false);
