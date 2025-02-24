@@ -78,8 +78,8 @@ export const CalenderComponent = () => {
 
   return (
     <aside className="calender bg-[#1E1F24] row-start-2 row-end-5 col-start-3 text-white text-base flex flex-col items-center">
-      <section className="w-[94%] bg-white grid text-black p-2 rounded-md">
-        <section className="w-full py-4 flex flex-row justify-between items-center">
+      <section className="w-[94%] bg-white grid text-black p-2 rounded-md aspect-square">
+        <section className="w-full py-4 flex flex-row justify-between items-center ">
           <div className="text-[1.8rem] flex gap-1">
             <div>{listOfMonth[currentMonth]}</div>
             <div>{currentYear}</div>
@@ -91,21 +91,22 @@ export const CalenderComponent = () => {
         </section>
 
         {/* Calendar Grid with Event Delegation */}
-        <div className="text-lg font-semibold cursor-pointer select-none grid grid-cols-7 grid-rows-6fg gap-1 text-center transition-all"         onClick=  {handleCalendarClick}>
+        <div className="text-lg font-semibold cursor-pointer select-none grid grid-cols-7 grid-rows-6fg gap-1 text-center transition-all"
+         onClick=  {handleCalendarClick}>
           {listOfDays.map((day) => (
             <div key={day} className="text-base text-gray-700 px-[0.4rem]">{day}</div>
           ))}
 
           {[...Array(firstDateOfMonth).keys()].map((index) => (
             <span key={`empty-${index}`} data-day={lastDayOfPrevMonth - firstDateOfMonth + index + 1} 
-              className="prev-month text-black/50 p-[0.3rem] rounded-full border border-white scale-100 cursor-pointer select-none transition-all hover:bg-gray-200">
+              className="prev-month text-black/50 p-[0.3rem] aspect-square rounded-full border border-white scale-100 cursor-pointer select-none transition-all hover:bg-gray-200">
               {lastDayOfPrevMonth - firstDateOfMonth + index + 1}
             </span>
           ))}
 
           {[...Array(monthEnd).keys()].map((day) => (
             <span key={day + 1} data-day={day + 1} 
-              className={`calendar-date py-[0.4rem] rounded-full border border-white scale-100 transition-all ${activeDateColor(day)}`}>
+              className={`calendar-date py-[0.3rem] rounded-full border border-white scale-100 transition-all ${activeDateColor(day)}`}>
               {day + 1}
             </span>
           ))}
