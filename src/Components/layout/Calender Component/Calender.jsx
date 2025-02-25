@@ -97,6 +97,7 @@ export const CalenderComponent = () => {
             <div key={day} className="text-base text-gray-700 px-[0.4rem]">{day}</div>
           ))}
 
+
           {[...Array(firstDateOfMonth).keys()].map((index) => (
             <span key={`empty-${index}`} data-day={lastDayOfPrevMonth - firstDateOfMonth + index + 1} 
               className="prev-month text-black/50 p-[0.3rem] aspect-square rounded-full border border-white scale-100 cursor-pointer select-none transition-all hover:bg-gray-200">
