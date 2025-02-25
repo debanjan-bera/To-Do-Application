@@ -1,7 +1,6 @@
 import { useContext, useEffect } from "react";
 import "./todo.css";
 import { AddTaskForm } from "./InputBox";
-// import { ClearAllTask } from "../Components/functionality/ClearTodo";
 import { setLocalStorage } from "../Backend/LocalStorage";
 import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
