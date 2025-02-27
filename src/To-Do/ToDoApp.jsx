@@ -56,8 +56,8 @@ export const TodoApp = () => {
           </h2>
           <div>
             <ClearAllTask pendingTask={true} />
-          <button className="px-4 py-2 bg-blue-600 rounded-md text-white hidden  md:inline hover:bg-blue-700" onClick={(e)=>{
-            e.stopPropagation();///importent
+          <button className="px-4 py-2 bg-blue-600 rounded-md text-white hidden  md:inline hover:bg-blue-700" onClick={()=>{
+            // e.stopPropagation();///importent
             handleAddTaskWindow();
           }}>
             <div className="text-xl flex flex-row items-center gap-1"> 

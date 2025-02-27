@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { handleFormCancel, handleFromSubmit } from "../Backend/FormFunctionality";
 import { FormDataContext, ToDoContext } from "../Contexts/CreateContext";
@@ -7,6 +7,7 @@ import { useDragControls } from "framer-motion";
 import "./todo.css";
 
 export const AddTaskForm = () => {
+  const modalRef = useRef(null);
   const { register, formState: { errors }, handleSubmit } = useForm({
     defaultValues: {
       group: "",
@@ -30,15 +31,25 @@ export const AddTaskForm = () => {
     
     handleFromSubmit(finalData, taskArr, setTaskArr, setWindowClose, setmobileAddButton);
   };
-  useEffect(() => {
-      const handleClickOutside = () => setWindowClose(null);
-      document.addEventListener("click", handleClickOutside);
-      return () => document.removeEventListener("click", handleClickOutside);
+  // useEffect(() => {
+  //     const handleClickOutside = () => setWindowClose(false);
+  //     document.addEventListener("click", handleClickOutside);
+  //     return () => document.removeEventListener("click", handleClickOutside);
+  //   }, [setWindowClose]);
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (modalRef.current && !modalRef.current.contains(event.target)) {
+          setWindowClose(false);
+        }
+      };
+  
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [setWindowClose]);
-
   return (
     <section className="register-cont w-lvw h-lvh absolute top-0 left-0 bg-black/70 z-10 flex items-center justify-center">
       <motion.form
+        ref={modalRef}
         className="bg-neutral-100 p-4 rounded-md"
         initial={{ opacity: 0, y: 25 }}
         animate={{ opacity: 1, y: 0 }}
