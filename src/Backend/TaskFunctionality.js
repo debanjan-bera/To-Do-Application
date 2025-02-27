@@ -1,7 +1,11 @@
-export const handleDeleteTask = (setTaskData,setFilter,id,pendingTask) => {
+export const handleDeleteTask = (setTaskData,setFilter,id,pendingTask,setActiveMenuId) => {
+  if (setActiveMenuId) setActiveMenuId(null);
+  setTimeout(()=>{
   if (!pendingTask) setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id))
   else setTaskData((updateTask) => updateTask.filter((currentTask) => currentTask.id !== id));
   console.log(`${id} is deleted`);
+  },200)
+
 };
 export const toggleTaskStatus = (id,taskData,setTaskData,setFilteredData) => {
   

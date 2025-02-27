@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState} from "react";
+import { useContext, useEffect} from "react";
 import "./todo.css";
 import { AddTaskForm } from "./InputBox";
 import { setLocalStorage } from "../Backend/LocalStorage";
@@ -10,8 +10,9 @@ import { PiBookBookmarkBold } from "react-icons/pi";
 import { MobileAddTaskButton } from "../Components/Functions/Button/AddButton";
 import { ClearAllTask } from "../Components/Functions/Button/ClearTodo";
 export const TodoApp = () => {
-  const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow} = useContext(ToDoContext);
-  const [activeMenuId, setActiveMenuId] = useState(null);
+  const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow,activeMenuId, setActiveMenuId} 
+  = useContext(ToDoContext);
+
 
   // Handle context menu open/close
   const openMenu = (e, id) => {
@@ -24,12 +25,12 @@ export const TodoApp = () => {
     const handleClickOutside = () => setActiveMenuId(null);
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
+  }, [setActiveMenuId]);
 
   useEffect(() => {
     setLocalStorage(taskArr, filteredData);
   }, [taskArr, filteredData]);
-  
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.altKey && event.key === "n") {

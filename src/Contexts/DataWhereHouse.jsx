@@ -6,6 +6,7 @@ import { getFilteredLocalStorage, getLocalStorage } from "../Backend/LocalStorag
 export const DataProvider = ({ children }) => {
     const [taskArr, setTaskArr] = useState(() => getLocalStorage());
     const [windowOpen, setWindowClose] = useState(false);
+    const [activeMenuId, setActiveMenuId] = useState(null);
     const [filteredData, setFilteredData] = useState(() => getFilteredLocalStorage());
     const [mobileAddButton,setmobileAddButton] = useState(false)
       const handleAddTaskWindow = useCallback(() => {
@@ -13,7 +14,7 @@ export const DataProvider = ({ children }) => {
       }, [setWindowClose]);
 
   return (
-    <ToDoContext.Provider value={{taskArr,setTaskArr,windowOpen,setWindowClose,filteredData,setFilteredData,handleAddTaskWindow,mobileAddButton,setmobileAddButton}}>
+    <ToDoContext.Provider value={{taskArr,setTaskArr,windowOpen,setWindowClose,filteredData,setFilteredData,activeMenuId, setActiveMenuId,handleAddTaskWindow,mobileAddButton,setmobileAddButton}}>
       {children}
     </ToDoContext.Provider>
   );
