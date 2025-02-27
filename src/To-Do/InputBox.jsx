@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { handleFormCancel, handleFromSubmit } from "../Backend/FormFunctionality";
 import { FormDataContext, ToDoContext } from "../Contexts/CreateContext";
@@ -30,6 +30,11 @@ export const AddTaskForm = () => {
     
     handleFromSubmit(finalData, taskArr, setTaskArr, setWindowClose, setmobileAddButton);
   };
+  useEffect(() => {
+      const handleClickOutside = () => setWindowClose(null);
+      document.addEventListener("click", handleClickOutside);
+      return () => document.removeEventListener("click", handleClickOutside);
+    }, [setWindowClose]);
 
   return (
     <section className="register-cont w-lvw h-lvh absolute top-0 left-0 bg-black/70 z-10 flex items-center justify-center">
