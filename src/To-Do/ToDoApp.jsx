@@ -1,19 +1,35 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState} from "react";
 import "./todo.css";
 import { AddTaskForm } from "./InputBox";
 import { setLocalStorage } from "../Backend/LocalStorage";
 import { ToDoContext } from "../Contexts/CreateContext";
 import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 import { handleFormCancel } from "../Backend/FormFunctionality";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence} from "framer-motion";
 import { PiBookBookmarkBold } from "react-icons/pi";
 import { MobileAddTaskButton } from "../Components/Functions/Button/AddButton";
 import { ClearAllTask } from "../Components/Functions/Button/ClearTodo";
 export const TodoApp = () => {
   const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow} = useContext(ToDoContext);
+  const [activeMenuId, setActiveMenuId] = useState(null);
+
+  // Handle context menu open/close
+  const openMenu = (e, id) => {
+    e.stopPropagation();
+    setActiveMenuId((prevId) => (prevId === id ? null : id));
+  };
+
+  // Close menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => setActiveMenuId(null);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
   useEffect(() => {
     setLocalStorage(taskArr, filteredData);
   }, [taskArr, filteredData]);
+  
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.altKey && event.key === "n") {
@@ -53,7 +69,7 @@ export const TodoApp = () => {
             <AnimatePresence>
               {taskArr.length ? (
                 taskArr.map((currentTask) => (
-                  <TaskListComp key={currentTask.id} curTask={currentTask} pendingTask={true} />
+                  <TaskListComp key={currentTask.id} curTask={currentTask} pendingTask={true} openMenu={openMenu} activeMenuId={activeMenuId}/>
                 ))
               ) : (
                 <div className="text-white text-center py-4">No Pending Tasks</div>
@@ -65,7 +81,7 @@ export const TodoApp = () => {
               <li className="py-3 mx-3 text-white text-2xl font-medium select-none md:mx-14">{filteredData.length ?'Completed Task':''}</li>
                 {filteredData.map((Task) => {
                   return (
-                    <TaskListComp key={Task.id} curTask={Task} pendingTask={false}/>
+                    <TaskListComp key={Task.id} curTask={Task} pendingTask={false} openMenu={openMenu} activeMenuId={activeMenuId}/>
                   );
                 })}
               </AnimatePresence>

@@ -1,7 +1,7 @@
 import { Outlet, useLocation } from "react-router-dom";
 import "./App.css";
 import { SideBar } from "./Components/layout/SideBar/TodoSidebar";
-import { CalenderComponent } from "./Components/layout/Calender Component/Calender";
+import { CalenderComponent } from "./Components/layout/Calender/Calender";
 import { useState } from "react";
 import { DataProvider } from "./Contexts/DataWhereHouse";
 import { DateAndTime } from "./Components/Functions/Date";

@@ -74,7 +74,6 @@ export const CalenderComponent = () => {
       navigateNextMonth(Number(target.dataset.day));
     }
   };
-  
 
   return (
     <aside className="calender bg-[#1E1F24] row-start-2 row-end-5 col-start-3 text-white text-base flex flex-col items-center">
@@ -83,6 +82,7 @@ export const CalenderComponent = () => {
           <div className="text-[1.8rem] flex gap-1">
             <div>{listOfMonth[currentMonth]}</div>
             <div>{currentYear}</div>
+
           </div>
           <div className="flex gap-1 text-[1.8rem]">
             <button onClick={prevMonth}><IoMdArrowDropleftCircle /></button>
