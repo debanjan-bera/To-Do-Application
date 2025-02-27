@@ -53,13 +53,6 @@ export const TaskListComp = ({ curTask, pendingTask, openMenu, activeMenuId }) =
         <button className="p-1 text-base scale-125 hover:bg-white/10 rounded-full" onClick={(e) => openMenu(e, id)}>
           <BsThreeDotsVertical />
         </button>
-
-        {/* Delete Button */}
-        <button className="rounded bg-red-300/20 px-1.5 py-1 text-xs text-red-300 transition-colors hover:bg-red-600 hover:text-red-200"
-          onClick={() => handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask,setActiveMenuId)}>
-          <FiTrash2 />
-        </button>
-
         {/* Context Menu */}
         <AnimatePresence>
           {isMenuOpen && (
@@ -77,7 +70,7 @@ export const TaskListComp = ({ curTask, pendingTask, openMenu, activeMenuId }) =
 
               {/* Delete Option */}
               <li className="px-3 py-2 flex items-center gap-2 text-red-400 hover:bg-red-600 cursor-pointer"
-                onClick={() => handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask)}>
+                onClick={() => handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask,setActiveMenuId)}>
                 <FiTrash2 /> Delete
               </li>
             </motion.ul>
