@@ -47,7 +47,7 @@ export const AddTaskForm = () => {
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }, [setWindowClose]);
   return (
-    <section className="register-cont w-lvw h-lvh absolute top-0 left-0 bg-black/70 z-10 flex items-center justify-center">
+    <section className="register-cont w-lvw h-dvh absolute top-0 left-0 bg-black/70 z-10 flex items-center justify-center">
       <motion.form
         ref={modalRef}
         className="bg-neutral-100 p-4 rounded-md"
