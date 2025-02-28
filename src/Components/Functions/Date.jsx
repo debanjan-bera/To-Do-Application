@@ -9,8 +9,14 @@ export const DateAndTime = () => {
       : { greeting: "Good Evening!!", icon: <WiNightClear className="text-blue-400 text-4xl" /> };
 
   return (
-    <div className="flex items-center justify-center ">
-      <h1>{greeting}</h1>{icon}
+    <div className="flex items-center flex-wrap">    
+      <div className="flex items-center justify-center ">
+        <div className="h-full rounded-full bg-neutral-700 mr-1">{icon}</div>
+        <h1>
+        Debanjan Bera
+        </h1>
+        </div>
+      <h1>{greeting}</h1>
     </div>
   );
 };
