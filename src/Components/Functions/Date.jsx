@@ -10,13 +10,13 @@ export const DateAndTime = () => {
 
   return (
     <div className="flex items-center flex-wrap">    
-      <div className="flex items-center justify-center ">
-        <div className="h-full rounded-full bg-neutral-700 mr-1">{icon}</div>
+      <div className="h-full flex items-center justify-center ">
+        <div className="h-full rounded-full p-[0.1rem] bg-neutral-700 mr-1 flex items-center justify-center text-center">{icon}</div>
         <h1>
         Debanjan Bera
         </h1>
         </div>
-      <h1>{greeting}</h1>
+      <h1 className=" text-center">{greeting}</h1>
     </div>
   );
 };
