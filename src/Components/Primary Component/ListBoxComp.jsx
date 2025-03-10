@@ -50,7 +50,7 @@ export const TaskListComp = ({ curTask, pendingTask, openMenu, activeMenuId }) =
         </section>
 
         {/* Three-dot Button */}
-        <button className="p-1 text-base scale-125 hover:bg-white/10 rounded-full" onClick={(e) => openMenu(e, id)}>
+        <button className="ml-2 p-1 text-base scale-125 hover:bg-white/10 rounded-md" onClick={(e) => openMenu(e, id)}>
           <BsThreeDotsVertical />
         </button>
 

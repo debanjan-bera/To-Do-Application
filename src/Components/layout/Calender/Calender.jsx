@@ -76,9 +76,9 @@ export const CalenderComponent = () => {
   };
 
   return (
-    <aside className="calender bg-[#1E1F24] row-start-2 row-end-5 col-start-3 text-white text-base flex flex-col items-center">
-      <section className="w-[94%] bg-white grid text-black p-2 rounded-md aspect-square">
-        <section className="w-full py-4 flex flex-row justify-between items-center ">
+    <aside className="calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 text-white text-base flex flex-col items-center">
+      <section className="w-[94%] bg-white grid text-black p-2 mt-3 rounded-md aspect-square">
+        <section className="w-full py-3 flex flex-row justify-between items-center ">
           <div className="text-[1.8rem] flex gap-1">
             <div>{listOfMonth[currentMonth]}</div>
             <div>{currentYear}</div>
