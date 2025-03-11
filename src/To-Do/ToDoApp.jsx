@@ -51,8 +51,8 @@ export const TodoApp = () => {
       }}>
         {/* stroke='%2318181b' */}
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
-        <section className="m-3  text-white flex flex-row justify-between items-center">
-          <h2 className="text-2xl font-semibold">
+        <section className="m-3  text-white flex flex-row justify-between items-center ">
+          <h2 className="text-2xl font-semibold ">
             {`Task ${taskArr.length} || Completed Task: ${filteredData.length}`}
           </h2>
           <div>
@@ -68,8 +68,9 @@ export const TodoApp = () => {
           </button>
           </div>
         </section>
-        <section className="h-full w-full relative overflow-hidden">
-          <div className=" h-full w-full hello overflow-x-hidden overflow-y-scroll ">
+        <section className="h-full w-full relative overflow-hidden ">
+          <div className="h-[2.4rem] w-full z-20 absolute bottom-0 bg-black/85 inset-shadow-2 "></div>
+          <div className="h-full w-full hello overflow-x-hidden overflow-y-scroll ">
           <ul>
             <AnimatePresence>
               {taskArr.length ? (
@@ -93,6 +94,7 @@ export const TodoApp = () => {
             </ul>
           </div>
         </section>
+        
         <MobileAddTaskButton addTask={handleAddTaskWindow} />
       </main>
     </>

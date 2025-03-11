@@ -3,7 +3,7 @@
   }
   .line {
     fill: none;
-    stroke: black;
+    stroke: rgb(255, 255, 255);
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 3;
