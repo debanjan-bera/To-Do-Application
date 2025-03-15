@@ -45,10 +45,11 @@ export const TodoApp = () => {
   }, [handleAddTaskWindow, setWindowClose]);
   return (
     <>
-      <main className="col-start-2 col-end-3 row-start-2 row-end-5 grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-xl bg-[#000000] "
+      <main className="main-bar col-start-2 col-end-3 row-start-2 row-end-5 grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-xl bg-[#000000] relative"
       style={{
         backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%239fa6ad29' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
-      }}>
+      }}
+      >
         {/* stroke='%2318181b' */}
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
         <section className="m-3  text-white flex flex-row justify-between items-center ">
@@ -68,8 +69,8 @@ export const TodoApp = () => {
           </button>
           </div>
         </section>
-        <section className="h-full w-full relative overflow-hidden ">
-          <div className="h-[2.4rem] w-full z-20 absolute bottom-0 bg-black/85 inset-shadow-2 "></div>
+        <section className="h-full w-full overflow-hidden ">
+          {/* <div className="bottom-bar h-[4rem] w-full z-20 "></div> */}
           <div className="h-full w-full hello overflow-x-hidden overflow-y-scroll ">
           <ul>
             <AnimatePresence>

@@ -38,15 +38,28 @@ select:focus-within {
   
 .hello::-webkit-scrollbar {
     width: 0.1rem;
-  }
+}
 .hello::-webkit-scrollbar-thumb {
     background: #d4d4d4; 
     border-radius: 10px;
-  }
+}
   ul{
     transition: all 0.4s linear;
   }
+  /* .main-bar{
+    box-shadow: inset 0px -30px 30px -10px rgba(189, 142, 142, 0.9); 
 
+  } */
+  .main-bar {
+    position: relative;
+    box-shadow: inset 0px -20px 20px -10px rgba(0, 0, 0, 0.8); /* Default inset shadow */
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .main-bar.shadow-visible {
+    box-shadow: inset 0px -30px 30px -10px rgba(0, 0, 0, 0.9); /* Stronger shadow when scrolling */
+  }
+  
   @media screen and (max-width:560px){
     .register-cont{
         align-items: end;
