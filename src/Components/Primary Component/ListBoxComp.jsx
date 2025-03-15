@@ -70,7 +70,7 @@ export const TaskListComp = ({ curTask, pendingTask, openMenu, activeMenuId }) =
               </li>
 
               {/* Delete Option */}
-              <li className="px-3 py-2 flex items-center gap-2 text-red-500 hover:bg-red-800 hover:text-red-300 cursor-pointer"
+              <li className="px-3 py-2 flex items-center gap-2 text-red-800 hover:bg-red-100 hover:text-red-900 cursor-pointer"
                 onClick={() => handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask,setActiveMenuId)}>
                 <FiTrash2 /> Delete
               </li>

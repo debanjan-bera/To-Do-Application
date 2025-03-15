@@ -114,8 +114,8 @@ export const AddTaskForm = () => {
           <p className="text-xl font-bold py-1">Description:</p>
           <textarea
             placeholder="Add your important description for the task..."
-            rows="5"
-            className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400"
+            
+            className="w-full p-[0.5rem] text-lg rounded outline-none border-[1.5px] border-gray-400 field-sizing-content overscroll-none"
             autoComplete="off"
             {...register("description", { required: true })}
           />
