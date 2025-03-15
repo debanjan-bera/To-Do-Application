@@ -134,8 +134,7 @@ export const AddTaskForm = () => {
           </button>
           <button
             type="submit"
-            className="button-submit w-24 h-10 bg-black my-2 text-white text-lg font-semibold border-2 border-black cursor-pointer"
-          >
+            className="button-submit w-24 h-10 bg-black my-2 text-white text-lg font-semibold border-2 border-black cursor-pointer">
             Save
           </button>
         </div>
