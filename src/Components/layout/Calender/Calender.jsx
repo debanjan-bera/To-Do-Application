@@ -20,8 +20,8 @@ export const CalenderComponent = ()=> {
   const nextMonthDays = Array.from({ length: totalCells }, (_, i) => i + 1);
   
   const flexClass = 'flex items-center justify-center';
-  const disableDayClass = 'p-1 w-full h-full flex items-center justify-center aspect-square text-gray-500 hover:border hover:border-gray-500'
-  const trackTodayDate = (date) => todayDate.getDate() === date && todayDate.getMonth() === month && todayDate.getFullYear() === year ? 'text-red-400 font-bold' : 'text-white';
+  const disableDayClass = 'p-1 w-full h-full flex items-center justify-center aspect-square text-gray-400 hover:border hover:border-gray-500'
+  const trackTodayDate = (date) => todayDate.getDate() === date && todayDate.getMonth() === month && todayDate.getFullYear() === year ? 'border  text-sky-500 font-bold backdrop-blur-lg bg-white/10' : 'text-white';
 
   const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
@@ -33,12 +33,12 @@ export const CalenderComponent = ()=> {
           <div className="w-full p-1 pt-3 text-white flex items-center justify-between text-center">
             <span className="text-3xl p-1  text-center">{`${listOfMonths[month]}, ${year}`}</span>
             
-            <div className="text-2xl p-1 text-center">
+            <div className="text-3xl p-1 text-center">
             <button onClick={prevMonth} ><IoMdArrowDropleftCircle/></button>
             <button onClick={nextMonth}><IoMdArrowDroprightCircle/></button>
             </div>
           </div>
-          <div className='w-full h-[22.4rem] text-white grid grid-cols-7 grid-rows-7'>
+          <div className='w-full h-[22.4rem] text-lg text-white grid grid-cols-7 grid-rows-7'>
             {listOfDays.map((day) => (
               <div key={day} className={`p-1 ${flexClass}`}>{day}</div>
             ))}
