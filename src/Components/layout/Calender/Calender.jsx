@@ -91,7 +91,7 @@ export const CalenderComponent = () => {
         </section>
 
         {/* Calendar Grid with Event Delegation */}
-        <div className="text-lg font-semibold cursor-pointer select-none grid grid-cols-7 grid-rows-6fg gap-1 text-center transition-all"
+        <div className="text-lg font-semibold cursor-pointer select-none grid grid-cols-7 grid-rows-6 gap-1 text-center transition-all"
          onClick=  {handleCalendarClick}>
           {listOfDays.map((day) => (
             <div key={day} className="text-base text-gray-700 px-[0.4rem]">{day}</div>

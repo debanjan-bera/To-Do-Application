@@ -11,7 +11,6 @@ export const AppLayout = () => {
   const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
   const isLoginPage = location.pathname === "/login"; // Check if it's the login page
-
   const sideBarClass = isSideBar ? "isSideBarDashBoard" : "dashboard";
   if (isLoginPage) return <Outlet />;
 
