@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 
 export const CalenderComponent = ()=> {
+  const [currentDate, setCurrentDate] = useState(new Date());
+  const [todayDate,setTodayDate] = useState(new Date());
+  const [sNextMonth,setNextMonth] = useState([])
+
+
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const listOfMonths = ["January", "February", "March", "April", "May", "June", 
     "July", "August", "September", "October", "November", "December"];
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [todayDate] = useState(new Date());
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -25,7 +28,13 @@ export const CalenderComponent = ()=> {
 
   const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
+  useEffect(()=>{
+    const nextMonth1stDay = new Date(year, month - 1, 1).getDay()
+    const nextMonthLastDay = new Date(year, month - 1, 1).getDate()
 
+    console.log(nextMonth1stDay,nextMonthLastDay);
+
+  },[month,year,sNextMonth])
   return (
     <>
       <section className='calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3  w-full grid gap-0'>
