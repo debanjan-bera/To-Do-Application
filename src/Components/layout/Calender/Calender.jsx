@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 
-export const CalenderComponent = ()=> {
+export const CalenderComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [todayDate,setTodayDate] = useState(new Date());
-  const [sNextMonth,setNextMonth] = useState([])
-
+  const [todayDate, setTodayDate] = useState(new Date());
+  const [isSunday, setSunday] = useState([]);
 
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const listOfMonths = ["January", "February", "March", "April", "May", "June", 
@@ -19,66 +18,67 @@ export const CalenderComponent = ()=> {
 
   const prevMonthDates = Array.from({ length: firstDay }, (_, i) => prevMonthLastDay - firstDay + i + 1);
 
-  const totalCells = (Math.ceil((firstDay + lastDay) / 7) * 7) - (firstDay + lastDay); // Ensures it always rounds up to the nearest multiple of 7
+  const totalCells = (Math.ceil((firstDay + lastDay) / 7) * 7) - (firstDay + lastDay);
   const nextMonthDays = Array.from({ length: totalCells }, (_, i) => i + 1);
-  
+
   const flexClass = 'flex items-center justify-center';
-  const disableDayClass = 'p-1 w-full h-full flex items-center justify-center aspect-square text-gray-400 hover:border hover:border-gray-500'
-  const trackTodayDate = (date) => todayDate.getDate() === date && todayDate.getMonth() === month && todayDate.getFullYear() === year ? 'border  text-sky-500 font-bold backdrop-blur-lg bg-white/10' : 'text-white';
+  const disableDayClass = 'p-1 w-full h-full flex items-center justify-center aspect-square text-gray-400 hover:border hover:border-gray-500';
+
+  const trackTodayDate = (date) => {
+    if (todayDate.getDate() === date && todayDate.getMonth() === month && todayDate.getFullYear() === year) {
+      return 'border text-sky-500 font-bold backdrop-blur-lg bg-white/10';
+    }
+    return isSunday.includes(date) ? 'text-red-500' : 'text-white';
+  };
 
   const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
-  useEffect(()=>{
-    const nextMonth1stDay = new Date(year, month - 1, 1).getDay()
-    const nextMonthLastDay = new Date(year, month - 1, 1).getDate()
 
-    console.log(nextMonth1stDay,nextMonthLastDay);
+  useEffect(() => {
+    const sundays = [];
+    for (let day = 1; day <= lastDay; day++) {
+      if (new Date(year, month, day).getDay() === 0) sundays.push(day);
+    }
+    setSunday(sundays);
+  }, [year, month, lastDay]);
 
-  },[month,year,sNextMonth])
   return (
     <>
-      <section className='calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3  w-full grid gap-0'>
+      <section className='calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 w-full grid gap-0'>
         <section className='h-full w-[22rem]'>
           <div className="w-full p-1 pt-3 text-white flex items-center justify-between text-center">
-            <span className="text-3xl p-1  text-center">{`${listOfMonths[month]}, ${year}`}</span>
-            
+            <span className="text-3xl p-1 text-center">{`${listOfMonths[month]}, ${year}`}</span>
             <div className="text-3xl p-1 text-center">
-            <button onClick={prevMonth} ><IoMdArrowDropleftCircle/></button>
-            <button onClick={nextMonth}><IoMdArrowDroprightCircle/></button>
+              <button onClick={prevMonth}><IoMdArrowDropleftCircle /></button>
+              <button onClick={nextMonth}><IoMdArrowDroprightCircle /></button>
             </div>
           </div>
+
           <div className='w-full h-[22.4rem] text-lg text-white grid grid-cols-7 grid-rows-7'>
             {listOfDays.map((day) => (
               <div key={day} className={`p-1 ${flexClass}`}>{day}</div>
             ))}
+
             {prevMonthDates.map((day, index) => (
-              <div key={`prev-${index}`} className={`${disableDayClass}`}>
-              {day}
-            </div>
+              <div key={`prev-${index}`} className={`${disableDayClass}`}>{day}</div>
             ))}
 
-             {Array.from({ length: lastDay }, (_, i) => i + 1).map((day, index) => (
-                <div key={index} className={`w-full h-full p-1 flex items-center justify-center aspect-square ${trackTodayDate(day)} hover:border hover:border-gray-200`}> 
-                  {day} 
-                </div>
-            ))}
-            
-            {nextMonthDays.map((day, index) => (
-              <div key={`prev-${index}`} className={`${disableDayClass}`}>
+            {Array.from({ length: lastDay }, (_, i) => i + 1).map((day, index) => (
+              <div key={index} className={`w-full h-full p-1 flex items-center justify-center aspect-square ${trackTodayDate(day)} hover:border hover:border-gray-200`}> 
                 {day}
               </div>
-            ))} 
+            ))}
 
-
-          </div>
-          <div className="border border-neutral-500">
-            hello world!!
+            {nextMonthDays.map((day, index) => (
+              <div key={`prev-${index}`} className={`${disableDayClass}`}>{day}</div>
+            ))}
           </div>
         </section>
       </section>
     </>
   );
-}
+};
+
 
 // import { useState, useEffect } from "react";
 // import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
