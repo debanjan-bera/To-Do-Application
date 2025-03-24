@@ -22,11 +22,11 @@ export const CalenderComponent = () => {
   const nextMonthDays = Array.from({ length: totalCells }, (_, i) => i + 1);
 
   const flexClass = 'flex items-center justify-center';
-  const disableDayClass = 'p-1 w-full h-full flex items-center justify-center aspect-square text-gray-400 hover:border hover:border-gray-500';
+  const disableDayClass = 'p-1 w-full h-full flex items-center justify-center aspect-square text-gray-400 hover:border hover:bg-[#27272a] hover:border-gray-500';
 
   const trackTodayDate = (date) => {
     if (todayDate.getDate() === date && todayDate.getMonth() === month && todayDate.getFullYear() === year) {
-      return 'border text-sky-500 font-bold backdrop-blur-lg bg-white/10';
+      return 'border text-sky-500 font-bold bg-white hover:border-zinc-800 hover:bg-white';
     }
     return isSunday.includes(date) ? 'text-red-500' : 'text-white';
   };
@@ -45,7 +45,7 @@ export const CalenderComponent = () => {
   return (
     <>
       <section className='calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 w-full grid gap-0'>
-        <section className='h-full w-[22rem]'>
+        <section className='h-full w-[20rem]'>
           <div className="w-full p-1 pt-3 text-white flex items-center justify-between text-center">
             <span className="text-3xl p-1 text-center">{`${listOfMonths[month]}, ${year}`}</span>
             <div className="text-3xl p-1 text-center">
@@ -54,7 +54,7 @@ export const CalenderComponent = () => {
             </div>
           </div>
 
-          <div className='w-full h-[22.4rem] text-lg text-white grid grid-cols-7 grid-rows-7'>
+          <div className='w-full h-[20.4rem] text-lg text-white grid grid-cols-7 grid-rows-7'>
             {listOfDays.map((day) => (
               <div key={day} className={`p-1 ${flexClass}`}>{day}</div>
             ))}
@@ -64,7 +64,7 @@ export const CalenderComponent = () => {
             ))}
 
             {Array.from({ length: lastDay }, (_, i) => i + 1).map((day, index) => (
-              <div key={index} className={`w-full h-full p-1 flex items-center justify-center aspect-square ${trackTodayDate(day)} hover:border hover:border-gray-200`}> 
+              <div key={index} className={`w-full h-full p-1 rounded-lg flex items-center justify-center aspect-square ${trackTodayDate(day)} hover:border hover:bg-[#27272a] hover:border-gray-200`}> 
                 {day}
               </div>
             ))}
