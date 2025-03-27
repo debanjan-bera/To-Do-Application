@@ -69,21 +69,21 @@ export const CalenderComponent = () => {
   return (
     <>
       <aside className="calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 flex flex-col items-center">
-        <div
-          className="p-2  w-full pt-2 bg-white/10 text-white text-xl"
+        <section className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
           onClick={() => {
             if (currentDate.getFullYear() !== todayDate.getFullYear() ||currentDate.getMonth() !== todayDate.getMonth())
               setCurrentDate( new Date(todayDate.getFullYear(), todayDate.getMonth(), 1));
             else return;
-          }}
-        >
-          {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
-        </div>
+          }}>
+          <div className="p-3 hover:bg-white/10">
+            {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
+          </div>
+        </section>
         <section className="w-[20rem]">
           <div className="w-full p-1 text-white flex items-center justify-between text-center">
             <span className="text-3xl p-1 text-center">{`${listOfMonths[month]}, ${year}`}</span>
             <div className="text-3xl p-1 text-center">
-              <button onClick={prevMonth}>
+              <button className="" onClick={prevMonth}>
                 <IoMdArrowDropleftCircle />
               </button>
               <button onClick={nextMonth}>
@@ -94,10 +94,7 @@ export const CalenderComponent = () => {
 
           <section className="w-full h-[20.4rem] text-lg text-white grid grid-cols-7 grid-rows-7 gap-1">
             {listOfDays.map((day) => (
-              <div key={day} className={`p-1 ${flexClass}`}>
-                {day}
-              </div>
-            ))}
+              <div key={day} className={`p-1 ${flexClass}`}> {day} </div> ))}
 
             {prevMonthDates.map((day, index) => (
               <div key={`prev-${index}`} className="">
@@ -105,31 +102,17 @@ export const CalenderComponent = () => {
               </div>
             ))}
 
-            {Array.from({ length: lastDay }, (_, i) => i + 1).map(
-              (day, index) => (
-                <div
-                  key={index}
-                  className={`w-full h-full p-1 rounded-full ${flexClass} aspect-square ${trackTodayDate(
-                    day
-                  )}  hover:bg-[#27272a]`}
-                >
+            {Array.from({ length: lastDay }, (_, i) => i + 1).map((day, index) => (
+                <div key={index}
+                  className={`w-full h-full p-1 rounded-full ${flexClass} aspect-square ${trackTodayDate(day)}  hover:bg-[#27272a]`}>
                   {day}
-                </div>
-              )
-            )}
+                </div>))}
 
-            {nextMonthDays.map((day, index) => (
-              <div
-                key={`prev-${index}`}
-                className={`${disableDayClass} ${flexClass}`}
-              >
-                {day}
-              </div>
-            ))}
+            {nextMonthDays.map((day, index) => (<div key={`prev-${index}`} className={`${disableDayClass} ${flexClass}`}> {day} </div>))}
           </section>
         </section>
-        <div className="h-[80%] w-full bg-white"> hello</div>
-        <div className="h-[20%] w-full bg-red-500"> hello</div>
+        <div className="h-[80%] w-full border-y  overflow-y-scroll"> hello</div>
+        <div className="h-[20%] w-full bg-[#212121]"> hello</div>
       </aside>
     </>
   );
