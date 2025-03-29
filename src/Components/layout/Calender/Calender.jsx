@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 
 export const CalenderComponent = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [todayDate] = useState(new Date());
+  const [todayDate,setCurrentDate] = useState(new Date());
   const [isSunday, setSunday] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -11,8 +10,8 @@ export const CalenderComponent = () => {
   const listOfMonths = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth();
+  const year = todayDate.getFullYear();
+  const month = todayDate.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const lastDay = new Date(year, month + 1, 0).getDate();
   const prevMonthLastDay = new Date(year, month, 0).getDate();
@@ -82,21 +81,21 @@ export const CalenderComponent = () => {
           ))}
 
           {/* Previous Month Days */}
-          {prevMonthDates.map((day, index) => (
-            <div key={`prev-${index}`} className="cursor-not-allowed text-gray-400 flex items-center justify-center">{day}</div>
+          {prevMonthDates.map((date, index) => (
+            <div key={`prev-${index}`} className={`${disableDayClass} ${flexClass}`}>{date}</div>
           ))}
 
           {/* Current Month Days */}
-          {Array.from({ length: lastDay }, (_, i) => i + 1).map((day) => (
-            <div key={day}
-              className={`current-month rounded-full flex items-center justify-center aspect-square ${trackTodayDate(day)} hover:bg-[#27272a]`}>
-              {day}
+          {Array.from({ length: lastDay }, (_, i) => i + 1).map((date) => (
+            <div key={date}
+              className={`current-month rounded-full flex items-center justify-center aspect-square ${trackTodayDate(date)} hover:bg-[#27272a]`}>
+              {date}
             </div>
           ))}
 
           {/* Next Month Days */}
-          {nextMonthDays.map((day, index) => (
-            <div key={`next-${index}`} className={`${disableDayClass} ${flexClass}`}>{day}</div>
+          {nextMonthDays.map((date, index) => (
+            <div key={`next-${index}`} className={`${disableDayClass} ${flexClass}`}>{date}</div>
           ))}
         </section>
       </section>
