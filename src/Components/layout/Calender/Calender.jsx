@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 
 export const CalenderComponent = () => {
-  const [todayDate,setCurrentDate] = useState(new Date());
+  const [currentDate,setCurrentDate] = useState(new Date())
+  const [todayDate, setPresentDate] = useState(new Date());
   const [isSunday, setSunday] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -10,8 +11,8 @@ export const CalenderComponent = () => {
   const listOfMonths = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
 
-  const year = todayDate.getFullYear();
-  const month = todayDate.getMonth();
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const lastDay = new Date(year, month + 1, 0).getDate();
   const prevMonthLastDay = new Date(year, month, 0).getDate();
@@ -58,7 +59,10 @@ export const CalenderComponent = () => {
   return (
     <aside className="calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 flex flex-col items-center">
       <section className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
-        onClick={() => setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1))}>
+        onClick={() =>{
+          setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1))
+          setPresentDate(new Date())
+        }}>
         <div className="p-3 hover:bg-white/10">
           {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
         </div>
