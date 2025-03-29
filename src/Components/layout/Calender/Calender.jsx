@@ -3,10 +3,10 @@ import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/i
 
 export const CalenderComponent = () => {
   const [currentDate,setCurrentDate] = useState(new Date())
-  const [todayDate, setPresentDate] = useState(new Date());
   const [isSunday, setSunday] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
-
+  
+  const todayDate = new Date()
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const listOfMonths = ["January", "February", "March", "April", "May", "June", "July",
     "August", "September", "October", "November", "December"];
@@ -59,10 +59,7 @@ export const CalenderComponent = () => {
   return (
     <aside className="calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 flex flex-col items-center">
       <section className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
-        onClick={() =>{
-          setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1))
-          setPresentDate(new Date())
-        }}>
+        onClick={() => setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1))}>
         <div className="p-3 hover:bg-white/10">
           {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
         </div>
