@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 
@@ -5,7 +6,7 @@ export const CalenderComponent = () => {
   const [currentDate,setCurrentDate] = useState(new Date())
   const [isSunday, setSunday] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
-  
+  const [targetDate,setTargetDate] = useState()
   const todayDate = new Date()
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const listOfMonths = ["January", "February", "March", "April", "May", "June", "July",
@@ -22,23 +23,29 @@ export const CalenderComponent = () => {
   const nextMonthDays = Array.from({ length: totalCells }, (_, i) => i + 1);
 
   const trackTodayDate = (date) => {
-    if (todayDate.getDate() === date && todayDate.getMonth() === month && todayDate.getFullYear() === year) {
-      return "border text-blue-700 font-bold bg-white hover:bg-white";
-    }
-    return isSunday.includes(date) ? "text-red-500 hover:bg-red-900/30" : "text-white";
+    const isToday = todayDate.getDate() === date && month === todayDate.getMonth() && year === todayDate.getFullYear();
+    const isTargetDate = targetDate === date;
+    const isSundayDate = isSunday.includes(date);
+    if (isToday) return "border text-blue-700 font-bold bg-white hover:bg-white";
+    if (isSundayDate && !isTargetDate) return "text-red-500 hover:bg-red-900/30";
+    if (isTargetDate && isSundayDate) return 'bg-red-900/30 border border-red-800 text-red-500 hover:bg-red-900/30 '
+    if (isTargetDate) return "bg-sky-300 text-blue-900 font-extrabold hover:bg-sky-400";
+    return "text-white";
   };
 
   const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
   const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
-  const disableDayClass =
-    "text-gray-400 rounded-full hover:bg-[#27272a]";
+
+  const disableDayClass = "text-gray-400 rounded-full hover:bg-[#27272a]";
   const flexClass = "flex items-center justify-center";
+
 
   const handleDateClick = (e) => {
     const clickedElement = e.target;
 
     if (!clickedElement.classList.contains("current-month")) return; // Only allow clicks on current month days
     const day = parseInt(clickedElement.textContent);
+    setTargetDate(day)
     if(selectedDate ===  `${day} ${listOfMonths[month]} ${year}`) return
 
     if (!isNaN(day)) {
@@ -46,6 +53,7 @@ export const CalenderComponent = () => {
       setSelectedDate(formattedDate);
       console.log(`Selected Date: ${formattedDate}`);
     }
+    // console.log(targetDate);
   };
 
   useEffect(() => {
@@ -75,7 +83,7 @@ export const CalenderComponent = () => {
 
         {/* Calendar Grid with Event Propagation */}
         <section
-          className="w-full h-[20.4rem] mb-1 text-lg text-white grid grid-cols-7 grid-rows-7 gap-1"
+          className="w-full h-[20.4rem] mb-1 text-lg text-white grid grid-cols-7 grid-rows-7 gap-1 cursor-pointer"
           onClick={handleDateClick}>
           {listOfDays.map((day) => (
             <div key={day} className="p-1 flex items-center justify-center"> {day} </div>
@@ -87,9 +95,9 @@ export const CalenderComponent = () => {
           ))}
 
           {/* Current Month Days */}
-          {Array.from({ length: lastDay }, (_, i) => i + 1).map((date) => (
-            <div key={date}
-              className={`current-month rounded-full flex items-center justify-center aspect-square ${trackTodayDate(date)} hover:bg-[#27272a]`}>
+          {Array.from({ length: lastDay }, (_, i) => i + 1).map((date,index) => (
+            <div key={index}
+              className={`current-month rounded-full ${flexClass} aspect-square ${trackTodayDate(date)} hover:bg-[#27272a]`}>
               {date}
             </div>
           ))}
@@ -102,10 +110,20 @@ export const CalenderComponent = () => {
       </section>
 
       {/* Display Selected Date */} 
-      <div className="h-[80%] w-[90%] scroll border-y text-white mb-1  overflow-y-scroll hello"><p>Selected Date: {selectedDate}</p> 
+      <div className="h-[80%] w-[90%] scroll border-y text-white mb-1  overflow-y-scroll hello">
+        <p>Selected Date: {selectedDate} {targetDate}</p> 
 
       </div>
-      <div className="h-[20%] w-full bg-[#212121] text-white"> hello</div>
+      <div className="h-[20%] w-full bg-[#212121] text-white "> hello</div>
     </aside>
   );
 };
+
+
+// #1E1F25
+
+// #15161A
+
+// card - #1E1F25
+
+// under the card #292D32
