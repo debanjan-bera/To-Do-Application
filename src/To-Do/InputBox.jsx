@@ -8,11 +8,7 @@ import "./todo.css";
 
 export const AddTaskForm = () => {
   const modalRef = useRef(null);
-  const { register, formState: { errors }, handleSubmit } = useForm({
-    defaultValues: {
-      group: "",
-    },
-  });
+  const { register, formState: { errors }, handleSubmit } = useForm({defaultValues: { group: "", },});
 
   const { taskArr, setTaskArr, setWindowClose, setmobileAddButton } = useContext(ToDoContext);
   const { groupData } = useContext(FormDataContext);

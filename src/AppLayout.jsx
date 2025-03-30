@@ -6,6 +6,7 @@ import { useState } from "react";
 import { DataProvider } from "./Contexts/DataWhereHouse";
 import { DateAndTime } from "./Components/Functions/Date";
 import { UserFormData } from "./Contexts/AddititonalData";
+import { AboutModel } from "./Components/Functions/Models/TaskAboutModel";
 
 export const AppLayout = () => {
   const [isSideBar, setSideBar] = useState(false);
@@ -29,9 +30,9 @@ export const AppLayout = () => {
         <UserFormData>
           <SideBar setSideBar={setSideBar} />
           <Outlet />
-          <aside className="calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 flex flex-col items-center">
-          <CalenderComponent />
-
+          <aside className="calender bg-[#0B0D0E] relative border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 flex flex-col items-center">
+            <CalenderComponent />
+            <AboutModel/>
           </aside>
         </UserFormData>
       </section>
