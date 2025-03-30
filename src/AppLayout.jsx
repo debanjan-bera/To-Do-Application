@@ -29,7 +29,10 @@ export const AppLayout = () => {
         <UserFormData>
           <SideBar setSideBar={setSideBar} />
           <Outlet />
+          <aside className="calender bg-[#0B0D0E] border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 flex flex-col items-center">
           <CalenderComponent />
+
+          </aside>
         </UserFormData>
       </section>
     </DataProvider>
