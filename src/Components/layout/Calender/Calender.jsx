@@ -1,11 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
+import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
+import { ToDoContext } from "../../../Contexts/CreateContext";
 
 export const CalenderComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isSunday, setSunday] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [targetDate, setTargetDate] = useState(null);
+  const [showTask,setTask] = useState([])
+  const { taskArr } = useContext(ToDoContext);
+  
   const todayDate = new Date();
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const listOfMonths = [
@@ -35,9 +40,6 @@ export const CalenderComponent = () => {
     return "text-white";
   };
 
-  const prevMonth = () => setCurrentDate(new Date(year, month - 1, 1));
-  const nextMonth = () => setCurrentDate(new Date(year, month + 1, 1));
-
   const disableDayClass = "text-gray-400 rounded-full hover:bg-[#27272a]";
   const flexClass = "flex items-center justify-center";
 
@@ -51,9 +53,14 @@ export const CalenderComponent = () => {
 
     if (!isNaN(date)) {
       const formattedDate = `${date} ${listOfMonths[month]} ${year}`;
+      const tempTask = taskArr.filter((task)=> task.createdDateForform === formattedDate)
       setSelectedDate(formattedDate);
       console.log(`Selected Date: ${formattedDate}`);
+      setTask(tempTask)
     }
+    
+
+
   };
 
   useEffect(() => {
@@ -76,8 +83,8 @@ export const CalenderComponent = () => {
         <div className="w-full p-1 text-white flex items-center justify-between text-center">
           <span className="text-3xl p-1 text-center">{`${listOfMonths[month]}, ${year}`}</span>
           <div className="text-3xl p-1 text-center">
-            <button onClick={prevMonth}><IoMdArrowDropleftCircle /></button>
-            <button onClick={nextMonth}><IoMdArrowDroprightCircle /></button>
+            <button onClick={()=>prevMonth(setCurrentDate,year,month)}><IoMdArrowDropleftCircle /></button>
+            <button onClick={()=>nextMonth(setCurrentDate,year,month)}><IoMdArrowDroprightCircle /></button>
           </div>
         </div>
 
@@ -101,7 +108,15 @@ export const CalenderComponent = () => {
       </section>
 
       <div className="h-[80%] w-[90%] scroll border-y text-white mb-1 overflow-y-scroll">
-        <p> Selected Date: {selectedDate || "None"}</p>
+        <p> Selected Date: {selectedDate || ''}</p>
+        <ul>
+          {selectedDate && showTask.map((ele,index)=>{
+            return(
+            <li key={index}>
+              {ele.content}
+            </li>)
+          })}
+        </ul>
       </div>
       <div className="h-[20%] w-full bg-[#292D32] text-white"></div>
     </>

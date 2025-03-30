@@ -57,10 +57,7 @@ export const TaskListComp = ({ curTask, pendingTask, openMenu, activeMenuId }) =
         {/* Context Menu */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.ul
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
+            <motion.ul initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
               className="absolute right-0 top-8 z-10 bg-zinc-800 border border-zinc-700 rounded-md text-white text-sm w-32 shadow-lg overflow-hidden">
               
               {/* Edit Option */}

@@ -10,8 +10,7 @@ import { PiBookBookmarkBold } from "react-icons/pi";
 import { MobileAddTaskButton } from "../Components/Functions/Button/AddButton";
 import { ClearAllTask } from "../Components/Functions/Button/ClearTodo";
 export const TodoApp = () => {
-  const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow,activeMenuId, setActiveMenuId} 
-  = useContext(ToDoContext);
+  const { taskArr, windowOpen, setWindowClose, filteredData,handleAddTaskWindow,activeMenuId, setActiveMenuId} = useContext(ToDoContext);
 
 
   // Handle context menu open/close
