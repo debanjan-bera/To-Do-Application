@@ -8,12 +8,19 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 
 export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
-    const { setTaskArr,  setFilteredData, setActiveMenuId, setInfoId} = useContext(ToDoContext);
+    const { setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId} = useContext(ToDoContext);
+
     const {  setInfoOpen } = useContext(FormDataContext);
 
     const infoModelOpen = ()=>{
-        setInfoOpen((open)=> !open)
-        setInfoId(id)
+        if(!isShowInfoId ||  id !== isShowInfoId){
+            setInfoOpen(true)
+            setInfoId(id)
+        }
+        else if(id === isShowInfoId){
+            setInfoOpen(false)
+            setInfoId(null)
+        }
     }
     return(
         <>

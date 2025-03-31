@@ -52,7 +52,7 @@ export const AboutModel = ()=>{
                 
                 
                 <div className="w-full h-full flex justify-end items-end">
-                    <button onClick={()=>console.log(findTask)} className="my-3 mx-2 bg-blue-700 p-2 px-3 rounded font-bold hover:bg-blue-600">Save Changes</button>
+                    <button className="my-3 mx-2 bg-blue-700 p-2 px-3 rounded font-bold hover:bg-blue-600">Save Changes</button>
                 </div>
             </div>}
         </>
