@@ -2,14 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { updatedTodayDate } from "../../Backend/LocalStorage";
 import { ToDoContext } from "../../Contexts/CreateContext";
-import { handleDeleteTask, toggleChekedStatus, toggleTaskStatus } from "../../Backend/TaskFunctionality";
-import { FiClock, FiTrash2, FiEdit2 } from "react-icons/fi";
+import {toggleChekedStatus, toggleTaskStatus } from "../../Backend/TaskFunctionality";
+import { FiClock} from "react-icons/fi";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useAnimate, usePresence, motion, AnimatePresence } from "framer-motion";
+import { useAnimate, usePresence, motion} from "framer-motion";
+import { ContextMenuPopUp } from "../Functions/Models/ContextMenuBar";
 
 export const TaskListComp = ({ curTask, pendingTask, openMenu, activeMenuId }) => {
   const [check, setCheck] = useState(false);
-  const { taskArr, setTaskArr, filteredData, setFilteredData,setActiveMenuId} = useContext(ToDoContext);
+  const { taskArr, setTaskArr, filteredData, setFilteredData} = useContext(ToDoContext);
   const [isPresent, safeToRemove] = usePresence();
   const [scope, animate] = useAnimate();
   const { id, content } = curTask;
@@ -55,25 +56,7 @@ export const TaskListComp = ({ curTask, pendingTask, openMenu, activeMenuId }) =
         </button>
 
         {/* Context Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.ul initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute right-0 top-8 z-10 bg-zinc-800 border border-zinc-700 rounded-md text-white text-sm w-32 shadow-lg overflow-hidden">
-              
-              {/* Edit Option */}
-              <li className="px-3 py-2 flex items-center gap-2 hover:bg-zinc-700 cursor-pointer"
-                onClick={() => console.log(`Editing Task ${id}`)}>
-                <FiEdit2 /> Edit
-              </li>
-
-              {/* Delete Option */}
-              <li className="px-3 py-2 flex items-center gap-2 text-red-400 hover:bg-red-800/20  cursor-pointer"
-                onClick={() => handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask,setActiveMenuId)}>
-                <FiTrash2 /> Delete
-              </li>
-            </motion.ul>
-          )}
-        </AnimatePresence>
+        <ContextMenuPopUp id={id} pendingTask={pendingTask} isMenuOpen={isMenuOpen} />
       </div>
     </motion.li>
   );

@@ -31,3 +31,7 @@ export const toggleChekedStatus = (event,filteredTasks,id,updateFilteredTasks,up
 
   };
   
+export const infoModelOpen = ()=>{
+  console.log('hello');
+
+}
