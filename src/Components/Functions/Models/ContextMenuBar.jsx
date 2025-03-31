@@ -2,14 +2,19 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import {FiTrash2, FiEdit2, FiAlertCircle } from "react-icons/fi";
-import { handleDeleteTask, infoModelOpen } from "../../../Backend/TaskFunctionality";
-import { ToDoContext } from "../../../Contexts/CreateContext";
+import { handleDeleteTask } from "../../../Backend/TaskFunctionality";
+import { FormDataContext, ToDoContext } from "../../../Contexts/CreateContext";
 import { useContext } from "react";
 import PropTypes from "prop-types";
 
 export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
-    const { setTaskArr,  setFilteredData, setActiveMenuId} = useContext(ToDoContext);
-    
+    const { setTaskArr,  setFilteredData, setActiveMenuId, setInfoId} = useContext(ToDoContext);
+    const {  setInfoOpen } = useContext(FormDataContext);
+
+    const infoModelOpen = ()=>{
+        setInfoOpen((open)=> !open)
+        setInfoId(id)
+    }
     return(
         <>
         <AnimatePresence>

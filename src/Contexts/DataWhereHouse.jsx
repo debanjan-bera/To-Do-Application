@@ -9,12 +9,13 @@ export const DataProvider = ({ children }) => {
     const [activeMenuId, setActiveMenuId] = useState(null);
     const [filteredData, setFilteredData] = useState(() => getFilteredLocalStorage());
     const [mobileAddButton,setmobileAddButton] = useState(false)
+    const [isShowInfoId,setInfoId] = useState(null)
       const handleAddTaskWindow = useCallback(() => {
         setWindowClose((prev) => !prev);
       }, [setWindowClose]);
 
   return (
-    <ToDoContext.Provider value={{taskArr,setTaskArr,windowOpen,setWindowClose,filteredData,setFilteredData,activeMenuId, setActiveMenuId,handleAddTaskWindow,mobileAddButton,setmobileAddButton}}>
+    <ToDoContext.Provider value={{taskArr,setTaskArr,windowOpen,setWindowClose,filteredData,setFilteredData,activeMenuId, setActiveMenuId,handleAddTaskWindow,mobileAddButton,setmobileAddButton,isShowInfoId,setInfoId}}>
       {children}
     </ToDoContext.Provider>
   );

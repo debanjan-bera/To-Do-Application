@@ -8,10 +8,9 @@ export const handleDeleteTask = (setTaskData,setFilter,id,pendingTask,setActiveM
 
 };
 export const toggleTaskStatus = (id,taskData,setTaskData,setFilteredData) => {
-  
   const updatedTaskData = taskData.map((task) => task.id === id ? { ...task, checked: !task.checked } : task);
   const checkedTask = updatedTaskData.find((task) => task.id === id);
-  setTaskData(updatedTaskData.filter((task) => task.id !== id));
+  setTaskData(()=>updatedTaskData.filter((task) => task.id !== id));
   setTimeout(()=>{if (checkedTask?.checked) setFilteredData((prev) => [...prev, checkedTask])},1300);
 }
 export const toggleChekedStatus = (event,filteredTasks,id,updateFilteredTasks,updatePrimaryTasks) => {
@@ -30,8 +29,3 @@ export const toggleChekedStatus = (event,filteredTasks,id,updateFilteredTasks,up
      
 
   };
-  
-export const infoModelOpen = ()=>{
-  console.log('hello');
-
-}

@@ -1,11 +1,21 @@
 import { RxCross1 } from "react-icons/rx";
+import { FormDataContext, ToDoContext } from "../../../Contexts/CreateContext";
+import { useContext } from "react";
 export const AboutModel = ()=>{
+    const { isShowInfoId, setInfoId, taskArr } = useContext(ToDoContext);
+    const { isInfoOpen,setInfoOpen} = useContext(FormDataContext);
+    const closeModel = ()=>{
+        setInfoOpen((open)=> !open)
+        setInfoId(null)
+    }
+    const findTask = taskArr.find((task)=> task.id === isShowInfoId)
+    const {}
     return(
         <>
-            <div className="w-full h-full bg-[#010101] absolute top-0 left-0 text-white grid grid-cols-1 grid-rows-[8%_70%_22%]">
+            {isInfoOpen && isShowInfoId &&<div className="w-full h-full bg-[#010101] absolute top-0 left-0 text-white grid grid-cols-1 grid-rows-[8%_70%_22%]">
                 <div className="m-2  flex justify-between items-center ">
                     <p className="pb-1 text-3xl border-b">About</p>
-                    <div className="p-2 text-2xl rounded-full hover:text-white/80 hover:bg-neutral-700"><RxCross1 /></div>
+                    <button onClick={()=> closeModel()} className="p-2 text-2xl rounded-full hover:text-white/80 hover:bg-neutral-700"><RxCross1 /></button>
                 
                 </div>
                 <section>
@@ -41,9 +51,9 @@ export const AboutModel = ()=>{
                 
                 
                 <div className="w-full h-full flex justify-end items-end">
-                    <button className="my-3 mx-2 bg-blue-700 p-2 px-3 rounded font-bold hover:bg-blue-600">Save Changes</button>
+                    <button onClick={()=>console.log(findTask)} className="my-3 mx-2 bg-blue-700 p-2 px-3 rounded font-bold hover:bg-blue-600">Save Changes</button>
                 </div>
-            </div>
+            </div>}
         </>
     )
 }
