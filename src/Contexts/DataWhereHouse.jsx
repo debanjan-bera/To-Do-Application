@@ -4,10 +4,10 @@ import { ToDoContext } from "./CreateContext";
 import { getFilteredLocalStorage, getLocalStorage } from "../Backend/LocalStorage";
 // import { handleFormCancel } from "../Backend/FormFunctionality";
 export const DataProvider = ({ children }) => {
-    const [taskArr, setTaskArr] = useState(() => getLocalStorage());
+  const [taskArr, setTaskArr] = useState(() => getLocalStorage());
+  const [filteredData, setFilteredData] = useState(() => getFilteredLocalStorage());
     const [windowOpen, setWindowClose] = useState(false);
     const [activeMenuId, setActiveMenuId] = useState(null);
-    const [filteredData, setFilteredData] = useState(() => getFilteredLocalStorage());
     const [mobileAddButton,setmobileAddButton] = useState(false)
     const [isShowInfoId,setInfoId] = useState(null)
       const handleAddTaskWindow = useCallback(() => {

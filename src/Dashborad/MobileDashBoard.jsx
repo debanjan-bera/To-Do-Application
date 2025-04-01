@@ -5,7 +5,6 @@ import { Outlet, useLocation } from "react-router-dom";
 // import { SideBar } from "../Components/layout/SideBar/TodoSidebar";
 // import { CalenderComponent } from "../Components/layout/Calender/Calender";
 import { DataProvider } from "../Contexts/DataWhereHouse";
-import { DateAndTime } from "../Components/Functions/Date";
 import { UserFormData } from "../Contexts/AddititonalData";
 import { AboutModel } from "../Components/Functions/Models/TaskAboutModel";
 // import MobileComponent from './Dashborad/MobileDashBoard';
@@ -21,10 +20,9 @@ export const MobileComponent = () => {
   return (
     <DataProvider>
           <section
-            className={`h-dvh w-lvw relative bg-[#0B0D0E] grid grid-rows-[0.3fr_0.3fr_3fr]`}>
-            <header className="head row-start-1 row-end-2 col-start-2 col-end-4 p-4 py-2 border-b-[0.02rem] border-neutral-700">
+            className={`h-dvh w-lvw relative bg-[#0B0D0E] grid grid-cols-1 grid-rows-[0.3fr_0.3fr]`}>
+            <header className=" row-start-1 row-end-2 p-4 py-2 border-b-[0.02rem] border-neutral-700">
               <div className="text-2xl font-medium text-white flex flex-row items-center justify-start gap-3">
-                <DateAndTime />
               </div>
               <p className="text-zinc-400">
                 {"Let's see what we've got to do today."}
