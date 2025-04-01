@@ -60,6 +60,18 @@ export const CalenderComponent = () => {
       setTask(tempTask)
     }
   };
+  const handleClick = (event) => {
+    // Ensure the clicked element is a <p> tag (prevents capturing clicks on parent div)
+    if (event.target.tagName === "P") {
+      console.log("Clicked Month:", event.target.textContent);
+      const months = event.target.textContent
+      const monthIndex = listOfMonths.indexOf(months)
+      console.log(monthIndex);
+      setCurrentDate(new Date(year,monthIndex+1, 0))
+      setMonth(false)
+    }
+  };
+  
 
   useEffect(() => {
     const sundays = [];
@@ -77,7 +89,7 @@ export const CalenderComponent = () => {
           {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
         </div>
       </section>
-      <section className="w-[20rem] relative">
+      <section className={`${isMonth? 'w-full': 'w-[20rem]'} relative`}>
         <div className="w-full p-1 text-white flex items-center justify-between text-center">
           <span className="text-3xl p-1 text-center cursor-pointer"><span onClick={()=>setMonth(true)}>{`${listOfMonths[month]},`}</span>{` ${year}`}</span>
           <div className="text-3xl p-1 text-center">
@@ -103,10 +115,24 @@ export const CalenderComponent = () => {
             <div key={`next-${index}`} className={`${disableDayClass} ${flexClass}`}>{date}</div>
           ))}
         </section>
-      {isMonth&&<div className="w-full h-full top-0 left-0 absolute bg-black grid grid-cols-2 grid-rows-6">{listOfMonths.map((ele,index)=>(
-        <p key={index} className="text-white text-xl flex items-center justify-center border border-neutral-800 hover:bg-white/10">{ele}</p>
+      {isMonth&&
+      <div className="w-full h-full top-0 left-0 absolute bg-black flex flex-shrink flex-col"> 
+        <div onClick={()=>setMonth(false)} className="text-white text-2xl">{'<-Select a Month'}</div>
+        <div onClick={handleClick} className="h-full w-full grid grid-cols-3 grid-rows-4">
+        {listOfMonths.map((ele,index)=>(
+        <p key={index} className="text-white text-xl flex items-center justify-center hover:bg-white/10">{ele}</p>
       ))}
-      </div>}
+        </div>
+      </div>
+      
+      
+      
+      
+      // <div className="w-full h-full top-0 left-0 absolute bg-black grid grid-cols-2 grid-rows-7">
+      //   <div className="text-white text-2xl col-start-1 col-end-2 row-start-1 row-end-2">{'<-Select a Month'}</div>
+        
+      // </div>
+      }
       </section>
       <div className="h-[80%] w-[90%] scroll border-y text-white mb-1 overflow-y-scroll">
         <p> Selected Date: {selectedDate || ''}</p>

@@ -35,7 +35,7 @@ export const AboutModel = ()=>{
                 </div>
                 <div>
                     <p className="m-2 py-2 text-xl">Category</p>
-                    <p className="m-2 mb-4 p-2 text-xl bg-[#1A1A1A] border border-neutral-600 rounded ">{group}</p>
+                    <p className="m-2 mb-4 p-2 text-xl bg-[#1A1A1A] border border-neutral-600 rounded ">{group||'group'}</p>
                 </div>
                 <div className="m-2  py-3 text-xl border-y grid grid-cols-[30%_10%_60%] grid-rows-2 gap-y-2">
                     <p className="">Priority</p>
@@ -55,7 +55,7 @@ export const AboutModel = ()=>{
 
                 <div>
                     <p className="m-2 py-2 text-xl">Description</p>
-                    <p className="m-2 p-2 text-xl bg-[#1A1A1A] border border-neutral-600 rounded ">{description}</p>
+                    <p className="m-2 p-2 text-xl bg-[#1A1A1A] border border-neutral-600 rounded ">{description||'Decription'}</p>
                 </div>
                 </section>
                 
