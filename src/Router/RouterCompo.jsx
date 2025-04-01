@@ -7,7 +7,7 @@ import useIsMobile from '../Components/Functions/UseIsMobile'
 import MobileComponent from '../Dashborad/MobileDashBoard'
 
  function RouterCompo() {
-  const isMobile = useIsMobile(500);  // Check mobile screen width
+  const isMobile = useIsMobile(570);  // Check mobile screen width
   const LayoutComponent = isMobile ? <MobileComponent /> : <AppLayout />;  // Store JSX in a variable
   
   const router = createBrowserRouter([

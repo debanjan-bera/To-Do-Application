@@ -9,6 +9,7 @@ export const CalenderComponent = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [targetDate, setTargetDate] = useState(null);
   const [showTask,setTask] = useState([])
+  const [isMonth,setMonth] = useState(false)
   const { taskArr } = useContext(ToDoContext);
   
   const todayDate = new Date();
@@ -58,9 +59,6 @@ export const CalenderComponent = () => {
       console.log(`Selected Date: ${formattedDate}`);
       setTask(tempTask)
     }
-    
-
-
   };
 
   useEffect(() => {
@@ -79,9 +77,9 @@ export const CalenderComponent = () => {
           {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
         </div>
       </section>
-      <section className="w-[20rem]">
+      <section className="w-[20rem] relative">
         <div className="w-full p-1 text-white flex items-center justify-between text-center">
-          <span className="text-3xl p-1 text-center">{`${listOfMonths[month]}, ${year}`}</span>
+          <span className="text-3xl p-1 text-center cursor-pointer"><span onClick={()=>setMonth(true)}>{`${listOfMonths[month]},`}</span>{` ${year}`}</span>
           <div className="text-3xl p-1 text-center">
             <button onClick={()=>prevMonth(setCurrentDate,year,month)}><IoMdArrowDropleftCircle /></button>
             <button onClick={()=>nextMonth(setCurrentDate,year,month)}><IoMdArrowDroprightCircle /></button>
@@ -105,8 +103,11 @@ export const CalenderComponent = () => {
             <div key={`next-${index}`} className={`${disableDayClass} ${flexClass}`}>{date}</div>
           ))}
         </section>
+      {isMonth&&<div className="w-full h-full top-0 left-0 absolute bg-black grid grid-cols-2 grid-rows-6">{listOfMonths.map((ele,index)=>(
+        <p key={index} className="text-white text-xl flex items-center justify-center border border-neutral-800 hover:bg-white/10">{ele}</p>
+      ))}
+      </div>}
       </section>
-
       <div className="h-[80%] w-[90%] scroll border-y text-white mb-1 overflow-y-scroll">
         <p> Selected Date: {selectedDate || ''}</p>
         <ul>

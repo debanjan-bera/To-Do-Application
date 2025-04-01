@@ -1,19 +1,23 @@
 import { RxCross1 } from "react-icons/rx";
 import { FormDataContext, ToDoContext } from "../../../Contexts/CreateContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 export const AboutModel = ()=>{
+  const [isDisable, setDisable] = useState(true);
+
     const { isShowInfoId, setInfoId, taskArr,filteredData } = useContext(ToDoContext);
+
     const { isInfoOpen,setInfoOpen} = useContext(FormDataContext);
     const closeModel = ()=>{
         setInfoOpen(false)
         setInfoId(null)
+        setDisable(true) /////
     }
     const findTask = isShowInfoId && taskArr.find((task)=> task.id === isShowInfoId) || filteredData.find((task)=> task.id === isShowInfoId)
     const {content, checked, createdDateForform, description,group} = findTask || ''
     const isPending = !checked? 'Pending' : 'Completed'
     // const isPendingColor = !checked? 'bg-yellow-700/30 text-yellow-200' : 'bg-[#05281480] text-[#17c964] border border-[#095028]'
     const isPendingColor = !checked
-  ? 'bg-[hsl(52,100%,50%)]/30 text-[hsl(52,100%,80%)]'
+  ? 'bg-yellow-400/30 text-yellow-200'
   : 'bg-[hsl(146,78%,9%,0.5)]/80 text-[hsl(146,79%,44%,1)] border border-[hsl(150,60%,20%)]';
 
     return(
@@ -57,7 +61,7 @@ export const AboutModel = ()=>{
                 
                 
                 <div className="w-full h-full flex justify-end items-end">
-                    <button disabled={true} onClick={()=>console.log('hello')} className="my-3 mx-2 bg-blue-700 p-2 px-3 rounded font-bold hover:bg-blue-600">Save Changes</button>
+                    <button disabled={isDisable} onClick={()=>console.log('hello')} className="my-3 mx-2 bg-blue-700 p-2 px-3 rounded font-bold hover:bg-blue-600">Save Changes</button>
                 </div>
             </div>}
         </>

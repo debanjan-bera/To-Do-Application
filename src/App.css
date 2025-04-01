@@ -39,15 +39,4 @@
     .calender{
         display: none;
     }
-    .head{
-        grid-column-end: 3;
-    }
-}
-@media screen and (max-width:560px){
-    .dashboard{
-        grid-template-columns: 0fr 2fr 0fr;
-    }
-    .sideBar{
-        display: none;
-    }
 }

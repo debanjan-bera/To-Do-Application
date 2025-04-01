@@ -10,9 +10,9 @@ import { AboutModel } from "../Components/Functions/Models/TaskAboutModel";
 // import MobileComponent from './Dashborad/MobileDashBoard';
 
 export const MobileComponent = () => {
-  // const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
   const isLoginPage = location.pathname === "/login"; // Check if it's the login page
+  
   // const sideBarClass = isSideBar ? "isSideBarDashBoard" : "dashboard";
 
   if (isLoginPage) return <Outlet />;
@@ -20,7 +20,7 @@ export const MobileComponent = () => {
   return (
     <DataProvider>
           <section
-            className={`h-dvh w-lvw relative bg-[#0B0D0E] grid grid-cols-1 grid-rows-[0.3fr_0.3fr]`}>
+            className={`h-dvh w-lvw relative bg-[#0B0D0E] grid grid-cols-1 grid-rows-[0.2fr_1.6fr]`}>
             <header className=" row-start-1 row-end-2 p-4 py-2 border-b-[0.02rem] border-neutral-700">
               <div className="text-2xl font-medium text-white flex flex-row items-center justify-start gap-3">
               </div>
@@ -30,7 +30,7 @@ export const MobileComponent = () => {
             </header>
             <UserFormData>
               <main
-                className="col-start-2 col-end-3 row-start-2 row-end-5 grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-xl bg-[#000000]"
+                className="row-start-2 row-end-[-1] grid grid-cols[1fr] grid-rows-[0.2fr_3fr] overflow-hidden rounded-t-xl bg-[#000000]"
                 style={{
                   backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%239fa6ad29' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
                 }}
