@@ -20,6 +20,7 @@ export const CalenderComponent = () => {
   ];
 
   const year = currentDate.getFullYear();
+  // const year = 1945
   const month = currentDate.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const lastDay = new Date(year, month + 1, 0).getDate();
