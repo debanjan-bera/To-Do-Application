@@ -39,7 +39,7 @@ export const TaskListComp = ({ curTask, pendingTask, openMenu, activeMenuId }) =
       className="p-3 m-3 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex justify-between items-center relative select-none md:mx-10">
       
       <div className="pb-1 flex flex-row gap-2 items-center">
-        <input type="checkbox" checked={check} onChange={(e) => handleCheckedTask(e, id)} className="size-4 accent-indigo-400" />
+        <input id={id} type="checkbox" checked={check} onChange={(e) => handleCheckedTask(e, id)} className="size-4 accent-indigo-400" />
         <motion.p className={`text-xl ${check && "line-through"}`}>{content}</motion.p>
       </div>
 
