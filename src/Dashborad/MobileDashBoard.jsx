@@ -28,7 +28,7 @@ export const MobileComponent = () => {
                 {/* {"Let's see what we've got to do today."} */}
                 <NavLink to="/"><h1>Home</h1></NavLink>
         <NavLink to="/completedTask"><h1>Completed Task</h1></NavLink>
-        <NavLink to="/calendar"><h1>Calender</h1></NavLink>
+        <NavLink to="/calender"><h1>Calender</h1></NavLink>
 
               </p>
             </header>
