@@ -1,6 +1,8 @@
 import { RxCross1 } from "react-icons/rx";
 import { FormDataContext, ToDoContext } from "../../../Contexts/CreateContext";
 import { useContext, useState } from "react";
+import { AnimatePresence,motion} from "framer-motion";
+
 export const AboutModel = ()=>{
   const [isDisable, setDisable] = useState(true);
 
@@ -22,8 +24,17 @@ export const AboutModel = ()=>{
 
     return(
         <>
-            {isInfoOpen && isShowInfoId && <div className="w-full h-full bg-neutral-950 absolute top-0 left-0 text-white grid grid-cols-1 grid-rows-[8%_70%_22%]">
-                <div className="m-2  flex justify-between items-center ">
+        <AnimatePresence>
+       
+        {isInfoOpen && isShowInfoId && <motion.div className="w-full h-full overflow-hidden bg-neutral-950 absolute top-0 left-0 text-white"
+        initial={{filter: "blur(20px)"}}
+        animate={{ filter: "blur(0px)", opacity: 1 }}
+        exit={{ filter: "blur(20px)", opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        >
+            <motion.div section className="w-full h-full grid grid-cols-1 grid-rows-[8%_70%_22%]"
+            initial={{ opacity: 0, x: 25 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 25 }}>
+            <div className="m-2  flex justify-between items-center ">
                     <p className="pb-1 text-3xl border-b">About</p>
                     <button onClick={()=> closeModel()} className="p-2 text-2xl rounded-full hover:text-white/80 hover:bg-neutral-700"><RxCross1 /></button>
                 
@@ -63,7 +74,9 @@ export const AboutModel = ()=>{
                 <div className="w-full h-full flex justify-end items-end">
                     <button disabled={isDisable} onClick={()=>console.log('hello')} className="my-3 mx-2 bg-blue-700 p-2 px-3 rounded font-bold hover:bg-blue-600">Save Changes</button>
                 </div>
-            </div>}
+            </motion.div>
+            </motion.div>}
+        </AnimatePresence>
         </>
     )
 }

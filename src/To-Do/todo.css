@@ -37,6 +37,16 @@ select:focus-within {
   ul{
     transition: all 0.4s linear;
   }
+
+.scrollEffect::-webkit-scrollbar {
+    width: 0rem;
+}
+
+.scrollEffect::-webkit-scrollbar-thumb {
+    background: #d4d4d4; 
+    border-radius: 10px;
+}
+
   /* .main-bar{
     box-shadow: inset 0px -30px 30px -10px rgba(189, 142, 142, 0.9); 
 

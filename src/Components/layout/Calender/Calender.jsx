@@ -125,22 +125,16 @@ export const CalenderComponent = () => {
       ))}
         </div>
       </div>
-      
-      
-      
-      
-      // <div className="w-full h-full top-0 left-0 absolute bg-black grid grid-cols-2 grid-rows-7">
-      //   <div className="text-white text-2xl col-start-1 col-end-2 row-start-1 row-end-2">{'<-Select a Month'}</div>
-        
-      // </div>
       }
       </section>
-      <div className="h-[80%] w-[90%] scroll border-y text-white mb-1 overflow-y-scroll">
+      <div className="scrollEffect h-[80%] w-[90%] scroll border-y text-white mb-1 overflow-y-scroll">
         <p> Selected Date: {selectedDate || ''}</p>
         <ul>
           {selectedDate && showTask.map((ele,index)=>{
             return(
-            <li key={index}>
+            <li className="w-full p-2 my-3  text-xl grid grid-cols-[0.05fr_1.9fr] gap-3 rounded border border-zinc-700 bg-zinc-900 text-white" key={index}>
+              <div className={`w-full h-full bg-slate-400 rounded `}></div>
+              {/* ${ele.priority=== 'High' ? 'bg-red-500': ele.priority==='Moderate'? 'bg-green-500':'bg-slate-400'} */}
               {ele.content}
             </li>)
           })}
