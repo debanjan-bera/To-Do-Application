@@ -130,7 +130,7 @@ export const CalenderComponent = () => {
       }
       </section>
       <div className={`h-[80%] w-[90%] border-y text-white mb-1  ${isDataAvilable ? 'overflow-y-scroll scrollEffect': 'grid items-start  grid-rows-[0.2fr_1.8fr]'}`}>
-  <p className="pt-2 text-xl"> Selected Date: {selectedDate || ''}</p>
+  <p className="pt-2 text-xl"> Selected Date: {selectedDate? selectedDate : `${todayDate.getDate()} ${listOfMonths[month]} ${year}`}</p>
   
   { isDataAvilable ? (
     <ul>
