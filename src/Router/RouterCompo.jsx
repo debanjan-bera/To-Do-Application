@@ -13,11 +13,12 @@ import { CalenderComponent } from '../Components/layout/Calender/Calender'
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <AppLayout />,  // Use computed JSX here
+      element: <AppLayout />,
       children: [
         { path: '/', element: <TodoApp /> },
         { path: '/completedTask', element: <TaskActionItem /> },
-        { path: '/calender', element: <CalenderComponent /> }
+        { path: '/calender', element: <CalenderComponent /> },
+        { path: '*', element: <TodoApp /> } // Redirect unknown routes to home
       ],
     },
   ]);
