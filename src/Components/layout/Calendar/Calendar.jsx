@@ -4,7 +4,7 @@ import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
 import { ToDoContext } from "../../../Contexts/CreateContext";
 import useIsMobile from "../../Functions/UseIsMobile";
 
-export const CalenderComponent = () => {
+export const CalendarComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isSunday, setSunday] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
