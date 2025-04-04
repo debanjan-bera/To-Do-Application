@@ -7,7 +7,7 @@ import useIsMobile from "../../Functions/UseIsMobile";
 export const MCalendarComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isSunday, setSunday] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState('');
   const [targetDate, setTargetDate] = useState(null);
   const [showTask,setTask] = useState([])
   const [isMonth,setMonth] = useState(false)
@@ -38,7 +38,8 @@ export const MCalendarComponent = () => {
     const isTargetDate = targetDate?.date === date && targetDate?.month === month && targetDate?.year === year;
     const isSundayDate = isSunday.includes(date);
 
-    if (isToday) return "border text-blue-700 font-bold bg-white hover:bg-white";
+    if (isToday && selectedDate === todayDateString) return "border-2 text-white border-blue-300 font-bold bg-blue-600 hover:bg-blue-700"
+    if (isToday) return "border text-blue-700 font-bold bg-white hover:bg-white/80";
     if (isSundayDate && !isTargetDate) return "text-red-500 hover:bg-red-900/30";
     if (isTargetDate && isSundayDate) return "bg-red-900/30 border border-red-800 text-red-500 hover:bg-red-900/30";
     if (isTargetDate) return "bg-blue-800/20 text-blue-300 border border-blue-700 hover:bg-blue-800/40";
@@ -93,7 +94,16 @@ export const MCalendarComponent = () => {
   return (
     <>
       <section className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
-        onClick={() => setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1))}>
+        onClick={() =>{
+          setTargetDate(()=>({
+            date:todayDate.getDate(),
+            month:todayDate.getMonth(), 
+            year:todayDate.getFullYear() }));
+            setSelectedDate(todayDateString)
+            setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1))
+            setTask(isShowTodayDate)
+            console.log(selectedDate,targetDate,isDataAvilable,showTask)
+        }}>
         <div className="p-3 hover:bg-white/10">
           {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
         </div>
@@ -136,7 +146,7 @@ export const MCalendarComponent = () => {
       }
       </section>
       <div className={`h-[80%] w-[90%] border-y text-white mb-1  ${isDataAvilable ? 'overflow-y-scroll scrollEffect': 'grid items-start  grid-rows-[0.2fr_1.8fr]'}`}>
-  <p className="pt-2 text-xl"> Selected Date: {selectedDate? selectedDate : 'Today'}{isDataAvilable}</p>
+  <p className="pt-2 text-xl"> Selected Date: {selectedDate? selectedDate : 'Today'}</p>
   
   { isDataAvilable ? (
     <ul>

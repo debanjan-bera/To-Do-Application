@@ -32,7 +32,7 @@ export const AboutModel = ()=>{
         exit={{ filter: "blur(20px)", opacity: 0 }}
         transition={{ duration: 0.5 }}
         >
-            <motion.div section className="w-full h-full grid grid-cols-1 grid-rows-[8%_70%_22%]"
+            <motion.div  className="w-full h-full grid grid-cols-1 grid-rows-[8%_70%_22%]"
             initial={{ opacity: 0, x: 25 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 25 }}>
             <div className="m-2  flex justify-between items-center ">
                     <p className="pb-1 text-3xl border-b">About</p>
