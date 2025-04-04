@@ -16,7 +16,7 @@ export const MobileComponent = () => {
       >
         <header className=" row-start-1 row-end-2 p-4 py-2 border-b-[0.02rem] border-neutral-700">
           <div className="text-2xl font-medium text-white flex flex-row items-center justify-start gap-3"></div>
-          <p className="text-zinc-400 flex flex-row gap-2">
+          <div className="text-zinc-400 flex flex-row gap-2">
             {/* {"Let's see what we've got to do today."} */}
             <NavLink to="/">
               <h1>Home</h1>
@@ -27,7 +27,7 @@ export const MobileComponent = () => {
             <NavLink to="/calendar">
               <h1>Calender</h1>
             </NavLink>
-          </p>
+          </div>
         </header>
         <UserFormData>
           <main

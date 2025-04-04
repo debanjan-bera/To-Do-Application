@@ -6,11 +6,11 @@ import { getFilteredLocalStorage, getLocalStorage } from "../Backend/LocalStorag
 export const DataProvider = ({ children }) => {
   const [taskArr, setTaskArr] = useState(() => getLocalStorage());
   const [filteredData, setFilteredData] = useState(() => getFilteredLocalStorage());
-    const [windowOpen, setWindowClose] = useState(false);
-    const [activeMenuId, setActiveMenuId] = useState(null);
-    const [mobileAddButton,setmobileAddButton] = useState(false)
-    const [isShowInfoId,setInfoId] = useState(null)
-      const handleAddTaskWindow = useCallback(() => {
+  const [windowOpen, setWindowClose] = useState(false);
+  const [activeMenuId, setActiveMenuId] = useState(null);
+  const [mobileAddButton,setmobileAddButton] = useState(false)
+  const [isShowInfoId,setInfoId] = useState(null)
+  const handleAddTaskWindow = useCallback(() => {
         setWindowClose((prev) => !prev);
       }, [setWindowClose]);
 

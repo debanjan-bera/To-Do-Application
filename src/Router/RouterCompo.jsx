@@ -17,7 +17,7 @@ import { MCalendarComponent } from '../Components/layout/Calendar/MobileCalendar
       children: [
         { path: '/', element: <TodoApp /> },
         { path: '/completedTask', element: <TaskActionItem /> },
-        { path: '/calender', element: <MCalendarComponent /> },
+        { path: '/calendar', element: <MCalendarComponent /> },
         { path: '*', element: <TodoApp /> } // Redirect unknown routes to home
       ],
     },

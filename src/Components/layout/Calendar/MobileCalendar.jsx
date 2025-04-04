@@ -21,17 +21,17 @@ export const MCalendarComponent = () => {
   ];
 
   const year = currentDate.getFullYear();
-  // const year = 1945
   const month = currentDate.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const lastDay = new Date(year, month + 1, 0).getDate();
   const prevMonthLastDay = new Date(year, month, 0).getDate();
+  const todayDateString = `${todayDate.getDate()} ${listOfMonths[month]} ${year}`
 
   const prevMonthDates = Array.from({ length: firstDay }, (_, i) => prevMonthLastDay - firstDay + i + 1);
   const totalCells = Math.ceil((firstDay + lastDay) / 7) * 7 - (firstDay + lastDay);
   const nextMonthDays = Array.from({ length: totalCells }, (_, i) => i + 1);
-  const isShowTodayDate = taskArr.filter((task)=>task.createdDateForform === `${todayDate.getDate()} ${listOfMonths[month]} ${year}`)
-  const isDataAvilable = (selectedDate && showTask.length) || isShowTodayDate.length
+  const isShowTodayDate = taskArr.filter((task)=>task.createdDateForform === todayDateString )
+  const isDataAvilable = !selectedDate? isShowTodayDate.length : showTask.length 
 
   const trackTodayDate = (date) => {
     const isToday = todayDate.getDate() === date && month === todayDate.getMonth() && year === todayDate.getFullYear();
@@ -62,6 +62,7 @@ export const MCalendarComponent = () => {
       setSelectedDate(formattedDate);
       console.log(`Selected Date: ${formattedDate}`);
       setTask(tempTask)
+      console.log(isDataAvilable);
     }
   };
   const handleClickMonth = (event) => {
@@ -73,6 +74,7 @@ export const MCalendarComponent = () => {
       console.log(monthIndex);
       setCurrentDate(new Date(year,monthIndex+1, 0))
       setMonth(false)
+
     }
   };
   
@@ -134,11 +136,11 @@ export const MCalendarComponent = () => {
       }
       </section>
       <div className={`h-[80%] w-[90%] border-y text-white mb-1  ${isDataAvilable ? 'overflow-y-scroll scrollEffect': 'grid items-start  grid-rows-[0.2fr_1.8fr]'}`}>
-  <p className="pt-2 text-xl"> Selected Date: {selectedDate? selectedDate : 'Today'}</p>
+  <p className="pt-2 text-xl"> Selected Date: {selectedDate? selectedDate : 'Today'}{isDataAvilable}</p>
   
   { isDataAvilable ? (
     <ul>
-      {(selectedDate && showTask.length ? showTask : isShowTodayDate).map((ele, index) => (
+      {(selectedDate ? (selectedDate === todayDateString ? isShowTodayDate : showTask) : isShowTodayDate).map((ele, index) => (
         <li className="w-full p-2 my-3 text-xl grid grid-cols-[0.05fr_1.9fr] gap-3 rounded border border-zinc-700 bg-zinc-900 text-white hover:bg-zinc-800" 
             key={index}>
           <div className={`w-full h-full rounded ${
