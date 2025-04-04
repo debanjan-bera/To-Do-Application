@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
 import { ToDoContext } from "../../../Contexts/CreateContext";
+import useIsMobile from "../../Functions/UseIsMobile";
 
 export const CalenderComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -76,6 +77,9 @@ export const CalenderComponent = () => {
   };
   
 
+
+  const isMobile = useIsMobile(570);  // Check mobile screen width
+
   useEffect(() => {
     const sundays = [];
     for (let day = 1; day <= lastDay; day++) {
@@ -130,7 +134,7 @@ export const CalenderComponent = () => {
       }
       </section>
       <div className={`h-[80%] w-[90%] border-y text-white mb-1  ${isDataAvilable ? 'overflow-y-scroll scrollEffect': 'grid items-start  grid-rows-[0.2fr_1.8fr]'}`}>
-  <p className="pt-2 text-xl"> Selected Date: {selectedDate? selectedDate : `${todayDate.getDate()} ${listOfMonths[month]} ${year}`}</p>
+  <p className="pt-2 text-xl"> Selected Date: {selectedDate? selectedDate : 'Today'}</p>
   
   { isDataAvilable ? (
     <ul>
@@ -154,7 +158,7 @@ export const CalenderComponent = () => {
   )}
 </div>
 
-      <div className="h-[20%] w-full bg-[#292D32] text-white"></div>
+      {!isMobile&&<div className="h-[20%] w-full bg-[#292D32] text-white"></div>}
     </>
   );
 };
