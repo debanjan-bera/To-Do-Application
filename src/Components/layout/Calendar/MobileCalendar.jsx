@@ -102,28 +102,40 @@ export const MCalendarComponent = () => {
             setSelectedDate(todayDateString)
             setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1))
             setTask(isShowTodayDate)
-            console.log(selectedDate,targetDate,isDataAvilable,showTask)
         }}>
-        <div className="p-3 hover:bg-white/10">
-          {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
+        <div className={`${isMobile? `absolute bg-blue-600 w-14 ${flexClass} aspect-square z-30 rounded-full bottom-6 right-4 hover:bg-blue-700`:' p-3 hover:bg-white/10'}`}>
+          {isMobile? `${todayDate.getDate()}`:`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
+
+
+
+          {/* position: absolute;
+    /* display: none; 
+    background: #2a71ff;
+    width: 6rem;
+    z-index: 90;
+    border-radius: 50%;
+    bottom: 2rem;
+    right: 1rem; */}
         </div>
       </section>
-      <section className={`${isMonth? 'w-full': 'w-[20rem]'} relative`}>
+      <section className={`${isMobile? 'w-[90%]' : isMonth? 'w-full': 'w-[20rem]'} rounded-xl relative`}>
         <div className="w-full p-1 text-white flex items-center justify-between text-center">
-          <span className="text-3xl p-1 text-center cursor-pointer"><span onClick={()=>setMonth(true)}>{`${listOfMonths[month]},`}</span>{` ${year}`}</span>
+          <span className="text-3xl p-1 text-center cursor-pointer border border-black/10 rounded-md hover:bg-[#171717] hover: hover:border-[#454545be]">
+            <span className="" onClick={()=>setMonth(true)}>{`${listOfMonths[month]}, ${year}`}</span>
+          </span>
           <div className="text-3xl p-1 text-center">
             <button onClick={()=>prevMonth(setCurrentDate,year,month)}><IoMdArrowDropleftCircle /></button>
             <button onClick={()=>nextMonth(setCurrentDate,year,month)}><IoMdArrowDroprightCircle /></button>
           </div>
         </div>
 
-        <section className="w-full h-[20.4rem] mb-1 text-lg text-white grid grid-cols-7 grid-rows-7 gap-1 cursor-pointer" onClick={handleDateClick}>
+        <section className="w-full h-[20.4rem]  text-lg text-white grid grid-cols-7 grid-rows-7 gap-1 cursor-pointer" onClick={handleDateClick}>
           {listOfDays.map((day) => (
-            <div key={day} className="p-1 flex items-center justify-center"> {day} </div>
+            <div key={day} className="p-1 flex items-center justify-center aspect-square"> {day} </div>
           ))}
 
           {prevMonthDates.map((date, index) => (
-            <div key={`prev-${index}`} className={`${disableDayClass} ${flexClass}`}>{date}</div>
+            <div key={`prev-${index}`} className={`${disableDayClass} ${flexClass} aspect-square`}>{date}</div>
           ))}
 
           {Array.from({ length: lastDay }, (_, i) => i + 1).map((date, index) => (
@@ -131,7 +143,7 @@ export const MCalendarComponent = () => {
           ))}
 
           {nextMonthDays.map((date, index) => (
-            <div key={`next-${index}`} className={`${disableDayClass} ${flexClass}`}>{date}</div>
+            <div key={`next-${index}`} className={`${disableDayClass} ${flexClass} aspect-square`}>{date}</div>
           ))}
         </section>
       {isMonth&&
@@ -151,7 +163,7 @@ export const MCalendarComponent = () => {
   { isDataAvilable ? (
     <ul>
       {(selectedDate ? (selectedDate === todayDateString ? isShowTodayDate : showTask) : isShowTodayDate).map((ele, index) => (
-        <li className="w-full p-2 my-3 text-xl grid grid-cols-[0.05fr_1.9fr] gap-3 rounded border border-zinc-700 bg-zinc-900 text-white hover:bg-zinc-800" 
+        <li className="w-full p-2 py-3 my-3 text-xl grid grid-cols-[0.05fr_1.9fr] gap-3 justify-center  justify-items-start items-center rounded border border-zinc-700 bg-zinc-900 text-white hover:bg-zinc-800" 
             key={index}>
           <div className={`w-full h-full rounded ${
             ele.priority === 'High' ? 'bg-red-500' :

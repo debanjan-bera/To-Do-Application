@@ -39,7 +39,7 @@ export const AppLayout = () => {
               >
                 <Outlet />
               </main>
-              <aside className="calender bg-[#0B0D0E] relative border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 flex flex-col items-center">
+              <aside className="calender bg-[#121212] relative border-l-[0.02rem] border-neutral-700 row-start-2 row-end-5 col-start-3 flex flex-col items-center">
                 <MCalendarComponent />
                 <AboutModel />
               </aside>
