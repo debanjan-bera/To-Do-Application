@@ -22,17 +22,21 @@ export const AboutModel = ()=>{
         {
           value: 'High',
           className:
-            'text-red-700 bg-red-400/30 border-red-800 hover:bg-red-500/40 hover:text-red-900',
+            'text-red-400 bg-red-900/30 border-red-800 hover:bg-red-900/40 hover:text-red-400/70',
         },
         {
           value: 'Moderate',
           className:
-            'text-yellow-700 bg-yellow-400/30 border-yellow-600 hover:bg-yellow-500/40 hover:text-yellow-900',
+            // 'text-yellow-700 bg-yellow-400/30 border-yellow-600 hover:bg-yellow-500/40 hover:text-yellow-900',
+            'text-yellow-400 bg-yellow-900/70 border-yellow-600 hover:bg-yellow-900/30 hover:text-yellow-500',
+
         },
         {
           value: 'Low',
           className:
-            'text-green-800 bg-green-400/30 border-green-700 hover:bg-green-500/40 hover:text-green-900',
+            // 'text-green-800 bg-green-400/30 border-green-700 hover:bg-green-500/40 hover:text-green-900',
+            'text-green-400 bg-green-800/30 border-green-800 hover:bg-green-800/20 hover:text-green-400',
+
         },
       ];
     const priorityObj = priorities.find((priorities)=> priorities.value === priority)

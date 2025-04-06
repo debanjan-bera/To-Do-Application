@@ -106,16 +106,6 @@ export const MCalendarComponent = () => {
         <div className={`${isMobile? `absolute bg-blue-600 w-14 ${flexClass} aspect-square z-30 rounded-full bottom-6 right-4 hover:bg-blue-700`:' p-3 hover:bg-white/10'}`}>
           {isMobile? `${todayDate.getDate()}`:`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
 
-
-
-          {/* position: absolute;
-    /* display: none; 
-    background: #2a71ff;
-    width: 6rem;
-    z-index: 90;
-    border-radius: 50%;
-    bottom: 2rem;
-    right: 1rem; */}
         </div>
       </section>
       <section className={`${isMobile? 'w-[90%]' : isMonth? 'w-full': 'w-[20rem]'} rounded-xl relative`}>
@@ -163,12 +153,12 @@ export const MCalendarComponent = () => {
   { isDataAvilable ? (
     <ul>
       {(selectedDate ? (selectedDate === todayDateString ? isShowTodayDate : showTask) : isShowTodayDate).map((ele, index) => (
-        <li className="w-full p-2 py-3 my-3 text-xl grid grid-cols-[0.05fr_1.9fr] gap-3 justify-center  justify-items-start items-center rounded border border-zinc-700 bg-zinc-900 text-white hover:bg-zinc-800" 
+        <li className={`w-full px-2  my-3  grid grid-cols-[0.05fr_1.9fr] gap-3 justify-center  justify-items-start items-center rounded border border-zinc-700 bg-zinc-900 text-white hover:bg-zinc-800 ${isMobile? 'text-2xl py-4':'py-3 text-xl'}`} 
             key={index}>
           <div className={`w-full h-full rounded ${
             ele.priority === 'High' ? 'bg-red-500' :
-            ele.priority === 'Moderate' ? 'bg-green-500' :
-            'bg-slate-400'
+            ele.priority === 'Moderate' ? 'bg-yellow-500' :
+            'bg-green-400'
           }`}></div>
           {ele.content}
         </li>
