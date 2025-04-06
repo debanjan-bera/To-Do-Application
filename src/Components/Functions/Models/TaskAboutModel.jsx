@@ -15,9 +15,27 @@ export const AboutModel = ()=>{
         setDisable(true) /////
     }
     const findTask = isShowInfoId && taskArr.find((task)=> task.id === isShowInfoId) || filteredData.find((task)=> task.id === isShowInfoId)
-    const {content, checked, createdDateForform, description,group} = findTask || ''
+    const {content, checked, createdDateForform, description,group,priority} = findTask || ''
     const isPending = !checked? 'Pending' : 'Completed'
     // const isPendingColor = !checked? 'bg-yellow-700/30 text-yellow-200' : 'bg-[#05281480] text-[#17c964] border border-[#095028]'
+    const priorities = [
+        {
+          value: 'High',
+          className:
+            'text-red-700 bg-red-400/30 border-red-800 hover:bg-red-500/40 hover:text-red-900',
+        },
+        {
+          value: 'Moderate',
+          className:
+            'text-yellow-700 bg-yellow-400/30 border-yellow-600 hover:bg-yellow-500/40 hover:text-yellow-900',
+        },
+        {
+          value: 'Low',
+          className:
+            'text-green-800 bg-green-400/30 border-green-700 hover:bg-green-500/40 hover:text-green-900',
+        },
+      ];
+    const priorityObj = priorities.find((priorities)=> priorities.value === priority)
     const isPendingColor = !checked
   ? 'bg-yellow-400/30 text-yellow-200'
   : 'bg-[hsl(146,78%,9%,0.5)]/80 text-[hsl(146,79%,44%,1)] border border-[hsl(150,60%,20%)]';
@@ -52,7 +70,7 @@ export const AboutModel = ()=>{
                     <p className="">Priority</p>
                     <span>:</span>
                     <div className="flex items-center gap-2 ">
-                        <p className="p-1 px-2 rounded border backdrop-blur-3xl border-pink-900 text-red-500 bg-[hsl(340,84.91%,10.39%)]/50 text-lg">High</p>
+                        <p className={`p-1 px-2 rounded border backdrop-blur-3xl border-pink-900 text-red-500 bg-[hsl(340,84.91%,10.39%)]/50 text-lg ${priorityObj.className}`}>{priority}</p>
                     </div>
                     <p className="">Status</p>
                     <span>:</span>
