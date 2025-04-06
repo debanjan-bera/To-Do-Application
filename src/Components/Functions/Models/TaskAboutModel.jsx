@@ -22,13 +22,13 @@ export const AboutModel = ()=>{
         {
           value: 'High',
           className:
-            'text-red-400 bg-red-900/30 border-red-800 hover:bg-red-900/40 hover:text-red-400/70',
+            'text-red-400 bg-red-900/30  hover:bg-red-900/40 hover:text-red-400/90',
         },
         {
           value: 'Moderate',
           className:
             // 'text-yellow-700 bg-yellow-400/30 border-yellow-600 hover:bg-yellow-500/40 hover:text-yellow-900',
-            'text-yellow-400 bg-yellow-900/70 border-yellow-600 hover:bg-yellow-900/30 hover:text-yellow-500',
+            'text-yellow-300 bg-yellow-900/40  hover:bg-yellow-900/50 hover:text-yellow-400',
 
         },
         {
@@ -74,7 +74,7 @@ export const AboutModel = ()=>{
                     <p className="">Priority</p>
                     <span>:</span>
                     <div className="flex items-center gap-2 ">
-                        <p className={`p-1 px-2 rounded border backdrop-blur-3xl border-pink-900 text-red-500 bg-[hsl(340,84.91%,10.39%)]/50 text-lg ${priorityObj.className}`}>{priority}</p>
+                        <p className={`p-1 px-2 rounded  backdrop-blur-3xl text-lg ${priorityObj.className}`}>{priority}</p>
                     </div>
                     <p className="">Status</p>
                     <span>:</span>
