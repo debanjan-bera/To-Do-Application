@@ -244,7 +244,7 @@ export const MCalendarComponent = () => {
         )}
       </section>
       <div
-        className={`h-full w-[90%] bg-red-400 border-y text-white mb-1  ${
+        className={`h-full w-full px-3  border-y text-white mb-1  ${
           isDataAvilable
             ? "overflow-y-scroll scrollEffect"
             : "grid items-start  grid-rows-[0.2fr_1.8fr]"

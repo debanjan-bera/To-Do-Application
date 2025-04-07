@@ -5,7 +5,8 @@ import { ContextMenuPopUp } from "../Components/Functions/Models/ContextMenuBar.
 import { useAnimate, usePresence, motion} from "framer-motion";
 import { toggleChekedStatus, toggleTaskStatus } from "../Backend/TaskFunctionality.js";
 import PropTypes from "prop-types";
-
+import { GrFavorite } from "react-icons/gr";
+import { MdFavorite } from "react-icons/md";
 export const TaskListHello = ({activeTask}) => {
       const {
         taskArr, setTaskArr, filteredData, setFilteredData,
@@ -13,7 +14,7 @@ export const TaskListHello = ({activeTask}) => {
         setActiveMenuId,
       } = useContext(ToDoContext);
     
-    const { id, content,checked,createdDateForform} = activeTask;
+    const { id, content,checked,createdDateForform, favourite} = activeTask;
     const [isPresent, safeToRemove] = usePresence();
     const [scope, animate] = useAnimate();
     const [check, setCheck] = useState(false);
@@ -61,7 +62,12 @@ export const TaskListHello = ({activeTask}) => {
           </div>
         </div>
         <div className="col-start-3 col-end-4 row-start-1 row-end-3 flex flex-row items-center justify-end">
-          <input type="checkbox" className="size-4 accent-indigo-400" />
+          <span className={`text-xl ${favourite ? 'text-pink-400': 'text-white'}`}
+          
+          onClick={()=> console.log('favourite')}>
+
+          { favourite? <MdFavorite />: <GrFavorite /> }
+          </span>
           <button className="ml-2 p-1 text-base scale-125 hover:bg-white/10 rounded-md"
           onClick={(ele)=>openMenu(ele)}>
             <BsThreeDotsVertical />

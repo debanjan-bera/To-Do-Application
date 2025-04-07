@@ -4,11 +4,13 @@ import { DataProvider } from "../Contexts/DataWhereHouse";
 import { DateAndTime } from "../Components/Functions/Date";
 import { UserFormData } from "../Contexts/AddititonalData";
 // import { SideBar } from "../Components/layout/SideBar/TodoSidebar";
+import { GrNotification } from "react-icons/gr";
 import { MCalendarComponent } from "../Components/layout/Calendar/MobileCalendar";
 import { AboutModel } from "../Components/Functions/Models/TaskAboutModel";
 import "../App.css";
 import useIsMobile from "../Components/Functions/UseIsMobile";
 import { SideBar } from "../Components/layout/SideBar/TodoSidebar";
+import { RiAccountCircleLine } from "react-icons/ri";
 export const DashBoard = () => {
   const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
@@ -52,10 +54,17 @@ export const DashBoard = () => {
         <UserFormData>
             <section className={`h-lvh w-lvw bg-[#0B0D0E] grid ${isMobile? 'grid-cols-1': isTablet? 'grid-cols-[12rem_3fr]':'grid-cols-[12rem_3fr_20rem]'} grid-rows-[0.35fr_3fr_0.2fr]`}>
                 <section className={`w-full px-4 border-b-[0.02rem]  border-neutral-700 ${isMobile? 'col-start-1 col-end-2':'col-start-2 col-end-4 row-start-1 row-end-2'}  text-2xl font-medium text-white flex justify-center flex-col`}>
+                    <div>
                     <DateAndTime />
                     <p className="text-base text-zinc-400">
                         {"Let's see what we've got to do today."}
                     </p>
+                    </div>
+                    
+                    <div>
+                    <GrNotification />
+                    <RiAccountCircleLine />
+                    </div>
                 </section>
                 {/* <section className="w-full h-full border bg-[#0E1217] border-zinc-700  col-start-1 col-end-2 row-start-1 row-end-4"> 
                 </section>*/}

@@ -10,6 +10,7 @@ import { TaskListComp } from "../Components/Primary Component/ListBoxComp";
 import { BsArrowDownCircle } from "react-icons/bs";
 import {TaskListHello} from "../Utilities/TaskList.jsx";
 import useIsMobile from "../Components/Functions/UseIsMobile.jsx";
+import { PiBookBookmarkBold } from "react-icons/pi";
 // import TaskList from './TaskList'
 export const TaskManager = () => {
   const {
@@ -83,10 +84,11 @@ export const TaskManager = () => {
             {/* <button className="px-4 py-2 bg-red-600 rounded-md text-white hover:bg-red-700"> - Delete</button> */}
             {!isTablet&&<ClearAllTask pendingTask={true} />}
             {!isMobile&&<button
-              className="px-4 py-2 bg-blue-600 rounded-md text-white hover:bg-blue-700"
+              className="px-4 py-2 text-xl font-bold bg-blue-600 rounded-md text-white hover:bg-blue-700 flex flex-row gap-2 items-center"
               onClick={() => handleAddTaskWindow()}
             >
-              + Add Task
+              <PiBookBookmarkBold />
+               Add Task
             </button>}
           </div>
         </div>
