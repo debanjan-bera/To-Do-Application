@@ -16,7 +16,7 @@ export const DashBoard = () => {
   const location = useLocation(); // Get current route
   const isLoginPage = location.pathname === "/login"; // Check if it's the login page
   const sideBarClass = isSideBar ? "isSideBarDashBoard" : "dashboard";
-  const isMobile = useIsMobile(570);
+  const isMobile = useIsMobile(670);
   const isTablet = useIsMobile(930)
   if (isLoginPage) return <Outlet />;
 
@@ -52,16 +52,23 @@ export const DashBoard = () => {
     // </DataProvider>
     <DataProvider>
         <UserFormData>
-            <section className={`h-lvh w-lvw bg-[#0B0D0E] grid ${isMobile? 'grid-cols-1': isTablet? 'grid-cols-[12rem_3fr]':'grid-cols-[12rem_3fr_20rem]'} grid-rows-[0.35fr_3fr_0.2fr]`}>
-                <section className={`w-full px-4 border-b-[0.02rem]  border-neutral-700 ${isMobile? 'col-start-1 col-end-2':'col-start-2 col-end-4 row-start-1 row-end-2'}  text-2xl font-medium text-white flex justify-center flex-col`}>
-                    <div>
-                    <DateAndTime />
-                    <p className="text-base text-zinc-400">
-                        {"Let's see what we've got to do today."}
-                    </p>
-                    </div>
+            <section className={`h-dvh w-lvw bg-[#0B0D0E] grid ${isMobile? 'grid-cols-1': isTablet? 'grid-cols-[12rem_3fr]':'grid-cols-[12rem_3fr_20rem]'} grid-rows-[0.35fr_3fr_0.2fr]`}>
+                <section className={`w-full px-4 border-b-[0.02rem]  border-neutral-700 ${isMobile? 'col-start-1 col-end-2':'col-start-2 col-end-4 row-start-1 row-end-2'}  text-2xl font-medium text-white flex justify-center flex-row`}>
+                <div className="w-full flex flex-col justify-center">
+                {!isMobile ? (
+                        <>
+                        <DateAndTime />
+      <p className="text-base text-zinc-400">
+        {"Let's see what we've got to do today."}
+      </p>
+    </>
+  ) : (
+    'TaskSavvy'
+  )}
+</div>
+
                     
-                    <div>
+                    <div className="flex justify-end items-center">
                     <GrNotification />
                     <RiAccountCircleLine />
                     </div>
