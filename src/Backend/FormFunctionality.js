@@ -13,7 +13,7 @@ export const handleFromSubmit = (data,taskArr,setTaskArr,setWindowClose,setmobil
   const ifTododMatchedContent = taskArr.find((currentTask) => currentTask.content === content);
   if (ifTododMatchedId && ifTododMatchedContent) return;
   setWindowClose(false);
-  setmobileAddButton(false)
+  setmobileAddButton(false);
   setTaskArr((prevTask) => [...prevTask,{ id, content, group, description, favourite, checked, status, priority,createdDateForform}]);
 };
 export const handleFormCancel = (setWindowClose,setmobileAddButton) => {

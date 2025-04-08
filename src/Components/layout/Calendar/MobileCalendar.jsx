@@ -3,6 +3,10 @@ import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/i
 import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
 import { ToDoContext } from "../../../Contexts/CreateContext";
 import useIsMobile from "../../Functions/UseIsMobile";
+import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
+
+import { AnimatePresence } from "framer-motion";
+import { AddTaskForm } from "../../../To-Do/InputBox";
 
 export const MCalendarComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -11,7 +15,7 @@ export const MCalendarComponent = () => {
   const [targetDate, setTargetDate] = useState(null);
   const [showTask, setTask] = useState([]);
   const [isMonth, setMonth] = useState(false);
-  const { taskArr } = useContext(ToDoContext);
+  const { taskArr,windowOpen,handleAddTaskWindow} = useContext(ToDoContext);
 
   const todayDate = new Date();
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -123,6 +127,8 @@ export const MCalendarComponent = () => {
 
   return (
     <>
+      <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
+
       <section
         className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
         onClick={() => {
@@ -132,9 +138,7 @@ export const MCalendarComponent = () => {
             year: todayDate.getFullYear(),
           }));
           setSelectedDate(todayDateString);
-          setCurrentDate(
-            new Date(todayDate.getFullYear(), todayDate.getMonth(), 1)
-          );
+          setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1));
           setTask(isShowTodayDate);
         }}
       >
@@ -159,8 +163,7 @@ export const MCalendarComponent = () => {
       >
         <div className="w-full p-1 text-white flex items-center justify-between text-center">
           <span className="text-3xl p-1 text-center cursor-pointer border border-black/10 rounded-md hover:bg-[#171717] hover: hover:border-[#454545be]">
-            <span
-              className=""
+            <span className=""
               onClick={() => setMonth(true)}
             >{`${listOfMonths[month]}, ${year}`}</span>
           </span>
@@ -174,68 +177,45 @@ export const MCalendarComponent = () => {
           </div>
         </div>
 
-        <section
-          className="w-full h-[20.4rem]  text-lg text-white grid grid-cols-7 grid-rows-7 gap-1 cursor-pointer"
-          onClick={handleDateClick}
-        >
+        <section className="w-full h-[20.4rem]  text-lg text-white grid grid-cols-7 grid-rows-7 gap-1 cursor-pointer"
+          onClick={handleDateClick} >
           {listOfDays.map((day) => (
-            <div
-              key={day}
-              className="p-1 flex items-center justify-center aspect-square"
-            >
-              {" "}
-              {day}{" "}
+            <div key={day}
+              className="p-1 flex items-center justify-center aspect-square" >
+              {day}
             </div>
           ))}
 
           {prevMonthDates.map((date, index) => (
-            <div
-              key={`prev-${index}`}
-              className={`${disableDayClass} ${flexClass} aspect-square`}
-            >
+            <div key={`prev-${index}`}
+              className={`${disableDayClass} ${flexClass} aspect-square`}>
               {date}
             </div>
           ))}
 
           {Array.from({ length: lastDay }, (_, i) => i + 1).map(
             (date, index) => (
-              <div
-                key={index}
-                className={`current-month rounded-full ${flexClass} aspect-square ${trackTodayDate(
-                  date
-                )} hover:bg-[#27272a]`}
-              >
+              <div key={index}
+                className={`current-month rounded-full ${flexClass} aspect-square ${trackTodayDate(date)} hover:bg-[#27272a]`}>
                 {date}
               </div>
             )
           )}
 
           {nextMonthDays.map((date, index) => (
-            <div
-              key={`next-${index}`}
-              className={`${disableDayClass} ${flexClass} aspect-square`}
-            >
+            <div key={`next-${index}`} className={`${disableDayClass} ${flexClass} aspect-square`}>
               {date}
             </div>
           ))}
         </section>
         {isMonth && (
           <div className="w-full h-full top-0 left-0 absolute bg-black flex flex-shrink flex-col">
-            <div
-              onClick={() => setMonth(false)}
-              className="text-white text-2xl"
-            >
+            <div onClick={() => setMonth(false)} className="text-white text-2xl">
               {"<-Select a Month"}
             </div>
-            <div
-              onClick={handleClickMonth}
-              className="h-full w-full grid grid-cols-3 grid-rows-4"
-            >
+            <div onClick={handleClickMonth} className="h-full w-full grid grid-cols-3 grid-rows-4">
               {listOfMonths.map((ele, index) => (
-                <p
-                  key={index}
-                  className="text-white text-xl flex items-center justify-center hover:bg-white/10"
-                >
+                <p key={index} className="text-white text-xl flex items-center justify-center hover:bg-white/10">
                   {ele}
                 </p>
               ))}
@@ -245,13 +225,10 @@ export const MCalendarComponent = () => {
       </section>
       <div
         className={`h-full w-full px-3  border-y text-white mb-1  ${
-          isDataAvilable
-            ? "overflow-y-scroll scrollEffect"
-            : "grid items-start  grid-rows-[0.2fr_1.8fr]"
+          isDataAvilable ? "overflow-y-scroll scrollEffect" : "grid items-start  grid-rows-[0.2fr_1.8fr]"
         }`}
       >
         <p className="pt-2 text-xl">
-          {" "}
           Selected Date: {selectedDate ? selectedDate : "Today"}
         </p>
 
@@ -293,6 +270,7 @@ export const MCalendarComponent = () => {
       {!isMobile && (
         <div className="h-[20%] w-full bg-[#292D32] text-white"></div>
       )}
+      {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} />}
     </>
   );
 };

@@ -56,15 +56,16 @@ export const AddTaskForm = () => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setWindowClose(false);
+        setmobileAddButton(false)
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [setWindowClose]);
+  }, [setWindowClose,setmobileAddButton]);
 
   return (
-    <section className="register-cont w-lvw h-dvh absolute top-0 left-0 bg-black/70 z-10 flex items-center justify-center">
+    <section className="register-cont w-lvw h-dvh absolute top-0 left-0 bg-black/70 z-10 text-black flex items-center justify-center">
       <motion.form
         ref={modalRef} className="bg-neutral-100 p-4 rounded-md"
         initial={{ opacity: 0, y: 25 }}
@@ -148,11 +149,6 @@ export const AddTaskForm = () => {
           </div>
 
         </div>
-
-
-
-
-
 
         <label>
           <p className="text-xl font-bold py-1">Description:</p>

@@ -21,6 +21,7 @@ export const DashBoard = () => {
   const sideBarClass = isSideBar ? "isSideBarDashBoard" : "dashboard";
   const isMobile = useIsMobile(670);
   const isTablet = useIsMobile(930);
+  const isCalendarActive = location.pathname === "/calendar";
   if (isLoginPage) return <Outlet />;
 
   return (
@@ -70,26 +71,27 @@ export const DashBoard = () => {
               isMobile
                 ? "col-start-1 col-end-2 row-start-2 row-end-3 overflow-hidden"
                 : " col-start-2 col-end-3 row-start-2 row-end-4"
-            }  text-white `}
+            } ${isCalendarActive&&'flex flex-col items-center'} text-white `}
           >
             <Outlet />
           </section>
           {isMobile && (
             <section
-              className="w-full h-full bg-red-900 border border-zinc-700 col-start-1 col-end-2 row-start-3 row-end-4
+              className="w-full h-full bg-zinc-800 border border-zinc-700 col-start-1 col-end-2 row-start-3 row-end-4
           flex items-center justify-around text-3xl text-white font-extrabold
           "
             >
-              <NavLink to="/">
+              <NavLink to="/" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
                 <GrHomeRounded />
+                
               </NavLink>
-              <NavLink to="/calendar">
+              <NavLink to="/calendar" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
                 <LuCalendarDays />
               </NavLink>
-              <NavLink to="/completedTask">
+              <NavLink to="/completedTask" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
                 <MdOutlineAddTask />
               </NavLink>
-              <NavLink to="/">
+              <NavLink to="/" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
                 <AiOutlineSetting />
               </NavLink>
             </section>
@@ -99,6 +101,7 @@ export const DashBoard = () => {
               <MCalendarComponent /> <AboutModel />
             </section>
           )}
+          {(isTablet||isMobile) && <AboutModel />}
         </section>
       </UserFormData>
     </DataProvider>

@@ -12,7 +12,7 @@ import { TaskListHello } from "../Utilities/TaskList.jsx";
 import useIsMobile from "../Components/Functions/UseIsMobile.jsx";
 import { PiBookBookmarkBold } from "react-icons/pi";
 import { MobileAddTaskButton } from "../Components/Functions/Button/AddButton.jsx";
-
+import { RiDashboardLine } from "react-icons/ri";
 export const TaskManager = ({isCompletedDashBoard}) => {
   const { taskArr, windowOpen, setWindowClose, filteredData, handleAddTaskWindow, setActiveMenuId,} = useContext(ToDoContext);
   const { groupData } = useContext(FormDataContext);
@@ -60,9 +60,12 @@ export const TaskManager = ({isCompletedDashBoard}) => {
         style={{
           backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%239fa6ad29' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
         }}>
-        <div className={`w-full h-full ${isMobile ? 'flex justify-start flex-col': 'grid grid-cols-2 grid-rows-2 '} px-6`}>
-
-          <h1 className="text-3xl col-start-1 col-end-2 row-start-1 row-end-2">Overview</h1>
+        <div className={`w-full h-full ${isMobile ? 'flex justify-start flex-col items-start': 'grid grid-cols-2 grid-rows-2 justify-items-start '} px-6`}>
+          <div className="text-2xl col-start-1 col-end-2 row-start-1 row-end-2 flex items-center my-2 px-2 py-1 rounded-3xl justify-start gap-2 border-2 border-neutral-600 bg-neutral-400/20">
+            <span className="h-[92%] text-center aspect-square rounded-full bg-white text-black p-2"><RiDashboardLine /></span>
+            <h1 className="">{isCompletedDashBoard? 'Completed Task' : 'Overview'}</h1>
+          </div>
+          
 
           {/* Progress bar */}
           <div className="flex flex-col justify-center items-start col-start-1 col-end-2 row-start-2 row-end-3">
@@ -74,7 +77,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
 
           {/* Add Task + Clear Buttons */}
           {!isMobile && (
-            <div className="flex justify-end items-center flex-row col-start-2 col-end-3 row-start-1 row-end-3">
+            <div className="w-full flex justify-end items-center flex-row col-start-2 col-end-3 row-start-1 row-end-3">
               {!isTablet && <ClearAllTask pendingTask={true} />}
               <button title="Alt + N" className="px-4 py-2 text-xl font-bold bg-blue-600 rounded-md text-white hover:bg-blue-700 flex flex-row gap-2 items-center"
                 onClick={handleAddTaskWindow}>
@@ -131,7 +134,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
       </section>
 
       {/* FAB for mobile */}
-      <MobileAddTaskButton addTask={handleAddTaskWindow} />
+      {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} />}
     </>
   );
 };
