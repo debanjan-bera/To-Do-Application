@@ -7,6 +7,7 @@ import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
 
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
+import { useLocation } from "react-router-dom";
 
 export const MCalendarComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -15,7 +16,7 @@ export const MCalendarComponent = () => {
   const [targetDate, setTargetDate] = useState(null);
   const [showTask, setTask] = useState([]);
   const [isMonth, setMonth] = useState(false);
-  const { taskArr,windowOpen,handleAddTaskWindow} = useContext(ToDoContext);
+  const { taskArr,windowOpen,handleAddTaskWindow,setActiveMenuId} = useContext(ToDoContext);
 
   const todayDate = new Date();
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -116,7 +117,11 @@ export const MCalendarComponent = () => {
   };
 
   const isMobile = useIsMobile(570); // Check mobile screen width
-
+  useEffect(() => {
+    const handleClickOutside = () => setActiveMenuId(null);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [setActiveMenuId]);
   useEffect(() => {
     const sundays = [];
     for (let day = 1; day <= lastDay; day++) {
@@ -127,7 +132,7 @@ export const MCalendarComponent = () => {
 
   return (
     <>
-      <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
+      {isMobile&&<AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>}
 
       <section
         className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
