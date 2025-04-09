@@ -1,19 +1,17 @@
 import { useState } from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { DataProvider } from "../Contexts/DataWhereHouse";
-import { DateAndTime } from "../Components/Functions/Date";
 import { UserFormData } from "../Contexts/AddititonalData";
 // import { SideBar } from "../Components/layout/SideBar/TodoSidebar";
-import { GrHomeRounded, GrNotification } from "react-icons/gr";
 import { MCalendarComponent } from "../Components/layout/Calendar/MobileCalendar";
 import { AboutModel } from "../Components/Functions/Models/TaskAboutModel";
 import "../App.css";
 import useIsMobile from "../Components/Functions/UseIsMobile";
 import { SideBar } from "../Components/layout/SideBar/TodoSidebar";
-import { RiAccountCircleLine } from "react-icons/ri";
-import { LuCalendarDays } from "react-icons/lu";
-import { AiOutlineSetting } from "react-icons/ai";
-import { MdOutlineAddTask } from "react-icons/md";
+
+import Login from "../Components/Login";
+import { Header } from "../Components/layout/Header/Header";
+import { Footer } from "../Components/layout/Footer/Footer";
 export const DashBoard = () => {
   const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
@@ -22,7 +20,7 @@ export const DashBoard = () => {
   const isMobile = useIsMobile(670);
   const isTablet = useIsMobile(930);
   const isCalendarActive = location.pathname === "/calendar";
-  if (isLoginPage) return <Outlet />;
+  if (isLoginPage) return <Login/>;
 
   return (
     <DataProvider>
@@ -40,37 +38,11 @@ export const DashBoard = () => {
               : "grid-rows-[0.35fr_3fr_0.2fr]"
           } `}
         >
-          <header
-            className={`w-full px-4 border-b-[0.02rem]  border-neutral-700 ${
-              isMobile
-                ? "col-start-1 col-end-2"
-                : "col-start-2 col-end-4 row-start-1 row-end-2"
-            }  text-2xl font-medium text-white flex justify-center flex-row`}
-          >
-            <div className="w-full flex flex-col justify-center">
-              {!isTablet ? (
-                <>
-                  <DateAndTime />
-                  <p className="text-base text-zinc-400">
-                    {"Let's see what we've got to do today."}
-                  </p>
-                </>
-              ) : (
-                "TaskSavvy"
-              )}
-            </div>
-
-            <div className={`flex justify-end items-center gap-2 ${isMobile? 'text-2xl': 'text-3xl'} font-extrabold`}>
-              <span className="p-2 border border-zinc-600 rounded-full aspect-square relative transition-all hover:bg-neutral-500/20"><GrNotification />
-              <span className={`${isMobile?'p-[5px]':'p-[6px]'} rounded-full aspect-square absolute top-2 right-2 bg-red-500`}></span>
-              </span>
-               <RiAccountCircleLine />
-            </div>
-          </header>
+          <Header/>
 
           {!isMobile && <SideBar setSideBar={setSideBar} />}
           <section
-            className={`w-full h-full bg-[#000000] border  border-zinc-700   ${
+            className={`w-full h-full bg-[#000000] border border-zinc-700   ${
               isMobile
                 ? "col-start-1 col-end-2 row-start-2 row-end-3 overflow-hidden"
                 : " col-start-2 col-end-3 row-start-2 row-end-4"
@@ -78,27 +50,8 @@ export const DashBoard = () => {
           >
             <Outlet />
           </section>
-          {isMobile && (
-            <section
-              className="w-full h-full bg-zinc-800 border border-zinc-700 col-start-1 col-end-2 row-start-3 row-end-4
-          flex items-center justify-around text-3xl text-white font-extrabold
-          "
-            >
-              <NavLink to="/" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
-                <GrHomeRounded />
-                
-              </NavLink>
-              <NavLink to="/calendar" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
-                <LuCalendarDays />
-              </NavLink>
-              <NavLink to="/completedTask" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
-                <MdOutlineAddTask />
-              </NavLink>
-              <NavLink to="/" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
-                <AiOutlineSetting />
-              </NavLink>
-            </section>
-          )}
+
+          {isMobile && <Footer/>}
           {!isTablet && (
             <section className=" w-full h-full bg-[#121212] border relative border-zinc-700  col-start-3 col-end-4 row-start-2 row-end-4 flex flex-col items-center">
               <MCalendarComponent /> <AboutModel />
@@ -110,3 +63,4 @@ export const DashBoard = () => {
     </DataProvider>
   );
 };
+//

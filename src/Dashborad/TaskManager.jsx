@@ -19,7 +19,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
   const { groupData } = useContext(FormDataContext);
   const [showData, setShowCompleted] = useState(false);
   const isTablet = useIsMobile(960);
-  const isMobile = useIsMobile(670);
+  const isMobile = useIsMobile(670);// Check if it's the login page
 
   const pendingTasks = taskArr.length;
   const completedTasks = filteredData.length;
@@ -62,6 +62,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
           backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%239fa6ad29' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
         }}
       >
+      {/* %236e6e6e */}
         <div
           className={`w-full h-full ${
             isMobile
@@ -82,7 +83,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
 
           {/* Progress bar */}
           <div className={`w-full flex flex-col justify-center items-start col-start-1 ${isTablet? 'col-end-3':'col-end-2'} row-start-2 row-end-3`}>
-            {progressPercent&&<div className="w-full p-2 flex justify-between">
+            {(progressPercent > 0)&&<div className="w-full p-2 flex justify-between">
               <span className="">Progreesing </span>{" "}
               <span>{`${progressPercent}%`}</span>
             </div>}
@@ -92,22 +93,17 @@ export const TaskManager = ({isCompletedDashBoard}) => {
                 style={{ width: `${progressPercent}%` }}
               ></div>
             </div>
-            <div className="w-full pt-1 text-base text-zinc-300 mt-1 gap-3">
+            <div className="w-full pt-1 text-base text-zinc-300 mt-1 gap-3 flex justify-between">
               <span className="font-medium pr-3">
                 Total Task:{" "}
-                <span className="bg-white h-full text-sm py-[0.2rem] px-[0.3rem] aspect-square rounded-full text-black">
+                <span className={`bg-white h-full text-sm py-[0.2rem] ${totalTasks<10 ?'px-[0.5rem]':'px-[0.3rem]'} aspect-square rounded-full font-bold  text-black`}>
                   {totalTasks}
                 </span>
               </span>
-              <span className="font-medium pr-3 ">
-                Pending:{" "}
-                <span className="bg-red-400 h-full text-sm py-[0.2rem] px-[0.5rem] aspect-square rounded-full font-bold  text-pink-950">
-                  {pendingTasks}
-                </span>
-              </span>
+
               <span className="font-medium pr-3 ">
                 Completed:{" "}
-                <span className="bg-green-400 h-full text-sm py-[0.2rem] px-[0.5rem] aspect-square rounded-full font-bold  text-green-950">
+                <span className={`bg-green-400 h-full text-sm py-[0.2rem] ${completedTasks<10 ?'px-[0.5rem]':'px-[0.3rem]'} aspect-square rounded-full font-bold  text-green-950`}>
                   {completedTasks}
                 </span>
               </span>
@@ -119,7 +115,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
               {!isTablet && <ClearAllTask pendingTask={true} />}
               <button
                 title="Alt + N"
-                className="px-4 py-2 text-xl font-bold bg-blue-600 rounded-md text-white hover:bg-blue-700 flex flex-row gap-2 items-center"
+                className="px-4 py-3 text-xl font-bold bg-blue-600 rounded-md text-white hover:bg-blue-700 flex flex-row gap-2 items-center"
                 onClick={handleAddTaskWindow}
               >
                 <PiBookBookmarkBold />
