@@ -39,7 +39,7 @@ export const AboutModel = ()=>{
 
         },
       ];
-    const priorityObj = priorities.find((priorities)=> priorities.value === priority)
+    const priorityObj = priorities.find((priorities)=> priorities.value === priority) || ''
     const isPendingColor = !checked
   ? 'bg-yellow-400/30 text-yellow-200'
   : 'bg-[hsl(146,78%,9%,0.5)]/80 text-[hsl(146,79%,44%,1)] border border-[hsl(150,60%,20%)]';
@@ -64,7 +64,7 @@ export const AboutModel = ()=>{
                 <section>
                 <div>
                     <p className="m-2 py-2 text-xl">Task</p>
-                    <p className="m-2 p-2 text-xl bg-[#1A1A1A] border border-neutral-600 rounded ">{content}</p>
+                    <p className="m-2 p-2 text-xl bg-[#1A1A1A] border border-neutral-600 rounded ">{content|| 'content'}</p>
                 </div>
                 <div>
                     <p className="m-2 py-2 text-xl">Category</p>
@@ -74,16 +74,16 @@ export const AboutModel = ()=>{
                     <p className="">Priority</p>
                     <span>:</span>
                     <div className="flex items-center gap-2 ">
-                        <p className={`p-1 px-2 rounded  backdrop-blur-3xl text-lg ${priorityObj.className}`}>{priority}</p>
+                        <p className={`p-1 px-2 rounded  backdrop-blur-3xl text-lg ${priorityObj.className}`}>{priority || 'Priority'}</p>
                     </div>
                     <p className="">Status</p>
                     <span>:</span>
                     <span className="flex items-center gap-2 ">
-                        <p className={`p-1 px-2 rounded backdrop-blur-3xl ${isPendingColor} text-lg`}>{isPending}</p>
+                        <p className={`p-1 px-2 rounded backdrop-blur-3xl ${isPendingColor} text-lg`}>{isPending||'Pending'}</p>
                     </span>
                     <p className="">Created</p>
                     <span>:</span>
-                    <p>{createdDateForform}</p>
+                    <p>{createdDateForform  || 'Date'}</p>
                 </div>
 
                 <div>

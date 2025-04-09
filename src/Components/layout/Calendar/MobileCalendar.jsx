@@ -7,8 +7,6 @@ import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
 
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
-import { useLocation } from "react-router-dom";
-
 export const MCalendarComponent = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isSunday, setSunday] = useState([]);
@@ -17,37 +15,22 @@ export const MCalendarComponent = () => {
   const [showTask, setTask] = useState([]);
   const [isMonth, setMonth] = useState(false);
   const { taskArr,windowOpen,handleAddTaskWindow,setActiveMenuId} = useContext(ToDoContext);
+  const isTablet = useIsMobile(930);
+  const isMobile = useIsMobile(570); // Check mobile screen width
 
   const todayDate = new Date();
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const listOfMonths = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
+  const listOfMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const lastDay = new Date(year, month + 1, 0).getDate();
   const prevMonthLastDay = new Date(year, month, 0).getDate();
-  const todayDateString = `${todayDate.getDate()} ${
-    listOfMonths[month]
-  } ${year}`;
+  const todayDateString = `${todayDate.getDate()} ${listOfMonths[month]} ${year}`;
 
   const prevMonthDates = Array.from(
-    { length: firstDay },
-    (_, i) => prevMonthLastDay - firstDay + i + 1
-  );
+    { length: firstDay }, (_, i) => prevMonthLastDay - firstDay + i + 1);
   const totalCells =
     Math.ceil((firstDay + lastDay) / 7) * 7 - (firstDay + lastDay);
   const nextMonthDays = Array.from({ length: totalCells }, (_, i) => i + 1);
@@ -115,8 +98,17 @@ export const MCalendarComponent = () => {
       setMonth(false);
     }
   };
+  const navigateTodayDate = ()=>{
+    setTargetDate(() => ({
+      date: todayDate.getDate(),
+      month: todayDate.getMonth(),
+      year: todayDate.getFullYear(),
+    }));
+    setSelectedDate(todayDateString);
+    setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1));
+    setTask(isShowTodayDate);
+  }
 
-  const isMobile = useIsMobile(570); // Check mobile screen width
   useEffect(() => {
     const handleClickOutside = () => setActiveMenuId(null);
     document.addEventListener("click", handleClickOutside);
@@ -136,30 +128,11 @@ export const MCalendarComponent = () => {
 
       <section
         className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
-        onClick={() => {
-          setTargetDate(() => ({
-            date: todayDate.getDate(),
-            month: todayDate.getMonth(),
-            year: todayDate.getFullYear(),
-          }));
-          setSelectedDate(todayDateString);
-          setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1));
-          setTask(isShowTodayDate);
-        }}
+        onClick={() => {navigateTodayDate() }}
       >
-        <div
-          className={`${
-            isMobile
-              ? `absolute bg-blue-600 w-14 ${flexClass} aspect-square z-30 rounded-full bottom-6 right-4 hover:bg-blue-700`
-              : " p-3 hover:bg-white/10"
-          }`}
-        >
-          {isMobile
-            ? `${todayDate.getDate()}`
-            : `${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${
-                listOfMonths[todayDate.getMonth()]
-              }`}
-        </div>
+        {(!isMobile|| isTablet)&&<div className=" p-3 hover:bg-white/10">
+          {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
+        </div>}
       </section>
       <section
         className={`${

@@ -46,7 +46,7 @@ export const TaskListHello = ({activeTask}) => {
     return(
     <>
       <motion.li ref={scope} layout
-      className="relative my-2 px-3 py-1 w-full grid grid-rows-2 grid-cols-[0.1fr_3fr_1fr] rounded border border-zinc-700 bg-zinc-900 list-none">
+      className="relative my-3 px-3 py-1 w-full grid grid-rows-2 grid-cols-[0.1fr_3fr_1fr] rounded border border-zinc-700 bg-zinc-900 list-none">
         {/* <div className='col-start-1 col-end-2 row-start-1 row-end-2 flex flex-row items-center'> */}
 
         <div className="col-start-1 col-end-2 row-start-1 row-end-3 flex flex-row items-center">
@@ -54,7 +54,7 @@ export const TaskListHello = ({activeTask}) => {
         </div>
         <motion.p className={`col-start-2 col-end-3 row-start-1 row-end-2 flex flex-row items-center text-xl pl-3 ${check && "line-through"}`}>{content}</motion.p>
         <div className="col-start-2 col-end-3 row-start-2 row-end-3 flex flex-row gap-2 items-center pl-3">
-          <div className="flex items-center  whitespace-nowrap rounded font-bold  bg-zinc-800  text-zinc-500 gap-1 px-1.5 py-0.5   text-[0.6rem] ">
+          <div className="flex items-center  whitespace-nowrap rounded font-bold  bg-zinc-800  text-zinc-500 gap-1 px-1.5 py-0.5 text-[0.6rem] ">
             * <span>{createdDateForform||'30/03/2025-30/03/2025'}</span>
           </div>
           <div className="border border-zinc-700 flex items-center gap-1 whitespace-nowrap rounded font-bold bg-zinc-800  text-zinc-500 px-1.5 py-0.5 text-[0.6rem] ">

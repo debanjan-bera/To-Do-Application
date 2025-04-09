@@ -1,5 +1,5 @@
 .custom-scroll::-webkit-scrollbar {
-    height: 1rem;
+    height: 0.01rem;
   }
   
   .custom-scroll {
@@ -53,8 +53,5 @@
     }
     .isSideBarDashBoard{
         grid-template-columns: 0.2fr 1.8fr;
-    }
-    .calender{
-        display: none;
     }
 }
