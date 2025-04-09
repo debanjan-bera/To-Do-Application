@@ -135,9 +135,9 @@ export const MCalendarComponent = () => {
         </div>}
       </section>
       <section
-        className={`${
+        className={` ${
           isMobile ? "w-[90%]" : isMonth ? "w-full" : "w-full"
-        } rounded-xl relative`}
+        } rounded-2xl relative `}
       >
         <div className="w-full p-1 text-white flex items-center justify-between text-center">
           <span className="text-3xl p-1 text-center cursor-pointer border border-black/10 rounded-md hover:bg-[#171717] hover: hover:border-[#454545be]">

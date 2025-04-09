@@ -82,9 +82,7 @@ export const MCalendarComponent = () => {
         (task) => task.createdDateForform === formattedDate
       );
       setSelectedDate(formattedDate);
-      console.log(`Selected Date: ${formattedDate}`);
       setTask(tempTask);
-      console.log(isDataAvilable);
     }
   };
   const handleClickMonth = (event) => {
@@ -126,17 +124,17 @@ export const MCalendarComponent = () => {
     <>
       {isMobile&&<AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>}
 
-      <section
+      {!isTablet&&<section
         className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
         onClick={() => {navigateTodayDate() }}
       >
         {(!isMobile|| isTablet)&&<div className=" p-3 hover:bg-white/10">
           {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
         </div>}
-      </section>
+      </section>}
       <section
         className={`${
-          isMobile ? "w-[90%]" : isMonth ? "w-full" : "w-full"
+          isMobile ? "w-[98%]" : isMonth ? "w-full" : "w-full"
         } rounded-xl relative`}
       >
         <div className="w-full p-1 text-white flex items-center justify-between text-center">
@@ -238,9 +236,8 @@ export const MCalendarComponent = () => {
             ))}
           </ul>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full w-full  text-gray-400 text-lg">
+          <div className="flex flex-col items-center justify-center text-center h-full w-full  text-gray-400 text-lg">
             <p>No tasks available for the selected date.</p>
-            <p>Try selecting another date or adding a new task!</p>
           </div>
         )}
       </div>
@@ -248,7 +245,7 @@ export const MCalendarComponent = () => {
       {!isMobile && (
         <div className="h-[20%] w-full bg-[#292D32] text-white"></div>
       )}
-      {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} />}
+      {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} navigateFunction={navigateTodayDate}/>}
     </>
   );
 };
