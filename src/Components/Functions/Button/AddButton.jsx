@@ -21,7 +21,7 @@ export const MobileAddTaskButton =({addTask,navigateFunction = ()=>{}})=>{
           </label>
           {isCalendar&&<div className=' h-[55px] w-[55px] text-2xl font-bold rounded-full absolute top-0 left-[-4rem] bg-blue-700 flex items-center justify-center'
           onClick={()=>navigateFunction()}
-          >6</div>}
+          >10</div>}
       </div>
     )
 }

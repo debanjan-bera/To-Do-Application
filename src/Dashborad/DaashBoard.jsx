@@ -12,6 +12,7 @@ import { SideBar } from "../Components/layout/SideBar/TodoSidebar";
 import Login from "../Components/Login";
 import { Header } from "../Components/layout/Header/Header";
 import { Footer } from "../Components/layout/Footer/Footer";
+import { DateManagerProvider } from "../Contexts/DateManagement";
 export const DashBoard = () => {
   const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
@@ -24,9 +25,10 @@ export const DashBoard = () => {
 
   return (
     <DataProvider>
+      <DateManagerProvider>
       <UserFormData>
         <section
-          className={`h-dvh w-dvw bg-[#0B0D0E] grid ${
+          className={`h-dvh w-dvw bg-[#171717] grid ${
             isMobile
               ? "grid-cols-1 "
               : isTablet
@@ -42,7 +44,7 @@ export const DashBoard = () => {
 
           {!isMobile && <SideBar setSideBar={setSideBar} />}
           <section
-            className={`w-full h-full bg-[#000000] border border-zinc-700   ${
+            className={`w-full h-full bg-[#000000]   ${
               isMobile
                 ? "col-start-1 col-end-2 row-start-2 row-end-3 overflow-hidden"
                 : " col-start-2 col-end-3 row-start-2 row-end-4"
@@ -60,6 +62,7 @@ export const DashBoard = () => {
           {(isTablet||isMobile) && <AboutModel />}
         </section>
       </UserFormData>
+      </DateManagerProvider>
     </DataProvider>
   );
 };

@@ -28,16 +28,13 @@ export const Header = () => {
       </div>
 
       <div
-        className={`flex justify-end items-center gap-2 ${
-          isMobile ? "text-2xl" : "text-3xl"
-        } font-extrabold`}
+        className={`flex justify-end items-center gap-2 text-2xl font-extrabold`}
       >
         <span className="p-2 border border-zinc-600 rounded-full aspect-square relative transition-all hover:bg-neutral-500/20">
           <GrNotification />
           <span
-            className={`${
-              isMobile ? "p-[5px]" : "p-[6px]"
-            } rounded-full aspect-square absolute top-2 right-2 bg-red-500`}
+            className="p-[4px] rounded-full aspect-square absolute top-2 right-2 bg-green-600"
+          
           ></span>
         </span>
         <RiAccountCircleLine />

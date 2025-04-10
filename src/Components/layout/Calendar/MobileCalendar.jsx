@@ -37,9 +37,7 @@ export const MCalendarComponent = () => {
   const isShowTodayDate = taskArr.filter(
     (task) => task.createdDateForform === todayDateString
   );
-  const isDataAvilable = !selectedDate
-    ? isShowTodayDate.length
-    : showTask.length;
+  const isDataAvilable = !selectedDate? isShowTodayDate.length: showTask.length;
 
   const trackTodayDate = (date) => {
     const isToday =
