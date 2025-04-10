@@ -1,33 +1,23 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
-import { ToDoContext } from "../../../Contexts/CreateContext";
+import { DateContext, ToDoContext } from "../../../Contexts/CreateContext";
 import useIsMobile from "../../Functions/UseIsMobile";
-import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
+// import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
 
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
 export const MCalendarComponent = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [isSunday, setSunday] = useState([]);
-  const [selectedDate, setSelectedDate] = useState("");
-  const [targetDate, setTargetDate] = useState(null);
-  const [showTask, setTask] = useState([]);
-  const [isMonth, setMonth] = useState(false);
-  const { taskArr,windowOpen,handleAddTaskWindow,setActiveMenuId} = useContext(ToDoContext);
+  const {setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate,todayDateString,listOfMonths,year,month} = useContext(DateContext)
+  const { taskArr,windowOpen,setActiveMenuId} = useContext(ToDoContext);
   const isTablet = useIsMobile(930);
   const isMobile = useIsMobile(570); // Check mobile screen width
 
-  const todayDate = new Date();
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const listOfMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const lastDay = new Date(year, month + 1, 0).getDate();
   const prevMonthLastDay = new Date(year, month, 0).getDate();
-  const todayDateString = `${todayDate.getDate()} ${listOfMonths[month]} ${year}`;
 
   const prevMonthDates = Array.from(
     { length: firstDay }, (_, i) => prevMonthLastDay - firstDay + i + 1);
@@ -116,7 +106,7 @@ export const MCalendarComponent = () => {
       if (new Date(year, month, day).getDay() === 0) sundays.push(day);
     }
     setSunday(sundays);
-  }, [year, month, lastDay]);
+  }, [year, month, lastDay,setSunday]);
 
   return (
     <>
@@ -243,7 +233,7 @@ export const MCalendarComponent = () => {
       {!isMobile && (
         <div className="h-[20%] w-full bg-[#292D32] text-white"></div>
       )}
-      {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} navigateFunction={navigateTodayDate}/>}
+      {/* {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} navigateFunction={navigateTodayDate}/>} */}
     </>
   );
 };

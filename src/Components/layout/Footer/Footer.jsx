@@ -29,7 +29,7 @@ export const Footer = ()=>{
     return(
       <>
         <section
-        className="w-full h-full bg-zinc-800 border border-zinc-700 col-start-1 col-end-2 row-start-3 row-end-4
+        className="relative w-full h-full bg-zinc-800 border border-zinc-700 col-start-1 col-end-2 row-start-3 row-end-4
     flex items-center justify-around text-3xl text-white font-extrabold
     "
       >
@@ -46,9 +46,9 @@ export const Footer = ()=>{
         <NavLink to="/login" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
           <AiOutlineSetting />
         </NavLink>
+      {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} navigateFunction={navigateTodayDate}/>}
       </section>
       
-      {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} navigateFunction={navigateTodayDate}/>}
       </>
 
     )

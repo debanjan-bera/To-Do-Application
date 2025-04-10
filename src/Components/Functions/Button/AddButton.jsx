@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import './checkBox.css'
 import { useContext } from 'react';
-import { ToDoContext } from '../../../Contexts/CreateContext';
+import { DateContext, ToDoContext } from '../../../Contexts/CreateContext';
 import { LuPencilLine } from "react-icons/lu";
 import { useLocation } from 'react-router-dom';
 export const MobileAddTaskButton =({addTask,navigateFunction = ()=>{}})=>{
   const {mobileAddButton,setmobileAddButton} = useContext(ToDoContext)
+    const {todayDate} = useContext(DateContext)
   const handleAddTaskWindow = (event)=>{
     setmobileAddButton(event.target.checked);
     addTask()
@@ -21,7 +22,7 @@ export const MobileAddTaskButton =({addTask,navigateFunction = ()=>{}})=>{
           </label>
           {isCalendar&&<div className=' h-[55px] w-[55px] text-2xl font-bold rounded-full absolute top-0 left-[-4rem] bg-blue-700 flex items-center justify-center'
           onClick={()=>navigateFunction()}
-          >10</div>}
+          >{todayDate.getDate()}</div>}
       </div>
     )
 }

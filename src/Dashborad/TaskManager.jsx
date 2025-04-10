@@ -11,7 +11,7 @@ import { BsArrowDownCircle } from "react-icons/bs";
 import { TaskListHello } from "../Utilities/TaskList.jsx";
 import useIsMobile from "../Components/Functions/UseIsMobile.jsx";
 import { PiBookBookmarkBold } from "react-icons/pi";
-import { MobileAddTaskButton } from "../Components/Functions/Button/AddButton.jsx";
+// import { MobileAddTaskButton } from "../Components/Functions/Button/AddButton.jsx";
 import { RxDashboard } from "react-icons/rx";
 import { BiFilterAlt } from "react-icons/bi";
 export const TaskManager = ({isCompletedDashBoard}) => {
@@ -189,7 +189,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
       </section>
 
       {/* FAB for mobile */}
-      {isMobile && <MobileAddTaskButton addTask={handleAddTaskWindow} />}
+      {/* {isMobile && <MobileAddTaskButton addTask={handleAddTaskWindow} />} */}
     </>
   );
 };

@@ -18,7 +18,7 @@ export const DateManagerProvider = ({children} )=>{
 
 
     return(
-        <DateContext.Provider value={{currentDate, setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate, setToday,todayDateString}}>{children}</DateContext.Provider>
+        <DateContext.Provider value={{currentDate, setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate, setToday,todayDateString,listOfMonths,year,month}}>{children}</DateContext.Provider>
     )
 
 }
