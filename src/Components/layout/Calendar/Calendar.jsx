@@ -1,33 +1,23 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
 import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
-import { ToDoContext } from "../../../Contexts/CreateContext";
+import { DateContext, ToDoContext } from "../../../Contexts/CreateContext";
 import useIsMobile from "../../Functions/UseIsMobile";
-import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
+// import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
 
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
-export const MCalendarComponent = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [isSunday, setSunday] = useState([]);
-  const [selectedDate, setSelectedDate] = useState("");
-  const [targetDate, setTargetDate] = useState(null);
-  const [showTask, setTask] = useState([]);
-  const [isMonth, setMonth] = useState(false);
-  const { taskArr,windowOpen,handleAddTaskWindow,setActiveMenuId} = useContext(ToDoContext);
+export const CalendarComponent = () => {
+  const {setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate,todayDateString,listOfMonths,year,month} = useContext(DateContext)
+  const { taskArr,windowOpen,setActiveMenuId} = useContext(ToDoContext);
   const isTablet = useIsMobile(930);
   const isMobile = useIsMobile(570); // Check mobile screen width
 
-  const todayDate = new Date();
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const listOfMonths = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth();
   const firstDay = new Date(year, month, 1).getDay();
   const lastDay = new Date(year, month + 1, 0).getDate();
   const prevMonthLastDay = new Date(year, month, 0).getDate();
-  const todayDateString = `${todayDate.getDate()} ${listOfMonths[month]} ${year}`;
 
   const prevMonthDates = Array.from(
     { length: firstDay }, (_, i) => prevMonthLastDay - firstDay + i + 1);
@@ -37,9 +27,7 @@ export const MCalendarComponent = () => {
   const isShowTodayDate = taskArr.filter(
     (task) => task.createdDateForform === todayDateString
   );
-  const isDataAvilable = !selectedDate
-    ? isShowTodayDate.length
-    : showTask.length;
+  const isDataAvilable = !selectedDate? isShowTodayDate.length: showTask.length;
 
   const trackTodayDate = (date) => {
     const isToday =
@@ -82,9 +70,7 @@ export const MCalendarComponent = () => {
         (task) => task.createdDateForform === formattedDate
       );
       setSelectedDate(formattedDate);
-      console.log(`Selected Date: ${formattedDate}`);
       setTask(tempTask);
-      console.log(isDataAvilable);
     }
   };
   const handleClickMonth = (event) => {
@@ -120,24 +106,24 @@ export const MCalendarComponent = () => {
       if (new Date(year, month, day).getDay() === 0) sundays.push(day);
     }
     setSunday(sundays);
-  }, [year, month, lastDay]);
+  }, [year, month, lastDay,setSunday]);
 
   return (
     <>
       {isMobile&&<AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>}
 
-      <section
+      {!isTablet&&<section
         className="w-full font-bold border-b border-gray-500 text-white text-xl cursor-pointer"
         onClick={() => {navigateTodayDate() }}
       >
         {(!isMobile|| isTablet)&&<div className=" p-3 hover:bg-white/10">
           {`${listOfDays[todayDate.getDay()]}, ${todayDate.getDate()} ${listOfMonths[todayDate.getMonth()]}`}
         </div>}
-      </section>
+      </section>}
       <section
-        className={` ${
-          isMobile ? "w-[90%]" : isMonth ? "w-full" : "w-full"
-        } rounded-2xl relative `}
+        className={`${
+          isMobile ? "w-[98%]" : isMonth ? "w-full" : "w-full"
+        } rounded-xl relative`}
       >
         <div className="w-full p-1 text-white flex items-center justify-between text-center">
           <span className="text-3xl p-1 text-center cursor-pointer border border-black/10 rounded-md hover:bg-[#171717] hover: hover:border-[#454545be]">
@@ -238,9 +224,8 @@ export const MCalendarComponent = () => {
             ))}
           </ul>
         ) : (
-          <div className="flex flex-col items-center justify-center h-full w-full  text-gray-400 text-lg">
+          <div className="flex flex-col items-center justify-center text-center h-full w-full  text-gray-400 text-lg">
             <p>No tasks available for the selected date.</p>
-            <p>Try selecting another date or adding a new task!</p>
           </div>
         )}
       </div>
@@ -248,7 +233,7 @@ export const MCalendarComponent = () => {
       {!isMobile && (
         <div className="h-[20%] w-full bg-[#292D32] text-white"></div>
       )}
-      {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} />}
+      {/* {isMobile&&<MobileAddTaskButton addTask={handleAddTaskWindow} navigateFunction={navigateTodayDate}/>} */}
     </>
   );
 };
