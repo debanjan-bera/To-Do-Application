@@ -6,11 +6,14 @@ import { handleDeleteTask } from "../../../Backend/TaskFunctionality";
 import { FormDataContext, ToDoContext } from "../../../Contexts/CreateContext";
 import { useContext } from "react";
 import PropTypes from "prop-types";
+import { GrCompliance } from "react-icons/gr";
+import useIsMobile from "../UseIsMobile";
 
 export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
     const { setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId} = useContext(ToDoContext);
 
     const {  setInfoOpen } = useContext(FormDataContext);
+    const isMobile = useIsMobile(570); // Check mobile screen width
 
     const infoModelOpen = ()=>{
         if(!isShowInfoId ||  id !== isShowInfoId){
@@ -38,9 +41,9 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
                 onClick={() => infoModelOpen()}>
                 <FiAlertCircle /> Info
               </li>
-              <li className="px-3 py-2 flex items-center gap-2 border-y border-neutral-600 hover:bg-zinc-700 cursor-pointer">
-                Completed
-              </li>
+              {isMobile&&<li className="px-3 py-2 flex items-center gap-2 border-y border-neutral-600 hover:bg-zinc-700 cursor-pointer">
+                <GrCompliance /> Completed
+              </li>}
               <li className="px-3 py-2 flex items-center gap-2 border-y border-neutral-600 hover:bg-zinc-700 cursor-pointer">
                 Favourite
               </li>

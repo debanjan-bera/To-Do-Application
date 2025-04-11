@@ -132,7 +132,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
         </div>
 
         {/* Task List */}
-        <div className="w-full h-full px-6 overflow-y-auto main-scroll">
+        <div className="w-full h-full px-3 overflow-y-auto main-scroll">
           <ul>
             <AnimatePresence>
               {(isCompletedDashBoard ? filteredData : taskArr).map(
