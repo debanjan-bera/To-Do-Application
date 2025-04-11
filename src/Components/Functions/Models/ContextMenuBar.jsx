@@ -16,13 +16,13 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
     const isMobile = useIsMobile(570); // Check mobile screen width
 
     const infoModelOpen = ()=>{
-        if(!isShowInfoId ||  id !== isShowInfoId){
-            setInfoOpen(true)
-            setInfoId(id)
-        }
-        else if(id === isShowInfoId){
+         if(id === isShowInfoId){
             setInfoOpen(false)
             setInfoId(null)
+        }
+        else{
+          setInfoOpen(true)
+          setInfoId(id)
         }
     }
     return(
@@ -34,7 +34,10 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
               
               {/* Edit Option */}
               <li className="px-3 py-2 flex items-center gap-2 hover:bg-zinc-700 cursor-pointer"
-                onClick={() => console.log(`Editing Task ${id}`)}>
+                onClick={() => {
+                  console.log(`Editing Task ${id}`);
+                  setInfoId(id)
+                  }}>
                 <FiEdit2 /> Edit
               </li>
               <li className="px-3 py-2 flex items-center gap-2 border-y border-neutral-600 hover:bg-zinc-700 cursor-pointer"

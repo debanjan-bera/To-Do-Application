@@ -42,6 +42,18 @@ export const TaskListHello = ({ activeTask }) => {
     else
       toggleChekedStatus(event,filteredData,id,setFilteredData,setTaskArr,check,setCheck);
   };
+  const handleToggelImp = () => {
+    const updatedTasks = taskArr.map((task) =>
+      task.id === id ? { ...task, favourite: !task.favourite } : task
+    );
+    setTaskArr(updatedTasks);
+    setFilteredData(
+      filteredData.map((task) =>
+        task.id === id ? { ...task, favourite: !task.favourite } : task
+      )
+    );
+  };
+  
   useEffect(() => {
     if (!isPresent) {
       const exitAnimation = async () => {
@@ -106,7 +118,7 @@ export const TaskListHello = ({ activeTask }) => {
       <motion.li
         ref={scope}
         layout
-        className="px-3 py-1 my-3 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex justify-between items-center relative select-none"
+        className={`px-3 py-1 my-3 rounded border border-zinc-700 bg-zinc-900 text-white text-xl font-medium flex ${isMobile?'flex-col items-start':'justify-between items-center'} relative select-none`}
       >
         <div className="pb-1 flex flex-row gap-3 items-center">
           {!isMobile&&<div>
@@ -129,7 +141,7 @@ export const TaskListHello = ({ activeTask }) => {
             </section>}
           </div>
         </div>
-        <div className="ml-auto flex gap-1.5 relative">
+        <div className={`ml-auto flex gap-1.5 relative ${isMobile&& 'w-full items-center justify-between'}`}>
           <span>
             {isMobile&&<section className="">
                 <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
@@ -137,14 +149,16 @@ export const TaskListHello = ({ activeTask }) => {
                 </div>
             </section>}
           </span>
-          <div className="flex flex-row items-center">{!favourite ? (
+          <div id={id} className="flex flex-row items-center">{!favourite ? (
             <span className={`text-xl text-yellow-500 p-2 hover:bg-zinc-600/20 rounded-full aspect-square`}
-            
+              onClick={()=>{handleToggelImp()}}
             >
               <IoStarOutline />
             </span>
           ) : (
-            <span className="text-xl text-yellow-500 p-2 hover:bg-zinc-600/20 rounded-full aspect-square ">
+            <span className="text-xl text-yellow-500 p-2 hover:bg-zinc-600/20 rounded-full aspect-square "
+            onClick={()=>{handleToggelImp()}}
+            >
               <IoStar />
             </span>
           )}
@@ -154,7 +168,7 @@ export const TaskListHello = ({ activeTask }) => {
             id={id}
             aria-labelledby={`${id}`}
             className="ml-2 p-1 text-base scale-125 hover:bg-white/10 rounded-md"
-            onClick={(e) => openMenu(e, id)}
+            onClick={(e) => openMenu(e)}
           >
             <BsThreeDotsVertical />
           </button>
