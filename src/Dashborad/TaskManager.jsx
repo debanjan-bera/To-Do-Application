@@ -82,34 +82,21 @@ export const TaskManager = ({isCompletedDashBoard}) => {
           </div>
 
           {/* Progress bar */}
-          <div className={`w-full flex flex-col justify-center items-start col-start-1 ${isTablet? 'col-end-3':'col-end-2'} row-start-2 row-end-3`}>
-            {(progressPercent > 0)&&<div className="w-full p-2 flex justify-between">
+          {totalTasks&&<div className={`w-full bg-zinc-900 border border-zinc-600 p-2 rounded-lg ${isMobile && 'py-4 my-3'} flex flex-col justify-center items-start col-start-1 ${isTablet? 'col-end-3':'col-end-2'} row-start-2 row-end-3`}>
+          <h1 className="text-2xl py-1 font-bold">My Task {`(${completedTasks} / ${totalTasks})`}</h1> 
+            {(progressPercent > 0)&&<div className="w-full text-lg text-zinc-400 flex justify-between">
               <span className="">Progreesing </span>{" "}
               <span>{`${progressPercent}%`}</span>
             </div>}
-            <div className="w-full h-4  border border-zinc-700 bg-zinc-900 rounded-2xl relative overflow-hidden">
+            <div className="w-full h-4 mt-2 border border-zinc-700 bg-zinc-900 rounded-2xl relative overflow-hidden">
               <div
                 className="h-4 bg-gradient-to-r from-pink-500 to-red-600 absolute top-0 left-0 transition-all duration-500"
                 style={{ width: `${progressPercent}%` }}
               ></div>
             </div>
-            <div className="w-full pt-1 text-base text-zinc-300 mt-1 gap-3 flex justify-between">
-              <span className="font-medium pr-3">
-                Total Task:{" "}
-                <span className={`bg-white h-full text-sm py-[0.2rem] ${totalTasks<10 ?'px-[0.5rem]':'px-[0.3rem]'} aspect-square rounded-full font-bold  text-black`}>
-                  {totalTasks}
-                </span>
-              </span>
+          </div>}
 
-              <span className="font-medium pr-3 ">
-                Completed:{" "}
-                <span className={`bg-green-400 h-full text-sm py-[0.2rem] ${completedTasks<10 ?'px-[0.5rem]':'px-[0.3rem]'} aspect-square rounded-full font-bold  text-green-950`}>
-                  {completedTasks}
-                </span>
-              </span>
-            </div>
-          </div>
-
+          
           {!isMobile && (
             <div className={`w-full flex justify-end items-center flex-row col-start-2 col-end-3 row-start-1 ${isTablet? 'row-end-2':'row-end-3'}`}>
               {!isTablet && <ClearAllTask pendingTask={true} />}
@@ -127,11 +114,12 @@ export const TaskManager = ({isCompletedDashBoard}) => {
 
         {/* Group Tags */}
         <div className="w-full px-6 flex gap-4 flex-row items-center ">
-          <div className="bg-white text-black p-2 rounded-lg font-semibold">Category</div>
+          {!isMobile&&<div className="bg-white text-black p-2 rounded-lg font-semibold">Category</div>}
           <div className="w-full flex flex-row items-center overflow-x-auto custom-scroll">
-            {groupData.map((ele) => (
+            <p className="mx-2 p-1 px-3 border-2 border-zinc-700 bg-zinc-900 rounded flex gap-1">All <span>{`(${taskArr.length})`}</span></p>
+            {groupData.map((ele) => ( 
               <p
-                key={ele}
+                key={ele} id={ele}
                 className="mx-2 p-1 px-2 border border-zinc-700 bg-zinc-900 rounded"
               >
                 {ele}
@@ -139,7 +127,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
             ))}
 
           </div>
-          <div className="bg-white text-black p-2 rounded-lg font-semibold flex gap-1 flex-row items-center">Filter <span className="text-xl"><BiFilterAlt /></span></div>
+          <div className="bg-white relative text-black p-2 rounded-lg font-semibold flex gap-1 flex-row items-center">Filter <span className="text-xl"><BiFilterAlt /></span> <span className="px-2 py-1 text-xs text-white absolute top-[-1rem] right-[-0.4rem] bg-blue-600 rounded-full aspect-square text-center">1</span></div>
 
         </div>
 
@@ -156,9 +144,10 @@ export const TaskManager = ({isCompletedDashBoard}) => {
           </ul>
 
           {/* Completed Task Toggle */}
+          <AnimatePresence>
           {!isCompletedDashBoard && (
             <ul className="text-white">
-              <AnimatePresence>
+
                 {filteredData.length > 0 && (
                   <li
                     className="p-3 mb-4 border border-zinc-700 bg-zinc-900 rounded inline-block text-white text-xl font-medium select-none"
@@ -174,17 +163,16 @@ export const TaskManager = ({isCompletedDashBoard}) => {
                     </p>
                   </li>
                 )}
-
-                {showData &&
-                  filteredData.map((activeTask) => (
-                    <TaskListHello
-                      key={activeTask.id}
-                      activeTask={activeTask}
-                    />
-                  ))}
-              </AnimatePresence>
-            </ul>
-          )}
+                 
+              {(showData)&&filteredData.map(
+                (activeTask) => (
+                  <TaskListHello key={activeTask.id} activeTask={activeTask} />
+                )
+              )}
+              </ul>
+              
+            )}
+            </AnimatePresence>
         </div>
       </section>
 

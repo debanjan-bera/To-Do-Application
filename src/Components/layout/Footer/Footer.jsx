@@ -33,7 +33,7 @@ export const Footer = ()=>{
     flex items-center justify-around text-3xl text-white font-extrabold
     "
       >
-        <NavLink to="/" className={({isActive})=>(isActive? 'text-white' : 'text-zinc-600')}>
+        <NavLink to="/" className={({isActive})=>(isActive? 'text-white ' : 'text-zinc-600')}>
           <GrHomeRounded />
           
         </NavLink>

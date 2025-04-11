@@ -38,7 +38,12 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
                 onClick={() => infoModelOpen()}>
                 <FiAlertCircle /> Info
               </li>
-
+              <li className="px-3 py-2 flex items-center gap-2 border-y border-neutral-600 hover:bg-zinc-700 cursor-pointer">
+                Completed
+              </li>
+              <li className="px-3 py-2 flex items-center gap-2 border-y border-neutral-600 hover:bg-zinc-700 cursor-pointer">
+                Favourite
+              </li>
               {/* Delete Option */}
               <li className="px-3 py-2 flex items-center gap-2 text-red-400 hover:bg-red-800/20  cursor-pointer"
                 onClick={() => handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask,setActiveMenuId)}>

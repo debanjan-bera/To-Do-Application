@@ -2,7 +2,7 @@
     height: 0.01rem;
   }
   
-  .custom-scroll {
+  /* .custom-scroll {
     mask-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 0),
@@ -11,7 +11,7 @@
       rgba(0, 0, 0, 0)
     );
 
-  }
+  } */
   .main-scroll::-webkit-scrollbar {
     width: 0px;
   }
