@@ -25,8 +25,15 @@ export const TaskManager = ({isCompletedDashBoard}) => {
   const completedTasks = filteredData.length;
   const totalTasks = pendingTasks + completedTasks
   const progressPercent = totalTasks === 0 ? 0 : Math.round((completedTasks * 100) / totalTasks);
-
-
+  const organizedData = (isCompletedDashBoard ? filteredData : taskArr).reduce((acc, item) => {
+    const date = item.createdDateForform;
+    if (!acc[date]) {
+      acc[date] = [];
+    }
+    acc[date].push(item);
+    return acc;
+  }, {});
+  console.log(organizedData);
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = () => setActiveMenuId(null);
@@ -57,7 +64,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
     <>
       <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
       <section
-        className="relative w-full h-full grid grid-cols-1 grid-rows-[0.5fr_0.4fr_2.8fr]"
+        className={`relative w-full h-full grid grid-cols-1 grid-rows-[0.5fr_0.4fr_2.8fr]  ${isMobile&& 'overflow-y-auto main-scroll'}`}
         style={{
           backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%239fa6ad29' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
         }}
@@ -132,15 +139,22 @@ export const TaskManager = ({isCompletedDashBoard}) => {
         </div>
 
         {/* Task List */}
-        <div className="w-full h-full px-3 overflow-y-auto main-scroll">
+        <div className={`w-full h-full px-3 ${!isMobile&& 'overflow-y-auto main-scroll'} `}>
           <ul>
             <AnimatePresence>
-              {(isCompletedDashBoard ? filteredData : taskArr).map(
-                (activeTask) => (
-                  <TaskListHello key={activeTask.id} activeTask={activeTask} />
-                )
-              )}
+            {Object.entries(organizedData).map(([date, tasks]) => (
+  <div key={date}>
+    <h2 className="text-xl font-bold my-4 px-2 text-white">{date}</h2>
+    {tasks.map((task) => (
+      <TaskListHello key={task.id} activeTask={task} />
+    ))}
+  </div>
+))}
             </AnimatePresence>
+          </ul>
+
+          <ul>
+            
           </ul>
 
           {/* Completed Task Toggle */}
@@ -176,8 +190,6 @@ export const TaskManager = ({isCompletedDashBoard}) => {
         </div>
       </section>
 
-      {/* FAB for mobile */}
-      {/* {isMobile && <MobileAddTaskButton addTask={handleAddTaskWindow} />} */}
     </>
   );
 };
