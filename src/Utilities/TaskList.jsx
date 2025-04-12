@@ -42,8 +42,13 @@ export const TaskListHello = ({ activeTask }) => {
     else
       toggleChekedStatus(event,filteredData,id,setFilteredData,setTaskArr,check,setCheck);
   };
-  const findPrioirityColor = priority === 'High' ? 'red-600' : priority === 'Moderate' ? 'yellow-500' : 'green-700'
-
+  const findPriorityColor = () => {
+    if (priority === "High") return `bg-red-800/30 text-red-400`;
+    if (priority === "Moderate") return `bg-yellow-500/30 text-yellow-300`;
+    return `bg-green-800/40 text-green-400`;
+  };
+  
+  console.log(findPriorityColor);
   const handleToggelImp = () => {
     const updatedTasks = taskArr.map((task) =>
       task.id === id ? { ...task, favourite: !task.favourite } : task
@@ -87,7 +92,7 @@ export const TaskListHello = ({ activeTask }) => {
       <motion.li
         ref={scope}
         layout
-        className={`px-3 py-1 my-3 rounded border border-l-4 border-zinc-700 border-l-${findPrioirityColor} bg-zinc-900 text-white text-xl font-medium flex ${isMobile?'flex-col items-start':'justify-between items-center'} relative select-none`}
+        className={`px-3 py-1 my-3 rounded border border-l-4 ${priority === 'High'?'border-l-red-500': priority === 'Low' ? 'border-l-green-500' : 'border-l-yellow-600'} border-zinc-700  bg-zinc-900 text-white text-xl font-medium flex ${isMobile?'flex-col items-start':'justify-between items-center'} relative select-none`}
       >
         <div className="pb-1 flex flex-row gap-3 items-center">
           {!isMobile&&<div>
@@ -103,11 +108,24 @@ export const TaskListHello = ({ activeTask }) => {
             <motion.p className={`text-xl ${check && "line-through"}`}>
               {content}
             </motion.p>
+            <span className="flex flex-row gap-2">
             {!isMobile&&<section className="">
               <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
                 <FiClock /> <span>{createdDateForform}</span>
               </div>
             </section>}
+            {!isMobile&&<section className="">
+              <div className={`flex items-center gap-1.5 whitespace-nowrap rounded ${findPriorityColor('bg')} px-1.5 py-1 text-xs `}>
+                <FiClock /> <span>{priority}</span>
+              </div>
+            </section>}
+            {!isMobile&&<section className="">
+              <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
+                <FiClock /> <span>{createdDateForform}</span>
+              </div>
+            </section>}
+            </span>
+
           </div>
         </div>
         <div className={`ml-auto flex gap-1.5 relative ${isMobile&& 'w-full items-center justify-between'}`}>
@@ -117,7 +135,9 @@ export const TaskListHello = ({ activeTask }) => {
                   <FiClock /> <span>{createdDateForform}</span>
                 </div>
             </section>}
+            
           </span>
+
           <div id={id} className="flex flex-row items-center"
           onClick={()=>{handleToggelImp()}}
           >{!favourite ? (

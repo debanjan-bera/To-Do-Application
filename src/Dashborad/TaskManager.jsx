@@ -11,9 +11,9 @@ import { BsArrowDownCircle } from "react-icons/bs";
 import { TaskListHello } from "../Utilities/TaskList.jsx";
 import useIsMobile from "../Components/Functions/UseIsMobile.jsx";
 import { PiBookBookmarkBold } from "react-icons/pi";
-// import { MobileAddTaskButton } from "../Components/Functions/Button/AddButton.jsx";
 import { RxDashboard } from "react-icons/rx";
 import { BiFilterAlt } from "react-icons/bi";
+
 export const TaskManager = ({isCompletedDashBoard}) => {
   const { taskArr, windowOpen, setWindowClose, filteredData, handleAddTaskWindow, setActiveMenuId,} = useContext(ToDoContext);
   const { groupData } = useContext(FormDataContext);
@@ -25,6 +25,51 @@ export const TaskManager = ({isCompletedDashBoard}) => {
   const completedTasks = filteredData.length;
   const totalTasks = pendingTasks + completedTasks
   const progressPercent = totalTasks === 0 ? 0 : Math.round((completedTasks * 100) / totalTasks);
+
+  const organizeTasksByDateType = (tasks) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize
+  
+    const sections = {
+      today: [],
+      upcoming: [],
+      previous: [],
+    };
+  
+    tasks.forEach((task) => {
+      const taskDate = new Date(task.createdDateForform);
+      taskDate.setHours(0, 0, 0, 0);
+  
+      if (taskDate.getTime() === today.getTime()) {
+        sections.today.push(task);
+      } else if (taskDate.getTime() > today.getTime()) {
+        sections.upcoming.push(task);
+      } else {
+        sections.previous.push(task);
+      }
+    });
+  
+    return sections;
+  };
+  
+  const groupByDate = (arr) =>
+    arr.reduce((acc, item) => {
+      const date = item.createdDateForform;
+      if (!acc[date]) acc[date] = [];
+      acc[date].push(item);
+      return acc;
+    }, {});
+
+    
+  const allTasks = isCompletedDashBoard ? filteredData : taskArr;
+  const { today, upcoming, previous } = organizeTasksByDateType(allTasks);
+
+
+
+
+
+
+
   const organizedData = (isCompletedDashBoard ? filteredData : taskArr).reduce((acc, item) => {
     const date = item.createdDateForform;
     if (!acc[date]) {
@@ -139,7 +184,53 @@ export const TaskManager = ({isCompletedDashBoard}) => {
         </div>
 
         {/* Task List */}
-        <div className={`w-full h-full px-3 ${!isMobile&& 'overflow-y-auto main-scroll'} `}>
+        <div className={`w-full h-full px-4 ${!isMobile && 'overflow-y-auto main-scroll'} `}>
+  <ul className="text-white">
+
+    {/* Today Section */}
+    {today.length > 0 && (
+      <div>
+        <h2 className="text-xl font-bold my-4 px-2">Today ({new Date().toDateString()})</h2>
+        {today.map(task => (
+          <TaskListHello key={task.id} activeTask={task} />
+        ))}
+      </div>
+    )}
+
+    {/* Upcoming Tasks */}
+    {upcoming.length > 0 && (
+      <div>
+        <h2 className="text-xl font-bold my-4 px-2">Upcoming</h2>
+        {Object.entries(groupByDate(upcoming)).map(([date, tasks]) => (
+          <div key={date}>
+            <h3 className="text-lg text-zinc-400 px-4 my-1">{date}</h3>
+            {tasks.map(task => (
+              <TaskListHello key={task.id} activeTask={task} />
+            ))}
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* Previous/Due Tasks */}
+    {previous.length > 0 && (
+      <div>
+        <h2 className="text-xl font-bold my-4 px-2">Previous/Due</h2>
+        {Object.entries(groupByDate(previous)).map(([date, tasks]) => (
+          <div key={date}>
+            <h3 className="text-lg text-zinc-400 px-4 my-1">{date}</h3>
+            {tasks.map(task => (
+              <TaskListHello key={task.id} activeTask={task} />
+            ))}
+          </div>
+        ))}
+      </div>
+    )}
+  </ul>
+  </div>
+
+
+        {/* <div className={`w-full h-full px-4 ${!isMobile&& 'overflow-y-auto main-scroll'} `}>
           <ul>
             <AnimatePresence>
             {Object.entries(organizedData).map(([date, tasks]) => (
@@ -153,11 +244,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
             </AnimatePresence>
           </ul>
 
-          <ul>
-            
-          </ul>
-
-          {/* Completed Task Toggle */}
+          {/* Completed Task Toggle 
           <AnimatePresence>
           {!isCompletedDashBoard && (
             <ul className="text-white">
@@ -187,7 +274,7 @@ export const TaskManager = ({isCompletedDashBoard}) => {
               
             )}
             </AnimatePresence>
-        </div>
+        </div> */}
       </section>
 
     </>
