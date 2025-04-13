@@ -34,42 +34,42 @@ export const TaskManager = ({ isCompletedDashBoard }) => {
   const progressPercent =
     totalTasks === 0 ? 0 : Math.round((completedTasks * 100) / totalTasks);
 
-  // const organizeTasksByDateType = (tasks) => {
-  //   const today = new Date();
-  //   today.setHours(0, 0, 0, 0); // Normalize
+  const organizeTasksByDateType = (tasks) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize
 
-  //   const sections = {
-  //     today: [],
-  //     upcoming: [],
-  //     previous: [],
-  //   };
+    const sections = {
+      today: [],
+      upcoming: [],
+      previous: [],
+    };
 
-  //   tasks.forEach((task) => {
-  //     const taskDate = new Date(task.createdDateForform);
-  //     taskDate.setHours(0, 0, 0, 0);
+    tasks.forEach((task) => {
+      const taskDate = new Date(task.createdDateForform);
+      taskDate.setHours(0, 0, 0, 0);
 
-  //     if (taskDate.getTime() === today.getTime()) {
-  //       sections.today.push(task);
-  //     } else if (taskDate.getTime() > today.getTime()) {
-  //       sections.upcoming.push(task);
-  //     } else {
-  //       sections.previous.push(task);
-  //     }
-  //   });
+      if (taskDate.getTime() === today.getTime()) {
+        sections.today.push(task);
+      } else if (taskDate.getTime() > today.getTime()) {
+        sections.upcoming.push(task);
+      } else {
+        sections.previous.push(task);
+      }
+    });
 
-  //   return sections;
-  // };
+    return sections;
+  };
 
-  // const groupByDate = (arr) =>
-  //   arr.reduce((acc, item) => {
-  //     const date = item.createdDateForform;
-  //     if (!acc[date]) acc[date] = [];
-  //     acc[date].push(item);
-  //     return acc;
-  //   }, {});
+  const groupByDate = (arr) =>
+    arr.reduce((acc, item) => {
+      const date = item.createdDateForform;
+      if (!acc[date]) acc[date] = [];
+      acc[date].push(item);
+      return acc;
+    }, {});
 
-  // const allTasks = isCompletedDashBoard ? filteredData : taskArr;
-  // const { today, upcoming, previous } = organizeTasksByDateType(allTasks);
+  const allTasks = isCompletedDashBoard ? filteredData : taskArr;
+  const { today, upcoming, previous } = organizeTasksByDateType(allTasks);
 
   // const organizedData = allTasks.reduce((acc, item) => {
   //   const date = item.createdDateForform;
@@ -218,12 +218,12 @@ export const TaskManager = ({ isCompletedDashBoard }) => {
             !isMobile && "overflow-y-auto main-scroll"
           } `}
         >
-          {/* {today.length > 0 && (
+          {today.length > 0 && (
             <ul>
 
                 {Object.entries(groupByDate(today)).map(([date, tasks]) => (
                   <div key={date}>
-                    <h2 className="text-xl font-bold my-4 px-2">{date}</h2>
+                    <h2 className="text-xl font-bold my-4 px-2">Today {date}</h2>
                     <AnimatePresence>
                       {tasks.map((task) => (
                         <TaskListHello key={task.id} activeTask={task} />
@@ -256,28 +256,32 @@ export const TaskManager = ({ isCompletedDashBoard }) => {
             <ul>
               {
                 <div>
-                  {Object.entries(groupByDate(previous)).map(([date, tasks]) => (
-                  <div key={date}>
-                    <h3 className="text-lg text-zinc-400 px-4 my-1">{date}</h3>
-                    <AnimatePresence>
-                      {tasks.map((task) => (
-                        <TaskListHello key={task.id} activeTask={task} />
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                ))}
+                  <h2 className="text-2xl font-bold my-2 px-2">Due Tasks</h2>
+                  {Object.entries(groupByDate(previous))
+  .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
+  .map(([date, tasks]) => (
+    <div key={date}>
+      <h3 className="text-lg text-zinc-400 px-4 my-1">{date}</h3>
+      <AnimatePresence>
+        {tasks.map((task) => (
+          <TaskListHello key={task.id} activeTask={task} />
+        ))}
+      </AnimatePresence>
+    </div>
+))}
+
                 </div>
               }
             </ul>
-          )} */}
+          )}
 
-          {
+          {/* {
             taskArr.map((activeTask) => (
               <TaskListHello
                 key={activeTask.id}
                 activeTask={activeTask}
               />
-            ))}
+            ))} */}
           
 
           {/* Completed Task Toggle */}
