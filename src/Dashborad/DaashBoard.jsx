@@ -3,7 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { DataProvider } from "../Contexts/DataWhereHouse";
 import { UserFormData } from "../Contexts/AddititonalData";
 // import { SideBar } from "../Components/layout/SideBar/TodoSidebar";
-import  MCalendarComponent  from "../Components/layout/Calendar/MobileCalendar";
+import  {CalendarComponent}  from "../Components/layout/Calendar/Calendar";
 import { AboutModel } from "../Components/Functions/Models/TaskAboutModel";
 import "../App.css";
 import useIsMobile from "../Components/Functions/UseIsMobile";
@@ -56,7 +56,7 @@ export const DashBoard = () => {
           {isMobile && <Footer/>}
           {!isTablet && (
             <section className=" w-full h-full bg-[#121212] border relative border-zinc-700  col-start-3 col-end-4 row-start-2 row-end-4 flex flex-col items-center">
-              <MCalendarComponent /> <AboutModel />
+              <CalendarComponent /> <AboutModel />
             </section>
           )}
           {(isTablet||isMobile) && <AboutModel />}
