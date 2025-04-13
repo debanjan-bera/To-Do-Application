@@ -31,8 +31,7 @@ export const TaskManager = ({ isCompletedDashBoard }) => {
   const pendingTasks = taskArr.length;
   const completedTasks = filteredData.length;
   const totalTasks = pendingTasks + completedTasks;
-  const progressPercent =
-    totalTasks === 0 ? 0 : Math.round((completedTasks * 100) / totalTasks);
+  const progressPercent = totalTasks === 0 ? 0 : Math.round((completedTasks * 100) / totalTasks);
 
   const organizeTasksByDateType = (tasks) => {
     const today = new Date();
@@ -71,14 +70,30 @@ export const TaskManager = ({ isCompletedDashBoard }) => {
   const allTasks = isCompletedDashBoard ? filteredData : taskArr;
   const { today, upcoming, previous } = organizeTasksByDateType(allTasks);
 
-  // const organizedData = allTasks.reduce((acc, item) => {
-  //   const date = item.createdDateForform;
-  //   if (!acc[date]) {
-  //     acc[date] = [];
-  //   }
-  //   acc[date].push(item);
-  //   return acc;
-  // }, {});
+  const renderSection = (title, sectionTasks) => {
+    if (!sectionTasks.length) return null;
+  
+    return (
+      <ul>
+        <div>
+          <h2 className="text-2xl font-bold my-2 px-2">{title }</h2>
+          {Object.entries(groupByDate(sectionTasks))
+            .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
+            .map(([date, tasks]) => (
+              <div key={date}>
+                {title !== 'Today' && <h3 className="text-lg text-zinc-400 px-4 my-1">{date}</h3>}
+                <AnimatePresence>
+                  {tasks.map((task) => (
+                    <TaskListHello key={task.id} activeTask={task} />
+                  ))}
+                </AnimatePresence>
+              </div>
+            ))}
+        </div>
+      </ul>
+    );
+  };
+  
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -218,77 +233,15 @@ export const TaskManager = ({ isCompletedDashBoard }) => {
             !isMobile && "overflow-y-auto main-scroll"
           } `}
         >
-          {today.length > 0 && (
-            <ul>
+          {!isCompletedDashBoard && renderSection("Today", today)}
+{!isCompletedDashBoard && renderSection("Upcoming", upcoming)}
+{!isCompletedDashBoard && renderSection("Due Tasks", previous)}
+{isCompletedDashBoard && renderSection("Completed Tasks", filteredData)}
 
-                {Object.entries(groupByDate(today)).map(([date, tasks]) => (
-                  <div key={date}>
-                    <h2 className="text-xl font-bold my-4 px-2">Today {date}</h2>
-                    <AnimatePresence>
-                      {tasks.map((task) => (
-                        <TaskListHello key={task.id} activeTask={task} />
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                ))}
-
-            </ul>
-          )}
-          {upcoming.length > 0 && (
-            <ul>
-              {
-                <div>
-                  {Object.entries(groupByDate(upcoming)).map(([date, tasks]) => (
-                  <div key={date}>
-                    <h3 className="text-lg text-zinc-400 px-4 my-1">{date}</h3>
-                    <AnimatePresence>
-                      {tasks.map((task) => (
-                        <TaskListHello key={task.id} activeTask={task} />
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                ))}
-                </div>
-              }
-            </ul>
-          )}
-          {previous.length > 0 && (
-            <ul>
-              {
-                <div>
-                  <h2 className="text-2xl font-bold my-2 px-2">Due Tasks</h2>
-                  {Object.entries(groupByDate(previous))
-  .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
-  .map(([date, tasks]) => (
-    <div key={date}>
-      <h3 className="text-lg text-zinc-400 px-4 my-1">{date}</h3>
-      <AnimatePresence>
-        {tasks.map((task) => (
-          <TaskListHello key={task.id} activeTask={task} />
-        ))}
-      </AnimatePresence>
-    </div>
-))}
-
-                </div>
-              }
-            </ul>
-          )}
-
-          {/* {
-            taskArr.map((activeTask) => (
-              <TaskListHello
-                key={activeTask.id}
-                activeTask={activeTask}
-              />
-            ))} */}
-          
-
-          {/* Completed Task Toggle */}
 
           {
-            <ul className="text-white">
-              {!isCompletedDashBoard && filteredData.length > 0 && (
+            !isCompletedDashBoard&&(<ul className="text-white">
+              { filteredData.length > 0 && (
                 <li
                   className="p-3 mb-4 border border-zinc-700 bg-zinc-900 rounded inline-block text-white text-xl font-medium select-none"
                   onClick={() => setShowCompleted(!showData)}
@@ -303,16 +256,9 @@ export const TaskManager = ({ isCompletedDashBoard }) => {
                   </p>
                 </li>
               )}
-              <AnimatePresence>
-                {showData &&
-                  filteredData.map((activeTask) => (
-                    <TaskListHello
-                      key={activeTask.id}
-                      activeTask={activeTask}
-                    />
-                  ))}
-              </AnimatePresence>
-            </ul>
+        {showData&&(!isCompletedDashBoard && renderSection("", filteredData))}
+
+            </ul>)
           }
         </div>
       </section>
@@ -324,3 +270,8 @@ TaskManager.propTypes = {
 };
 
 // export default memo(TaskManager);
+
+
+
+// Enhanced TaskManager Component
+

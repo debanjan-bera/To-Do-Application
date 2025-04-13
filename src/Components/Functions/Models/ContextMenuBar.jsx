@@ -30,7 +30,7 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
         <AnimatePresence>
           {isMenuOpen&&(
             <motion.ul initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute top-12 right-3 z-10 bg-zinc-800 border border-zinc-700 rounded-md text-white text-sm w-32 shadow-lg overflow-hidden">
+              className="absolute top-9 right-2 z-10 bg-zinc-800 border border-zinc-700 rounded-md text-white text-sm w-32 shadow-lg overflow-hidden">
               
               {/* Edit Option */}
               <li className="px-3 py-2 flex items-center gap-2 hover:bg-zinc-700 cursor-pointer"
