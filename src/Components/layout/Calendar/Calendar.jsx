@@ -1,6 +1,6 @@
 import { useContext, useEffect} from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
-import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
+// import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
 import { DateContext, ToDoContext } from "../../../Contexts/CreateContext";
 import useIsMobile from "../../Functions/UseIsMobile";
 // import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
@@ -8,7 +8,8 @@ import useIsMobile from "../../Functions/UseIsMobile";
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
 export const CalendarComponent = () => {
-  const {setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate,todayDateString,listOfMonths,year,month} = useContext(DateContext)
+  const {setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate,todayDateString,listOfMonths,year,month,nextMonth,
+    prevMonth} = useContext(DateContext)
   const { taskArr,windowOpen,setActiveMenuId} = useContext(ToDoContext);
   const isTablet = useIsMobile(930);
   const isMobile = useIsMobile(570); // Check mobile screen width

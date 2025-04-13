@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { MCalendarComponent } from '../Components/layout/Calendar/MobileCalendar'
+import  MCalendarComponent  from '../Components/layout/Calendar/MobileCalendar'
 import { DashBoard } from '../Dashborad/DaashBoard'
-import { TaskManager } from '../Dashborad/TaskManager'
+import  {TaskManager}  from '../Dashborad/TaskManager'
 
  function RouterCompo() {  
   const router = createBrowserRouter([

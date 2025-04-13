@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import {handleFormCancel,handleFromSubmit} from "../Backend/FormFunctionality";
-import { FormDataContext, ToDoContext } from "../Contexts/CreateContext";
+import { DateContext, FormDataContext, ToDoContext } from "../Contexts/CreateContext";
 import { motion } from "framer-motion";
 import { useDragControls } from "framer-motion";
 import "./todo.css";
@@ -16,6 +16,7 @@ export const AddTaskForm = () => {
   } = useForm({ defaultValues: { group: "" } });
 
   const { taskArr, setTaskArr, setWindowClose, setmobileAddButton } = useContext(ToDoContext);
+   const {createdDate} = useContext(DateContext)
   const { groupData } = useContext(FormDataContext);
   const controls = useDragControls();
 
@@ -47,6 +48,7 @@ export const AddTaskForm = () => {
     const finalData = {
       ...data,
       group: selectedGroup === "Others" ? customGroup : selectedGroup,
+      createdDateForform : createdDate,
     };
 
     handleFromSubmit( finalData, taskArr, setTaskArr, setWindowClose, setmobileAddButton);

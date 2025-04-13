@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { ToDoContext } from "../Contexts/CreateContext";
-import { ContextMenuPopUp } from "../Components/Functions/Models/ContextMenuBar.jsx";
+import  {ContextMenuPopUp}  from "../Components/Functions/Models/ContextMenuBar.jsx";
 import { useAnimate, usePresence, motion } from "framer-motion";
 import {
   toggleChekedStatus,
@@ -48,7 +48,6 @@ export const TaskListHello = ({ activeTask }) => {
     return `bg-green-800/40 text-green-400`;
   };
   
-  console.log(findPriorityColor);
   const handleToggelImp = () => {
     const updatedTasks = taskArr.map((task) =>
       task.id === id ? { ...task, favourite: !task.favourite } : task
@@ -59,8 +58,7 @@ export const TaskListHello = ({ activeTask }) => {
         task.id === id ? { ...task, favourite: !task.favourite } : task
       )
     );
-    console.log(taskArr);
-    console.log(priority);
+
   };
   
   useEffect(() => {

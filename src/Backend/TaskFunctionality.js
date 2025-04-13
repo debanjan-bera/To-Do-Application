@@ -1,9 +1,9 @@
-export const handleDeleteTask = (setTaskData,setFilter,id,pendingTask,setActiveMenuId) => {
+export const handleDeleteTask = (taskArr,setTaskData,setFilter,id,pendingTask,setActiveMenuId) => {
   if (setActiveMenuId) setActiveMenuId(null);
   setTimeout(()=>{
-  if (!pendingTask) setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id))
-  else setTaskData((updateTask) => updateTask.filter((currentTask) => currentTask.id !== id));
-  console.log(`${id} is deleted`);
+    if (pendingTask) setFilter((prevFilter) => prevFilter.filter((task) => task.id !== id))
+    else setTaskData((updateTask) => updateTask.filter((currentTask) => currentTask.id !== id));
+    console.log(`${id} is deleted`);
   },200)
 
 };

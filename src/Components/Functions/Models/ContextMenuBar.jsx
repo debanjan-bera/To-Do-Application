@@ -10,7 +10,7 @@ import { GrCompliance } from "react-icons/gr";
 import useIsMobile from "../UseIsMobile";
 
 export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
-    const { setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId} = useContext(ToDoContext);
+    const { taskArr,setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId} = useContext(ToDoContext);
 
     const {  setInfoOpen } = useContext(FormDataContext);
     const isMobile = useIsMobile(570); // Check mobile screen width
@@ -52,7 +52,7 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
               </li>
               {/* Delete Option */}
               <li className="px-3 py-2 flex items-center gap-2 text-red-400 hover:bg-red-800/20  cursor-pointer"
-                onClick={() => handleDeleteTask(setTaskArr, setFilteredData, id, pendingTask,setActiveMenuId)}>
+                onClick={() => handleDeleteTask(taskArr,setTaskArr, setFilteredData, id, pendingTask,setActiveMenuId)}>
                 <FiTrash2 /> Delete
               </li>
             </motion.ul>

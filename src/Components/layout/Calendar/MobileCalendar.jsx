@@ -1,14 +1,14 @@
-import { useContext, useEffect} from "react";
+import { memo, useContext, useEffect} from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
-import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
 import { DateContext, ToDoContext } from "../../../Contexts/CreateContext";
 import useIsMobile from "../../Functions/UseIsMobile";
 
 
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
-export const MCalendarComponent = () => {
-  const {setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate,todayDateString,listOfMonths,year,month} = useContext(DateContext)
+const MCalendarComponent = () => {
+  const {setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate,todayDateString,listOfMonths,year,month,nextMonth,
+    prevMonth,} = useContext(DateContext)
   const { taskArr,windowOpen,setActiveMenuId} = useContext(ToDoContext);
   const isTablet = useIsMobile(930);
   const isMobile = useIsMobile(570); // Check mobile screen width
@@ -52,7 +52,6 @@ export const MCalendarComponent = () => {
       return "bg-blue-800/20 text-blue-300 border border-blue-700 hover:bg-blue-800/40";
     return "text-white";
   };
-
   const disableDayClass = "text-gray-400 rounded-full hover:bg-[#27272a]";
   const flexClass = "flex items-center justify-center";
 
@@ -238,6 +237,7 @@ export const MCalendarComponent = () => {
   );
 };
 
+export default memo(MCalendarComponent)
 
 // #1E1F25
 
