@@ -2,8 +2,9 @@ import { GrNotification } from "react-icons/gr";
 import { DateAndTime } from "../../Functions/Date";
 import { RiAccountCircleLine } from "react-icons/ri";
 import useResponsive from "../../../Hooks/UseResponsive";
+import { memo } from "react";
 
-export const Header = () => {
+const Header = () => {
     const isMobile = useResponsive(670);
     const isTablet = useResponsive(930);
   return (
@@ -42,3 +43,5 @@ export const Header = () => {
     </header>
   );
 };
+
+export default memo(Header)

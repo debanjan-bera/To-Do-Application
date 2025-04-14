@@ -1,4 +1,4 @@
-import { memo, useContext} from "react";
+import { memo, useCallback, useContext, useMemo} from "react";
 import {IoMdArrowDropleftCircle,IoMdArrowDroprightCircle,} from "react-icons/io";
 import { DateContext, ToDoContext } from "../../../Contexts/CreateContext";
 import useResponsive from "../../../Hooks/UseResponsive";
@@ -17,20 +17,27 @@ const MCalendarComponent = () => {
   const isLargeMobile = useResponsive(670);
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-  const isShowTodayDate = taskArr.filter((task) => task.createdDateForform === todayDateString);
+  const isShowTodayDate = useMemo(
+    () => taskArr.filter((task) => task.createdDateForform === todayDateString),
+    [taskArr, todayDateString]
+  );
 
-  const isDataAvilable = !selectedDate ? isShowTodayDate.length : showTask.length;
+  const isDataAvailable = useMemo(() => {
+    return !selectedDate ? isShowTodayDate.length : showTask.length;
+  }, [selectedDate, isShowTodayDate, showTask]);
+  const handleClickMonth = useCallback(
+    (event) => {
+      if (event.target.tagName === "P") {
+        const months = event.target.textContent;
+        const monthIndex = listOfMonths.indexOf(months);
+        setCurrentDate(new Date(year, monthIndex + 1, 0));
+        setMonth(false);
+      }
+    },
+    [listOfMonths, year, setCurrentDate, setMonth]
+  );
 
-  const handleClickMonth = (event) => {
-    if (event.target.tagName === "P") {
-      const months = event.target.textContent;
-      const monthIndex = listOfMonths.indexOf(months);
-      setCurrentDate(new Date(year, monthIndex + 1, 0));
-      setMonth(false);
-    }
-  };
-
-  const navigateTodayDate = () => {
+  const navigateTodayDate = useCallback(() => {
     setTargetDate(() => ({
       date: todayDate.getDate(),
       month: todayDate.getMonth(),
@@ -39,9 +46,35 @@ const MCalendarComponent = () => {
     setSelectedDate(todayDateString);
     setCurrentDate(new Date(todayDate.getFullYear(), todayDate.getMonth(), 1));
     setTask(isShowTodayDate);
-  };
+  }, [todayDate, todayDateString, setTargetDate, setSelectedDate, setCurrentDate, setTask, isShowTodayDate]);
 
-
+  const renderTasks = useMemo(() => {
+    const list = selectedDate
+      ? selectedDate === todayDateString
+        ? isShowTodayDate
+        : showTask
+      : isShowTodayDate;
+  
+    return list.map((ele, index) => (
+      <li
+        key={index}
+        className={`w-full px-2 my-2 grid grid-cols-[0.05fr_1.9fr] gap-3 items-center rounded border border-zinc-700 bg-zinc-900 text-white hover:bg-zinc-800 
+        text-base sm:text-lg md:text-xl py-2 sm:py-3`}
+      >
+        <div
+          className={`w-full h-full rounded ${
+            ele.priority === "High"
+              ? "bg-red-500"
+              : ele.priority === "Moderate"
+              ? "bg-yellow-500"
+              : "bg-green-400"
+          }`}
+        ></div>
+        {ele.content}
+      </li>
+    ));
+  }, [selectedDate, todayDateString, isShowTodayDate, showTask]);
+  
   return (
     <>
       {isMobile && (
@@ -142,7 +175,7 @@ const MCalendarComponent = () => {
 
       <div
         className={`h-full w-full border-t border-t-gray-700 text-white mb-1 ${
-          !isDataAvilable
+          !isDataAvailable
             ? "grid items-start grid-rows-[0.2rem_1.8fr]"
             : isMobile ? 'max-h-[25rem]':"overflow-y-auto scrollEffect max-h-[25rem]"
         }`}
@@ -151,32 +184,8 @@ const MCalendarComponent = () => {
           Selected Date: {selectedDate ? selectedDate : "Today"}
         </p>
 
-        {isDataAvilable ? (
-          <ul>
-            {(selectedDate
-              ? selectedDate === todayDateString
-                ? isShowTodayDate
-                : showTask
-              : isShowTodayDate
-            ).map((ele, index) => (
-              <li
-                key={index}
-                className={`w-full px-2 my-2 grid grid-cols-[0.05fr_1.9fr] gap-3 items-center rounded border border-zinc-700 bg-zinc-900 text-white hover:bg-zinc-800 
-                text-base sm:text-lg md:text-xl py-2 sm:py-3`}
-              >
-                <div
-                  className={`w-full h-full rounded ${
-                    ele.priority === "High"
-                      ? "bg-red-500"
-                      : ele.priority === "Moderate"
-                      ? "bg-yellow-500"
-                      : "bg-green-400"
-                  }`}
-                ></div>
-                {ele.content}
-              </li>
-            ))}
-          </ul>
+        {isDataAvailable ? (
+          <ul>{renderTasks}</ul>
         ) : (
           <div className="flex flex-col items-center justify-center text-center h-full w-full text-gray-400 text-lg">
             <p>No tasks available for the selected date.</p>
