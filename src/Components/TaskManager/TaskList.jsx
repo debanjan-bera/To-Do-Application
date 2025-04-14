@@ -1,20 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { ToDoContext } from "../Contexts/CreateContext";
-import  {ContextMenuPopUp}  from "../Components/Functions/Models/ContextMenuBar.jsx";
+// import { ToDoContext } from "../Contexts/CreateContext";
+import  {ContextMenuPopUp}  from "../Functions/Models/ContextMenuBar.jsx";
 import { useAnimate, usePresence, motion } from "framer-motion";
 import {
   toggleChekedStatus,
   toggleTaskStatus,
-} from "../Backend/TaskFunctionality.js";
+} from "../../Backend/TaskFunctionality.js";
 import PropTypes from "prop-types";
-// import { GrFavorite } from "react-icons/gr";
-// import { MdFavorite } from "react-icons/md";
-import useIsMobile from "../Components/Functions/UseIsMobile.jsx";
+
+// import useIsMobile from "../Components/Functions/UseIsMobile.jsx";
 import { FiClock } from "react-icons/fi";
 import { IoStarOutline } from "react-icons/io5";
 import { IoStar } from "react-icons/io5";
-export const TaskListHello = ({ activeTask }) => {
+import { ToDoContext } from "../../Contexts/CreateContext.jsx";
+import useIsMobile from "../Functions/UseIsMobile.jsx";
+export const TaskList = ({ activeTask }) => {
   const {
     taskArr,
     setTaskArr,
@@ -170,6 +171,6 @@ export const TaskListHello = ({ activeTask }) => {
   );
 };
 
-TaskListHello.propTypes = {
+TaskList.propTypes = {
   activeTask: PropTypes.object.isRequired,
 };
