@@ -1,5 +1,3 @@
-// import { useContext } from "react";
-
 import { motion, AnimatePresence } from "framer-motion";
 import {FiTrash2, FiEdit2, FiAlertCircle } from "react-icons/fi";
 import { handleDeleteTask } from "../../../Backend/TaskFunctionality";
@@ -7,13 +5,12 @@ import { FormDataContext, ToDoContext } from "../../../Contexts/CreateContext";
 import { useContext } from "react";
 import PropTypes from "prop-types";
 import { GrCompliance } from "react-icons/gr";
-import useIsMobile from "../UseIsMobile";
+import useResponsive from "../../../Hooks/UseResponsive";
 
 export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
     const { taskArr,setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId} = useContext(ToDoContext);
-
     const {  setInfoOpen } = useContext(FormDataContext);
-    const isMobile = useIsMobile(570); // Check mobile screen width
+    const isMobile = useResponsive(570); // Check mobile screen width
 
     const infoModelOpen = ()=>{
          if(id === isShowInfoId){

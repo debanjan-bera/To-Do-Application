@@ -3,13 +3,13 @@ import { GrHomeRounded } from "react-icons/gr"
 import { LuCalendarDays } from "react-icons/lu"
 import { MdOutlineAddTask } from "react-icons/md"
 import { NavLink } from "react-router-dom"
-import useIsMobile from "../../Functions/UseIsMobile"
 import { MobileAddTaskButton } from "../../Functions/Button/AddButton"
 import { useContext } from "react"
 import { DateContext, ToDoContext } from "../../../Contexts/CreateContext"
+import useResponsive from "../../../Hooks/UseResponsive"
 
 export const Footer = ()=>{
-  const isMobile = useIsMobile(670);
+  const isMobile = useResponsive(670);
 
   const { handleAddTaskWindow,taskArr} = useContext(ToDoContext);
   const { setSelectedDate,setCurrentDate,setTargetDate,setTask,todayDate,todayDateString} = useContext(DateContext)

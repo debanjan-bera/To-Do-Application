@@ -1,18 +1,15 @@
 import { useContext, useEffect} from "react";
 import { IoMdArrowDropleftCircle, IoMdArrowDroprightCircle } from "react-icons/io";
-// import { nextMonth, prevMonth } from "../../../Backend/DateMethod";
 import { DateContext, ToDoContext } from "../../../Contexts/CreateContext";
-import useIsMobile from "../../Functions/UseIsMobile";
-// import { MobileAddTaskButton } from "../../Functions/Button/AddButton";
-
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
+import useResponsive from "../../../Hooks/UseResponsive";
 export const CalendarComponent = () => {
   const {setCurrentDate,isSunday, setSunday,selectedDate, setSelectedDate,targetDate, setTargetDate,showTask, setTask,isMonth, setMonth,todayDate,todayDateString,listOfMonths,year,month,nextMonth,
     prevMonth} = useContext(DateContext)
   const { taskArr,windowOpen,setActiveMenuId} = useContext(ToDoContext);
-  const isTablet = useIsMobile(930);
-  const isMobile = useIsMobile(570); // Check mobile screen width
+  const isTablet = useResponsive(930);
+  const isMobile = useResponsive(570); // Check mobile screen width
 
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
