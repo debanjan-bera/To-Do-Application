@@ -2,9 +2,9 @@ import { memo, useContext, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import { ToDoContext } from "../../Contexts/CreateContext";
 import { TaskList } from "./TaskList";
-import useIsMobile from "../Functions/UseIsMobile";
 import { BsArrowDownCircle } from "react-icons/bs";
 import PropTypes from "prop-types";
+import useResponsive from "../../Hooks/UseResponsive";
 
 const TaskSection = ({ isCompleted }) => {
   const {
@@ -75,7 +75,7 @@ const TaskSection = ({ isCompleted }) => {
     );
   };
 
-  const isMobile = useIsMobile(670); // Check if it's the login page
+  const isMobile = useResponsive(670); // Check if it's the login page
 
   return (
     <div

@@ -1,11 +1,11 @@
 import { GrNotification } from "react-icons/gr";
 import { DateAndTime } from "../../Functions/Date";
-import useIsMobile from "../../Functions/UseIsMobile";
 import { RiAccountCircleLine } from "react-icons/ri";
+import useResponsive from "../../../Hooks/UseResponsive";
 
 export const Header = () => {
-    const isMobile = useIsMobile(670);
-    const isTablet = useIsMobile(930);
+    const isMobile = useResponsive(670);
+    const isTablet = useResponsive(930);
   return (
     <header
       className={`w-full px-4 border-b-[0.02rem]  border-neutral-700 ${

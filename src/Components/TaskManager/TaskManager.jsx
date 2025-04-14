@@ -1,35 +1,19 @@
 import { memo, useContext, useEffect } from "react";
 import "../../App.css";
 import PropTypes from "prop-types";
-// import {  ToDoContext } from "../Contexts/CreateContext";
-
 import { AnimatePresence } from "framer-motion";
-// import { AddTaskForm } from "../To-Do/InputBox.jsx";
-
-// import { setLocalStorage } from "../Backend/LocalStorage";
-// import { BsArrowDownCircle } from "react-icons/bs";
-// import { TaskListHello } from "../Utilities/TaskList.jsx";
-// import useIsMobile from "../Components/Functions/UseIsMobile.jsx";
-
 import TaskHeader from "./TaskHeader.jsx";
 import TaskCategory from "./TaskCategory.jsx";
-// import TaskList from "./TaskSection.jsx";
 import TaskSection from "./TaskSection.jsx";
 import { ToDoContext } from "../../Contexts/CreateContext.jsx";
-import useIsMobile from "../Functions/UseIsMobile.jsx";
 import { AddTaskForm } from "../../To-Do/InputBox.jsx";
 import { setLocalStorage } from "../../Backend/LocalStorage.js";
+import useResponsive from "../../Hooks/UseResponsive.jsx";
 
 const TaskManager = ({ isCompletedDashBoard }) => {
-  const {
-    taskArr,
-    windowOpen,
-    filteredData,
-    setActiveMenuId,
-  } = useContext(ToDoContext);
-//   const [showData, setShowCompleted] = useState(false);
+  const {taskArr,windowOpen,filteredData,setActiveMenuId,} = useContext(ToDoContext);
 
-  const isMobile = useIsMobile(670); // Check if it's the login page
+  const isMobile = useResponsive(670); // Check if it's the login page
 
 
   

@@ -1,20 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-// import { ToDoContext } from "../Contexts/CreateContext";
 import  {ContextMenuPopUp}  from "../Functions/Models/ContextMenuBar.jsx";
 import { useAnimate, usePresence, motion } from "framer-motion";
-import {
-  toggleChekedStatus,
-  toggleTaskStatus,
-} from "../../Backend/TaskFunctionality.js";
+import {toggleChekedStatus,toggleTaskStatus} from "../../Backend/TaskFunctionality.js";
 import PropTypes from "prop-types";
-
-// import useIsMobile from "../Components/Functions/UseIsMobile.jsx";
 import { FiClock } from "react-icons/fi";
 import { IoStarOutline } from "react-icons/io5";
 import { IoStar } from "react-icons/io5";
 import { ToDoContext } from "../../Contexts/CreateContext.jsx";
-import useIsMobile from "../Functions/UseIsMobile.jsx";
+import useResponsive from "../../Hooks/UseResponsive.jsx";
 export const TaskList = ({ activeTask }) => {
   const {
     taskArr,
@@ -24,7 +18,7 @@ export const TaskList = ({ activeTask }) => {
     activeMenuId,
     setActiveMenuId,
   } = useContext(ToDoContext);
-  const isMobile = useIsMobile(570); // Check mobile screen width
+  const isMobile = useResponsive(570); // Check mobile screen width
 
   const { id, content, checked, createdDateForform, favourite, priority} = activeTask;
   const [isPresent, safeToRemove] = usePresence();

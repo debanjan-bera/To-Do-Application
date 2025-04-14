@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import useIsMobile from "../Functions/UseIsMobile";
 import { FormDataContext, ToDoContext } from "../../Contexts/CreateContext";
 import { BiFilterAlt } from "react-icons/bi";
+import useResponsive from "../../Hooks/UseResponsive";
 
 const TaskCategory = () => {
-  const isMobile = useIsMobile(670);
+  const isMobile = useResponsive(670);
   const {
     taskArr,
   } = useContext(ToDoContext);

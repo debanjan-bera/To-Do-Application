@@ -4,7 +4,9 @@ import {
   IoMdArrowDroprightCircle,
 } from "react-icons/io";
 import { DateContext, ToDoContext } from "../../../Contexts/CreateContext";
-import useIsMobile from "../../Functions/UseIsMobile";
+
+import useResponsive from "../../../Hooks/UseResponsive";
+
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
 
@@ -32,9 +34,9 @@ const MCalendarComponent = () => {
 
   const { taskArr, windowOpen, setActiveMenuId } = useContext(ToDoContext);
 
-  const isTablet = useIsMobile(930);
-  const isMobile = useIsMobile(570);
-  const isLargeMobile = useIsMobile(670);
+  const isTablet = useResponsive(930);
+  const isMobile = useResponsive(570);
+  const isLargeMobile = useResponsive(670);
 
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const firstDay = new Date(year, month, 1).getDay();

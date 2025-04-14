@@ -6,20 +6,20 @@ import { UserFormData } from "../Contexts/AddititonalData";
 import  {CalendarComponent}  from "../Components/layout/Calendar/Calendar";
 import { AboutModel } from "../Components/Functions/Models/TaskAboutModel";
 import "../App.css";
-import useIsMobile from "../Components/Functions/UseIsMobile";
 import { SideBar } from "../Components/layout/SideBar/TodoSidebar";
 
 import Login from "../Components/Login";
 import { Header } from "../Components/layout/Header/Header";
 import { Footer } from "../Components/layout/Footer/Footer";
 import { DateManagerProvider } from "../Contexts/DateManagement";
+import useResponsive from "../Hooks/UseResponsive";
 export const DashBoard = () => {
   const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
   const isLoginPage = location.pathname === "/login"; // Check if it's the login page
   const sideBarClass = isSideBar ? "isSideBarDashBoard" : "dashboard";
-  const isMobile = useIsMobile(670);
-  const isTablet = useIsMobile(930);
+  const isMobile = useResponsive(670);
+  const isTablet = useResponsive(930);
   const isCalendarActive = location.pathname === "/calendar";
   if (isLoginPage) return <Login/>;
 

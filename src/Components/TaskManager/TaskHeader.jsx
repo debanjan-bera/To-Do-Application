@@ -1,5 +1,5 @@
 import { memo, useContext, useEffect } from "react";
-import useIsMobile from "../Functions/UseIsMobile";
+import useResponsive from "../../Hooks/UseResponsive";
 import { RxDashboard } from "react-icons/rx";
 import { PiBookBookmarkBold } from "react-icons/pi";
 import { ClearAllTask } from "../Functions/Button/ClearTodo";
@@ -15,8 +15,8 @@ const TaskHeader = ({isCompleted}) => {
     handleAddTaskWindow,
   } = useContext(ToDoContext);
   
-  const isTablet = useIsMobile(960);
-  const isMobile = useIsMobile(670);
+  const isTablet = useResponsive(960);
+  const isMobile = useResponsive(670);
   const pendingTasks = taskArr.length;
   const completedTasks = filteredData.length;
   const totalTasks = pendingTasks + completedTasks;
