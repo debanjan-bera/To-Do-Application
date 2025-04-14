@@ -16,7 +16,9 @@ import useResponsive from "../Hooks/UseResponsive";
 export const DashBoard = () => {
   const [isSideBar, setSideBar] = useState(false);
   const location = useLocation(); // Get current route
-  const isLoginPage = location.pathname === "/login"; // Check if it's the login page
+  const isLoginPage = location.pathname === "/login";
+  const isCalendar = location.pathname === "/calendar"; // Check if it's the login page
+   // Check if it's the login page
   const sideBarClass = isSideBar ? "isSideBarDashBoard" : "dashboard";
   const isMobile = useResponsive(670);
   const isTablet = useResponsive(930);
@@ -27,24 +29,14 @@ export const DashBoard = () => {
     <DataProvider>
       <DateManagerProvider>
       <UserFormData>
-        <section
-          className={`h-dvh w-dvw bg-[#171717] grid ${
-            isMobile
-              ? "grid-cols-1 "
-              : isTablet
-              ? "grid-cols-[12rem_3fr]"
-              : "grid-cols-[12rem_3fr_20rem]"
-          } ${
-            isMobile
-              ? "grid-rows-[0.28fr_3fr_0.25fr]"
-              : "grid-rows-[0.35fr_3fr_0.2fr]"
-          } `}
-        >
+        <section className={`h-dvh w-dvw bg-[#171717] grid ${
+            isMobile ? "grid-cols-1 " : isTablet ? "grid-cols-[12rem_3fr]" : "grid-cols-[12rem_3fr_20rem]"} 
+            ${ isMobile ? "grid-rows-[0.28fr_3fr_0.25fr]" : "grid-rows-[0.35fr_3fr_0.2fr]"}`} >
           <Header/>
 
           {!isMobile && <SideBar setSideBar={setSideBar} />}
           <section
-            className={`w-full h-full bg-[#000000]   ${
+            className={`w-full h-full bg-[#0E0E10] ${isCalendar&& 'px-4'} ${
               isMobile
                 ? "col-start-1 col-end-2 row-start-2 row-end-3 overflow-hidden"
                 : " col-start-2 col-end-3 row-start-2 row-end-4"
@@ -55,7 +47,7 @@ export const DashBoard = () => {
 
           {isMobile && <Footer/>}
           {!isTablet && (
-            <section className=" w-full h-full bg-[#121212] border relative border-zinc-700  col-start-3 col-end-4 row-start-2 row-end-4 flex flex-col items-center">
+            <section className={`w-full h-full bg-[#121212] border relative border-zinc-700  col-start-3 col-end-4 row-start-2 row-end-4 flex flex-col items-center`}>
               <CalendarComponent /> <AboutModel />
             </section>
           )}
