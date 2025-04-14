@@ -36,7 +36,7 @@ const TaskCategory = () => {
         <span className="text-xl">
           <BiFilterAlt />
         </span>{" "}
-        <span className="px-2 py-1 text-xs text-white absolute top-[-1rem] right-[-0.4rem] bg-blue-600 rounded-full aspect-square text-center">
+        <span className="hidden px-2 py-1 text-xs text-white absolute top-[-1rem] right-[-0.4rem] bg-blue-600 rounded-full aspect-square text-center">
           1
         </span>
       </div>

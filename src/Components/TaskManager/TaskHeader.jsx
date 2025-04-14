@@ -62,12 +62,12 @@ const TaskHeader = ({isCompleted}) => {
         } row-start-2 row-end-3`}
       >
         <h1 className="text-2xl py-1 font-bold">
-          My Task {`(${completedTasks} / ${totalTasks})`}
+          <span className="text-white/50">My</span> Tasks 
         </h1>
         {progressPercent > 0 && (
-          <div className="w-full text-lg text-zinc-400 flex justify-between">
-            <span className="">Progreesing </span>{" "}
-            <span>{`${progressPercent}%`}</span>
+          <div className="w-full flex items-end justify-between">
+            <span className="text-3xl font-bold">{`${progressPercent}%`}</span>{" "}
+            <span className="text-sm text-zinc-400 font-light">{`${completedTasks} / ${totalTasks} done`}</span>
           </div>
         )}
         <div className="w-full h-4 mt-2 border border-zinc-700 bg-zinc-900 rounded-2xl relative overflow-hidden">

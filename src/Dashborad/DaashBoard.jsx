@@ -36,7 +36,7 @@ export const DashBoard = () => {
 
           {!isMobile && <SideBar setSideBar={setSideBar} />}
           <section
-            className={`w-full h-full bg-[#0E0E10] ${isCalendar&& 'px-4'} ${
+            className={`w-full h-full ${isMobile? 'bg-[#111111]' : 'bg-[#0E0E10]'} ${isCalendar&& 'px-4'} ${(isCalendar&&isMobile) && 'overflow-y-auto ' } ${
               isMobile
                 ? "col-start-1 col-end-2 row-start-2 row-end-3 overflow-hidden"
                 : " col-start-2 col-end-3 row-start-2 row-end-4"

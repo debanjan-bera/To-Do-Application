@@ -8,7 +8,7 @@ export const Header = () => {
     const isTablet = useResponsive(930);
   return (
     <header
-      className={`w-full px-4 border-b-[0.02rem]  border-neutral-700 ${
+      className={`w-full ${isMobile&&'bg-[#111111] border-0 border-neutral-600/30'} px-3 border-b-[0.02rem]  border-neutral-700 ${
         isMobile
           ? "col-start-1 col-end-2"
           : "col-start-2 col-end-4 row-start-1 row-end-2"
@@ -23,7 +23,7 @@ export const Header = () => {
             </p>
           </>
         ) : (
-          "TaskSavvy"
+          "Hello Debanajan"
         )}
       </div>
 

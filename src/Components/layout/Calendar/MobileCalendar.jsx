@@ -142,9 +142,9 @@ const MCalendarComponent = () => {
 
       <div
         className={`h-full w-full border-t border-t-gray-700 text-white mb-1 ${
-          isDataAvilable
-            ? "overflow-y-auto scrollEffect max-h-[25rem]"
-            : "grid items-start grid-rows-[0.2rem_1.8fr]"
+          !isDataAvilable
+            ? "grid items-start grid-rows-[0.2rem_1.8fr]"
+            : isMobile ? 'max-h-[25rem]':"overflow-y-auto scrollEffect max-h-[25rem]"
         }`}
       >
         <p className="pt-2 text-base sm:text-lg">
