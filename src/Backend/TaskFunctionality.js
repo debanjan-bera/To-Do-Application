@@ -11,7 +11,7 @@ export const toggleTaskStatus = (id,taskData,setTaskData,setFilteredData) => {
   const updatedTaskData = taskData.map((task) => task.id === id ? { ...task, checked: !task.checked } : task);
   const checkedTask = updatedTaskData.find((task) => task.id === id);
   setTaskData(()=>updatedTaskData.filter((task) => task.id !== id));
-  setTimeout(()=>{if (checkedTask?.checked) setFilteredData((prev) => [...prev, checkedTask])},1300);
+  setTimeout(()=>{if (checkedTask?.checked) setFilteredData((prev) => [...prev, checkedTask])},1200);
 }
 export const toggleChekedStatus = (event,filteredTasks,id,updateFilteredTasks,updatePrimaryTasks) => {
   if (!event.target.checked) return;
@@ -25,7 +25,12 @@ export const toggleChekedStatus = (event,filteredTasks,id,updateFilteredTasks,up
       ...prev,
       { ...taskToUpdate, checked: !taskToUpdate.checked },
     ]);
-  }, 1300);
+  }, 1200);
      
 
   };
+
+
+export const editTask = ()=>{
+  
+}

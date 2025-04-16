@@ -8,15 +8,16 @@ import "./todo.css";
 
 export const AddTaskForm = () => {
   const modalRef = useRef(null);
+  const { taskArr, setTaskArr, setWindowClose, setmobileAddButton,isEditTask,setTaskEdit} = useContext(ToDoContext);
   const {
     register,
     formState: { errors },
     handleSubmit,
-    watch
-  } = useForm({ defaultValues: { group: "" } });
+    watch,
+    reset
+  } = useForm({ defaultValues: isEditTask || {content: "", group: "", priority: "" , description: ""} });
 
-  const { taskArr, setTaskArr, setWindowClose, setmobileAddButton } = useContext(ToDoContext);
-   const {createdDate} = useContext(DateContext)
+  const {createdDate} = useContext(DateContext)
   const { groupData } = useContext(FormDataContext);
   const controls = useDragControls();
 
@@ -44,27 +45,47 @@ export const AddTaskForm = () => {
   ];
   
   const onSubmit = (data) => {
-    // If "Others" is selected, replace group with custom input
     const finalData = {
       ...data,
       group: selectedGroup === "Others" ? customGroup : selectedGroup,
-      createdDateForform : createdDate,
+      createdDateForform: isEditTask?.createdDateForform || createdDate,
+      favourite: isEditTask?.favourite || false,
+      checked: isEditTask?.checked || false,
+      status: isEditTask?.status || 'Pending',
     };
+    if(isEditTask){
+      const updatedTask = taskArr.map((curTask)=> curTask.id === isEditTask.id? {...finalData,id:isEditTask.id} : curTask)
+      setTaskArr(updatedTask)
+    }
+    else handleFromSubmit( finalData, taskArr, setTaskArr);
 
-    handleFromSubmit( finalData, taskArr, setTaskArr, setWindowClose, setmobileAddButton);
+    setWindowClose(false);
+    setmobileAddButton(false);
   };
+  useEffect(() => {
+    if (isEditTask) {
+      reset({
+        content: isEditTask.content,
+        description: isEditTask.description,
+        priority: isEditTask.priority,
+      });
+      setSelectedGroup(isEditTask.group === "Others" ? "Others" : isEditTask.group);
+      setCustomGroup(isEditTask.group === "Others" ? isEditTask.group : "");
+    }
+  }, [isEditTask, reset]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
         setWindowClose(false);
         setmobileAddButton(false)
+        setTaskEdit(null)
       }
     };
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [setWindowClose,setmobileAddButton]);
+  }, [setWindowClose,setmobileAddButton,setTaskEdit]);
 
   return (
     <section className="register-cont w-lvw h-dvh absolute top-0 left-0 bg-black/70 z-10 text-black flex items-center justify-center">
@@ -169,7 +190,7 @@ export const AddTaskForm = () => {
           <button
             type="button"
             className="w-24 h-10 my-2 mr-2 bg-white border-2 border-black text-lg font-semibold"
-            onClick={() => handleFormCancel(setWindowClose, setmobileAddButton)}
+            onClick={() => handleFormCancel(setWindowClose, setmobileAddButton,setTaskEdit)}
           >
             Cancel
           </button>
@@ -177,7 +198,7 @@ export const AddTaskForm = () => {
             type="submit"
             className="button-submit w-24 h-10 bg-black my-2 text-white text-lg font-semibold border-2 border-black cursor-pointer"
           >
-            Save
+            {isEditTask? 'Edit' : 'Save'}
           </button>
         </div>
       </motion.form>

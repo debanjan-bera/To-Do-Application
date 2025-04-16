@@ -58,7 +58,3 @@ TaskManager.propTypes = {
 };
 
 export default memo(TaskManager);
-
-
-
-

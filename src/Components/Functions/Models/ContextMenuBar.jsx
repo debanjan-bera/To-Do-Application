@@ -2,17 +2,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import {FiTrash2, FiEdit2, FiAlertCircle } from "react-icons/fi";
 import { handleDeleteTask } from "../../../Backend/TaskFunctionality";
 import { FormDataContext, ToDoContext } from "../../../Contexts/CreateContext";
-import { useContext } from "react";
+import { memo, useCallback, useContext } from "react";
 import PropTypes from "prop-types";
 import { GrCompliance } from "react-icons/gr";
 import useResponsive from "../../../Hooks/UseResponsive";
 
-export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
-    const { taskArr,setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId} = useContext(ToDoContext);
+const ContextMenuPopUp = ({id,curTask,pendingTask,isMenuOpen})=>{
+    const { taskArr,setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId,isTaskEdit,setTaskEdit,windowOpen, setWindowClose} = useContext(ToDoContext);
     const {  setInfoOpen } = useContext(FormDataContext);
     const isMobile = useResponsive(570); // Check mobile screen width
 
-    const infoModelOpen = ()=>{
+    const infoModelOpen = useCallback(()=>{
          if(id === isShowInfoId){
             setInfoOpen(false)
             setInfoId(null)
@@ -21,7 +21,11 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
           setInfoOpen(true)
           setInfoId(id)
         }
-    }
+    },[id,isShowInfoId,setInfoOpen,setInfoId])
+
+
+
+
     return(
         <>
         <AnimatePresence>
@@ -33,7 +37,8 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
               <li className="px-3 py-2 flex items-center gap-2 hover:bg-zinc-700 cursor-pointer"
                 onClick={() => {
                   console.log(`Editing Task ${id}`);
-                  setInfoId(id)
+                  setTaskEdit(curTask)
+                  setWindowClose(!windowOpen)
                   }}>
                 <FiEdit2 /> Edit
               </li>
@@ -62,5 +67,7 @@ export const ContextMenuPopUp = ({id,pendingTask,isMenuOpen})=>{
 ContextMenuPopUp.propTypes = {
   pendingTask: PropTypes.bool.isRequired,
   isMenuOpen:  PropTypes.bool.isRequired,
+  curTask: PropTypes.object.isRequired,
   id: PropTypes.string,
 };
+export default memo(ContextMenuPopUp)

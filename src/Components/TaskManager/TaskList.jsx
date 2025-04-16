@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import  {ContextMenuPopUp}  from "../Functions/Models/ContextMenuBar.jsx";
+import  ContextMenuPopUp  from "../Functions/Models/ContextMenuBar.jsx";
 import { useAnimate, usePresence, motion } from "framer-motion";
 import {toggleChekedStatus,toggleTaskStatus} from "../../Backend/TaskFunctionality.js";
 import PropTypes from "prop-types";
@@ -156,6 +156,7 @@ export const TaskList = ({ activeTask }) => {
           {/* Context Menu */}
           <ContextMenuPopUp
             id={id}
+            curTask = {activeTask}
             pendingTask={checked}
             isMenuOpen={isMenuOpen}
           />

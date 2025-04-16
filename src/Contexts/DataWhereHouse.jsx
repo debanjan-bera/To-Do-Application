@@ -7,6 +7,7 @@ export const DataProvider = ({ children }) => {
   const [filteredData, setFilteredData] = useState(() => getFilteredLocalStorage());
   const [windowOpen, setWindowClose] = useState(false);
   const [activeMenuId, setActiveMenuId] = useState(null);
+  const [isEditTask,setTaskEdit] = useState(null);
   const [mobileAddButton,setmobileAddButton] = useState(false)
   const [isShowInfoId,setInfoId] = useState(null)
   const handleAddTaskWindow = useCallback(() => {
@@ -14,7 +15,7 @@ export const DataProvider = ({ children }) => {
       }, [setWindowClose]);
 
   return (
-    <ToDoContext.Provider value={{taskArr,setTaskArr,windowOpen,setWindowClose,filteredData,setFilteredData,activeMenuId, setActiveMenuId,handleAddTaskWindow,mobileAddButton,setmobileAddButton,isShowInfoId,setInfoId}}>
+    <ToDoContext.Provider value={{taskArr,setTaskArr,isEditTask,setTaskEdit,windowOpen,setWindowClose,filteredData,setFilteredData,activeMenuId, setActiveMenuId,handleAddTaskWindow,mobileAddButton,setmobileAddButton,isShowInfoId,setInfoId}}>
       {children}
     </ToDoContext.Provider>
   );
