@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import  MCalendarComponent  from '../Components/layout/Calendar/MobileCalendar'
 import  DashBoard  from '../Dashborad/DaashBoard'
 import  TaskManager  from '../Components/TaskManager/TaskManager'
+import ReDahBoard from '../Dashborad/ReDahBoard';
 
  function RouterCompo() {  
   const router = createBrowserRouter([
@@ -15,6 +16,10 @@ import  TaskManager  from '../Components/TaskManager/TaskManager'
         { path: '*', element: <TaskManager isCompletedDashBoard={false}/> } // Redirect unknown routes to home
       ],
     },
+    {
+      path: '/re',
+      element: <ReDahBoard/>
+    }
   ]);
   
 return <RouterProvider router={router}/>

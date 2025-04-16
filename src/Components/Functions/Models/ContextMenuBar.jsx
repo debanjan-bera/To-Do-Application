@@ -8,7 +8,7 @@ import { GrCompliance } from "react-icons/gr";
 import useResponsive from "../../../Hooks/UseResponsive";
 
 const ContextMenuPopUp = ({id,curTask,pendingTask,isMenuOpen})=>{
-    const { taskArr,setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId,isTaskEdit,setTaskEdit,windowOpen, setWindowClose} = useContext(ToDoContext);
+    const { taskArr,setTaskArr, isShowInfoId, setFilteredData, setActiveMenuId, setInfoId,setTaskEdit,windowOpen, setWindowClose} = useContext(ToDoContext);
     const {  setInfoOpen } = useContext(FormDataContext);
     const isMobile = useResponsive(570); // Check mobile screen width
 
