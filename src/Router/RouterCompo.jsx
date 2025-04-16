@@ -1,6 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import  MCalendarComponent  from '../Components/layout/Calendar/MobileCalendar'
 import  DashBoard  from '../Dashborad/DaashBoard'
+import  ContributionGraph  from '../Dashborad/Contribution'
+
 import  TaskManager  from '../Components/TaskManager/TaskManager'
 import ReDahBoard from '../Dashborad/ReDahBoard';
 
@@ -19,6 +21,10 @@ import ReDahBoard from '../Dashborad/ReDahBoard';
     {
       path: '/re',
       element: <ReDahBoard/>
+    },
+    {
+      path: '/sa',
+      element: <ContributionGraph/>
     }
   ]);
   
