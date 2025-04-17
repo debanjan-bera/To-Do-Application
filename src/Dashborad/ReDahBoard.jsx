@@ -1,12 +1,12 @@
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useMemo } from "react";
 import useResponsive from "../Hooks/UseResponsive";
 import Header from "../Components/layout/Header/Header";
+import {  motion } from "framer-motion";
 
 
 const ReDashBoard = () => {
   const isSmallLaptop = useResponsive(1020);
   const isMediumDevice = useResponsive(767);
-  const [tasks,setTasks] = useState([])
 
 
   const today = new Date().toLocaleDateString("en-US", {
@@ -148,10 +148,6 @@ const ReDashBoard = () => {
       "createdDateForform": "17 April 2025"
     }
   ],[])
-  
-  useEffect(()=>{
-    setTasks(data)
-  },[setTasks,data])
 
   // const allGroups = [...new Set(data.map(task => task.group))];
   const selectedGroups = ["Music", "Personal"];
@@ -211,7 +207,16 @@ const ReDashBoard = () => {
   {sortedData.map((task) => {
     const { id, content, status,favourite, priority, group, createdDateForform } = task;
     return (
-      <li key={id} className="w-full flex flex-row gap-4 text-white bg-white/10 backdrop-blur-lg rounded-sm p-4 shadow-md space-y-2">
+      <motion.li key={id} className="w-full flex flex-row gap-4 text-white bg-white/10 backdrop-blur-lg rounded-sm p-4 shadow-md space-y-2"
+      initial={{ x:'-1.5rem',opacity: 0 }}
+      animate={{opacity: 1,x:0}}
+      // , scale: 1
+      transition={{
+                duration: 1,
+                delay: 0.2,
+                // ease: [0, 0.71, 0.2, 1.01],
+            }}
+      >
         <p className="text-lg font-bold">{content}</p>
         <p>{favourite ? "⭐ Favourite" : "♡ Not Favourite"}</p>
         <p>Priority: {priority}</p>
@@ -219,7 +224,7 @@ const ReDashBoard = () => {
         <p>Group: {group}</p>
         <p>{status}</p>
 
-      </li>
+      </motion.li>
     );
   })}
 </ul>
