@@ -11,6 +11,161 @@ const ReDashBoard = () => {
     day: "numeric",
     month: "long",
   });
+   const data = useMemo(()=>[
+    {
+      "id": "18/04/2025&16:13:06",
+      "content": "rf",
+      "group": "Music",
+      "description": "fff",
+      "favourite": false,
+      "checked": false,
+      "status": "Pending",
+      "priority": "Moderate",
+      "createdDateForform": "18 April 2025"
+    },
+    {
+      "id": "17/04/2025&16:15:07",
+      "content": "5",
+      "group": "Traveling",
+      "description": "5",
+      "favourite": false,
+      "checked": false,
+      "status": "Pending",
+      "priority": "High",
+      "createdDateForform": "17 April 2025"
+    },
+    {
+      "id": "18/04/2025&16:20:02",
+      "content": "ede",
+      "group": "Traveling",
+      "description": "4444",
+      "favourite": false,
+      "checked": false,
+      "status": "Pending",
+      "priority": "High",
+      "createdDateForform": "17 April 2025"
+    },
+    {
+      "id": "17/04/2025&16:22:11",
+      "content": "Learn guitar",
+      "group": "Music",
+      "description": "Practice chords",
+      "favourite": true,
+      "checked": false,
+      "status": "Pending",
+      "priority": "Moderate",
+      "createdDateForform": "17 April 2025"
+    },
+    {
+      "id": "17/04/2025&16:24:50",
+      "content": "Plan Goa trip",
+      "group": "Traveling",
+      "description": "Find hotels and flights",
+      "favourite": false,
+      "checked": false,
+      "status": "Pending",
+      "priority": "High",
+      "createdDateForform": "20 April 2025"
+    },
+    {
+      "id": "17/04/2025&16:26:34",
+      "content": "Buy groceries",
+      "group": "Personal",
+      "description": "Milk, Bread, Eggs",
+      "favourite": true,
+      "checked": true,
+      "status": "Completed",
+      "priority": "Low",
+      "createdDateForform": "17 April 2025"
+    },
+    {
+      "id": "19/04/2025&16:29:09",
+      "content": "Study React",
+      "group": "Education",
+      "description": "Hooks, Context API",
+      "favourite": false,
+      "checked": false,
+      "status": "Pending",
+      "priority": "High",
+      "createdDateForform": "21 April 2025"
+    },
+    {
+      "id": "27/04/2025&16:31:45",
+      "content": "Exercise",
+      "group": "Fitness",
+      "description": "Morning run",
+      "favourite": true,
+      "checked": false,
+      "status": "Pending",
+      "priority": "Moderate",
+      "createdDateForform": "17 April 2025"
+    },
+    {
+      "id": "17/04/2025&16:35:27",
+      "content": "Meditation",
+      "group": "Fitness",
+      "description": "15 min breathing",
+      "favourite": true,
+      "checked": true,
+      "status": "Completed",
+      "priority": "Low",
+      "createdDateForform": "20 April 2025"
+    },
+    {
+      "id": "17/04/2025&16:38:02",
+      "content": "Call mom",
+      "group": "Personal",
+      "description": "Weekly check-in",
+      "favourite": true,
+      "checked": false,
+      "status": "Pending",
+      "priority": "Moderate",
+      "createdDateForform": "17 April 2025"
+    },
+    {
+      "id": "17/04/2025&16:40:15",
+      "content": "Read a book",
+      "group": "Education",
+      "description": "Finish current novel",
+      "favourite": false,
+      "checked": false,
+      "status": "Pending",
+      "priority": "Low",
+      "createdDateForform": "17 April 2025"
+    },
+    {
+      "id": "19/04/2025&16:43:00",
+      "content": "Project work",
+      "group": "Work",
+      "description": "Frontend UI updates",
+      "favourite": true,
+      "checked": true,
+      "status": "Completed",
+      "priority": "High",
+      "createdDateForform": "17 April 2025"
+    }
+  ],[])
+  
+  useEffect(()=>{
+    setTasks((prev)=>[...prev,data])
+  },[setTasks,data])
+  const sortedData = [...data].sort((a, b) => {
+    // Step 1: Sort by createdDateForform (newest first)
+    const dateA = new Date(a.createdDateForform);
+    const dateB = new Date(b.createdDateForform);
+    if (dateA > dateB) return -1;
+    if (dateA < dateB) return 1;
+  
+    // Step 2: If dates are equal, sort by status (Pending first, Completed later)
+    if (a.status === "Pending" && b.status === "Completed") return -1;
+    if (a.status === "Completed" && b.status === "Pending") return 1;
+    
+    return 0; // otherwise keep same
+  });
+  
+  console.log(sortedData);
+  
+  
 
   return (
     <section className="min-h-screen w-full grid grid-cols-1 md:grid-cols-[11rem_2fr_20rem] grid-rows-[auto_1fr] bg-gradient-to-br from-[#1E1F23] to-[#0F1012] text-white font-sans">
