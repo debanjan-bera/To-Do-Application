@@ -1,10 +1,13 @@
-import { memo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import useResponsive from "../Hooks/UseResponsive";
 import Header from "../Components/layout/Header/Header";
+
 
 const ReDashBoard = () => {
   const isSmallLaptop = useResponsive(1020);
   const isMediumDevice = useResponsive(767);
+  const [tasks,setTasks] = useState([])
+
 
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "short",
@@ -136,7 +139,7 @@ const ReDashBoard = () => {
     {
       "id": "19/04/2025&16:43:00",
       "content": "Project work",
-      "group": "Work",
+      "group": "Music",
       "description": "Frontend UI updates",
       "favourite": true,
       "checked": true,
@@ -147,26 +150,36 @@ const ReDashBoard = () => {
   ],[])
   
   useEffect(()=>{
-    setTasks((prev)=>[...prev,data])
+    setTasks(data)
   },[setTasks,data])
-  const sortedData = [...data].sort((a, b) => {
-    // Step 1: Sort by createdDateForform (newest first)
+
+  // const allGroups = [...new Set(data.map(task => task.group))];
+  const selectedGroups = ["Music", "Personal"];
+  const selectedPriorities = ["High", "Moderate"];
+  const selectedFavourites = [true];
+  // Apply both filters for group and priority
+  const filteredTasks = data.filter(task => 
+    selectedGroups.includes(task.group) && selectedPriorities.includes(task.priority) &&  selectedFavourites.includes(task.favourite)
+  );
+  console.log(filteredTasks);
+  
+  // Sorting the filtered tasks
+  const sortedData = [...filteredTasks].sort((a, b) => {
+    // Step 1: Sort by status (Pending first, Completed later)
+    if (a.status === "Pending" && b.status === "Completed") return -1;
+    if (a.status === "Completed" && b.status === "Pending") return 1;
+  
+    // Step 2: If same status, sort by createdDateForform (newest first)
     const dateA = new Date(a.createdDateForform);
     const dateB = new Date(b.createdDateForform);
     if (dateA > dateB) return -1;
     if (dateA < dateB) return 1;
   
-    // Step 2: If dates are equal, sort by status (Pending first, Completed later)
-    if (a.status === "Pending" && b.status === "Completed") return -1;
-    if (a.status === "Completed" && b.status === "Pending") return 1;
-    
     return 0; // otherwise keep same
   });
   
   console.log(sortedData);
   
-  
-
   return (
     <section className="min-h-screen w-full grid grid-cols-1 md:grid-cols-[11rem_2fr_20rem] grid-rows-[auto_1fr] bg-gradient-to-br from-[#1E1F23] to-[#0F1012] text-white font-sans">
       
@@ -191,20 +204,28 @@ const ReDashBoard = () => {
 
       {/* Main */}
       <main className="col-span-3 md:col-start-2 col-end-4 lg:col-end-2 p-6 bg-[#15161A]/50 backdrop-blur-xl shadow-2xl rounded-xl flex flex-col gap-6">
-        <div className="p-4 bg-white/10 rounded-2xl text-2xl font-semibold shadow-inner">
-          🧊 Welcome to your beautifully glassy dashboard!
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {["🔔 Notifications", "📈 Insights", "⚡ Quick Access"].map((text) => (
-            <div
-              key={text}
-              className="p-6 bg-white/10 rounded-2xl backdrop-blur-md shadow-md hover:scale-[1.02] transition-all"
-            >
-              {text}
-            </div>
-          ))}
-        </div>
-      </main>
+  <div className="p-4 bg-white/10 rounded-2xl text-2xl font-semibold shadow-inner">
+    🧊 Welcome to your beautifully glassy dashboard!
+  </div>
+  <ul className="flex flex-col gap-3">
+  {sortedData.map((task) => {
+    const { id, content, status,favourite, priority, group, createdDateForform } = task;
+    return (
+      <li key={id} className="w-full flex flex-row gap-4 text-white bg-white/10 backdrop-blur-lg rounded-sm p-4 shadow-md space-y-2">
+        <p className="text-lg font-bold">{content}</p>
+        <p>{favourite ? "⭐ Favourite" : "♡ Not Favourite"}</p>
+        <p>Priority: {priority}</p>
+        <p>Created: {createdDateForform}</p>
+        <p>Group: {group}</p>
+        <p>{status}</p>
+
+      </li>
+    );
+  })}
+</ul>
+
+</main>
+
 
       {/* Sidebar C */}
       {!isSmallLaptop && (
@@ -232,6 +253,22 @@ const ReDashBoard = () => {
 
 export default memo(ReDashBoard);
 
+
+
+//18181b 36353f  5645ee     
+//000000 666666 e9ff47
+//0c0918
+//040415 
+//313131 bd44ff 0bcbd6 67d4fc
+
+
+//66bb4f ee92f5 ebb471 23262c
+
+//080808 1b1b1b f9f941 fefefe
+
+//090607 feabea ff9e66 ff7e7e
+
+//312f2e
 
 // import { memo } from "react";
 

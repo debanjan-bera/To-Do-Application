@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useCallback, useState } from "react";
 import { ToDoContext } from "./CreateContext";
-import { getFilteredLocalStorage, getLocalStorage } from "../Backend/LocalStorage";
+import { getLocalStorage } from "../Backend/LocalStorage";
 export const DataProvider = ({ children }) => {
-  const [taskArr, setTaskArr] = useState(() => getLocalStorage());
-  const [filteredData, setFilteredData] = useState(() => getFilteredLocalStorage());
+const [taskArr, setTaskArr] = useState(() => getLocalStorage('TodoItems'));
+  const [filteredData, setFilteredData] = useState(() => getLocalStorage('todoFilterItems'));
   const [windowOpen, setWindowClose] = useState(false);
   const [activeMenuId, setActiveMenuId] = useState(null);
   const [isEditTask,setTaskEdit] = useState(null);

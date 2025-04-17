@@ -25,10 +25,13 @@ const DashBoard = () => {
 
   const sideBarClass = useMemo(() => (isSideBar ? "isSideBarDashBoard" : "dashboard"), [isSideBar]);
 
+
+
   // ✅ Memoized setter
   const handleSidebarToggle = useCallback(() => setSideBar(prev => !prev), []);
 
   if (isLoginPage) return <Login />;
+
 
   return (
     <DataProvider>
