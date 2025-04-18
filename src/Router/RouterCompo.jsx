@@ -3,7 +3,7 @@ import  MCalendarComponent  from '../Components/layout/Calendar/MobileCalendar'
 import  DashBoard  from '../Dashborad/DaashBoard'
 import  ContributionGraph  from '../Dashborad/Contribution'
 
-import  TaskManager  from '../Components/TaskManager/TaskManager'
+import  TaskManager  from '../Pages/TaskManager/TaskManager'
 import ReDahBoard from '../Dashborad/ReDahBoard';
 
  function RouterCompo() {  

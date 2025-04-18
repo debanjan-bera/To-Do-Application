@@ -2,7 +2,7 @@ import { memo, useContext, useEffect } from "react";
 import useResponsive from "../../Hooks/UseResponsive";
 import { RxDashboard } from "react-icons/rx";
 import { PiBookBookmarkBold } from "react-icons/pi";
-import { ClearAllTask } from "../Functions/Button/ClearTodo";
+import { ClearAllTask } from "../../Components/Functions/Button/ClearTodo";
 import { ToDoContext } from "../../Contexts/CreateContext";
 import { handleFormCancel } from "../../Backend/FormFunctionality";
 import PropTypes from "prop-types";
