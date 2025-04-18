@@ -5,7 +5,7 @@ import  ContributionGraph  from '../Dashborad/Contribution'
 
 import  TaskManager  from '../Pages/TaskManager/TaskManager'
 import ReDahBoard from '../Dashborad/ReDahBoard';
-
+import NoFound from '../Pages/Error/404';
  function RouterCompo() {  
   const router = createBrowserRouter([
     {
@@ -15,7 +15,7 @@ import ReDahBoard from '../Dashborad/ReDahBoard';
         { path: '/', element: <TaskManager isCompletedDashBoard={false}/> },
         { path: '/completedTask', element: <TaskManager isCompletedDashBoard={true} /> },
         { path: '/calendar', element: <MCalendarComponent /> },
-        { path: '*', element: <TaskManager isCompletedDashBoard={false}/> } // Redirect unknown routes to home
+        // Redirect unknown routes to home
       ],
     },
     {
@@ -25,7 +25,8 @@ import ReDahBoard from '../Dashborad/ReDahBoard';
     {
       path: '/sa',
       element: <ContributionGraph/>
-    }
+    },
+    { path: '*', element: <NoFound/> }
   ]);
   
 return <RouterProvider router={router}/>
