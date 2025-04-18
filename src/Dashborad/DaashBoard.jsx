@@ -1,4 +1,4 @@
-import { memo, useState, useMemo, useCallback } from "react";
+import { memo, useMemo, } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { DataProvider } from "../Contexts/DataWhereHouse";
 import { UserFormData } from "../Contexts/AddititonalData";
@@ -13,7 +13,6 @@ import { DateManagerProvider } from "../Contexts/DateManagement";
 import useResponsive from "../Hooks/UseResponsive";
 
 const DashBoard = () => {
-  const [isSideBar, setSideBar] = useState(false);
   const location = useLocation();
 
   const isLoginPage = useMemo(() => location.pathname === "/login", [location.pathname]);
@@ -23,12 +22,7 @@ const DashBoard = () => {
   const isMobile = useResponsive(670);
   const isTablet = useResponsive(930);
 
-  const sideBarClass = useMemo(() => (isSideBar ? "isSideBarDashBoard" : "dashboard"), [isSideBar]);
 
-
-
-  // ✅ Memoized setter
-  const handleSidebarToggle = useCallback(() => setSideBar(prev => !prev), []);
 
   if (isLoginPage) return <Login />;
 
@@ -46,7 +40,7 @@ const DashBoard = () => {
           >
             <Header />
 
-            {!isMobile && <SideBar setSideBar={handleSidebarToggle} />}
+            {!isMobile && <SideBar />}
 
             <section
               className={`

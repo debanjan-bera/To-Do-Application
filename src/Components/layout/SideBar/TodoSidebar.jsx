@@ -24,5 +24,5 @@ export const SideBar = ({setSideBar})=>{
   );
 }
 SideBar.propTypes={
-  setSideBar: PropTypes.func.isRequired,
+  setSideBar: PropTypes.func,
 }

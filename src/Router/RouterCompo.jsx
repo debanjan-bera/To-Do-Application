@@ -15,7 +15,6 @@ import NoFound from '../Pages/Error/404';
         { path: '/', element: <TaskManager isCompletedDashBoard={false}/> },
         { path: '/completedTask', element: <TaskManager isCompletedDashBoard={true} /> },
         { path: '/calendar', element: <MCalendarComponent /> },
-        // Redirect unknown routes to home
       ],
     },
     {
