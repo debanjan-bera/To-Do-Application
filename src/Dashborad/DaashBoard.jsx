@@ -50,7 +50,7 @@ const DashBoard = () => {
 
             <section
               className={`
-                w-full h-full ${isMobile ? "bg-[#111111]" : "bg-[#0F0B18]"} 
+                w-full h-full ${isMobile ? "bg-[#111111]" : "bg-black"} 
                 ${isCalendar && "px-4"} 
                 ${(isCalendar && isMobile) && "overflow-y-auto"} 
                 ${isMobile

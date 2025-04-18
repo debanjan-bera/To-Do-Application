@@ -177,12 +177,13 @@ const ReDashBoard = () => {
   console.log(sortedData);
   
   return (
-    <section className="min-h-screen w-full grid grid-cols-1 md:grid-cols-[11rem_2fr_20rem] grid-rows-[auto_1fr] bg-gradient-to-br from-[#1E1F23] to-[#0F1012] text-white font-sans">
+    <section className="pb-3 pr-2 min-h-screen w-full grid grid-cols-1 md:grid-cols-[11rem_2fr_20rem] grid-rows-[auto_1fr] bg-[#040415] text-white font-sans">
       
       {/* Sidebar A */}
       {!isMediumDevice && (
-        <aside className="hidden md:flex flex-col gap-4 p-4 col-span-1 row-span-2 border-r border-zinc-700 bg-white/5 backdrop-blur-md shadow-inner">
+        <aside className="hidden md:flex flex-col gap-4 p-4 col-span-1 row-span-2  backdrop-blur-md shadow-inner">
           <nav className="flex flex-col gap-2 text-sm">
+            <p>Taskly</p>
             {["🏠 Home", "✅ Tasks", "📅 Calendar", "⚙️ Settings"].map((item) => (
               <button
                 key={item}
@@ -199,7 +200,7 @@ const ReDashBoard = () => {
       <Header />
 
       {/* Main */}
-      <main className="col-span-3 md:col-start-2 col-end-4 lg:col-end-2 p-6 bg-[#15161A]/50 backdrop-blur-xl shadow-2xl rounded-xl flex flex-col gap-6">
+      <main className="col-span-3 md:col-start-2 col-end-4 lg:col-end-2 p-6 bg-[#1A1825] backdrop-blur-xl shadow-2xl rounded-l-3xl flex flex-col gap-6">
   <div className="p-4 bg-white/10 rounded-2xl text-2xl font-semibold shadow-inner">
     🧊 Welcome to your beautifully glassy dashboard!
   </div>
@@ -207,7 +208,7 @@ const ReDashBoard = () => {
   {sortedData.map((task) => {
     const { id, content, status,favourite, priority, group, createdDateForform } = task;
     return (
-      <motion.li key={id} className="w-full flex flex-row gap-4 text-white bg-white/10 backdrop-blur-lg rounded-sm p-4 shadow-md space-y-2"
+      <motion.li key={id} className="w-full flex flex-row gap-4 text-white bg-white/10 backdrop-blur-xl rounded-md p-4 shadow-md space-y-2"
       initial={{ x:'-1.5rem',opacity: 0 }}
       animate={{opacity: 1,x:0}}
       // , scale: 1
@@ -234,9 +235,9 @@ const ReDashBoard = () => {
 
       {/* Sidebar C */}
       {!isSmallLaptop && (
-        <aside className="hidden lg:flex flex-col gap-4 p-3 border-l border-zinc-700 bg-white/5 backdrop-blur-md shadow-inner">
-          <div className="w-full flex flex-col gap-4 bg-gradient-to-br from-[#111115] to-[#0b0c0d] p-3 rounded-2xl text-sm">
-            <div className="w-full p-3 bg-white/10 rounded-md text-center text-base font-medium">
+        <aside className=" rounded-r-2xl hidden lg:flex flex-col gap-4 p-3 bg-[#1A1825] backdrop-blur-md shadow-inner">
+          <div className="w-full flex flex-col gap-4 bg-white/10 p-3 rounded-2xl text-sm">
+            <div className="w-full p-3 bg-black/40 rounded-md text-center text-base font-medium">
               {today}
             </div>
             <ul className="flex flex-col gap-2 text-center text-black">
@@ -260,20 +261,8 @@ export default memo(ReDashBoard);
 
 
 
-//18181b 36353f  5645ee     
-//000000 666666 e9ff47
-//0c0918
-//040415 
-//313131 bd44ff 0bcbd6 67d4fc
+// bg-[#1A1825] bg-[#0C091A] 
 
-
-//66bb4f ee92f5 ebb471 23262c
-
-//080808 1b1b1b f9f941 fefefe
-
-//090607 feabea ff9e66 ff7e7e
-
-//312f2e
 
 // import { memo } from "react";
 
