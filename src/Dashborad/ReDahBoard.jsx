@@ -272,7 +272,7 @@ const ReDashBoard = () => {
 
             {/* Main */}
             <main className="overflow-x-auto overflow-y-auto pb-0 w-full h-full bg-neutral-950/60 border rounded-none col-span-3 md:col-start-2 border-neutral-800 col-end-4 lg:col-end-2 p-3 backdrop-blur-xl shadow-xl flex flex-col gap-6 lg:rounded-lg">
-            <div className="overflow-x-auto">
+            <div className="w-full h-full overflow-x-auto">
             <div className="p-4 bg-white/5 rounded-2xl text-2xl font-semibold shadow-inner">
                 🧊 Welcome to your beautifully glassy dashboard!
               </div>
