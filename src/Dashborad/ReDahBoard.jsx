@@ -5,6 +5,7 @@ import Header from "../Components/layout/Header/Header";
 import { DataProvider } from "../Contexts/DataWhereHouse";
 import { DateManagerProvider } from "../Contexts/DateManagement";
 import { UserFormData } from "../Contexts/AddititonalData";
+import  MCalendarComponent  from "../Components/layout/Calendar/MobileCalendar";
 
 import { TaskReSection } from "./Home";
 
@@ -187,7 +188,7 @@ const ReDashBoard = () => {
     <DataProvider>
     <DateManagerProvider>
       <UserFormData>
-      <section className=" min-h-screen w-full grid grid-cols-1 p-0 md:grid-cols-[11rem_2fr_20rem] md:pb-3 grid-rows-[auto_1fr] bg-[#171717] text-white font-sans">
+      <section className=" min-h-screen w-full grid grid-cols-1 p-0 md:grid-cols-[11rem_2fr_20rem] md:pb-3 grid-rows-[auto_1fr] bg-[#101010] text-white font-sans">
       {/* Sidebar A */}
       {!isMediumDevice && (
         <aside className="hidden md:grid grid-rows-[auto_1fr] justify-center gap-4 p-4 col-span-1 row-span-2  backdrop-blur-md shadow-inner">
@@ -216,55 +217,17 @@ const ReDashBoard = () => {
           🧊 Welcome to your beautifully glassy dashboard!
         </div>
         <ul className="flex flex-col gap-3  rounded-md p-3">
-          {/* {taskArr.map((task) => {
-            // const {id,content,checked,status,priority,group,createdDateForform,} = task;
-            return (
-              <motion.li
-                key={task.id}
-                className="w-full flex flex-row justify-between gap-4 border bg-neutral-900 border-zinc-700  py-2 px-3 shadow-lg space-y-2"
-                initial={{ y: "-1.5rem", opacity: 0 }}
-                animate={{ opacity: 1, y: 0 }}
-                // , scale: 1
-                transition={{
-                  duration: 1,
-                  delay: 0.2,
-                  // ease: [0, 0.71, 0.2, 1.01],
-                }}
-              >
-                <label htmlFor="">
-                  <input
-
-                    name=""
-                    id=""
-                    type="checkbox"
-  checked={task.checked}
-  className={`w-5 h-5 rounded-md 
-    ${task.checked ? "accent-green-500" : "accent-blue-500"}
-  `}
-                  />
-                  
-                </label>
-                <div className="flex flex-col w-full ">
-                  <p className="text-lg font-bold">{task.content}</p>
-                  <div className="w-full flex flex-row text-sm text-neutral-500">
-                    <p>Created: {task.createdDateForform}</p>
-                    <p>Group: {task.group}</p>
-                    <p>Priority: {task.priority}</p>
-                  </div>
-                </div>
-                <div><span>*</span><span>:</span></div>
-              </motion.li>
-            );
-          })} */}
-
           <TaskReSection/>
         </ul>
+        <div>
+
+        </div>
       </main>
 
       {/* Sidebar C */}
       {!isSmallLaptop && (
-        <aside className=" hidden lg:flex flex-col gap-4 p-3 ">
-          <div className="w-full flex flex-col gap-4 bg-white/10 p-3 rounded-2xl text-sm">
+        <aside className=" hidden lg:flex flex-col items-center gap-4 p-2">
+          {/* <div className="w-full flex flex-col gap-4 bg-white/10 p-3 rounded-2xl text-sm">
             <div className="w-full p-3 bg-black/40 rounded-md text-center text-base font-medium">
 
             </div>
@@ -278,7 +241,8 @@ const ReDashBoard = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </div> */}
+          <MCalendarComponent/>
         </aside>
       )}
     </section>

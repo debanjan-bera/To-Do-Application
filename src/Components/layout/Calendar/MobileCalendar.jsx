@@ -5,7 +5,8 @@ import useResponsive from "../../../Hooks/UseResponsive";
 import { AnimatePresence } from "framer-motion";
 import { AddTaskForm } from "../../../To-Do/InputBox";
 import RenderCalendar from "./RenderCalendar";
-
+import { FaRegCalendarAlt } from "react-icons/fa";
+import { MdArrowBack } from "react-icons/md";
 const MCalendarComponent = () => {
   const {setCurrentDate,selectedDate,setSelectedDate,setTargetDate,showTask,setTask,isMonth,setMonth,todayDate,todayDateString,listOfMonths,year,month,nextMonth,prevMonth,
   } = useContext(DateContext);
@@ -14,7 +15,6 @@ const MCalendarComponent = () => {
 
   const isTablet = useResponsive(930);
   const isMobile = useResponsive(570);
-  const isLargeMobile = useResponsive(670);
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   const isShowTodayDate = useMemo(
@@ -82,7 +82,7 @@ const MCalendarComponent = () => {
       )}
 
       {!isTablet&&<section
-        className="w-full font-semibold border-b border-gray-500 text-white text-base sm:text-lg md:text-xl cursor-pointer"
+        className="w-full  font-semibold border-b border-gray-500 text-white text-base sm:text-lg md:text-xl cursor-pointer"
         onClick={navigateTodayDate}
       >
         <div className="p-2 sm:p-3 hover:bg-white/10">
@@ -94,13 +94,14 @@ const MCalendarComponent = () => {
 
       <section
         className={`${
-          isMobile ? "w-full pb-3" : isMonth ? "w-full" : "w-[90%]"
-        } rounded-xl relative`}
+          isMobile ? "w-[98%] p-3" : 'w-full p-2'
+        } rounded-xl bg-neutral-950/60 border border-neutral-800 `}
       >
         <div className="w-full py-1  text-white flex items-center justify-between">
-          <span className="text-xl sm:text-2xl font-semibold cursor-pointer border border-black/10 rounded-md hover:bg-[#1E1F28] py-1">
-            <span onClick={() => setMonth(true)}>
-              {`${listOfMonths[month]}, ${year}`}
+          <span className="text-xl text-neutral-400 sm:text-2xl font-semibold cursor-pointer border border-black/10 rounded-md hover:bg-[#1E1F28] py-1">
+            <span className="px-2 flex items-center gap-2 text-xl " onClick={() => setMonth(true)}>
+            <FaRegCalendarAlt />
+              <span>{`${listOfMonths[month]}, ${year}`}</span>
             </span>
           </span>
           <div className="flex gap-2 text-2xl sm:text-3xl">
@@ -113,54 +114,10 @@ const MCalendarComponent = () => {
           </div>
         </div>
           <RenderCalendar />
-        {/* <section
-          className="w-full max-h-[70vh] bg-[#15141B] text-white text-base sm:text-base grid grid-cols-7 auto-rows-[minmax(2rem,1fr)] gap-[2px] sm:gap-1 md:gap-3 cursor-pointer overflow-y-auto rounded-lg"
-          onClick={handleDateClick}
-        >
-          {listOfDays.map((day) => (
-            <div
-              key={day}
-              className="flex items-center justify-center aspect-square font-semibold"
-            >
-              {day}
-            </div>
-          ))}
-
-          {prevMonthDates.map((date, index) => (
-            <div
-              key={`prev-${index}`}
-              className={`${disableDayClass} ${flexClass} aspect-square font-medium`}
-            >
-              {date}
-            </div>
-          ))}
-
-          {Array.from({ length: lastDay }, (_, i) => i + 1).map(
-            (date, index) => (
-              <div
-                key={index}
-                className={`current-month rounded-full ${flexClass} aspect-square ${trackTodayDate(
-                  date
-                )} hover:bg-[#27272a]`}
-              >
-                {date}
-              </div>
-            )
-          )}
-
-          {nextMonthDays.map((date, index) => (
-            <div
-              key={`next-${index}`}
-              className={`${disableDayClass} ${flexClass} aspect-square`}
-            >
-              {date}
-            </div>
-          ))}
-        </section> */}
         {isMonth && (
           <div className="w-full h-full top-0 left-0 absolute bg-black flex flex-shrink flex-col">
-            <div onClick={() => setMonth(false)} className="text-white text-2xl">
-              {"<-Select a Month"}
+            <div onClick={() => setMonth(false)} className="text-white text-2xl flex items-center gap-2 p-2">
+              <span><MdArrowBack /></span>{"Month"}
             </div>
             <div onClick={handleClickMonth} className="h-full w-full grid grid-cols-3 grid-rows-4">
               {listOfMonths.map((ele, index) => (
@@ -187,15 +144,12 @@ const MCalendarComponent = () => {
         {isDataAvailable ? (
           <ul>{renderTasks}</ul>
         ) : (
-          <div className="flex flex-col items-center justify-center text-center h-full w-full text-gray-400 text-lg">
+          <div className="flex flex-col items-center justify-center text-center h-full w-full text-neutral-700 text-lg">
             <p>No tasks available for the selected date.</p>
           </div>
         )}
       </div>
 
-      {!isLargeMobile && (
-        <div className="h-[20%] w-full bg-[#292D32] text-white"></div>
-      )}
     </>
   );
 };

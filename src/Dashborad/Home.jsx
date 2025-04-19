@@ -3,6 +3,7 @@ import { ToDoContext } from "../Contexts/CreateContext";
 import { motion } from "framer-motion";
 import { setLocalStorage } from "../Backend/LocalStorage";
 import { IoStar, IoStarOutline } from "react-icons/io5";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 export const TaskReSection = () => {
   const { taskArr, setTaskArr,filteredData } = useContext(ToDoContext);
@@ -74,7 +75,7 @@ export const TaskReSection = () => {
         return (
           <motion.li
             key={id}
-            className="w-full flex flex-row justify-between gap-4 border bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
+            className="w-full flex flex-row items-center justify-between gap-4 border bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 ,color: "#ffffff" }}
             // exit={{ opacity: 0, y: 50, scale: 0.9 ,color: "#7f1d1d"}}
@@ -123,10 +124,7 @@ export const TaskReSection = () => {
                 <p>{`${checked}`}</p>
               </div>
             </div>
-            <div>
-              <span>*</span>
-              <span>:</span>
-            </div>
+
                       <div id={id} className="flex flex-row items-center"
                       onClick={()=>{handleToggelImp(id)}}
                       >{!favourite ? (
@@ -141,6 +139,16 @@ export const TaskReSection = () => {
             
                       {/* Three-dot Button */}
                       </div>
+                      <div>
+          <button
+            id={id}
+            aria-labelledby={`${id}`}
+            className="ml-2 p-1 text-base scale-125 hover:bg-white/10 rounded-md"
+            // onClick={(e) => openMenu(e)}
+          >
+            <BsThreeDotsVertical />
+          </button>
+            </div>
           </motion.li>
         );
       })}
