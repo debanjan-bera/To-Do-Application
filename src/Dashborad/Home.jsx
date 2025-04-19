@@ -78,7 +78,7 @@ export const TaskReSection = () => {
         return (
           <motion.li
             key={id}
-            className="w-full flex relative flex-row items-center justify-between gap-4 border bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
+            className="w-full flex relative flex-row items-center justify-between gap-4 border rounded-md bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 ,color: "#ffffff" }}
             // exit={{ opacity: 0, y: 50, scale: 0.9 ,color: "#7f1d1d"}}
@@ -115,7 +115,7 @@ export const TaskReSection = () => {
             <div className="flex flex-col w-full">
               <p
                 className={`text-lg font-bold transition-colors duration-300 ${
-                  checked ? "text-green-400" : "text-white"
+                  checked ? "text-green-600 line-through" : "text-white"
                 }`}
               >
                 {content}
