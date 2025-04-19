@@ -28,11 +28,6 @@ const TaskManager = ({ isCompletedDashBoard }) => {
     return () => document.removeEventListener("click", handleClickOutside);
   }, [handleClickOutside]);
 
-  useEffect(()=>{
-    console.log(JSON.stringify(taskArr));
-
-
-  })
   // Save to localStorage
   useEffect(() => {
     setLocalStorage(taskArr, filteredData);

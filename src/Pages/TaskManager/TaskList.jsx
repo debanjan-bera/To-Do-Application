@@ -94,7 +94,7 @@ export const TaskList = ({ activeTask }) => {
               type="checkbox"
               checked={check}
               onChange={(e) => handleCheckedTask(e, id)}
-              className="size-4 accent-indigo-400"
+              className={`size-4 accent-indigo-400 `}
             />
           </div>}
           <div className=" flex flex-col items-start gap-2">
@@ -144,6 +144,7 @@ export const TaskList = ({ activeTask }) => {
           )}
 
           {/* Three-dot Button */}
+          </div>
           <button
             id={id}
             aria-labelledby={`${id}`}
@@ -152,7 +153,6 @@ export const TaskList = ({ activeTask }) => {
           >
             <BsThreeDotsVertical />
           </button>
-          </div>
           {/* Context Menu */}
           <ContextMenuPopUp
             id={id}

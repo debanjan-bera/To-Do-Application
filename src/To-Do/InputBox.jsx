@@ -53,6 +53,7 @@ export const AddTaskForm = () => {
       checked: isEditTask?.checked || false,
       status: isEditTask?.status || 'Pending',
     };
+    
     if(isEditTask){
       const updatedTask = taskArr.map((curTask)=> curTask.id === isEditTask.id? {...finalData,id:isEditTask.id} : curTask)
       setTaskArr(updatedTask)
@@ -141,7 +142,10 @@ export const AddTaskForm = () => {
               placeholder="Enter custom group name..."
               className="w-[22rem] p-[0.5rem] outline-none text-xl rounded border-[1.5px] border-gray-400"
               value={customGroup}
-              onChange={(e) => setCustomGroup(e.target.value)}
+              onChange={(e) => {
+                setCustomGroup(e.target.value)
+                
+              }}
             />
           </label>
         )}

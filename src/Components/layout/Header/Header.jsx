@@ -8,7 +8,7 @@ const Header = () => {
     const isTablet = useResponsive(930);
   return (
     <header
-      className={` col-span-2 h-16 flex items-center justify-between px-6 py-10  backdrop-blur-lg shadow-md
+      className={` col-span-2 h-16 flex items-center justify-between  px-6 py-7
       `}
     >
       <div className="w-full flex flex-col justify-center">
@@ -27,10 +27,10 @@ const Header = () => {
       <div
         className={`flex justify-end items-center gap-2 text-xl font-extrabold`}
       >
-        <span className="p-2 border border-zinc-700 rounded-md aspect-square relative transition-all hover:bg-neutral-500/20">
+        <span className="p-2 border  border-zinc-700 rounded-md aspect-square relative transition-all hover:bg-neutral-500/20">
           <GrNotification />
           <span
-            className="p-[4px] rounded-full aspect-square absolute top-2 right-2 bg-green-600"
+            className="p-[4px] rounded-full aspect-square absolute top-2 right-2 bg-green-500"
           
           ></span>
         </span>
