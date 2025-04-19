@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { setLocalStorage } from "../Backend/LocalStorage";
 import { IoStar, IoStarOutline } from "react-icons/io5";
 import { BsThreeDotsVertical } from "react-icons/bs";
-
+import  ContextMenuPopUp  from "../Components/Functions/Models/ContextMenuBar"
 export const TaskReSection = () => {
-  const { taskArr, setTaskArr,filteredData } = useContext(ToDoContext);
+  const { taskArr, setTaskArr,filteredData ,activeMenuId,setActiveMenuId} = useContext(ToDoContext);
 
   const handleCheckTask = (e,id) => {
     const isChecked = e.target.checked
@@ -23,7 +23,10 @@ export const TaskReSection = () => {
     );
     setTaskArr(updatedTasks);
   }
-
+  const openMenu = (e,id) => {
+    e.stopPropagation();
+    setActiveMenuId((prevId) => (prevId === id ? null : id));
+  };
 
   // const sortedData = [...taskArr].sort((a, b) => {
   //   // Step 1: Sort by status (Pending first, Completed later)
@@ -75,7 +78,7 @@ export const TaskReSection = () => {
         return (
           <motion.li
             key={id}
-            className="w-full flex flex-row items-center justify-between gap-4 border bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
+            className="w-full flex relative flex-row items-center justify-between gap-4 border bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 ,color: "#ffffff" }}
             // exit={{ opacity: 0, y: 50, scale: 0.9 ,color: "#7f1d1d"}}
@@ -121,7 +124,6 @@ export const TaskReSection = () => {
                 <p>Created: {createdDateForform}</p>
                 <p>Group: {group}</p>
                 <p>Priority: {priority}</p>
-                <p>{`${checked}`}</p>
               </div>
             </div>
 
@@ -144,16 +146,22 @@ export const TaskReSection = () => {
             id={id}
             aria-labelledby={`${id}`}
             className="ml-2 p-1 text-base scale-125 hover:bg-white/10 rounded-md"
-            // onClick={(e) => openMenu(e)}
+            onClick={(e) => openMenu(e,id)}
           >
             <BsThreeDotsVertical />
           </button>
+
             </div>
+            <ContextMenuPopUp
+              id={id}
+              curTask = {task}
+              pendingTask={checked}
+              isMenuOpen={activeMenuId===id}
+            />
           </motion.li>
         );
       })}
     </motion.ul>
-
     </>
   );
 };
