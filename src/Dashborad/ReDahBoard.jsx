@@ -1,4 +1,4 @@
-import { memo,  useMemo } from "react";
+import { memo} from "react";
 import useResponsive from "../Hooks/UseResponsive";
 import Header from "../Components/layout/Header/Header";
 
@@ -14,176 +14,172 @@ const ReDashBoard = () => {
   const isMediumDevice = useResponsive(767);
   // const { taskArr, setTaskArr,} = useContext(ToDoContext);
 
-  const today = new Date().toLocaleDateString("en-US", {
-    weekday: "short",
-    day: "numeric",
-    month: "long",
-  });
-  const data = useMemo(
-    () => [
-      {
-        id: "18/04/2025&16:13:06",
-        content: "rf",
-        group: "Music",
-        description: "fff",
-        favourite: false,
-        checked: false,
-        status: "Pending",
-        priority: "Moderate",
-        createdDateForform: "18 April 2025",
-      },
-      {
-        id: "17/04/2025&16:15:07",
-        content: "5",
-        group: "Traveling",
-        description: "5",
-        favourite: false,
-        checked: false,
-        status: "Pending",
-        priority: "High",
-        createdDateForform: "17 April 2025",
-      },
-      {
-        id: "18/04/2025&16:20:02",
-        content: "ede",
-        group: "Traveling",
-        description: "4444",
-        favourite: false,
-        checked: false,
-        status: "Pending",
-        priority: "High",
-        createdDateForform: "17 April 2025",
-      },
-      {
-        id: "17/04/2025&16:22:11",
-        content: "Learn guitar",
-        group: "Music",
-        description: "Practice chords",
-        favourite: true,
-        checked: false,
-        status: "Pending",
-        priority: "Moderate",
-        createdDateForform: "17 April 2025",
-      },
-      {
-        id: "17/04/2025&16:24:50",
-        content: "Plan Goa trip",
-        group: "Traveling",
-        description: "Find hotels and flights",
-        favourite: false,
-        checked: false,
-        status: "Pending",
-        priority: "High",
-        createdDateForform: "20 April 2025",
-      },
-      {
-        id: "17/04/2025&16:26:34",
-        content: "Buy groceries",
-        group: "Personal",
-        description: "Milk, Bread, Eggs",
-        favourite: true,
-        checked: true,
-        status: "Completed",
-        priority: "Low",
-        createdDateForform: "17 April 2025",
-      },
-      {
-        id: "19/04/2025&16:29:09",
-        content: "Study React",
-        group: "Education",
-        description: "Hooks, Context API",
-        favourite: false,
-        checked: false,
-        status: "Pending",
-        priority: "High",
-        createdDateForform: "21 April 2025",
-      },
-      {
-        id: "27/04/2025&16:31:45",
-        content: "Exercise",
-        group: "Fitness",
-        description: "Morning run",
-        favourite: true,
-        checked: false,
-        status: "Pending",
-        priority: "Moderate",
-        createdDateForform: "17 April 2025",
-      },
-      {
-        id: "17/04/2025&16:35:27",
-        content: "Meditation",
-        group: "Fitness",
-        description: "15 min breathing",
-        favourite: true,
-        checked: true,
-        status: "Completed",
-        priority: "Low",
-        createdDateForform: "20 April 2025",
-      },
-      {
-        id: "17/04/2025&16:38:02",
-        content: "Call mom",
-        group: "Personal",
-        description: "Weekly check-in",
-        favourite: true,
-        checked: false,
-        status: "Pending",
-        priority: "Moderate",
-        createdDateForform: "17 April 2025",
-      },
-      {
-        id: "17/04/2025&16:40:15",
-        content: "Read a book",
-        group: "Education",
-        description: "Finish current novel",
-        favourite: false,
-        checked: false,
-        status: "Pending",
-        priority: "Low",
-        createdDateForform: "17 April 2025",
-      },
-      {
-        id: "19/04/2025&16:43:00",
-        content: "Project work",
-        group: "Music",
-        description: "Frontend UI updates",
-        favourite: true,
-        checked: true,
-        status: "Completed",
-        priority: "High",
-        createdDateForform: "17 April 2025",
-      },
-    ],
-    []
-  );
+
+  // const data = useMemo(
+  //   () => [
+  //     {
+  //       id: "18/04/2025&16:13:06",
+  //       content: "rf",
+  //       group: "Music",
+  //       description: "fff",
+  //       favourite: false,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "Moderate",
+  //       createdDateForform: "18 April 2025",
+  //     },
+  //     {
+  //       id: "17/04/2025&16:15:07",
+  //       content: "5",
+  //       group: "Traveling",
+  //       description: "5",
+  //       favourite: false,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "High",
+  //       createdDateForform: "17 April 2025",
+  //     },
+  //     {
+  //       id: "18/04/2025&16:20:02",
+  //       content: "ede",
+  //       group: "Traveling",
+  //       description: "4444",
+  //       favourite: false,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "High",
+  //       createdDateForform: "17 April 2025",
+  //     },
+  //     {
+  //       id: "17/04/2025&16:22:11",
+  //       content: "Learn guitar",
+  //       group: "Music",
+  //       description: "Practice chords",
+  //       favourite: true,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "Moderate",
+  //       createdDateForform: "17 April 2025",
+  //     },
+  //     {
+  //       id: "17/04/2025&16:24:50",
+  //       content: "Plan Goa trip",
+  //       group: "Traveling",
+  //       description: "Find hotels and flights",
+  //       favourite: false,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "High",
+  //       createdDateForform: "20 April 2025",
+  //     },
+  //     {
+  //       id: "17/04/2025&16:26:34",
+  //       content: "Buy groceries",
+  //       group: "Personal",
+  //       description: "Milk, Bread, Eggs",
+  //       favourite: true,
+  //       checked: true,
+  //       status: "Completed",
+  //       priority: "Low",
+  //       createdDateForform: "17 April 2025",
+  //     },
+  //     {
+  //       id: "19/04/2025&16:29:09",
+  //       content: "Study React",
+  //       group: "Education",
+  //       description: "Hooks, Context API",
+  //       favourite: false,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "High",
+  //       createdDateForform: "21 April 2025",
+  //     },
+  //     {
+  //       id: "27/04/2025&16:31:45",
+  //       content: "Exercise",
+  //       group: "Fitness",
+  //       description: "Morning run",
+  //       favourite: true,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "Moderate",
+  //       createdDateForform: "17 April 2025",
+  //     },
+  //     {
+  //       id: "17/04/2025&16:35:27",
+  //       content: "Meditation",
+  //       group: "Fitness",
+  //       description: "15 min breathing",
+  //       favourite: true,
+  //       checked: true,
+  //       status: "Completed",
+  //       priority: "Low",
+  //       createdDateForform: "20 April 2025",
+  //     },
+  //     {
+  //       id: "17/04/2025&16:38:02",
+  //       content: "Call mom",
+  //       group: "Personal",
+  //       description: "Weekly check-in",
+  //       favourite: true,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "Moderate",
+  //       createdDateForform: "17 April 2025",
+  //     },
+  //     {
+  //       id: "17/04/2025&16:40:15",
+  //       content: "Read a book",
+  //       group: "Education",
+  //       description: "Finish current novel",
+  //       favourite: false,
+  //       checked: false,
+  //       status: "Pending",
+  //       priority: "Low",
+  //       createdDateForform: "17 April 2025",
+  //     },
+  //     {
+  //       id: "19/04/2025&16:43:00",
+  //       content: "Project work",
+  //       group: "Music",
+  //       description: "Frontend UI updates",
+  //       favourite: true,
+  //       checked: true,
+  //       status: "Completed",
+  //       priority: "High",
+  //       createdDateForform: "17 April 2025",
+  //     },
+  //   ],
+  //   []
+  // );
 
   // const allGroups = [...new Set(data.map(task => task.group))];
-  const selectedGroups = ["Music", "Personal"];
-  const selectedPriorities = ["High", "Moderate"];
-  const selectedFavourites = [true];
-  // Apply both filters for group and priority
-  const filteredTasks = data.filter(
-    (task) =>
-      selectedGroups.includes(task.group) &&
-      selectedPriorities.includes(task.priority) &&
-      selectedFavourites.includes(task.favourite)
-  );
+  // const selectedGroups = ["Music", "Personal"];
+  // const selectedPriorities = ["High", "Moderate"];
+  // const selectedFavourites = [true];
+  // // Apply both filters for group and priority
+  // const filteredTasks = data.filter(
+  //   (task) =>
+  //     selectedGroups.includes(task.group) &&
+  //     selectedPriorities.includes(task.priority) &&
+  //     selectedFavourites.includes(task.favourite)
+  // );
 
 
   // Sorting the filtered tasks
-  const sortedData = [...filteredTasks].sort((a, b) => {
-    // Step 1: Sort by status (Pending first, Completed later)
-    if (a.status === "Pending" && b.status === "Completed") return -1;
-    if (a.status === "Completed" && b.status === "Pending") return 1;
+  // const sortedData = [...filteredTasks].sort((a, b) => {
+  //   // Step 1: Sort by status (Pending first, Completed later)
+  //   if (a.status === "Pending" && b.status === "Completed") return -1;
+  //   if (a.status === "Completed" && b.status === "Pending") return 1;
 
-    // Step 2: If same status, sort by createdDateForform (newest first)
-    const dateA = new Date(a.createdDateForform);
-    const dateB = new Date(b.createdDateForform);
-    if (dateA > dateB) return -1;
-    if (dateA < dateB) return 1;
+  //   // Step 2: If same status, sort by createdDateForform (newest first)
+  //   const dateA = new Date(a.createdDateForform);
+  //   const dateB = new Date(b.createdDateForform);
+  //   if (dateA > dateB) return -1;
+  //   if (dateA < dateB) return 1;
 
-    return 0; // otherwise keep same
-  });
+  //   return 0; // otherwise keep same
+  // });
 
   // console.log(sortedData);
 
@@ -270,7 +266,7 @@ const ReDashBoard = () => {
         <aside className=" hidden lg:flex flex-col gap-4 p-3 ">
           <div className="w-full flex flex-col gap-4 bg-white/10 p-3 rounded-2xl text-sm">
             <div className="w-full p-3 bg-black/40 rounded-md text-center text-base font-medium">
-              {today}
+
             </div>
             <ul className="flex flex-col gap-2 text-center text-black">
               {[1, 2, 3, 4].map((item) => (

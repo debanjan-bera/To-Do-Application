@@ -1,12 +1,12 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { ToDoContext } from "../Contexts/CreateContext";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { setLocalStorage } from "../Backend/LocalStorage";
 import { IoStar, IoStarOutline } from "react-icons/io5";
 
 export const TaskReSection = () => {
   const { taskArr, setTaskArr,filteredData } = useContext(ToDoContext);
-  const [items, setItems] = useState(['Item 1', 'Item 2', 'Item 3']);
+
   const handleCheckTask = (e,id) => {
     const isChecked = e.target.checked
     console.log(isChecked);
@@ -22,14 +22,29 @@ export const TaskReSection = () => {
     );
     setTaskArr(updatedTasks);
   }
+
+
+  // const sortedData = [...taskArr].sort((a, b) => {
+  //   // Step 1: Sort by status (Pending first, Completed later)
+  //   if (a.status === "Pending" && b.status === "Completed") return -1;
+  //   if (a.status === "Completed" && b.status === "Pending") return 1;
+
+  //   // Step 2: If same status, sort by createdDateForform (newest first)
+  //   const dateA = new Date(a.createdDateForform);
+  //   const dateB = new Date(b.createdDateForform);
+  //   if (dateA > dateB) return -1;
+  //   if (dateA < dateB) return 1;
+
+  //   return 0; // otherwise keep same
+  // });
   useEffect(() => {
     setLocalStorage(taskArr, filteredData);
   }, [taskArr, filteredData]);
   
-  const deleteItem = (item)=>{
-    console.log(item);
-   setItems((items)=> items.filter((items)=> items !== item)) 
-  }
+  // const deleteItem = (item)=>{
+  //   console.log(item);
+  //  setItems((items)=> items.filter((items)=> items !== item)) 
+  // }
   
   return (
     <>
@@ -51,7 +66,6 @@ export const TaskReSection = () => {
           id,
           content,
           checked,
-          status,
           priority,
           group,
           favourite,
@@ -131,64 +145,7 @@ export const TaskReSection = () => {
         );
       })}
     </motion.ul>
-    <motion.ul className="flex flex-col gap-3 rounded-md p-3"
-    initial="hidden"
-    animate="show"
-    variants={{
-      hidden: {},
-      show: {
-        transition: {
-          staggerChildren: 0.3, // Delay between each item
-        },
-      },
-    }}
-    >
-        <AnimatePresence>
-          {items.map((ele) => (
-            <motion.li
-              key={ele}
-              className="w-full flex flex-row justify-between gap-4 border bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 ,color: "#ffffff" }}
-              // exit={{ opacity: 0, y: 50, scale: 0.9 ,color: "#7f1d1d"}}
-              exit={{
-                opacity: 0,
-                x: 100,
-                color: "#7f1d1d", // Red color when exiting
-                transition: {
-                  delay: 0.3, // 🕒 Delay only on EXIT color change
-                  duration: 0.6, // Normal exit speed for color change
-                }
-              }}
-              variants={{
-                hidden: { opacity: 0, y: -20 },
-                show: { opacity: 1, y: 0 },
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 120,
-                damping: 10,
-              }}
-
-
-
-            >
-              <div className="flex flex-col w-full">
-                <motion.p className="text-lg font-bold transition-colors duration-300">
-                  {ele}
-                </motion.p>
-              </div>
-              <div
-                onClick={() => deleteItem(ele)}
-                className="cursor-pointer text-red-400 hover:text-red-500"
-              >
-                <span>🗑️</span>
-              </div>
-            </motion.li>
-          ))}
-        </AnimatePresence>
-      </motion.ul>
     </>
   );
 };
