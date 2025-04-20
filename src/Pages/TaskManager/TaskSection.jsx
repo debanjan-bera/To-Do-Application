@@ -48,52 +48,90 @@ const TaskSection = ({ isCompleted }) => {
     }, {});
   }, []);
 
+  // const renderSection = useCallback(
+  //   (title, sectionTasks) => {
+  //     if (!sectionTasks.length) return null;
+
+  //     const grouped = groupByDate(sectionTasks);
+
+  //     return (
+  //       <AnimatePresence>
+  //         <motion.div
+  //                 exit={{
+  //                   opacity: 0,
+  //                  // Red color when exiting
+  //                   transition: {
+  //                     delay: 0.5, // 🕒 Delay only on EXIT color change
+  //                     duration: 0.9, // Normal exit speed for color change
+  //                   },
+  //                 }}
+  //         >
+  //           <div>
+  //             <h2 className="text-2xl font-bold my-2 px-2">{title}</h2>
+  //             {Object.entries(grouped)
+  //               .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
+  //               .map(([date, tasks]) => (
+  //                 <div key={date}>
+  //                   {title !== "Today" && (
+  //                     <h3 className="text-lg text-zinc-400 px-4 my-1">
+  //                       {date}
+  //                     </h3>
+  //                   )}
+  //                   <AnimatePresence>
+  //                       {tasks.map((task) => (
+  //                         <TaskList key={task.id} activeTask={task} />
+  //                       ))}
+  //                   </AnimatePresence>
+  //                 </div>
+  //               ))}
+  //           </div>
+  //         </motion.div>
+  //       </AnimatePresence>
+  //     );
+  //   },
+  //   [groupByDate]
+  // );
   const renderSection = useCallback(
     (title, sectionTasks) => {
-      if (!sectionTasks.length) return null;
-
       const grouped = groupByDate(sectionTasks);
-
+  
       return (
         <AnimatePresence>
-          <motion.ul
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: {
-                transition: {
-                  staggerChildren: 0.09, // delay between list items
-                },
-              },
-            }}
-          >
-            <div>
-              <h2 className="text-2xl font-bold my-2 px-2">{title}</h2>
-              {Object.entries(grouped)
-                .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
-                .map(([date, tasks]) => (
-                  <div key={date}>
-                    {title !== "Today" && (
-                      <h3 className="text-lg text-zinc-400 px-4 my-1">
-                        {date}
-                      </h3>
-                    )}
-                    <AnimatePresence>
-                      {tasks.map((task) => (
-                        <TaskList key={task.id} activeTask={task} />
-                      ))}
-                    </AnimatePresence>
-                  </div>
-                ))}
-            </div>
-          </motion.ul>
+          {sectionTasks.length > 0 && (
+            <motion.div
+              key={title}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div>
+                <h2 className="text-2xl font-bold my-2 px-2">{title}</h2>
+                {Object.entries(grouped)
+                  .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
+                  .map(([date, tasks]) => (
+                    <div key={date}>
+                      {title !== "Today" && (
+                        <h3 className="text-lg text-zinc-400 px-4 my-1">
+                          {date}
+                        </h3>
+                      )}
+                      <AnimatePresence>
+                        {tasks.map((task) => (
+                          <TaskList key={task.id} activeTask={task} />
+                        ))}
+                      </AnimatePresence>
+                    </div>
+                  ))}
+              </div>
+            </motion.div>
+          )}
         </AnimatePresence>
       );
     },
     [groupByDate]
   );
-
+  
   return (
     <div
       className={`w-full h-full px-4 ${
