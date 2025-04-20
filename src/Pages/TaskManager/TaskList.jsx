@@ -1,140 +1,109 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import  ContextMenuPopUp  from "../../Components/Functions/Models/ContextMenuBar.jsx";
-import { useAnimate, usePresence, motion } from "framer-motion";
-import {toggleChekedStatus,toggleTaskStatus} from "../../Backend/TaskFunctionality.js";
+import ContextMenuPopUp from "../../Components/Functions/Models/ContextMenuBar.jsx";
+import {  motion } from "framer-motion";
 import PropTypes from "prop-types";
-import { FiClock } from "react-icons/fi";
+// import { FiClock } from "react-icons/fi";
 import { IoStarOutline } from "react-icons/io5";
 import { IoStar } from "react-icons/io5";
 import { ToDoContext } from "../../Contexts/CreateContext.jsx";
-import useResponsive from "../../Hooks/UseResponsive.jsx";
+// import useResponsive from "../../Hooks/UseResponsive.jsx";
 export const TaskList = ({ activeTask }) => {
-  const {
-    taskArr,
-    setTaskArr,
-    filteredData,
-    setFilteredData,
-    activeMenuId,
-    setActiveMenuId,
-  } = useContext(ToDoContext);
-  const isMobile = useResponsive(570); // Check mobile screen width
+  const { taskArr, setTaskArr, activeMenuId, group, setActiveMenuId } =
+    useContext(ToDoContext);
+  // const isMobile = useResponsive(570); // Check mobile screen width
 
-  const { id, content, checked, createdDateForform, favourite, priority} = activeTask;
-  const [isPresent, safeToRemove] = usePresence();
-  const [scope, animate] = useAnimate();
-  const [check, setCheck] = useState(false);
+  const {id,content,checked,createdDateForform,favourite,priority} = activeTask;
   const isMenuOpen = activeMenuId === id;
 
   const openMenu = (e) => {
     e.stopPropagation();
     setActiveMenuId((prevId) => (prevId === id ? null : id));
   };
-  const handleCheckedTask = (event) => {
-    console.log(checked);
-    setCheck(!check);
-    if (!checked) toggleTaskStatus(id, taskArr, setTaskArr, setFilteredData);
-    else
-      toggleChekedStatus(event,filteredData,id,setFilteredData,setTaskArr,check,setCheck);
+  // const findPriorityColor = () => {
+  //   if (priority === "High") return `bg-red-800/30 text-red-400`;
+  //   if (priority === "Moderate") return `bg-yellow-500/30 text-yellow-300`;
+  //   return `bg-green-800/40 text-green-400`;
+  // };
+
+  const handleCheckTask = (e, id) => {
+    const isChecked = e.target.checked;
+    const updatedTask = taskArr.map((curTasks) =>
+      curTasks.id === id ? { ...curTasks, checked: isChecked } : curTasks
+    );
+    setTaskArr(updatedTask);
   };
-  const findPriorityColor = () => {
-    if (priority === "High") return `bg-red-800/30 text-red-400`;
-    if (priority === "Moderate") return `bg-yellow-500/30 text-yellow-300`;
-    return `bg-green-800/40 text-green-400`;
-  };
-  
-  const handleToggelImp = () => {
+  const handleToggelImp = (id) => {
     const updatedTasks = taskArr.map((task) =>
       task.id === id ? { ...task, favourite: !task.favourite } : task
     );
     setTaskArr(updatedTasks);
-    setFilteredData(
-      filteredData.map((task) =>
-        task.id === id ? { ...task, favourite: !task.favourite } : task
-      )
-    );
-
   };
-  
-  useEffect(() => {
-    if (!isPresent) {
-      const exitAnimation = async () => {
-        animate(
-          "p",
-          { color: check ? "#6ee7b7" : "#fca5a5" },
-          { ease: "easeIn", duration: 0.125 }
-        );
-        await animate(
-          scope.current,
-          { scale: 1.025 },
-          { ease: "easeIn", duration: 0.125 }
-        );
-        await animate(
-          scope.current,
-          { opacity: 0, x: check ? 24 : -24 },
-          { delay: 0.75 }
-        );
-        safeToRemove();
-      };
-      exitAnimation();
-    }
-  }, [isPresent, check, animate, safeToRemove, scope]);
-
   return (
     <>
       <motion.li
-        ref={scope}
-        layout
-        className={`px-3 py-1 my-3 rounded border border-l-4 ${priority === 'High'?'border-l-red-500': priority === 'Low' ? 'border-l-green-500' : 'border-l-yellow-600'} border-zinc-700  bg-zinc-900 text-white text-xl font-medium flex ${isMobile?'flex-col items-start':'justify-between items-center'} relative select-none`}
+        key={id}
+        className="w-full flex relative flex-row items-center justify-between gap-4 mb-3 border rounded-md bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0, color: "#ffffff" }}
+        // exit={{ opacity: 0, y: 50, scale: 0.9 ,color: "#7f1d1d"}}
+        exit={{
+          opacity: 0,
+          x: 100,
+          color: "#7f1d1d", // Red color when exiting
+          transition: {
+            delay: 0.3, // 🕒 Delay only on EXIT color change
+            duration: 0.6, // Normal exit speed for color change
+          },
+        }}
+        variants={{
+          hidden: { opacity: 0, y: -20 },
+          show: { opacity: 1, y: 0 },
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 120,
+          damping: 10,
+        }}
       >
-        <div className="pb-1 flex flex-row gap-3 items-center">
-          {!isMobile&&<div>
-            <input
-              id={id}
-              type="checkbox"
-              checked={check}
-              onChange={(e) => handleCheckedTask(e, id)}
-              className={`size-4 accent-indigo-400 `}
-            />
-          </div>}
-          <div className=" flex flex-col items-start gap-2">
-            <motion.p className={`text-xl ${check && "line-through"}`}>
-              {content}
-            </motion.p>
-            <span className="flex flex-row gap-2">
-            {!isMobile&&<section className="">
-              <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
-                <FiClock /> <span>{createdDateForform}</span>
-              </div>
-            </section>}
-            {!isMobile&&<section className="">
-              <div className={`flex items-center gap-1.5 whitespace-nowrap rounded ${findPriorityColor('bg')} px-1.5 py-1 text-xs `}>
-                <FiClock /> <span>{priority}</span>
-              </div>
-            </section>}
-            {!isMobile&&<section className="">
-              <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
-                <FiClock /> <span>{createdDateForform}</span>
-              </div>
-            </section>}
-            </span>
-
+        <label className="h-full flex flex-col justify-center">
+          <input
+            id={id}
+            type="checkbox"
+            checked={checked}
+            value={checked}
+            onChange={(e) => handleCheckTask(e, id)}
+            className={`w-4 h-4 rounded-md accent-green-500
+  `}
+          />
+        </label>
+        <div className="flex flex-col w-full">
+          <p
+            className={`text-lg font-bold transition-colors duration-300 ${
+              checked ? "text-green-600 line-through" : "text-white"
+            }`}
+          >
+            {content}
+          </p>
+          <div className="w-full flex flex-row flex-wrap gap-4 text-sm text-neutral-500">
+            <p>Created: {createdDateForform}</p>
+            <p>Group: {group}</p>
+            <p>Priority: {priority}</p>
+            <p className="text-red-400">status: {`${checked}`}</p>
           </div>
         </div>
-        <div className={`ml-auto flex gap-1.5 relative ${isMobile&& 'w-full items-center justify-between'}`}>
-          <span>
-            {isMobile&&<section className="">
-                <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
-                  <FiClock /> <span>{createdDateForform}</span>
-                </div>
-            </section>}
-            
-          </span>
 
-          <div id={id} className="flex flex-row items-center"
-          onClick={()=>{handleToggelImp()}}
-          >{!favourite ? (
-            <span className={`text-xl text-yellow-500 p-2 hover:bg-zinc-600/20 rounded-full aspect-square`}>
+        <div
+          id={id}
+          className="flex flex-row items-center"
+          onClick={() => {
+            handleToggelImp(id);
+          }}
+        >
+          {!favourite ? (
+            <span
+              className={`text-xl text-neutral-600 p-2 hover:bg-zinc-600/20 rounded-full aspect-square`}
+            >
               <IoStarOutline />
             </span>
           ) : (
@@ -144,23 +113,16 @@ export const TaskList = ({ activeTask }) => {
           )}
 
           {/* Three-dot Button */}
-          </div>
-          <button
-            id={id}
-            aria-labelledby={`${id}`}
+        </div>
+        <div>
+          <button id={id} aria-labelledby={`${id}`}
             className="ml-2 p-1 text-base scale-125 hover:bg-white/10 rounded-md"
-            onClick={(e) => openMenu(e)}
+            onClick={(e) => openMenu(e, id)}
           >
             <BsThreeDotsVertical />
           </button>
-          {/* Context Menu */}
-          <ContextMenuPopUp
-            id={id}
-            curTask = {activeTask}
-            pendingTask={checked}
-            isMenuOpen={isMenuOpen}
-          />
         </div>
+        <ContextMenuPopUp id={id} curTask={activeTask} isMenuOpen={isMenuOpen} />
       </motion.li>
     </>
   );

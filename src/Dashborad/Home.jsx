@@ -121,7 +121,7 @@ export const TaskReSection = () => {
               <div className="w-full flex flex-row flex-wrap gap-4 text-sm text-neutral-500">
                 <p>Created: {createdDateForform}</p>
                 <p>Group: {group}</p>
-                <p>Priority: {priority}</p>
+                <p>Priority: {`${checked}`}</p>
               </div>
             </div>
 
@@ -163,3 +163,83 @@ export const TaskReSection = () => {
     </>
   );
 };
+{/* <motion.li
+        ref={scope}
+        layout
+        className={`px-3 py-1 my-3 rounded border border-l-4 ${priority === 'High'?'border-l-red-500': priority === 'Low' ? 'border-l-green-500' : 'border-l-yellow-600'} border-zinc-700  bg-zinc-900 text-white text-xl font-medium flex ${isMobile?'flex-col items-start':'justify-between items-center'} relative select-none`}
+      >
+        <div className="pb-1 flex flex-row gap-3 items-center">
+          {!isMobile&&<div>
+            <input
+              id={id}
+              type="checkbox"
+              checked={check}
+              onChange={(e) => handleCheckedTask(e, id)}
+              className={`size-4 accent-indigo-400 `}
+            />
+          </div>}
+          <div className=" flex flex-col items-start gap-2">
+            <motion.p className={`text-xl ${check && "line-through"}`}>
+              {content}
+            </motion.p>
+            <span className="flex flex-row gap-2">
+            {!isMobile&&<section className="">
+              <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
+                <FiClock /> <span>{createdDateForform}</span>
+              </div>
+            </section>}
+            {!isMobile&&<section className="">
+              <div className={`flex items-center gap-1.5 whitespace-nowrap rounded ${findPriorityColor('bg')} px-1.5 py-1 text-xs `}>
+                <FiClock /> <span>{priority}</span>
+              </div>
+            </section>}
+            {!isMobile&&<section className="">
+              <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
+                <FiClock /> <span>{createdDateForform}</span>
+              </div>
+            </section>}
+            </span>
+
+          </div>
+        </div>
+        <div className={`ml-auto flex gap-1.5 relative ${isMobile&& 'w-full items-center justify-between'}`}>
+          <span>
+            {isMobile&&<section className="">
+                <div className="flex items-center gap-1.5 whitespace-nowrap rounded bg-zinc-800 px-1.5 py-1 text-xs text-zinc-500">
+                  <FiClock /> <span>{createdDateForform}</span>
+                </div>
+            </section>}
+            
+          </span>
+
+          <div id={id} className="flex flex-row items-center"
+          onClick={()=>{handleToggelImp()}}
+          >{!favourite ? (
+            <span className={`text-xl text-yellow-500 p-2 hover:bg-zinc-600/20 rounded-full aspect-square`}>
+              <IoStarOutline />
+            </span>
+          ) : (
+            <span className="text-xl text-yellow-500 p-2 hover:bg-zinc-600/20 rounded-full aspect-square ">
+              <IoStar />
+            </span>
+          )}
+
+          {/* Three-dot Button 
+          </div>
+          <button
+            id={id}
+            aria-labelledby={`${id}`}
+            className="ml-2 p-1 text-base scale-125 hover:bg-white/10 rounded-md"
+            onClick={(e) => openMenu(e)}
+          >
+            <BsThreeDotsVertical />
+          </button>
+          {/* Context Menu 
+          <ContextMenuPopUp
+            id={id}
+            curTask = {activeTask}
+            pendingTask={checked}
+            isMenuOpen={isMenuOpen}
+          />
+        </div>
+      </motion.li> */}

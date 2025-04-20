@@ -8,10 +8,7 @@ import { handleFormCancel } from "../../Backend/FormFunctionality";
 import PropTypes from "prop-types";
 
 const TaskHeader = ({isCompleted}) => {
-  const {
-    setWindowClose,
-    handleAddTaskWindow,
-  } = useContext(ToDoContext);
+  const { setWindowClose, handleAddTaskWindow} = useContext(ToDoContext);
   
   const isTablet = useResponsive(960);
   const isMobile = useResponsive(670);

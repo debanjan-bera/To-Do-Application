@@ -54,6 +54,7 @@ const TaskSection = ({ isCompleted }) => {
     const grouped = groupByDate(sectionTasks);
 
     return (
+      <AnimatePresence>
       <ul>
         <div>
           <h2 className="text-2xl font-bold my-2 px-2">{title}</h2>
@@ -73,6 +74,8 @@ const TaskSection = ({ isCompleted }) => {
             ))}
         </div>
       </ul>
+      </AnimatePresence>
+
     );
   }, [groupByDate]);
 
