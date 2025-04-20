@@ -1,5 +1,5 @@
-import { useContext,useMemo, useCallback, memo } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useContext, useMemo, useCallback, memo } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { ToDoContext } from "../../Contexts/CreateContext";
 import { TaskList } from "./TaskList";
 // import { BsArrowDownCircle } from "react-icons/bs";
@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import useResponsive from "../../Hooks/UseResponsive";
 
 const TaskSection = ({ isCompleted }) => {
-  const { taskArr} = useContext(ToDoContext);
+  const { taskArr } = useContext(ToDoContext);
   // const [showData, setShowCompleted] = useState(false);
   const isMobile = useResponsive(670);
 
@@ -48,40 +48,57 @@ const TaskSection = ({ isCompleted }) => {
     }, {});
   }, []);
 
-  const renderSection = useCallback((title, sectionTasks) => {
-    if (!sectionTasks.length) return null;
+  const renderSection = useCallback(
+    (title, sectionTasks) => {
+      if (!sectionTasks.length) return null;
 
-    const grouped = groupByDate(sectionTasks);
+      const grouped = groupByDate(sectionTasks);
 
-    return (
-      <AnimatePresence>
-      <ul>
-        <div>
-          <h2 className="text-2xl font-bold my-2 px-2">{title}</h2>
-          {Object.entries(grouped)
-            .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
-            .map(([date, tasks]) => (
-              <div key={date}>
-                {title !== "Today" && (
-                  <h3 className="text-lg text-zinc-400 px-4 my-1">{date}</h3>
-                )}
-                <AnimatePresence>
-                  {tasks.map((task) => (
-                    <TaskList key={task.id} activeTask={task} />
-                  ))}
-                </AnimatePresence>
-              </div>
-            ))}
-        </div>
-      </ul>
-      </AnimatePresence>
-
-    );
-  }, [groupByDate]);
+      return (
+        <AnimatePresence>
+          <motion.ul
+            initial="hidden"
+            animate="show"
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.09, // delay between list items
+                },
+              },
+            }}
+          >
+            <div>
+              <h2 className="text-2xl font-bold my-2 px-2">{title}</h2>
+              {Object.entries(grouped)
+                .sort(([dateA], [dateB]) => new Date(dateA) - new Date(dateB))
+                .map(([date, tasks]) => (
+                  <div key={date}>
+                    {title !== "Today" && (
+                      <h3 className="text-lg text-zinc-400 px-4 my-1">
+                        {date}
+                      </h3>
+                    )}
+                    <AnimatePresence>
+                      {tasks.map((task) => (
+                        <TaskList key={task.id} activeTask={task} />
+                      ))}
+                    </AnimatePresence>
+                  </div>
+                ))}
+            </div>
+          </motion.ul>
+        </AnimatePresence>
+      );
+    },
+    [groupByDate]
+  );
 
   return (
     <div
-      className={`w-full h-full px-4 ${!isMobile && "overflow-y-auto main-scroll"}`}
+      className={`w-full h-full px-4 ${
+        !isMobile && "overflow-y-auto main-scroll"
+      }`}
     >
       {!isCompleted && renderSection("Today", groupedTasks.today)}
       {!isCompleted && renderSection("Upcoming", groupedTasks.upcoming)}

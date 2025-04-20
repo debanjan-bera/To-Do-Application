@@ -78,13 +78,16 @@ export const TaskList = ({ activeTask }) => {
           />
         </label>
         <div className="flex flex-col w-full">
-          <p
+          <motion.p
             className={`text-lg font-bold transition-colors duration-300 ${
               checked ? "text-green-600 line-through" : "text-white"
             }`}
+            exit={{
+              color: "#7f1d1d", // Red color when exiting
+            }}
           >
             {content}
-          </p>
+          </motion.p>
           <div className="w-full flex flex-row flex-wrap gap-4 text-sm text-neutral-500">
             <p>Created: {createdDateForform}</p>
             <p>Group: {group}</p>
