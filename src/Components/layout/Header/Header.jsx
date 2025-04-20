@@ -8,7 +8,7 @@ const Header = () => {
     const isTablet = useResponsive(930);
   return (
     <header
-      className={` col-span-2 h-16 flex items-center justify-between  px-6 py-10
+      className={` col-span-2 h-16 flex items-center justify-between  px-6 md:py-10
       `}
     >
       <div className="w-full flex flex-col justify-center">

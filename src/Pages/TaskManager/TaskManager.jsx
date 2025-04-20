@@ -19,9 +19,7 @@ const TaskManager = ({ isCompletedDashBoard }) => {
   }, [setActiveMenuId]);
   
   // Memoized background style
-  const backgroundStyle = useMemo(() => ({
-    backgroundImage: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='50' height='50' fill='none' stroke-width='1' stroke='%239fa6ad29' %3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e")`,
-  }), []);
+
 
   useEffect(() => {;
     document.addEventListener("click", handleClickOutside);
@@ -41,8 +39,15 @@ const TaskManager = ({ isCompletedDashBoard }) => {
         className={`relative w-full h-full grid grid-cols-1 grid-rows-[0.5fr_0.4fr_2.8fr]  ${
           isMobile && "overflow-y-auto main-scroll"
         }`}
-        style={backgroundStyle}
       >
+                      {/* <div className="w-full h-full overflow-hidden">
+                <div className="p-4 bg-white/5 rounded-2xl text-2xl font-semibold shadow-inner">
+                  🧊 Welcome to your beautifully glassy dashboard!
+                </div>
+                <ul className="w-full h-full flex flex-col gap-3 rounded-md p-3 overflow-y-scroll">
+                  <TaskReSection />
+                </ul>
+              </div> */}
         {/* %236e6e6e */}
         <TaskHeader isCompleted={isCompletedDashBoard}/>
 

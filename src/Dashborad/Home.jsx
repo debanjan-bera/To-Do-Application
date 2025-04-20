@@ -10,12 +10,10 @@ export const TaskReSection = () => {
 
   const handleCheckTask = (e,id) => {
     const isChecked = e.target.checked
-    console.log(isChecked);
     const updatedTask = taskArr.map((curTasks) =>
       curTasks.id === id ? { ...curTasks, checked:  isChecked} : curTasks
     );
     setTaskArr(updatedTask)
-    console.log(updatedTask);
   };
   const handleToggelImp = (id)=>{
     const updatedTasks = taskArr.map((task) =>
@@ -53,7 +51,7 @@ export const TaskReSection = () => {
   return (
     <>
     <motion.ul
-      className="flex flex-col gap-3 rounded-md p-3"
+      className="flex flex-col gap-3 rounded-md md:p-3"
       initial="hidden"
       animate="show"
       variants={{

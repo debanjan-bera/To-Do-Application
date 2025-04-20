@@ -1,23 +1,20 @@
-import { memo} from "react";
+import { memo } from "react";
 import useResponsive from "../Hooks/UseResponsive";
 import Header from "../Components/layout/Header/Header";
 
 import { DataProvider } from "../Contexts/DataWhereHouse";
 import { DateManagerProvider } from "../Contexts/DateManagement";
 import { UserFormData } from "../Contexts/AddititonalData";
-import  MCalendarComponent  from "../Components/layout/Calendar/MobileCalendar";
-
+import MCalendarComponent from "../Components/layout/Calendar/MobileCalendar";
+import '../App.css'
 import { TaskReSection } from "./Home";
 import { Footer } from "../Components/layout/Footer/Footer";
-
 
 const ReDashBoard = () => {
   const isSmallLaptop = useResponsive(1020);
   const isMediumDevice = useResponsive(767);
-  const isMobile = useResponsive(670);
 
   // const { taskArr, setTaskArr,} = useContext(ToDoContext);
-
 
   // const data = useMemo(
   //   () => [
@@ -169,7 +166,6 @@ const ReDashBoard = () => {
   //     selectedFavourites.includes(task.favourite)
   // );
 
-
   // Sorting the filtered tasks
   // const sortedData = [...filteredTasks].sort((a, b) => {
   //   // Step 1: Sort by status (Pending first, Completed later)
@@ -189,80 +185,25 @@ const ReDashBoard = () => {
 
   return (
     <DataProvider>
-    <DateManagerProvider>
-      <UserFormData>
-      {/* <section className=" min-h-screen w-full grid grid-cols-1 p-0 md:grid-cols-[11rem_2fr_20rem] md:pb-3 grid-rows-[auto_1fr_auto] bg-[#101010] text-white font-sans">
-      {/* Sidebar A 
-      {!isMediumDevice && (
-        <aside className="hidden md:grid grid-rows-[auto_1fr] justify-center gap-4 p-4 col-span-1 row-span-2  backdrop-blur-md shadow-inner">
-          <p className="text-3xl italic font-bold">Taskly</p>
-          <nav className="flex flex-col gap-2 text-sm">
-            {["🏠 Home", "✅ Tasks", "📅 Calendar", "⚙️ Settings"].map(
-              (item) => (
-                <button
-                  key={item}
-                  className="px-4 py-2 rounded-xl  hover:bg-white/10 transition-all text-left"
-                >
-                  {item}
-                </button>
-              )
-            )}
-          </nav>
-        </aside>
-      )}
-
-      {/* Header 
-      <Header />
-
-      {/* Main 
-      <main className="bg-neutral-950/60 border rounded-none col-span-3 md:col-start-2 border-neutral-800 col-end-4 lg:col-end-2 p-3  backdrop-blur-xl shadow-xl  flex flex-col gap-6 lg:rounded-lg">
-        <div className="p-4  bg-white/5 rounded-2xl text-2xl font-semibold shadow-inner">
-          🧊 Welcome to your beautifully glassy dashboard!
-        </div>
-        <ul className="flex flex-col gap-3  rounded-md p-3">
-          <TaskReSection/>
-        </ul>
-        <div>
-
-        </div>
-      </main>
-
-      {/* Sidebar C *
-      {!isSmallLaptop && (
-        <aside className=" hidden lg:flex flex-col items-center gap-4 p-2">
-          {/* <div className="w-full flex flex-col gap-4 bg-white/10 p-3 rounded-2xl text-sm">
-            <div className="w-full p-3 bg-black/40 rounded-md text-center text-base font-medium">
-
-            </div>
-            <ul className="flex flex-col gap-2 text-center text-black">
-              {[1, 2, 3, 4].map((item) => (
-                <li
-                  key={item}
-                  className="bg-gradient-to-r from-yellow-400 to-orange-400 px-4 py-2 rounded-md font-bold"
-                >
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div> 
-          <MCalendarComponent/>
-        </aside>
-      )}
-    </section> */}
-              <section className="h-dvh overflow-hidden w-full grid grid-cols-1 p-0 md:grid-cols-[11rem_2fr_20rem] md:pb-3 grid-rows-[auto_1fr_auto] bg-[#101010] text-white font-sans">
+      <DateManagerProvider>
+        <UserFormData>
+          <section className="h-dvh w-full bg-[#101010] text-white font-sans grid grid-cols-1 p-0 grid-rows-[0.28fr_3fr_0.25fr] md:grid-cols-[11rem_2fr_20rem] md:pb-3 md:grid-rows-[auto_1fr] "
+          >
             {/* Sidebar A */}
             {!isMediumDevice && (
               <aside className="hidden md:grid grid-rows-[auto_1fr] justify-center gap-4 p-4 col-span-1 row-span-2 backdrop-blur-md shadow-inner">
                 <p className="text-3xl italic font-bold">Taskly</p>
                 <nav className="flex flex-col gap-2 text-sm">
-                  {["🏠 Home", "✅ Tasks", "📅 Calendar", "⚙️ Settings"].map((item) => (
-                    <button
-                      key={item}
-                      className="px-4 py-2 rounded-xl hover:bg-white/10 transition-all text-left"
-                    >
-                      {item}
-                    </button>
-                  ))}
+                  {["🏠 Home", "✅ Tasks", "📅 Calendar", "⚙️ Settings"].map(
+                    (item) => (
+                      <button
+                        key={item}
+                        className="px-4 py-2 rounded-xl hover:bg-white/10 transition-all text-left"
+                      >
+                        {item}
+                      </button>
+                    )
+                  )}
                 </nav>
               </aside>
             )}
@@ -271,21 +212,22 @@ const ReDashBoard = () => {
             <Header />
 
             {/* Main */}
-            <main className="overflow-x-auto overflow-y-auto pb-0 w-full h-full bg-neutral-950/60 border rounded-none col-span-3 md:col-start-2 border-neutral-800 col-end-4 lg:col-end-2 p-3 backdrop-blur-xl shadow-xl flex flex-col gap-6 lg:rounded-lg">
-            <div className="w-full h-full overflow-x-auto">
-            <div className="p-4 bg-white/5 rounded-2xl text-2xl font-semibold shadow-inner">
-                🧊 Welcome to your beautifully glassy dashboard!
+            <main className=" overflow-hidden pb-0 w-full h-full bg-neutral-950/60 border rounded-none col-span-3 md:col-start-2 border-neutral-800 col-end-4 lg:col-end-2 p-3 backdrop-blur-xl shadow-xl flex flex-col gap-6 md:rounded-lg">
+              <div className="w-full h-full overflow-x-auto main-scroll">
+                <div className="p-4 bg-white/5 rounded-2xl text-2xl font-semibold shadow-inner">
+                  🧊 Welcome to your beautifully glassy dashboard!
+                </div>
+                <ul className="flex flex-col gap-3 rounded-md p-3">
+                  <TaskReSection />
+                </ul>
+                <div>{/* you can add more content here */}</div>
               </div>
-              <ul className="flex flex-col gap-3 rounded-md p-3">
-                <TaskReSection />
-              </ul>
-              <div>
-                {/* you can add more content here */}
-              </div>
-            </div>
-
             </main>
-
+            {/* // ${
+                //   isMobile
+                //     ? "col-start-1 col-end-2 row-start-2 row-end-3 overflow-hidden"
+                //     : "col-start-2 col-end-3 row-start-2 row-end-4"
+                // } */}
             {/* Sidebar C */}
             {!isSmallLaptop && (
               <aside className="hidden lg:flex flex-col items-center gap-4 p-2">
@@ -294,19 +236,15 @@ const ReDashBoard = () => {
             )}
 
             {/* Footer on Mobile */}
-            {isMobile && (
-                <Footer />
-            )}
+            {isMediumDevice && <Footer />}
           </section>
-      </UserFormData>
-    </DateManagerProvider>
-  </DataProvider>
-
+        </UserFormData>
+      </DateManagerProvider>
+    </DataProvider>
   );
 };
 
 export default memo(ReDashBoard);
-
 
 // const ReDashBoard = () => {
 //   return (
@@ -324,7 +262,6 @@ export default memo(ReDashBoard);
 // };
 
 // export default memo(ReDashBoard);
-
 
 //bg-[#141414] bg-#1B1A1D
 // bg-[#0D1116] bg-[#161C23]
