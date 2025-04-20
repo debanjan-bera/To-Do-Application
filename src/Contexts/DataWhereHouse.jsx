@@ -4,7 +4,6 @@ import { ToDoContext } from "./CreateContext";
 import { getLocalStorage } from "../Backend/LocalStorage";
 export const DataProvider = ({ children }) => {
 const [taskArr, setTaskArr] = useState(() => getLocalStorage('TodoItems'));
-  const [filteredData, setFilteredData] = useState(() => getLocalStorage('todoFilterItems'));
   const [windowOpen, setWindowClose] = useState(false);
   const [activeMenuId, setActiveMenuId] = useState(null);
   const [isEditTask,setTaskEdit] = useState(null);
@@ -15,7 +14,7 @@ const [taskArr, setTaskArr] = useState(() => getLocalStorage('TodoItems'));
       }, [setWindowClose]);
 
   return (
-    <ToDoContext.Provider value={{taskArr,setTaskArr,isEditTask,setTaskEdit,windowOpen,setWindowClose,filteredData,setFilteredData,activeMenuId, setActiveMenuId,handleAddTaskWindow,mobileAddButton,setmobileAddButton,isShowInfoId,setInfoId}}>
+    <ToDoContext.Provider value={{taskArr,setTaskArr,isEditTask,setTaskEdit,windowOpen,setWindowClose,activeMenuId, setActiveMenuId,handleAddTaskWindow,mobileAddButton,setmobileAddButton,isShowInfoId,setInfoId}}>
       {children}
     </ToDoContext.Provider>
   );

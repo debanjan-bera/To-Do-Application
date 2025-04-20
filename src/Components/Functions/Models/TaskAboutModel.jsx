@@ -6,7 +6,7 @@ import { AnimatePresence,motion} from "framer-motion";
 export const AboutModel = ()=>{
   const [isDisable, setDisable] = useState(true);
 
-    const { isShowInfoId, setInfoId, taskArr,filteredData } = useContext(ToDoContext);
+    const { isShowInfoId, setInfoId, taskArr } = useContext(ToDoContext);
 
     const { isInfoOpen,setInfoOpen} = useContext(FormDataContext);
     const closeModel = ()=>{
@@ -14,7 +14,7 @@ export const AboutModel = ()=>{
         setInfoId(null)
         setDisable(true) /////
     }
-    const findTask = isShowInfoId && taskArr.find((task)=> task.id === isShowInfoId) || filteredData.find((task)=> task.id === isShowInfoId)
+    const findTask = isShowInfoId && taskArr.find((task)=> task.id === isShowInfoId)
     const {content, checked, createdDateForform, description,group,priority} = findTask || ''
     const isPending = !checked? 'Pending' : 'Completed'
     // const isPendingColor = !checked? 'bg-yellow-700/30 text-yellow-200' : 'bg-[#05281480] text-[#17c964] border border-[#095028]'

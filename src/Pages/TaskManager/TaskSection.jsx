@@ -1,17 +1,17 @@
-import { useContext, useState, useMemo, useCallback, memo } from "react";
+import { useContext,useMemo, useCallback, memo } from "react";
 import { AnimatePresence } from "framer-motion";
 import { ToDoContext } from "../../Contexts/CreateContext";
 import { TaskList } from "./TaskList";
-import { BsArrowDownCircle } from "react-icons/bs";
+// import { BsArrowDownCircle } from "react-icons/bs";
 import PropTypes from "prop-types";
 import useResponsive from "../../Hooks/UseResponsive";
 
 const TaskSection = ({ isCompleted }) => {
-  const { taskArr, filteredData } = useContext(ToDoContext);
-  const [showData, setShowCompleted] = useState(false);
+  const { taskArr} = useContext(ToDoContext);
+  // const [showData, setShowCompleted] = useState(false);
   const isMobile = useResponsive(670);
 
-  const allTasks = useMemo(() => (isCompleted ? filteredData : taskArr), [isCompleted, filteredData, taskArr]);
+  // const allTasks = useMemo(() => (isCompleted ? filteredData : taskArr), [isCompleted, filteredData, taskArr]);
 
   const groupedTasks = useMemo(() => {
     const today = new Date();
@@ -23,7 +23,7 @@ const TaskSection = ({ isCompleted }) => {
       previous: [],
     };
 
-    allTasks.forEach((task) => {
+    taskArr.forEach((task) => {
       const taskDate = new Date(task.createdDateForform);
       taskDate.setHours(0, 0, 0, 0);
 
@@ -37,7 +37,7 @@ const TaskSection = ({ isCompleted }) => {
     });
 
     return sections;
-  }, [allTasks]);
+  }, [taskArr]);
 
   const groupByDate = useCallback((arr) => {
     return arr.reduce((acc, item) => {
@@ -86,9 +86,9 @@ const TaskSection = ({ isCompleted }) => {
       {!isCompleted && renderSection("Today", groupedTasks.today)}
       {!isCompleted && renderSection("Upcoming", groupedTasks.upcoming)}
       {!isCompleted && renderSection("Due Tasks", groupedTasks.previous)}
-      {isCompleted && renderSection("Completed Tasks", filteredData)}
+      {/* {isCompleted && renderSection("Completed Tasks", filteredData)} */}
 
-      {!isCompleted && (
+      {/* {!isCompleted && (
         <ul className="text-white">
           {filteredData.length > 0 && (
             <li
@@ -105,7 +105,7 @@ const TaskSection = ({ isCompleted }) => {
           )}
           {showData && renderSection("", filteredData)}
         </ul>
-      )}
+      )} */}
     </div>
   );
 };

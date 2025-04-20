@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import { Outlet } from "react-router-dom";
 import { DataProvider } from "../Contexts/DataWhereHouse";
 import { UserFormData } from "../Contexts/AddititonalData";
@@ -13,11 +13,7 @@ import useResponsive from "../Hooks/UseResponsive";
 const DashBoard = () => {
   const isSmallLaptop = useResponsive(1020);
   const isMediumDevice = useResponsive(767);
-  useEffect(()=>{
-    // Get data from localStorage
 
-
-  },[])
   return (
     <DataProvider>
       <DateManagerProvider>

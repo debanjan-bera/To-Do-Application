@@ -1,14 +1,13 @@
 const todoKey = 'TodoItems'
-const todoFilter = 'todoFilterItems'
+// const todoFilter = 'todoFilterItems'
 export const getLocalStorage = (key)=>{
     const rawData = localStorage.getItem(key)
     if(!rawData) return [];
     return JSON.parse(rawData)
 }
 
-export const setLocalStorage = (currentTask,filteredData)=>{
+export const setLocalStorage = (currentTask)=>{
     localStorage.setItem(todoKey, JSON.stringify(currentTask))
-    localStorage.setItem(todoFilter, JSON.stringify(filteredData))
 }
 export const genaratedUniqueId = () =>{
     const todayDate = new Date();

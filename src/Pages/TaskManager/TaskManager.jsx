@@ -11,7 +11,7 @@ import { setLocalStorage } from "../../Backend/LocalStorage.js";
 import useResponsive from "../../Hooks/UseResponsive.jsx";
 
 const TaskManager = ({ isCompletedDashBoard }) => {
-  const { taskArr, windowOpen, filteredData, setActiveMenuId } =
+  const { taskArr, windowOpen,setActiveMenuId } =
     useContext(ToDoContext);
 
   const isMobile = useResponsive(670); // Check if it's the login page
@@ -23,12 +23,18 @@ const TaskManager = ({ isCompletedDashBoard }) => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [handleClickOutside]);
-
+  useEffect(() => {
+    const data = localStorage.getItem('todoFilterItems');
+  
+    if (data) {
+      localStorage.removeItem('todoFilterItems');
+    }
+  }, []);
   
   // Save to localStorage
   useEffect(() => {
-    setLocalStorage(taskArr, filteredData);
-  }, [taskArr, filteredData]);
+    setLocalStorage(taskArr);
+  }, [taskArr]);
 
   return (
     <>
@@ -38,7 +44,15 @@ const TaskManager = ({ isCompletedDashBoard }) => {
           isMobile && "overflow-y-auto main-scroll"
         }`}
       >
-        {/* <div className="w-full h-full overflow-hidden">
+        {/* 
+        useEffect(() => {
+  const data = localStorage.getItem('todoFilterItems');
+
+  if (data) {
+    const userData = JSON.parse(data);
+    console.log(userData);
+  }
+}, [setTaskArr]);<div className="w-full h-full overflow-hidden">
                 <div className="p-4 bg-white/5 rounded-2xl text-2xl font-semibold shadow-inner">
                   🧊 Welcome to your beautifully glassy dashboard!
                 </div>
