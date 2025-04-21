@@ -13,7 +13,7 @@ export const TaskList = ({ activeTask }) => {
     useContext(ToDoContext);
   // const isMobile = useResponsive(570); // Check mobile screen width
 
-  const {id,content,checked,favourite,priority,group} = activeTask;
+  const {id,content,checked,favourite,priority,group,createdDateForform} = activeTask;
   const isMenuOpen = activeMenuId === id;
 
   const openMenu = (e) => {
@@ -73,6 +73,7 @@ export const TaskList = ({ activeTask }) => {
           </motion.p>
           <div className="w-full flex flex-row flex-wrap gap-4 text-sm text-neutral-500">
             <p>Group: {group}</p>
+            <p>{createdDateForform}</p>
             <p>Priority: {priority}</p>
             <p className={`${!checked ? 'text-red-500' : 'text-green-700'}`}>{`${!checked? 'Pending':'Completed'}`}</p>
           </div>
