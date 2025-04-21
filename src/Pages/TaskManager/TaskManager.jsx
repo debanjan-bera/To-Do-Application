@@ -55,7 +55,7 @@ const TaskManager = ({ isCompletedDashBoard }) => {
   );
 };
 TaskManager.propTypes = {
-  isCompletedDashBoard: PropTypes.bool.isRequired,
+  isCompletedDashBoard: PropTypes.bool,
 };
 
 export default memo(TaskManager);

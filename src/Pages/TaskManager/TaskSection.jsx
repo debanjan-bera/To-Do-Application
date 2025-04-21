@@ -127,22 +127,25 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ToDoContext } from "../../Contexts/CreateContext";
 import { TaskList } from "./TaskList";
 import useResponsive from "../../Hooks/UseResponsive";
+import PropTypes from "prop-types";
 
-const TaskSection = () => {
+const TaskSection = ({isCompleted}) => {
   const { taskArr } = useContext(ToDoContext);
   const isMobile = useResponsive(670);
   // const allGroups = [...new Set(taskArr.map(task => task.group))];
-  const handleFilterTask = false;
-  const selectedGroups = ["Music", "Gaming"];
-  const selectedPriorities = ["High", "Moderate"];
-  // const selectedFavourites = [true];
+  // const selectedGroups = ["Music", "Gaming"];
+  // const selectedPriorities = ["High", "Moderate"];
+  const selectedFavourites = [true];
+  const selectedNotCompleted = [false];
+
   // // Apply both filters for group and priority
-  const filteredTasks = handleFilterTask
-    ? taskArr.filter(
-        (task) =>
-          selectedGroups.includes(task.group) &&
-          selectedPriorities.includes(task.priority)
-      ) :  taskArr
+  const filteredTasks = taskArr.filter(
+    (task) =>
+      // selectedGroups.includes(task.group) &&
+      // selectedPriorities.includes(task.priority)
+      isCompleted? selectedFavourites.includes(task.checked):
+      selectedNotCompleted.includes(task.checked)
+  )
 
   // Sorting the filtered tasks
   const sortedData = [...filteredTasks].sort((a, b) => {
@@ -211,12 +214,15 @@ const TaskSection = () => {
         !isMobile && "overflow-y-auto main-scroll"
       }`}
     >
-      {renderSection("Today", groupedTasks.today)}
-      {renderSection("Upcoming", groupedTasks.upcoming)}
-      {renderSection("Due Tasks", groupedTasks.previous)}
-      {renderSection("Completed Tasks", groupedTasks.previous)}
+      {!isCompleted&&renderSection("Today", groupedTasks.today)}
+      {!isCompleted&&renderSection("Upcoming", groupedTasks.upcoming)}
+      {!isCompleted&&renderSection("Due Tasks", groupedTasks.previous)}
+      {isCompleted&&renderSection("Completed Tasks", sortedData)}
     </div>
   );
 };
 
+TaskSection.propTypes = {
+  isCompleted: PropTypes.bool,
+};
 export default memo(TaskSection);

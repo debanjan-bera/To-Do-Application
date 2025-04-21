@@ -6,13 +6,13 @@ import { memo } from "react";
   return (
     <>
       <aside
-        className={`hidden md:grid grid-rows-[auto_1fr] justify-center gap-4 p-4  row-span-3 backdrop-blur-md shadow-inner`}
+        className={`hidden md:grid grid-cols-1 grid-rows-[auto_1fr] justify-center gap-4 py-4  row-span-3 backdrop-blur-md shadow-inner`}
       >
-        <div>
+        <div className="">
           {" "}
           <p className="text-3xl italic font-bold">Taskly</p>
         </div>
-        <div>
+        <div className="w-full border">
           {" "}
           <NavLink to="/">
             <h1>Home</h1>
