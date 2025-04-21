@@ -5,8 +5,9 @@ import { useState } from "react";
 export const UserFormData = ({ children }) => {
     const [groupData,setGroupData] = useState(['Reading','Gaming','Traveling','Music','College','Others'])
     const [isInfoOpen,setInfoOpen] = useState(false)
+    const [category,setCategory] = useState()
   return (
-    <FormDataContext.Provider value={{groupData,setGroupData,isInfoOpen,setInfoOpen}}>
+    <FormDataContext.Provider value={{groupData,setGroupData,isInfoOpen,setInfoOpen,category,setCategory}}>
       {children}
     </FormDataContext.Provider>
   );

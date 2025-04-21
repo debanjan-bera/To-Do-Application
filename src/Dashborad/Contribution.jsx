@@ -1,56 +1,4 @@
 
-import { memo } from "react";
-const ContributionGraph = () => {
-
-
-  return (
-    <section className="min-h-screen w-full bg-[#0E0E0E] text-white font-sans overflow-hidden">
-      <div className="grid grid-cols-1 md:grid-cols-[0.5fr_2fr_0.7fr] grid-rows-[auto_1fr] min-h-screen">
-        
-        {/* Sidebar */}
-        <aside className="col-span-1 row-span-2 md:border-r border-zinc-700 bg-[#1E1F23] p-4">
-          <h2 className="text-xl font-semibold text-[#6569F4] mb-4">Taskly</h2>
-        </aside>
-
-        {/* Header */}
-        <header className="md:col-span-2 p-4 bg-[#1F2125] border-b border-zinc-700 shadow-md backdrop-blur-md bg-opacity-30">
-          <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        </header>
-
-        {/* Main */}
-        <main className="p-4 flex flex-col gap-8 bg-[#15161A]">
-          {/* Task Cards */}
-          <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {["#86ABFA", "#5BC298", "#EE89D6", "#7068FF", "#FDC761"].map((color, i) => (
-              <div
-                key={i}
-                className="p-4 rounded-2xl shadow-xl backdrop-blur-md bg-opacity-10 border border-zinc-700 text-white"
-                style={{
-                  background: `linear-gradient(135deg, ${color}33, #1F2125)`,
-                  borderColor: color,
-                }}
-              >
-                <h3 className="text-lg font-semibold mb-2">Task {i + 1}</h3>
-                <p className="text-sm">Details about task {i + 1}</p>
-              </div>
-            ))}
-          </section>
-
-          {/* Contribution Graph (Full Year) */}
-
-
-        </main>
-
-        {/* Right Sidebar */}
-        <aside className="hidden md:block bg-[#1E1F23] border-l border-zinc-700 p-4">
-          <h2 className="text-lg font-semibold text-[#6569F4]">Notes</h2>
-        </aside>
-      </div>
-    </section>
-  );
-};
-
-export default memo(ContributionGraph);
 // import { useMemo } from "react";
 // import { motion } from "framer-motion";
 
@@ -170,46 +118,46 @@ export default memo(ContributionGraph);
 
 
 
-// const generateMockContributions = () => {
-//     const contributions = [];
-//     for (let i = 0; i < 365; i++) {
-//       contributions.push(Math.floor(Math.random() * 5)); // values 0-4
-//     }
-//     return contributions;
-//   };
+// // const generateMockContributions = () => {
+// //     const contributions = [];
+// //     for (let i = 0; i < 365; i++) {
+// //       contributions.push(Math.floor(Math.random() * 5)); // values 0-4
+// //     }
+// //     return contributions;
+// //   };
   
-//   const intensityColors = [
-//     "#1F2125",   // level 0 (no activity)
-//     "#313368",   // level 1
-//     "#4B4EF0",   // level 2
-//     "#6569F4",   // level 3
-//     "#A0A2FA",   // level 4
-//   ];
+// //   const intensityColors = [
+// //     "#1F2125",   // level 0 (no activity)
+// //     "#313368",   // level 1
+// //     "#4B4EF0",   // level 2
+// //     "#6569F4",   // level 3
+// //     "#A0A2FA",   // level 4
+// //   ];
 
-// const contributions = generateMockContributions();
+// // const contributions = generateMockContributions();
 
-//           <section>
-//             <h2 className="text-xl font-bold text-[#6569F4] mb-4">Yearly Contribution Graph</h2>
-//             <div className="overflow-x-auto">
-//               <div className="flex gap-[2px]">
-//                 {Array.from({ length: 52 }).map((_, weekIdx) => (
-//                   <div key={weekIdx} className="flex flex-col gap-[2px]">
-//                     {Array.from({ length: 7 }).map((_, dayIdx) => {
-//                       const idx = weekIdx * 7 + dayIdx;
-//                       const level = contributions[idx] || 0;
-//                       return (
-//                         <div
-//                           key={dayIdx}
-//                           className="w-3.5 h-3.5 rounded-sm"
-//                           style={{
-//                             backgroundColor: intensityColors[level],
-//                           }}
-//                         />
-//                       );
-//                     })}
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//             <p className="mt-2 text-xs text-gray-400">Simulated 365-day graph. Activity level colors from 0–4.</p>
-//           </section>
+// //           <section>
+// //             <h2 className="text-xl font-bold text-[#6569F4] mb-4">Yearly Contribution Graph</h2>
+// //             <div className="overflow-x-auto">
+// //               <div className="flex gap-[2px]">
+// //                 {Array.from({ length: 52 }).map((_, weekIdx) => (
+// //                   <div key={weekIdx} className="flex flex-col gap-[2px]">
+// //                     {Array.from({ length: 7 }).map((_, dayIdx) => {
+// //                       const idx = weekIdx * 7 + dayIdx;
+// //                       const level = contributions[idx] || 0;
+// //                       return (
+// //                         <div
+// //                           key={dayIdx}
+// //                           className="w-3.5 h-3.5 rounded-sm"
+// //                           style={{
+// //                             backgroundColor: intensityColors[level],
+// //                           }}
+// //                         />
+// //                       );
+// //                     })}
+// //                   </div>
+// //                 ))}
+// //               </div>
+// //             </div>
+// //             <p className="mt-2 text-xs text-gray-400">Simulated 365-day graph. Activity level colors from 0–4.</p>
+// //           </section>

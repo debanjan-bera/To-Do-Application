@@ -10,11 +10,12 @@ import { AddTaskForm } from "../../To-Do/InputBox.jsx";
 import { setLocalStorage } from "../../Backend/LocalStorage.js";
 import useResponsive from "../../Hooks/UseResponsive.jsx";
 
+
 const TaskManager = ({ isCompletedDashBoard }) => {
   const { taskArr, windowOpen,setActiveMenuId } =
     useContext(ToDoContext);
 
-  const isMobile = useResponsive(670); // Check if it's the login page
+  const isMobile = useResponsive(670); 
   const handleClickOutside = useCallback(() => {
     setActiveMenuId(null);
   }, [setActiveMenuId]);
@@ -23,14 +24,13 @@ const TaskManager = ({ isCompletedDashBoard }) => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [handleClickOutside]);
-  useEffect(() => {
-    const data = localStorage.getItem('todoFilterItems');
+  // useEffect(() => {
+  //   const data = localStorage.getItem('todoFilterItems');
   
-    if (data) {
-      localStorage.removeItem('todoFilterItems');
-    }
-  }, []);
-  
+  //   if (data) {
+  //     localStorage.removeItem('todoFilterItems');
+  //   }
+  // }, []);
   // Save to localStorage
   useEffect(() => {
     setLocalStorage(taskArr);
@@ -40,28 +40,12 @@ const TaskManager = ({ isCompletedDashBoard }) => {
     <>
       <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
       <section
-        className={`relative w-full h-full grid grid-cols-1 grid-rows-[0.5fr_0.4fr_2.8fr]  ${
+        className={`relative w-full h-full grid grid-cols-1 grid-rows-[0.3fr_0.4fr_2.8fr] px-2  ${
           isMobile && "overflow-y-auto main-scroll"
         }`}
       >
-        {/* 
-        useEffect(() => {
-  const data = localStorage.getItem('todoFilterItems');
 
-  if (data) {
-    const userData = JSON.parse(data);
-    console.log(userData);
-  }
-}, [setTaskArr]);<div className="w-full h-full overflow-hidden">
-                <div className="p-4 bg-white/5 rounded-2xl text-2xl font-semibold shadow-inner">
-                  🧊 Welcome to your beautifully glassy dashboard!
-                </div>
-                <ul className="w-full h-full flex flex-col gap-3 rounded-md p-3 overflow-y-scroll">
-                  <TaskReSection />
-                </ul>
-              </div> */}
-        {/* %236e6e6e */}
-        <TaskHeader isCompleted={isCompletedDashBoard} />
+        <TaskHeader />
 
         {/* Group Tags */}
         <TaskCategory />

@@ -9,11 +9,11 @@ import { IoStar } from "react-icons/io5";
 import { ToDoContext } from "../../Contexts/CreateContext.jsx";
 // import useResponsive from "../../Hooks/UseResponsive.jsx";
 export const TaskList = ({ activeTask }) => {
-  const { taskArr, setTaskArr, activeMenuId, group, setActiveMenuId } =
+  const { taskArr, setTaskArr, activeMenuId, setActiveMenuId } =
     useContext(ToDoContext);
   // const isMobile = useResponsive(570); // Check mobile screen width
 
-  const {id,content,checked,createdDateForform,favourite,priority} = activeTask;
+  const {id,content,checked,favourite,priority,group} = activeTask;
   const isMenuOpen = activeMenuId === id;
 
   const openMenu = (e) => {
@@ -41,63 +41,44 @@ export const TaskList = ({ activeTask }) => {
   };
   return (
     <>
-      <motion.li
-        key={id}
-        className="w-full flex relative flex-row items-center justify-between gap-4 mb-3 border rounded-md bg-neutral-900 border-zinc-700 py-2 px-3 shadow-lg"
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0, color: "#ffffff" }}
+      <motion.li key={id}
+        className="w-full mb-2 flex relative flex-row items-center justify-between gap-4 border rounded-md bg-neutral-950/60 border-zinc-700 py-2 px-3 shadow-lg"
+        initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0, color: "#ffffff" }}
         // exit={{ opacity: 0, y: 50, scale: 0.9 ,color: "#7f1d1d"}}
         exit={{
-          opacity: 0,
-          x: 100,
-          color: "#7f1d1d", // Red color when exiting
+          opacity: 0, x: 100, color: "#7f1d1d", // Red color when exiting
           transition: {
             delay: 0.3, // 🕒 Delay only on EXIT color change
             duration: 0.6, // Normal exit speed for color change
           },
         }}
         variants={{
-          hidden: { opacity: 0, y: -20 },
-          show: { opacity: 1, y: 0 },
+          hidden: { opacity: 0, y: -20 },show: { opacity: 1, y: 0 },
         }}
         transition={{
-          type: "spring",
-          stiffness: 120,
-          damping: 10,
+          type: "spring", stiffness: 120, damping: 10,
         }}
       >
         <label className="h-full flex flex-col justify-center">
-          <input
-            id={id}
-            type="checkbox"
-            checked={checked}
-            value={checked}
-            onChange={(e) => handleCheckTask(e, id)}
-            className={`w-4 h-4 rounded-md accent-green-500
-  `}
+          <input id={id} type="checkbox" checked={checked} value={checked} onChange={(e) => handleCheckTask(e, id)} className={`w-4 h-4 rounded-md accent-green-500`}
           />
         </label>
         <div className="flex flex-col w-full">
           <motion.p
             className={`text-lg font-bold transition-colors duration-300 ${
-              checked ? "text-green-600 line-through" : "text-white"
-            }`}
-            exit={{
-              color: "#7f1d1d", // Red color when exiting
-            }}
+              checked ? "text-green-600 line-through" : "text-white"}`}
+            exit={{color: "#7f1d1d"}}
           >
             {content}
           </motion.p>
           <div className="w-full flex flex-row flex-wrap gap-4 text-sm text-neutral-500">
-            <p>Created: {createdDateForform}</p>
             <p>Group: {group}</p>
             <p>Priority: {priority}</p>
-            <p className="text-red-400">status: {`${checked}`}</p>
+            <p className={`${!checked ? 'text-red-500' : 'text-green-700'}`}>{`${!checked? 'Pending':'Completed'}`}</p>
           </div>
         </div>
 
-        <div
-          id={id}
+        <div id={id}
           className="flex flex-row items-center"
           onClick={() => {
             handleToggelImp(id);

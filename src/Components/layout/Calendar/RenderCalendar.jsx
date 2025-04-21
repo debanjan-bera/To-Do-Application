@@ -2,31 +2,18 @@ import { memo, useContext, useEffect } from "react";
 import { DateContext, ToDoContext } from "../../../Contexts/CreateContext";
 
 const RenderCalendar = () => {
-  const {
-    isSunday,
-    setSunday,
-    selectedDate,
-    setSelectedDate,
-    targetDate,
-    setTargetDate,
-    setTask,
-    todayDate,
-    todayDateString,
-    listOfMonths,
-    year,
-    month,
-  } = useContext(DateContext);
+  const {isSunday,setSunday,selectedDate,setSelectedDate,targetDate,setTargetDate,setTask,todayDate,todayDateString,listOfMonths,year,month,} = useContext(DateContext);
   const { taskArr, setActiveMenuId } = useContext(ToDoContext);
   const listOfDays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const firstDay = new Date(year, month, 1).getDay();
-  const lastDay = new Date(year, month + 1, 0).getDate();
+  const lastDate = new Date(year, month + 1, 0).getDate();
   const prevMonthLastDay = new Date(year, month, 0).getDate();
   const prevMonthDates = Array.from(
     { length: firstDay },
     (_, i) => prevMonthLastDay - firstDay + i + 1
   );
   const totalCells =
-    Math.ceil((firstDay + lastDay) / 7) * 7 - (firstDay + lastDay);
+    Math.ceil((firstDay + lastDate) / 7) * 7 - (firstDay + lastDate);
   const nextMonthDays = Array.from({ length: totalCells }, (_, i) => i + 1);
 
   const trackTodayDate = (date) => {
@@ -81,11 +68,11 @@ const RenderCalendar = () => {
 
   useEffect(() => {
     const sundays = [];
-    for (let day = 1; day <= lastDay; day++) {
+    for (let day = 1; day <= lastDate; day++) {
       if (new Date(year, month, day).getDay() === 0) sundays.push(day);
     }
     setSunday(sundays);
-  }, [year, month, lastDay, setSunday]);
+  }, [year, month, lastDate, setSunday]);
 
   return (
     <section
@@ -110,7 +97,7 @@ const RenderCalendar = () => {
         </div>
       ))}
 
-      {Array.from({ length: lastDay }, (_, i) => i + 1).map((date, index) => (
+      {Array.from({ length: lastDate }, (_, i) => i + 1).map((date, index) => (
         <div
           key={index}
           className={`current-month rounded-full ${flexClass} aspect-square ${trackTodayDate(

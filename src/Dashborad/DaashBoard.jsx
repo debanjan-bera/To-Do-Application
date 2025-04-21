@@ -9,7 +9,7 @@ import Header from "../Components/layout/Header/Header";
 import { Footer } from "../Components/layout/Footer/Footer";
 import { DateManagerProvider } from "../Contexts/DateManagement";
 import useResponsive from "../Hooks/UseResponsive";
-
+import SideBar from '../Components/layout/SideBar/TodoSidebar'
 const DashBoard = () => {
   const isSmallLaptop = useResponsive(1020);
   const isMediumDevice = useResponsive(767);
@@ -24,21 +24,7 @@ h-dvh w-full bg-[#101010] text-white font-sans grid grid-cols-1 p-0 grid-rows-[0
             `}
           >
             {!isMediumDevice && (
-              <aside className="hidden md:grid grid-rows-[auto_1fr] justify-center gap-4 p-4  row-span-3 backdrop-blur-md shadow-inner">
-                <p className="text-3xl italic font-bold">Taskly</p>
-                {/* <nav className="flex flex-col gap-2 text-sm">
-                  {["🏠 Home", "✅ Tasks", "📅 Calendar", "⚙️ Settings"].map(
-                    (item) => (
-                      <button
-                        key={item}
-                        className="px-4 py-2 rounded-xl hover:bg-white/10 transition-all text-left"
-                      >
-                        {item}
-                      </button>
-                    )
-                  )}
-                </nav> */}
-              </aside>
+              <SideBar/>
             )}
             <Header />
 
