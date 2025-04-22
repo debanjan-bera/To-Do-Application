@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo} from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { DataProvider } from "../Contexts/DataWhereHouse";
 import { UserFormData } from "../Contexts/AddititonalData";
@@ -29,7 +29,7 @@ const DashBoard = () => {
 
             <section
               className={` w-full h-full text-white bg-neutral-900/30 border rounded-none p-2 col-span-3 row-end-3 overflow-hidden md:col-start-2 col-end-4  md:row-end-4 md:overflow-none   md:rounded-lg border-neutral-700
-                ${isHomeActive ? "row-start-1 lg:col-end-4" : "md:row-start-2  lg:col-end-3"}
+                ${isHomeActive ? "row-start-1 md:row-start-2  lg:col-end-4" : "md:row-start-2  lg:col-end-3"}
               `}
             >
               <Outlet />
@@ -37,7 +37,7 @@ const DashBoard = () => {
 
             {isMediumDevice && <Footer />}
 
-            {!isSmallLaptop && (
+            {(!isSmallLaptop && !isHomeActive) && (
               <section
                 className={`${isHomeActive ? "lg:hidden" : "hidden"} p-2 
               gap-4 lg:w-full h-full relative col-start-3 col-end-4 row-start-2 row-end-4 lg:flex`}

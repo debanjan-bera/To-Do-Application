@@ -88,7 +88,7 @@ const MCalendarComponent = () => {
 
   return (
     <>
-    <section className="w-full h-full flex flex-col items-center gap-3 overflow-scroll">
+    <section className="w-full h-full flex flex-col items-center gap-3 overflow-scroll main-scroll">
     {isMobile && (
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
       )}
@@ -159,7 +159,7 @@ const MCalendarComponent = () => {
             ? "grid items-start grid-rows-[0.2rem_1.8fr]"
             : isMobile
             ? "max-h-[25rem]"
-            : "overflow-y-auto scrollEffect max-h-[25rem]"
+            : "overflow-y-auto scrollEffect max-h-[25rem] main-scroll"
         }`}
       >
         <p className="pt-2 text-base sm:text-lg">
