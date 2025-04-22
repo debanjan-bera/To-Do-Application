@@ -12,7 +12,7 @@ import { memo } from "react";
           {" "}
           <p className="text-3xl italic font-bold">Taskly</p>
         </div>
-        <div className="w-full border">
+        <div className="w-full border border-neutral-800">
           {" "}
           <NavLink to="/">
             <h1>Home</h1>

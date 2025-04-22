@@ -10,7 +10,7 @@ import { AddTaskForm } from "../../../To-Do/InputBox";
 import RenderCalendar from "./RenderCalendar";
 import { FaRegCalendarAlt } from "react-icons/fa";
 import { MdArrowBack } from "react-icons/md";
-
+import  '../../../App.css'
 const MCalendarComponent = () => {
   const {setCurrentDate,selectedDate,setSelectedDate,setTargetDate,showTask,setTask,isMonth,setMonth,todayDate,todayDateString,listOfMonths,year,month,nextMonth,prevMonth} = useContext(DateContext);
 
@@ -88,7 +88,8 @@ const MCalendarComponent = () => {
 
   return (
     <>
-      {isMobile && (
+    <section className="w-full h-full flex flex-col items-center gap-3 overflow-scroll">
+    {isMobile && (
         <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
       )}
 
@@ -107,7 +108,7 @@ const MCalendarComponent = () => {
 
       <section
         className={`${
-          isMobile ? "w-[98%] p-3" : "w-full p-2"
+          isMobile ? "w-[98%] p-3 " : "w-full p-2"
         } rounded-xl bg-neutral-950/60 border border-neutral-800 `}
       >
         <div className="w-full py-1  text-white flex items-center justify-between">
@@ -173,6 +174,8 @@ const MCalendarComponent = () => {
           </div>
         )}
       </div>
+    </section>
+      
     </>
   );
 };

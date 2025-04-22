@@ -40,7 +40,7 @@ const TaskManager = ({ isCompletedDashBoard }) => {
     <>
       <AnimatePresence>{windowOpen && <AddTaskForm />}</AnimatePresence>
       <section
-        className={`relative w-full h-full grid grid-cols-1 grid-rows-[0.3fr_0.4fr_2.8fr] px-2  ${
+        className={`relative w-full gap-3 h-full grid grid-cols-1 grid-rows-[0.3fr_0.4fr_2.8fr] px-2 md:gap-1 ${
           isMobile && "overflow-y-auto main-scroll"
         }`}
       >
