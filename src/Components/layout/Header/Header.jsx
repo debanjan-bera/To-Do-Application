@@ -20,12 +20,12 @@ const Header = () => {
             </p>
           </>
         ) : (
-          "Hello Debanajan"
+          "HI Debanajan"
         )}
       </div>
-      <div className="md:w-full border border-neutral-700">Serach</div>
+      <div className="hidden md:w-full border border-neutral-700">Serach</div>
       <div
-        className={`w-full flex justify-end items-center gap-2 text-xl font-extrabold`}
+        className={` w-full flex justify-end items-center gap-2 text-xl font-extrabold`}
       >
         <span className="p-2 border  border-zinc-700 rounded-md aspect-square relative transition-all hover:bg-neutral-500/20">
           <GrNotification />
