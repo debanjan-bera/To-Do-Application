@@ -217,7 +217,7 @@ const TaskSection = ({isCompleted}) => {
       {!isCompleted&&renderSection("Today", groupedTasks.today)}
       {!isCompleted&&renderSection("Upcoming", groupedTasks.upcoming)}
       {!isCompleted&&renderSection("Due Tasks", groupedTasks.previous)}
-      {isCompleted&&renderSection("Completed Tasks", sortedData)}
+      {renderSection("Completed Tasks", sortedData)}
     </div>
   );
 };

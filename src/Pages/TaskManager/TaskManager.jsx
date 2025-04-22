@@ -46,8 +46,6 @@ const TaskManager = ({ isCompletedDashBoard }) => {
       >
 
         <TaskHeader />
-
-        {/* Group Tags */}
         <TaskCategory />
         <TaskSection isCompleted={isCompletedDashBoard} />
       </section>

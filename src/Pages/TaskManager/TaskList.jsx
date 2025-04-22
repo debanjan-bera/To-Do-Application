@@ -75,7 +75,6 @@ export const TaskList = ({ activeTask }) => {
             <p>Group: {group}</p>
             <p>{createdDateForform}</p>
             <p>Priority: {priority}</p>
-            <p className={`${!checked ? 'text-red-500' : 'text-green-700'}`}>{`${!checked? 'Pending':'Completed'}`}</p>
           </div>
         </div>
 

@@ -5,7 +5,7 @@ export const DateAndTime = () => {
     hour >= 5 && hour < 12
       ? { greeting: "Good Morning", icon: <WiSunrise className="text-yellow-400 text-4xl pl-1" /> }
       : hour >= 12 && hour < 18
-      ? { greeting: "Good Afternoon!!", icon: '☀️' }
+      ? { greeting: "Good Afternoon", icon: '☀️' }
       : { greeting: "Good Evening,", icon: <WiNightClear className="text-blue-400 text-4xl" /> };
 
   return (
@@ -15,7 +15,7 @@ export const DateAndTime = () => {
         
         </div>
         
-      <h1 className=" text-center">{`${greeting} Debanjan Bera`}</h1>
+      <h1 className=" text-center"><span className="text-lg">{greeting}</span>{`, Debanjan Bera`}</h1>
     </div>
   );
 };
