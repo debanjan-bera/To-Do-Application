@@ -25,7 +25,7 @@ const Home = ()=>{
       </div>
     </header>
     <main className="w-full h-full">
-      <section className="w-full h-[16rem] bg-neutral-800/70  border border-neutral-700 rounded grid grid-cols-2 grid-rows-2 md:w-[22rem] gap-2 p-2">
+      <section className="w-full h-[16rem] bg-white/5 border border-neutral-700 rounded grid grid-cols-2 grid-rows-2 md:w-[22rem] gap-2 p-2">
         <div className="w-full h-full bg-red-600 ">Total Tasks</div>
         <div className="w-full h-full bg-green-500 ">Pendings</div>
         <div className="w-full h-full bg-sky-600 ">Completed Tasks</div>

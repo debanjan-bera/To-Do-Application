@@ -1,4 +1,4 @@
-import { memo} from "react";
+import { memo, useState} from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { DataProvider } from "../Contexts/DataWhereHouse";
 import { UserFormData } from "../Contexts/AddititonalData";
@@ -15,16 +15,16 @@ const DashBoard = () => {
   const isMediumDevice = useResponsive(767);
   const isHomePage = useLocation();
   const isHomeActive = isHomePage.pathname === "/home";
-
+  const [isOpen, setIsMenuOpen] = useState(true);
   return (
     <DataProvider>
       <DateManagerProvider>
         <UserFormData>
           <section
-            className={`h-dvh w-full bg-[#101010] text-white font-sans grid grid-cols-1 p-0 sm:gap-0 ${isHomeActive ? "grid-rows-[0.7fr_3fr_0.25fr] md:pr-3" : "grid-rows-[0.28fr_3fr_0.25fr] lg:pr-0"} md:grid-cols-[11rem_2fr_20rem] md:grid-rows-[auto_1fr]  md:pr-2 md:pb-3 md:gap-1 
+            className={`h-dvh w-full bg-[#101010] text-white font-sans grid grid-cols-1 p-0 sm:gap-0 ${isHomeActive ? "grid-rows-[0.7fr_3fr_0.25fr] md:pr-3" : "grid-rows-[0.28fr_3fr_0.25fr] lg:pr-0"} ${isOpen ? 'md:grid-cols-[11rem_2fr_20rem]':"md:grid-cols-[3.8rem_2fr_20rem]"} md:grid-rows-[auto_1fr]  md:pr-2 md:pb-3 md:gap-1 
   `}
           >
-            {!isMediumDevice && <SideBar />}
+            {!isMediumDevice && <SideBar isOpen={isOpen} setIsOpen={setIsMenuOpen}/>}
             {(!isMediumDevice||!isHomeActive)&&<Header />}
 
             <section
