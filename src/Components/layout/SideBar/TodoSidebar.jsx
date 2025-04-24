@@ -45,7 +45,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         )}
       </div>
 
-      <div className="mx-2 w-auto rounded-md hover:bg-white/10">
+      <div className="mx-2 p-1 rounded-md hover:bg-white/10">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="text-3xl p-1 font-extrabold text-white transition"
@@ -94,6 +94,11 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
     className={({ isActive }) =>
       `group flex items-center gap-3 p-3 mx-2 rounded-md cursor-pointer transition ${
         isActive
+          ? "bg-[#6569f4]/60 text-white"
+          : "hover:bg-[#6569f4]/20"
+      }
+      ${
+        openDropdown === index
           ? "bg-[#6569f4]/60 text-white"
           : "hover:bg-[#6569f4]/20"
       }

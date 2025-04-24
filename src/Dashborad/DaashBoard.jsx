@@ -15,7 +15,7 @@ const DashBoard = () => {
   const isMediumDevice = useResponsive(767);
   const isHomePage = useLocation();
   const isHomeActive = isHomePage.pathname === "/home";
-  const [isOpen, setIsMenuOpen] = useState(true);
+  const [isOpen, setIsMenuOpen] = useState(false);
   return (
     <DataProvider>
       <DateManagerProvider>
