@@ -86,62 +86,86 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
           }
 
           return (
-            <div key={index} className="relative">
-              <motion.div whileHover={{ scale: 1.05 }}>
-                <div
-                  onClick={() => toggleDropdown(index)}
-                  className={`group flex items-center justify-center gap-3 p-3 mx-2 rounded-md cursor-pointer transition ${
-                    isOpen ? "" : "justify-center"
-                  } ${
-                    isDropdownOpen
-                      ? "bg-[#6569f4]/60 text-white"
-                      : "hover:bg-[#6569f4]/20"
-                  }`}
-                >
-                  <span>{icon}</span>
-                  {isOpen && (
-                    <span className="w-full text-md font-medium flex items-center justify-between">
-                      {name}
-                      <IoIosArrowDown
-                        className={`transition-transform ${
-                          isDropdownOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </span>
-                  )}
-                  {!isOpen && (
-                    <span className="absolute left-16 bg-zinc-800 text-white text-sm rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-50">
-                      {name}
-                    </span>
-                  )}
-                </div>
-              </motion.div>
+<div key={index} className="relative">
+  <NavLink
+    to={to}
+    index={index}
 
-              <AnimatePresence>
-                {isOpen && isDropdownOpen && (
-                  <motion.ul
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="mx-4 mt-1 overflow-hidden flex flex-col gap-1 text-sm text-gray-200"
-                  >
-                    {children.map((child, i) => (
-                      <NavLink
-                        key={i}
-                        to={child.to}
-                        className={({ isActive }) =>
-                          `px-4 py-2 rounded hover:bg-[#6569f4]/40 transition ${
-                            isActive ? "bg-[#6569f4]/40 text-white" : ""
-                          }`
-                        }
-                      >
-                        {child.name}
-                      </NavLink>
-                    ))}
-                  </motion.ul>
-                )}
-              </AnimatePresence>
-            </div>
+    className={({ isActive }) =>
+      `group flex items-center gap-3 p-3 mx-2 rounded-md cursor-pointer transition ${
+        isActive
+          ? "bg-[#6569f4]/60 text-white"
+          : "hover:bg-[#6569f4]/20"
+      }
+       ${
+      isOpen ? "" : "justify-center"
+    }
+      ${
+          openDropdown === index
+            ? "bg-[#6569f4]/60 text-white"
+            : "hover:bg-[#6569f4]/20"
+        }
+      `
+    }
+  >
+    {/* NavLink wraps only the icon and name, navigates to '/tasks' */}
+    <NavLink
+      to={to}
+      className="flex items-center gap-2 flex-1"
+
+    >
+      <span>{icon}</span>
+      {isOpen && <span className="text-md font-medium">{name}</span>}
+    </NavLink>
+
+    {/* Dropdown toggle only toggles the dropdown */}
+    {isOpen && (
+      <button
+        onClick={() => toggleDropdown(index)}
+        className="ml-auto"
+      >
+        <IoIosArrowDown
+          className={`transition-transform ${
+            openDropdown === index ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+    )}
+
+    {!isOpen && (
+      <span className="absolute left-16 bg-zinc-800 text-white text-sm rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-all z-50">
+        {name}
+      </span>
+    )}
+  </NavLink>
+
+  {/* Dropdown Items */}
+  <AnimatePresence>
+    {isOpen && openDropdown === index && (
+      <motion.ul
+        initial={{ height: 0, opacity: 0 }}
+        animate={{ height: "auto", opacity: 1 }}
+        exit={{ height: 0, opacity: 0 }}
+        className="mx-4 mt-1 overflow-hidden flex flex-col gap-1 text-sm text-gray-200"
+      >
+        {children.map((child, i) => (
+          <NavLink
+            key={i}
+            to={child.to}
+            className={({ isActive }) =>
+              `px-4 py-2 rounded hover:bg-[#6569f4]/40 transition ${
+                isActive ? "bg-[#6569f4]/40 text-white" : ""
+              }`
+            }
+          >
+            {child.name}
+          </NavLink>
+        ))}
+      </motion.ul>
+    )}
+  </AnimatePresence>
+</div>
+
           );
         })}
       </nav>
