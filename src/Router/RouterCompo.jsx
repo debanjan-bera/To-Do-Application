@@ -14,9 +14,9 @@ import NoFound from '../Pages/Error/404';
         { path: '/', element: <TaskManager isCompletedDashBoard={false}/> },
         { path: '/completedTask', element: <TaskManager isCompletedDashBoard={true} /> },
         { path: '/calendar', element: <MCalendarComponent /> },
-        { path: '/todo', element: <TaskManager isCompletedDashBoard={false}/> },
+        { path: '/tasks', element: <TaskManager isCompletedDashBoard={false}/> },
         {path: '/home', element: <Home/>},
-        { path: '/todo/:category', element: <TaskManager isCompletedDashBoard={false} /> },
+        { path: '/tasks/:category', element: <TaskManager isCompletedDashBoard={false} /> },
       ],
     },
     // {
