@@ -1,7 +1,0 @@
-.custom-scroll::-webkit-scrollbar {
-    height: 0.01rem;
-  }
-  
-  .main-scroll::-webkit-scrollbar {
-    width: 0px;
-  }
