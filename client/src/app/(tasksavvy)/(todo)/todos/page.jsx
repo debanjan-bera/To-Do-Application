@@ -2,8 +2,9 @@
 import React from 'react'
 
 function Todos() {
+
   return (
-    <div>page</div>
+    <div>tasks </div>
   )
 }
 

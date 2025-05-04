@@ -1,5 +1,5 @@
 
-export default function Todo() {
+export default function Todos() {
     return (
       <>
         <h2>Hello Todo</h2>
