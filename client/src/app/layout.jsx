@@ -22,7 +22,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <section className="h-dvh w-full bg-black text-white">
+          
+          {/* <div className="h-full w-full absolute flex items-center justify-center bg-white/5 backdrop-blur-xs">
+            popUp
+          </div> */}
+          {children}</section>
       </body>
     </html>
   );
