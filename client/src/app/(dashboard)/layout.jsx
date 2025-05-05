@@ -6,7 +6,7 @@ export default function layout({ children }) {
     <section className="h-full w-full grid grid-cols-[0.5fr_3fr] grid-rows-[0.4fr_5fr]">
       <Header />
       <SideBar/>
-      <main className="h-full col-start-2 col-end-3 row-start-2 row-end-3 bg-white/5 text-white">{children}</main>
+      <main className="h-full col-start-2 col-end-3 row-start-2 row-end-3  bg-neutral-700/30 text-white">{children}</main>
     </section>
   );
 }
